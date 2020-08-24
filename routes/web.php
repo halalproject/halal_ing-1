@@ -49,7 +49,3 @@ Route::group(['prefix' => 'client'],function(){
     Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
     Route::get('hapus/view/{id}','Client\RamuanController@view');
 });
-
-Route::get('/hello', function () {
-    return('hello world');
-});
