@@ -54,9 +54,13 @@
   	</head>
   
 	<x-menu />
-    
+	
+	
+	  @if(\Request::is(admin))
+	  	@yield('content')
+	  @else
 		@yield('page')
-
+	  @endif
 		
 		<div class="bs-example">
 			<div id="myModal" class="modal fade" role="dialog">
