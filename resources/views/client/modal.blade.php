@@ -58,7 +58,8 @@ function do_simpan()
             confirmButtonText: "Ok",
             showConfirmButton: true,
         });
-    } else {$.ajaxSetup({
+    } else {
+        $.ajaxSetup({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
@@ -252,12 +253,17 @@ function hantar_to()
         cancelButtonText: 'Tidak, Batal!',
         reverseButtons: true
     }).then(function () {
-        var formdata = new FormData();
+        var formdata = new FormData($('#create')[0]);
         alert(formdata);
+        $.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
         $.ajax({
 			url:'/client/daftar/upload', //&datas='+datas,
 			type:'POST',
-			data: $("#create").serialize(),
+			data: formdata,
             contentType: false,
             processData: false,
 			//data: datas,

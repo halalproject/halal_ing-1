@@ -108,6 +108,11 @@ class DaftarController extends Controller
         }
     }
 
+    public function upload(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function view($id)
     {
         return view('client/view',compact('id'));

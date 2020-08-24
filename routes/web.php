@@ -27,6 +27,7 @@ Route::group(['prefix' => 'client'],function(){
     Route::get('daftar/create', 'Client\DaftarController@create');
     Route::get('daftar/edit/{id}','Client\DaftarController@edit');
     Route::post('daftar/store','Client\DaftarController@store');
+    Route::post('daftar/upload','Client\DaftarController@upload');
     Route::get('daftar/view/{id}','Client\DaftarController@view');
     Route::get('daftar/delete/{id}','Client\DaftarController@delete');
 
@@ -48,6 +49,7 @@ Route::group(['prefix' => 'client'],function(){
     //Ramuan Yang Dihapuskan
     Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
     Route::get('hapus/view/{id}','Client\RamuanController@view');
+<<<<<<< HEAD
 });
 
 //Admin Webpage
@@ -59,3 +61,6 @@ Route::group(['prefix' => 'admin'],function(){
 Route::get('/hello', function () {
     return('hello world');
 });
+=======
+});
+>>>>>>> e87a585c982a19f058019de1d96095e6be0211ae
