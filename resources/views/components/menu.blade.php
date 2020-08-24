@@ -99,6 +99,12 @@
 											<span>Permohonan Baru</span>
 										</a>
 									</li>
+									<li class="@if(\Request::is('admin/login*')) nav-expanded nav-active @endif">
+										<a href="/client/daftar">
+											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<span>Permohonan Baru</span>
+										</a>
+									</li>
 									<li class="@if(\Request::is('client/proses*')) nav-expanded nav-active @endif">
 										<a href="/client/proses">
 											<i class="fa fa-refresh" aria-hidden="true"></i>
