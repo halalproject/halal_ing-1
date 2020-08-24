@@ -16,7 +16,7 @@ class DaftarController extends Controller
     public function index(Request $request)
     {
         // dd($request->all());
-        $permohonan = Ramuan::whereNull('tarikh_buka');
+        $permohonan = Ramuan::whereNull('tarikh_buka')->where('status','<',2)->where('is_delete',0);
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
@@ -175,57 +175,6 @@ class DaftarController extends Controller
             } else {
                 return response()->json('ERR');
             }
-            
-            // if(!empty($request->upload_3)){
-            //     $file = $request->upload_3->getClientOriginalName();
-            //     $type = pathinfo($file)['extension'];
-            //     $path = $request->upload_3->storeAs('dokumen_ramuan', $file);
-    
-            //     $ramuan_doc = new Ramuan_Dokumen();
-            //     $ramuan_doc->ramuan_id = $request->id;
-            //     $ramuan_doc->ref_dokumen_id = 3;
-            //     $ramuan_doc->file_name = $file;
-            //     $ramuan_doc->file_type = $type;
-    
-            //     $ramuan_doc->save();    
-            // }if(!empty($request->upload_4)){
-            //     $file = $request->upload_4->getClientOriginalName();
-            //     $type = pathinfo($file)['extension'];
-            //     $path = $request->upload_4->storeAs('dokumen_ramuan', $file);
-    
-            //     $ramuan_doc = new Ramuan_Dokumen();
-            //     $ramuan_doc->ramuan_id = $request->id;
-            //     $ramuan_doc->ref_dokumen_id = 4;
-            //     $ramuan_doc->file_name = $file;
-            //     $ramuan_doc->file_type = $type;
-    
-            //     $ramuan_doc->save();    
-            // }if(!empty($request->upload_5)){
-            //     $file = $request->upload_5->getClientOriginalName();
-            //     $type = pathinfo($file)['extension'];
-            //     $path = $request->upload_5->storeAs('dokumen_ramuan', $file);
-    
-            //     $ramuan_doc = new Ramuan_Dokumen();
-            //     $ramuan_doc->ramuan_id = $request->id;
-            //     $ramuan_doc->ref_dokumen_id = 5;
-            //     $ramuan_doc->file_name = $file;
-            //     $ramuan_doc->file_type = $type;
-    
-            //     $ramuan_doc->save();    
-            // }if(!empty($request->upload_6)){
-            //     $file = $request->upload_6->getClientOriginalName();
-            //     $type = pathinfo($file)['extension'];
-            //     $path = $request->upload_6->storeAs('dokumen_ramuan', $file);
-    
-            //     $ramuan_doc = new Ramuan_Dokumen();
-            //     $ramuan_doc->ramuan_id = $request->id;
-            //     $ramuan_doc->ref_dokumen_id = 6;
-            //     $ramuan_doc->nama_dokumen = $request->nama_lain;
-            //     $ramuan_doc->file_name = $file;
-            //     $ramuan_doc->file_type = $type;
-    
-            //     $ramuan_doc->save();    
-            // }
         }
     }
 
@@ -234,8 +183,15 @@ class DaftarController extends Controller
         return view('client/view',compact('id'));
     }
 
-    public function delete()
+    public function delete($id)
     {
-        
+        // dd($id);
+        $ramuan = Ramuan::find($id)->update(['is_delete'=>1,'delete_dt'=>now(),'delete_by'=>1]);
+
+        if($ramuan){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
     }
 }
