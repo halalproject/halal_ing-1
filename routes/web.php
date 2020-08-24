@@ -56,4 +56,3 @@ Route::group(['prefix' => 'admin'],function(){
     //Login
     Route::get('/','Admin\LoginController@index');
 });
-
