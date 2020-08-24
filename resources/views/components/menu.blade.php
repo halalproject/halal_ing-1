@@ -92,19 +92,14 @@
 											<span>Dashboard Utama</span>
 										</a>
 									</li>
-									
+									@if(\Request::is('client*'))
 									<li class="@if(\Request::is('client/daftar*')) nav-expanded nav-active @endif">
 										<a href="/client/daftar">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Permohonan Baru</span>
 										</a>
 									</li>
-									<li class="@if(\Request::is('admin/login*')) nav-expanded nav-active @endif">
-										<a href="/client/daftar">
-											<i class="fa fa-list-alt" aria-hidden="true"></i>
-											<span>Permohonan Baru</span>
-										</a>
-									</li>
+
 									<li class="@if(\Request::is('client/proses*')) nav-expanded nav-active @endif">
 										<a href="/client/proses">
 											<i class="fa fa-refresh" aria-hidden="true"></i>
@@ -128,7 +123,18 @@
 											<i class="fa fa-folder" aria-hidden="true"></i>
 											<span>Ramuan Yang Dihapuskan</span>
 										</a>
-									</li>          
+									</li>
+
+									@else
+									
+									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
+										<a href="/client/daftar">
+											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<span>Syarikat</span>
+										</a>
+									</li>
+
+									@endif
 
 									<li class="visible-xs">
 										<a href="/logout">
