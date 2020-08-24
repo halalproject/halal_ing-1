@@ -106,11 +106,11 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endif
                         </td>
                         <td align="center">
-                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
                                 <i class="fa fa-pencil-square-o fa-lg"></i>
                             </a>
                             &nbsp;
-                            <a href="/client/daftar/delete/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Hapus Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/daftar/delete/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Hapus Permohonan Ramuan" class="fa" data-backdrop="static" style="color: red">
                                 <i class="fa fa-trash-o fa-lg"></i>
                             </a>
                         </td>
