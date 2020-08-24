@@ -270,20 +270,18 @@ function hantar_to()
 			success: function(data){
 				console.log(data);
 				//alert(data);
-				if(data[0]=='OK'){
+				if(data=='OK'){
 					swal({
 					  title: 'Berjaya',
-					  text: 'Maklumat telah berjaya disimpan',
+					  text: 'Maklumat telah berjaya disimpan dan dihantar',
 					  type: 'success',
 					  confirmButtonClass: "btn-success",
 					  confirmButtonText: "Ok",
 					  showConfirmButton: true,
 					}).then(function () {
-                        $('#id').val(data[1]);
-                        $('#tab2').toggleClass('disabled');
-                        $('#tab-2').attr('data-toggle','tab');
+                        location.reload();
 					});
-				} else if(data[0]=='ERR'){
+				} else if(data=='ERR'){
 					swal({
 					  title: 'Amaran',
 					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya disimpan.',
