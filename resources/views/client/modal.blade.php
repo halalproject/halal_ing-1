@@ -58,7 +58,8 @@ function do_simpan()
             confirmButtonText: "Ok",
             showConfirmButton: true,
         });
-    } else {$.ajaxSetup({
+    } else {
+        $.ajaxSetup({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
@@ -254,6 +255,11 @@ function hantar_to()
     }).then(function () {
         var formdata = new FormData();
         alert(formdata);
+        $.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
         $.ajax({
 			url:'/client/daftar/upload', //&datas='+datas,
 			type:'POST',

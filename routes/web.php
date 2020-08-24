@@ -27,6 +27,7 @@ Route::group(['prefix' => 'client'],function(){
     Route::get('daftar/create', 'Client\DaftarController@create');
     Route::get('daftar/edit/{id}','Client\DaftarController@edit');
     Route::post('daftar/store','Client\DaftarController@store');
+    Route::post('daftar/upload','Client\DaftarController@store');
     Route::get('daftar/view/{id}','Client\DaftarController@view');
     Route::get('daftar/delete/{id}','Client\DaftarController@delete');
 
