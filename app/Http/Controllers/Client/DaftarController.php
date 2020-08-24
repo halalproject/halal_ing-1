@@ -36,12 +36,14 @@ class DaftarController extends Controller
         // dd($id);
 
         $rs = Ramuan::find($id);
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+        // dd($upload);
         $bahan = Ref_Sumber_Bahan::where('status',0)->get();
         $negara = Ref_Negara::where('status',0)->get();
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
 
-        return view('client/modal',compact('rs','bahan','negara','negeri','dokumen'));
+        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen'));
     }
 
     public function store(Request $request)
@@ -117,13 +119,13 @@ class DaftarController extends Controller
             $type = pathinfo($file)['extension'];
             $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
 
-            $ramuan_doc = new Ramuan_Dokumen();
-            $ramuan_doc->ramuan_id = $request->id;
-            $ramuan_doc->ref_dokumen_id = 1;
-            $ramuan_doc->file_name = $file;
-            $ramuan_doc->file_type = $type;
+            $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+                ['ramuan_id' => $request->id],
+                ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type]
+            );
 
             $ramuan_doc->save();
+
             if($ramuan_doc){
                 $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>1]);
                 
@@ -140,12 +142,19 @@ class DaftarController extends Controller
                     $file = $request->file('upload_'.$i)->getClientOriginalName();
                     $type = pathinfo($file)['extension'];
                     $path = $request->file('upload_'.$i)->storeAs('dokumen_ramuan', $file);
-        
-                    $ramuan_doc = new Ramuan_Dokumen();
-                    $ramuan_doc->ramuan_id = $request->id;
-                    $ramuan_doc->ref_dokumen_id = $i;
-                    $ramuan_doc->file_name = $file;
-                    $ramuan_doc->file_type = $type;
+                    
+                    $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+                        ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
+                        ['ref_dokumen_id' => $i,'file_name' => $file,'file_type' => $type]
+                    );
+
+                    
+                    if($i == 6){
+                        $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+                            ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
+                            ['ref_dokumen_id' => $i,'nama_dokumen' => $request->nama_lain,'file_name' => $file,'file_type' => $type]
+                        );
+                    }
         
                     $ramuan_doc->save();    
                 }
