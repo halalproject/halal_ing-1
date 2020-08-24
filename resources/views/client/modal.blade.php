@@ -479,7 +479,8 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                                 <div class="row">
                                     <div class="col-md-6 control-label">
                                         <div class="input-group">
-                                            <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" onchange="do_able({{$dokumen->id}})"/>&nbsp;{{ $dokumen->nama }} 
+                                            <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" 
+                                                onchange="do_able({{$dokumen->id}})"/>&nbsp;{{ $dokumen->nama }} 
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
                                                 title="{!! $dokumen->remarks !!}"></i>
                                         </div>
@@ -490,13 +491,22 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                                         <div class="col-md-3 control-label">
                                             <div class="input-group col-md-3">
                                                 <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}">
+                                                @if(!empty($upload))
+                                                @if(!$upload->isEmpty())
+                                                    @foreach ($upload as $up)
+                                                        @if($up->ref_dokumen_id == $dokumen->id)
+                                                            {{ $up->file_name }}
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                                @endif
                                             </div>
                                         </div>
                                         @if($dokumen->nama == 'Sijil Halal')
                                         <div class="col-md-3 control-label">
                                             <div class="input-group">
                                                 <label class="col-md-8 control-label" for="sijil">Tarikh Tamat Sijil : </label>
-                                                <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value=""> 
+                                                <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}"> 
                                             </div>
                                         </div>
                                         @endif
