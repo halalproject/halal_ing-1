@@ -56,7 +56,7 @@
 	<x-menu />
 	
 	
-	  @if(\Request::is(admin))
+	  @if(\Request::is('admin'))
 	  	@yield('content')
 	  @else
 		@yield('page')
