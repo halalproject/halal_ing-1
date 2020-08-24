@@ -50,6 +50,12 @@ Route::group(['prefix' => 'client'],function(){
     Route::get('hapus/view/{id}','Client\RamuanController@view');
 });
 
+//Admin Webpage
+Route::group(['prefix' => 'admin'],function(){
+    //Login
+    Route::get('/','Admin\LoginController@index');
+});
+
 Route::get('/hello', function () {
     return('hello world');
 });
