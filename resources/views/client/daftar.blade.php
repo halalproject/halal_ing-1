@@ -11,13 +11,13 @@ function do_page()
   var sijil = $('#sijil').val();
   var kategori = $('#kategori').val();
   var carian = $('#carian').val();
-  // alert(carian);
+//   alert(sijil);
   var pathname = window.location.pathname;
 
-  if(carian.trim()==''){
+  if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
     window.location = pathname;
   } else {
-    window.location = pathname+'?sijil'+sijil+'&kategori'+kategori+'&carian='+carian;
+    window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
   }
 }
 </script>
@@ -27,18 +27,16 @@ $sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
 $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
 		<div class="box" style="background-color:#F2F2F2">
-
             <div class="box-body">
-        	<input type="hidden" name="soalan_id" value="" />
-            <div class="x_panel">
-			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
-                <div class="panel-actions">
-                <!--<a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>-->
+                <div class="x_panel">
+                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
+                        <div class="panel-actions">
+                        <!--<a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>-->
+                        </div>
+                        <h6 class="panel-title"><font color="#000000"><b>SENARAI MAKLUMAT DAFTAR SOALAN</b></font></h6> 
+                    </header>
                 </div>
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI MAKLUMAT DAFTAR SOALAN</b></font></h6> 
-            </header>
-			</div>
             </div>            
             <br />
             <div class="box-body">
@@ -46,15 +44,15 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <div class="col-md-2">
                         <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
                             <option value="">Status Sijil Halal</option>
-                            <option value="0">Ada</option>
-                            <option value="1">Tiada</option>
+                            <option value="1" @if($sijil == '1') selected @endif>Ada</option>
+                            <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                         </select>
                     </div>
                     <div class="col-md-2">
                         <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                             <option value="">Kategori Bahan</option>
                             @foreach ($cat as $cat)
-                            <option value="{{$cat->id}}">{{$cat->nama}}</option>
+                            <option value="{{$cat->id}}" @if($kategori == $cat->id) selected @endif>{{$cat->nama}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -88,11 +86,11 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     </tr>
                 </thead>
                 <tbody>
-                @php $bil = $permohonan->perPage()*($permohonan->currentPage()-1) @endphp
-                @foreach($permohonan as $mohon)
+                    @php $bil = $permohonan->perPage()*($permohonan->currentPage()-1) @endphp
+                    @foreach($permohonan as $mohon)
                     <tr>
                         <td valign="top" align="center">{{ ++$bil }}</td>
-                        <td valign="top" align="center">{{ $mohon->ing_kod }}</td>
+                        <td valign="top" align="left">{{ $mohon->ing_kod }}</td>
                         <td valign="top" align="left">
                             {{ $mohon->nama_ramuan }}
                             <br>

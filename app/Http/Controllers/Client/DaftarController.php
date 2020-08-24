@@ -18,7 +18,7 @@ class DaftarController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::whereNull('tarikh_buka');
 
-        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
+        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
         
