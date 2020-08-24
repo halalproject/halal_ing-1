@@ -134,12 +134,12 @@ class DaftarController extends Controller
 
         } else {
             
-            dd($request->upload_2);
+            // dd($request->file('upload_3'));
             for ($i=2; $i<=6; $i++) {
-                if(!empty($request->input('upload_'.$i))){
-                    $file = $request->input['upload_'.$i]->getClientOriginalName();
+                if(!empty($request->file('upload_'.$i))){
+                    $file = $request->file('upload_'.$i)->getClientOriginalName();
                     $type = pathinfo($file)['extension'];
-                    $path = $request->input['upload_'.$i]->storeAs('dokumen_ramuan', $file);
+                    $path = $request->file('upload_'.$i)->storeAs('dokumen_ramuan', $file);
         
                     $ramuan_doc = new Ramuan_Dokumen();
                     $ramuan_doc->ramuan_id = $request->id;

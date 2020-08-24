@@ -53,6 +53,12 @@
 
   	</head>
   
+<<<<<<< HEAD
+=======
+	<x-menu />
+	
+	
+>>>>>>> 9b5fa8343021d6e2c7ffac4ed1773f61be1a6acd
 	  @if(\Request::is('admin'))
 	  	@yield('content')
 	  @else	  
