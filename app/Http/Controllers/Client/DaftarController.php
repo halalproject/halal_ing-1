@@ -133,77 +133,81 @@ class DaftarController extends Controller
             }
 
         } else {
-            if(!empty($request->upload_2)){
-                $file = $request->upload_2->getClientOriginalName();
-                $type = pathinfo($file)['extension'];
-                $path = $request->upload_2->storeAs('dokumen_ramuan', $file);
-    
-                $ramuan_doc = new Ramuan_Dokumen();
-                $ramuan_doc->ramuan_id = $request->id;
-                $ramuan_doc->ref_dokumen_id = 2;
-                $ramuan_doc->file_name = $file;
-                $ramuan_doc->file_type = $type;
-    
-                $ramuan_doc->save();    
+            
+            dd($request->upload_2);
+            for ($i=2; $i<=6; $i++) {
+                if(!empty($request->input('upload_'.$i))){
+                    $file = $request->input['upload_'.$i]->getClientOriginalName();
+                    $type = pathinfo($file)['extension'];
+                    $path = $request->input['upload_'.$i]->storeAs('dokumen_ramuan', $file);
+        
+                    $ramuan_doc = new Ramuan_Dokumen();
+                    $ramuan_doc->ramuan_id = $request->id;
+                    $ramuan_doc->ref_dokumen_id = $i;
+                    $ramuan_doc->file_name = $file;
+                    $ramuan_doc->file_type = $type;
+        
+                    $ramuan_doc->save();    
+                }
             }
-            if(!empty($request->upload_3)){
-                $file = $request->upload_3->getClientOriginalName();
-                $type = pathinfo($file)['extension'];
-                $path = $request->upload_3->storeAs('dokumen_ramuan', $file);
-    
-                $ramuan_doc = new Ramuan_Dokumen();
-                $ramuan_doc->ramuan_id = $request->id;
-                $ramuan_doc->ref_dokumen_id = 3;
-                $ramuan_doc->file_name = $file;
-                $ramuan_doc->file_type = $type;
-    
-                $ramuan_doc->save();    
-            }if(!empty($request->upload_4)){
-                $file = $request->upload_4->getClientOriginalName();
-                $type = pathinfo($file)['extension'];
-                $path = $request->upload_4->storeAs('dokumen_ramuan', $file);
-    
-                $ramuan_doc = new Ramuan_Dokumen();
-                $ramuan_doc->ramuan_id = $request->id;
-                $ramuan_doc->ref_dokumen_id = 4;
-                $ramuan_doc->file_name = $file;
-                $ramuan_doc->file_type = $type;
-    
-                $ramuan_doc->save();    
-            }if(!empty($request->upload_5)){
-                $file = $request->upload_5->getClientOriginalName();
-                $type = pathinfo($file)['extension'];
-                $path = $request->upload_5->storeAs('dokumen_ramuan', $file);
-    
-                $ramuan_doc = new Ramuan_Dokumen();
-                $ramuan_doc->ramuan_id = $request->id;
-                $ramuan_doc->ref_dokumen_id = 5;
-                $ramuan_doc->file_name = $file;
-                $ramuan_doc->file_type = $type;
-    
-                $ramuan_doc->save();    
-            }if(!empty($request->upload_6)){
-                $file = $request->upload_6->getClientOriginalName();
-                $type = pathinfo($file)['extension'];
-                $path = $request->upload_6->storeAs('dokumen_ramuan', $file);
-    
-                $ramuan_doc = new Ramuan_Dokumen();
-                $ramuan_doc->ramuan_id = $request->id;
-                $ramuan_doc->ref_dokumen_id = 6;
-                $ramuan_doc->nama_dokumen = $request->nama_lain;
-                $ramuan_doc->file_name = $file;
-                $ramuan_doc->file_type = $type;
-    
-                $ramuan_doc->save();    
-            }
-
-            if($ramuan_doc){
-                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>1]);
-                
+            
+            $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>1]);
+            if($ramuan) {   
                 return response()->json('OK');
             } else {
                 return response()->json('ERR');
             }
+            
+            // if(!empty($request->upload_3)){
+            //     $file = $request->upload_3->getClientOriginalName();
+            //     $type = pathinfo($file)['extension'];
+            //     $path = $request->upload_3->storeAs('dokumen_ramuan', $file);
+    
+            //     $ramuan_doc = new Ramuan_Dokumen();
+            //     $ramuan_doc->ramuan_id = $request->id;
+            //     $ramuan_doc->ref_dokumen_id = 3;
+            //     $ramuan_doc->file_name = $file;
+            //     $ramuan_doc->file_type = $type;
+    
+            //     $ramuan_doc->save();    
+            // }if(!empty($request->upload_4)){
+            //     $file = $request->upload_4->getClientOriginalName();
+            //     $type = pathinfo($file)['extension'];
+            //     $path = $request->upload_4->storeAs('dokumen_ramuan', $file);
+    
+            //     $ramuan_doc = new Ramuan_Dokumen();
+            //     $ramuan_doc->ramuan_id = $request->id;
+            //     $ramuan_doc->ref_dokumen_id = 4;
+            //     $ramuan_doc->file_name = $file;
+            //     $ramuan_doc->file_type = $type;
+    
+            //     $ramuan_doc->save();    
+            // }if(!empty($request->upload_5)){
+            //     $file = $request->upload_5->getClientOriginalName();
+            //     $type = pathinfo($file)['extension'];
+            //     $path = $request->upload_5->storeAs('dokumen_ramuan', $file);
+    
+            //     $ramuan_doc = new Ramuan_Dokumen();
+            //     $ramuan_doc->ramuan_id = $request->id;
+            //     $ramuan_doc->ref_dokumen_id = 5;
+            //     $ramuan_doc->file_name = $file;
+            //     $ramuan_doc->file_type = $type;
+    
+            //     $ramuan_doc->save();    
+            // }if(!empty($request->upload_6)){
+            //     $file = $request->upload_6->getClientOriginalName();
+            //     $type = pathinfo($file)['extension'];
+            //     $path = $request->upload_6->storeAs('dokumen_ramuan', $file);
+    
+            //     $ramuan_doc = new Ramuan_Dokumen();
+            //     $ramuan_doc->ramuan_id = $request->id;
+            //     $ramuan_doc->ref_dokumen_id = 6;
+            //     $ramuan_doc->nama_dokumen = $request->nama_lain;
+            //     $ramuan_doc->file_name = $file;
+            //     $ramuan_doc->file_type = $type;
+    
+            //     $ramuan_doc->save();    
+            // }
         }
     }
 
