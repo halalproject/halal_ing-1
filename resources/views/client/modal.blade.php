@@ -253,7 +253,7 @@ function hantar_to()
         cancelButtonText: 'Tidak, Batal!',
         reverseButtons: true
     }).then(function () {
-        var formdata = new FormData();
+        var formdata = new FormData($('#create')[0]);
         alert(formdata);
         $.ajaxSetup({
 			headers: {
@@ -263,7 +263,7 @@ function hantar_to()
         $.ajax({
 			url:'/client/daftar/upload', //&datas='+datas,
 			type:'POST',
-			data: $("#create").serialize(),
+			data: formdata,
             contentType: false,
             processData: false,
 			//data: datas,
