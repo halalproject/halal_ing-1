@@ -1,10 +1,10 @@
 @extends('components.header')
 
 @section('content')
-<body style="background-image:url(images/MalaysianParliament1.jpg);background-repeat:no-repeat;background-size:cover;">
+<body style="background-image:url(images/bg-header.jpg);background-repeat:no-repeat;width:100%;height:100%;">
 		<!-- start: page -->
 			<div class="row" align="center">
-				<h2 style="font-size: 40px;font-weight: bold;color:#000000">SISTEM {{ config('app.name') }} JAKIM</h2>
+				<h2 style="font-size: 40px;font-weight: bold;color:#000000">SISTEM My Halal Ingredient</h2>
 			</div>
 		<section class="body-sign" style="margin-top:-80px">
 			<div class="row center-sign">
@@ -19,7 +19,7 @@
 					<div class="panel-body">
 						<form >
                         @csrf
-							<div class="form-group mb-lg" align="center">
+							<div class="form-group mb-lg">
                             <h3 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Log Masuk Sistem</h3>
                             </div>
 							<div class="form-group mb-lg">
