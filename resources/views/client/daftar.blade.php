@@ -5,13 +5,26 @@
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+<script>
+function do_page()
+{
+  var sijil = $('#sijil').val();
+  var kategori = $('#kategori').val();
+  var carian = $('#carian').val();
+  // alert(carian);
+  var pathname = window.location.pathname;
 
+  if(carian.trim()==''){
+    window.location = pathname;
+  } else {
+    window.location = pathname+'?sijil'+sijil+'&kategori'+kategori+'&carian='+carian;
+  }
+}
+</script>
 @php
-$l_cari=isset($_REQUEST["l_cari"])?$_REQUEST["l_cari"]:"";
-$lj_tanya=isset($_REQUEST["lj_tanya"])?$_REQUEST["lj_tanya"]:"";
-$lj_dewan=isset($_REQUEST["lj_dewan"])?$_REQUEST["lj_dewan"]:"";
-$ljid_sidang=isset($_REQUEST["ljid_sidang"])?$_REQUEST["ljid_sidang"]:"";
-$lj_kategori=isset($_REQUEST["lj_kategori"])?$_REQUEST["lj_kategori"]:"";
+$carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+$sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
+$kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
 		<div class="box" style="background-color:#F2F2F2">
 
@@ -31,19 +44,22 @@ $lj_kategori=isset($_REQUEST["lj_kategori"])?$_REQUEST["lj_kategori"]:"";
             <div class="box-body">
                 <div class="form-group">
                     <div class="col-md-2">
-                        <select name="status" id="status" onchange="do_page()" class="form-control">
+                        <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
                             <option value="">Status Sijil Halal</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
+                            <option value="0">Ada</option>
+                            <option value="1">Tiada</option>
                         </select>
                     </div>
                     <div class="col-md-2">
                         <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                             <option value="">Kategori Bahan</option>
+                            @foreach ($cat as $cat)
+                            <option value="{{$cat->id}}">{{$cat->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-2">
-                    	<input type="text" class="form-control" id="carian" name="carian" value="" placeholder="Maklumat Carian">
+                        <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
         
         			<div class="col-md-1" align="right">
@@ -106,6 +122,9 @@ $lj_kategori=isset($_REQUEST["lj_kategori"])?$_REQUEST["lj_kategori"]:"";
               </table>
             </div>
 		</div>
+        <div align="center" class="d-flex justify-content-center">
+          {!! $permohonan->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
+        </div>
      </div>
   <!--</div>-->    
 <!-- DataTables -->
