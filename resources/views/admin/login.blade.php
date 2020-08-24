@@ -1,11 +1,12 @@
 @extends('components.header')
 
 @section('content')
-<body style="background-image:url(images/bg-header.jpg);background-repeat:no-repeat;width:100%;height:100%;">
+<body style="background-image:url(images/login-bg.jpg);background-repeat:no-repeat;background-size:cover;color:white;">
 		<!-- start: page -->
 			<div class="row" align="center">
-				<h2 style="font-size: 40px;font-weight: bold;color:#000000">SISTEM My Halal Ingredient</h2>
+				<h2 style="font-size: 40px;font-weight: bold;color:#ffffff">SISTEM My Halal Ingredient</h2>
 			</div>
+            <br>
 		<section class="body-sign" style="margin-top:-80px">
 			<div class="row center-sign">
 
@@ -16,7 +17,7 @@
                     <!--<div class="panel-title-sign mt-xl text-right">
 						<img src="images/logologin_parlimen.png">
 					</div>-->
-					<div class="panel-body">
+					<div class="panel-body" style="background:rgba(0, 0, 0, 0.45);">
 						<form >
                         @csrf
 							<div class="form-group mb-lg">
@@ -49,23 +50,26 @@
 								</div>
 							</div>
 
-							<div class="row">
-								<div class="col-sm-4 text-left">
-									<button type="button" class="btn btn-primary hidden-xs" onClick="do_login()">Log Masuk</button>
-									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onClick="do_login()">Log-Masuk</button>
+							<div class="row" align="right">
+								<div class="col-sm-12 text-right">
+									<button type="button" class="btn btn-primary hidden-xs" onClick="do_login()" >Log Masuk</button>
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onClick="do_login()">Log Masuk</button>
 								</div>
-								<div class="col-sm-8 text-right"><a href="index.php?data=<?php print base64_encode('lupa_katalaluan;;;;;');?>" class="pull-right">Lupa Kata Laluan?</a>
+							</div>
+
+                            <div class="row" align="center">
+                                <div class="col-sm-12 text-right"><a href="index.php?data=<?php print base64_encode('lupa_katalaluan;;;;;');?>" >Lupa Kata Laluan?</a>
 									<!--<div class="checkbox-custom checkbox-default">
 										<input id="RememberMe" name="rememberme" type="checkbox"/>
 										<label for="RememberMe">Remember Me</label>
 									</div>-->
 								</div>
-							</div>
+                            </div>
 
 							<span class="mt-lg mb-lg line-thru text-center text-uppercase">
 							</span>
                         
-							<p class="text-center">Hanya boleh diakses oleh pengguna yang berdaftar sahaja.
+							<p class="text-center" style="text-color:#ffffff;">Hanya boleh diakses oleh pengguna yang berdaftar sahaja.
 
 						</form>
                     </div>
