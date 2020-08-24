@@ -53,12 +53,10 @@
 
   	</head>
   
-	<x-menu />
-	
-	
-	  @if(\Request::is(admin))
+	  @if(\Request::is('admin'))
 	  	@yield('content')
-	  @else
+	  @else	  
+		<x-menu />
 		@yield('page')
 	  @endif
 		

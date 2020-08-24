@@ -68,9 +68,6 @@
 							<p class="text-center">Hanya boleh diakses oleh pengguna yang berdaftar sahaja.
 
 						</form>
-                        @if($kod->count() > 1)
-				`		<p class="text-center text-muted mt-md mb-md">&copy; Hakcipta 2019 - <a href="http://www.islam.gov.my" target="_blank">Jabatan Kemajuan Islam Malaysia.</a></p>
-                        @endif
                     </div>
 				</div>
 
