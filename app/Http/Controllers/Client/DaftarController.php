@@ -13,10 +13,19 @@ use App\Ramuan_Dokumen;
 
 class DaftarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $permohonan = Ramuan::whereNull('tarikh_buka')->paginate(10);
-        return view('client/daftar',compact('permohonan'));
+        // dd($request->all());
+        $permohonan = Ramuan::whereNull('tarikh_buka');
+
+        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        
+        $permohonan = $permohonan->paginate(10);
+        $cat = Ref_Sumber_Bahan::get();
+        
+        return view('client/daftar',compact('permohonan','cat'));
     }
 
     public function create()
