@@ -113,7 +113,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     </div>
                     <div class="col-md-5" align="right">
                         <a href="/client/daftar/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
-                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                            <button type="button" class="btn btn-primary">
                         	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
 				        </a>
 			        </div>
