@@ -59,5 +59,7 @@ Route::group(['prefix' => 'admin'],function(){
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
     Route::get('syarikat/view/{id}','Syarikat\SyarikatnController@view');
-  
+
+    //Staff
+    Route::get('staff','Admin\StaffController@index')->name('Staff');
 });

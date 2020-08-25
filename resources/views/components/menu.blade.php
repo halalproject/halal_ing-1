@@ -128,9 +128,16 @@
 									@else
 									
 									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
-										<a href="/client/daftar">
+										<a href="/admin/syarikat">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Syarikat</span>
+										</a>
+									</li>
+
+									<li class="@if(\Request::is('admin/staff*')) nav-expanded nav-active @endif">
+										<a href="/admin/staff">
+											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<span>Staff</span>
 										</a>
 									</li>
 
