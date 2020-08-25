@@ -162,7 +162,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <td align="center">
                             @if(empty($mohon->tarikh_buka) || $mohon->status == 2)
                             <button type="button" class="btn btn-sm btn-warning">
-                                <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa text-dark" data-backdrop="static">
+                                <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan" class="fa text-dark" data-backdrop="static">
                                     <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                 </a>
                             </button>
