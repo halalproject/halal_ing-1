@@ -15,7 +15,7 @@
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
                 </div>
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI PERMOHONAN DITOLAK</b></font></h6> 
+                <h6 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN</b></font></h6> 
             </header>
 			</div>
             </div>            
@@ -58,9 +58,8 @@
                   <th width="20%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
                   <th width="30%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                   <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Status</div></font></th>
-                  <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                  <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,13 +69,17 @@
                         <td>Ayam</td>
                         <td>Semulajadi</td>
                         <td>20/8/2020</td>
-                        <td>Diproses</td>
                         <td align="center">
                             <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
-							    <i class="fa fa-pencil-square-o fa-lg"></i>
+                                <i class="fa fa-pencil-square-o fa-lg"></i>
                             </a>
+                            &nbsp;
                             <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
 							    <i class="fa fa-file-text fa-lg"></i>
+                            </a>
+                            &nbsp;
+                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
+							    <i class="fa fa-trash-o fa-lg"></i>
                             </a>
                         </td>
                     </tr>

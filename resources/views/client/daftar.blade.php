@@ -20,6 +20,53 @@ function do_page()
     window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
   }
 }
+
+function do_hapus(id)
+{
+    // alert(id);
+    swal({
+        title: 'Adakah anda pasti untuk menghapuskan permohonan ini?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Teruskan',
+        cancelButtonText: 'Tidak, Batal!',
+        reverseButtons: true
+    }).then(function () {
+        $.ajax({
+			url:'/client/daftar/delete/'+id, //&datas='+datas,
+			type:'POST',
+			data: $("form").serialize(),
+			//data: datas,
+			success: function(data){
+				console.log(data);
+				//alert(data);
+				if(data=='OK'){
+					swal({
+					  title: 'Berjaya',
+					  text: 'Permohonan telah dihapuskan',
+					  type: 'success',
+					  confirmButtonClass: "btn-success",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					}).then(function () {
+                        location.reload();
+					});
+				} else if(data=='ERR'){
+					swal({
+					  title: 'Amaran',
+					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
+					  type: 'error',
+					  confirmButtonClass: "btn-warning",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					});
+				}
+			}
+		});
+    });
+}
 </script>
 @php
 $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
@@ -28,13 +75,14 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
 		<div class="box" style="background-color:#F2F2F2">
             <div class="box-body">
+                @csrf
                 <div class="x_panel">
                     <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
                         <div class="panel-actions">
                         <!--<a href="#" class="fa fa-caret-down"></a>
                         <a href="#" class="fa fa-times"></a>-->
                         </div>
-                        <h6 class="panel-title"><font color="#000000"><b>SENARAI MAKLUMAT DAFTAR SOALAN</b></font></h6> 
+                        <h6 class="panel-title"><font color="#000000"><b>SENARAI PERMOHONAN RAMUAN</b></font></h6> 
                     </header>
                 </div>
             </div>            
@@ -80,9 +128,9 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <th width="20%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
                         <th width="30%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                         <th width="15%"><font color="#000000"><div align="left">Kategori</div></font></th>
-                        <th width="15%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
+                        <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
                         <th width="10%"><font color="#000000"><div align="left">Status</div></font></th>
-                        <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                        <th width="7%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,13 +154,13 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endif
                         </td>
                         <td align="center">
-                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
                                 <i class="fa fa-pencil-square-o fa-lg"></i>
                             </a>
                             &nbsp;
-                            <a href="/client/daftar/delete/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Hapus Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
                                 <i class="fa fa-trash-o fa-lg"></i>
-                            </a>
+                            </span>
                         </td>
                     </tr>
                     @endforeach
