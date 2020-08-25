@@ -113,7 +113,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     </div>
                     <div class="col-md-5" align="right">
                         <a href="/client/daftar/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
-                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                            <button type="button" class="btn btn-primary">
                         	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
 				        </a>
 			        </div>
@@ -148,19 +148,30 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <td valign="top" align="center">{{ date('d/m/Y', strtotime($mohon->create_dt)) }}</td>
                         <td valign="top" align="center">
                         @if($mohon->status == 0)
-                        <span class="label label-default">Draft</span>
+                        <span class="label label-info">Draft</span>
                         @elseif($mohon->status == 1)
-                        <span class="label label-success">Hantar</span>
+                            @if(empty($mohon->tarikh_buka))
+                            <span class="label label-success">Hantar</span>
+                            @elseif(!empty($mohon->tarikh_buka))
+                            <span class="label label-primary">Sedang Diprosess</span>
+                            @endif
+                        @elseif($mohon->status == 2)
+                        <span class="label label-warning">Semak Semula</span>
                         @endif
                         </td>
                         <td align="center">
-                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
-                                <i class="fa fa-pencil-square-o fa-lg"></i>
+                            @if(empty($mohon->tarikh_buka) || $mohon->status == 2)
+                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan" class="fa text-dark" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
-                            &nbsp;
-                            <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
-                                <i class="fa fa-trash-o fa-lg"></i>
-                            </span>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus({{ $mohon->id }})">
+                                <span style="cursor:pointer;color:red" title="Buang Permohonan Ramuan">
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

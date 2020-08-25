@@ -56,11 +56,11 @@
                 <tr style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
-                  <th width="30%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
+                  <th width="23%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                   <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
                   <th width="15%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
                   <th width="10%"><font color="#000000"><div align="left">Status</div></font></th>
-                  <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                  <th width="12%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,14 +70,25 @@
                         <td>Ayam</td>
                         <td>Semulajadi</td>
                         <td>20/8/2020</td>
-                        <td>Diproses</td>
+                        <td>
+                            <span class="label label-danger">Ditolak</span>
+                        </td>
                         <td align="center">
-                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
-							    <i class="fa fa-pencil-square-o fa-lg"></i>
+                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-info">
+                                    <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
-							    <i class="fa fa-file-text fa-lg"></i>
+                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
+                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
                         </td>
                     </tr>
                 </tbody>

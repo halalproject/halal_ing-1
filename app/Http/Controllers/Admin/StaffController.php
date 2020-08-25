@@ -11,4 +11,14 @@ class StaffController extends Controller
     {
         return view('admin/staff');
     }
+
+    public function edit()
+    {
+        return view('admin/modalStaff');
+    }
+
+    public function resetPassword()
+    {
+        return view('admin/modalResetPassword');
+    }
 }

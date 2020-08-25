@@ -12,7 +12,7 @@ function do_able(ids)
                 $('#doc_'+i).prop('disabled',true);
             }
         } else if(ids=='6'){
-            $('.addrow_6').append('<input type="text" name="nama_lain" id="nama_lain" class="form-control"value="" />');
+            $('.addrow_6').show();
         } else {
             $('#doc_1').prop('disabled',true);
         }
@@ -28,7 +28,7 @@ function do_able(ids)
             $('#doc_1').prop('disabled',false);
         }
         if(ids == '6'){
-            $('#nama_lain').remove();
+            $('.addrow_6').hide();
         }
 
         $('#upload_'+ids).val('');
@@ -307,8 +307,14 @@ $id = $rs->id ?? '';
 $bahan_rs = $rs->sumber_bahan_id ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
-
-
+$nama_dokumen = '';
+if(!empty($id)){
+    foreach ($upload as $doc) {
+        if($doc->ref_dokumen_id == 6){
+            $nama_dokumen = $doc->nama_dokumen ?? '';
+        }
+    }
+}
 @endphp
 <div class="col-md-12">
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
@@ -486,19 +492,22 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
                                                 title="{!! $dokumen->remarks !!}"></i>
                                         </div>
-                                        <div class="addrow_{{$dokumen->id}}">
+                                        @if($dokumen->id == 6)
+                                        <div class="addrow_{{$dokumen->id}}" hidden>
+                                            <input type="text" name="nama_lain" id="nama_lain" class="form-control"value="{{ $nama_dokumen }}" />
                                         </div>
+                                        @endif
                                     </div>
                                     <div id="box_{{$dokumen->id}}" hidden>
                                         <div class="col-md-3 control-label">
                                             <div class="input-group col-md-3">
                                                 <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}">
                                                 @if(!empty($upload))
-                                                    @foreach ($upload as $up)
-                                                        @if($up->ref_dokumen_id == $dokumen->id)
-                                                            {{ $up->file_name }}
-                                                        @endif
-                                                    @endforeach
+                                                @foreach ($upload as $up)
+                                                    @if($up->ref_dokumen_id == $dokumen->id)
+                                                        {{ $up->file_name }}
+                                                    @endif
+                                                @endforeach
                                                 @endif
                                             </div>
                                         </div>

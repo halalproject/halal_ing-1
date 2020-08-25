@@ -16,7 +16,7 @@ class DaftarController extends Controller
     public function index(Request $request)
     {
         // dd($request->all());
-        $permohonan = Ramuan::whereNull('tarikh_buka')->where('status','<',2)->where('is_delete',0);
+        $permohonan = Ramuan::where('is_delete',0);
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
