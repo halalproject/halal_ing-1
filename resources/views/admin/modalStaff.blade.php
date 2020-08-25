@@ -21,6 +21,12 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
     <div class="panel-body ">
         <div class="col-md-12">
             <!-- <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}"> -->
+
+            <div>
+            <!-- gambar -->
+            
+            </div>
+
             <div class="form-group">
                 <div class="row">
                     <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Nama :</label>

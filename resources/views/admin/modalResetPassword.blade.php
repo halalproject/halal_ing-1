@@ -9,9 +9,7 @@ $bahan_rs = $rs->sumber_bahan_id ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
 @endphp
-<div class="col-md-6" style="top:200px;
-  left: 50%;
-  transform: translate(-50%, -50%);">
+<div class="col-md-6" style="top:200px;left: 50%;transform: translate(-50%, -50%);">
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="panel panel-featured panel-featured-info">

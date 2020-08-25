@@ -15,7 +15,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <select name="status" onchange="" class="form-control">
                             <option value="">Status</option>
                             <option value="">Ada</option>
@@ -30,40 +30,27 @@
                             <option value="2">Pelulus</option>
                         </select>
                     </div>
-                    <div class="col-md-4" style="0px">
+                    <div class="col-md-3" style="0px">
                         <input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
                     </div>
         
-                    <div class="col-md-2" align="right" style="padding-right:25px">
+                    <div class="col-md-2" align="right">
                         <button type="button" class="btn btn-success" 
                             onclick="">
                             <i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>   
+
+                    <div class="col-md-2" align="right">
+                        <a href="/admin/staff/create" data-toggle="modal" data-target="#myModal" title="Tambah Staf Baru" class="fa" data-backdrop="static">
+                            <button type="button" class="btn btn-primary">
+                        	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
+				        </a>
+			        </div>
+                </div>
             </div>
-            <br>
             <div class="box-body">
                 <input type="hidden" name="soalan_id" value="" />
-                <div class="x_panel">
-                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);padding:10px;">
-
-                    <div class="form-group">
-                        <div class="row" style="padding-left:20px;">
-                            <h6 class="panel-title col-md-10"><font color="#000000"><b>Senarai Staf</b></font> </h6>
-
-                            <div class="col-2" align="right" style="padding-right:20px;">
-                                <button class="btn btn-primary float-right" style="margin:0px;">
-                                    <a href="/admin/staff/edit" data-toggle="modal" data-target="#myModal" title="Tambah Staff Baru" class="fa">
-                                        <i class=" fa fa-plus-square" style="color:white;"> <font style="font-family:Verdana, Geneva, sans-serif; color:white;">Tambah</font></i>
-                                    </a>
-                                </button>
-                            </div> 
-                        </div>
-                    </div>
-
-                        
-                        
-                    </header>
+                <div class="x_panel">    
                 </div>
                 <br>
 
@@ -96,7 +83,7 @@
                                     </a>
                                 </button>
                                 <button type="button" class="btn btn-sm btn-warning">
-                                    <a href="/admin/staff/edit/" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa text-dark" data-backdrop="static">
+                                    <a href="/admin/staff/create/" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa text-dark" data-backdrop="static">
                                         <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                     </a>
                                 </button>
