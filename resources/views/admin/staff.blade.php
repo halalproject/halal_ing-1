@@ -6,87 +6,111 @@
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
 		<div class="box" style="background-color:#F2F2F2">
-
             <div class="box-body">
-        	<input type="hidden" name="soalan_id" value="" />
-            <div class="x_panel">
-			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
-                <div class="panel-actions">
-                <!--<a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>-->
+                <input type="hidden" name="soalan_id" value="" />
+                <div class="x_panel">
+                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);padding:15px;">
+                        <h6 class="panel-title"><font color="#000000"><b>Carian Staf</b></font></h6> 
+                    </header>
                 </div>
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI STAF</b></font></h6> 
-            </header>
-			</div>
-            </div>            
-            <br />
-            <div class="box-body">
+                <br>
                 <div class="form-group">
                     <div class="col-md-3">
-                        <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
+                        <select name="status" onchange="" class="form-control">
+                            <option value="">Status</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Kategori</option>
-                            <option value="9">Belum Diagihkan</option>
-                            <option value="1">Belum Dijawab</option>
-                            <option value="2">Telah Dijawab</option>
+                    <div class="col-md-3" >
+                        <select name="level_pengguna" onchange="" class="form-control">
+                            <option value="">Level Pengguna</option>
+                            <option value="9">Admin</option>
+                            <option value="1">Penyemak</option>
+                            <option value="2">Pelulus</option>
                         </select>
                     </div>
-                    <div class="col-md-4" style="paddong:0px;">
-                    	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
+                    <div class="col-md-4" style="0px">
+                        <input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-2" align="right" style="paddong-right:25px;">
+                    <div class="col-md-2" align="right" style="padding-right:25px">
                         <button type="button" class="btn btn-success" 
-                        	onclick="">
-                        	<i class="fa fa-search"></i> Carian</button>
+                            onclick="">
+                            <i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>       
+                </div>   
             </div>
-            <br>
             <br>
             <div class="box-body">
-              <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                <thead>
-                <tr style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
-                  <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Nama</div></font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Kategori</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Kenalan Utama</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Jawatan</font></th>
-                  <th width="10%"><font color="#000000"><div align="left">H/P</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Emel</div></font></th>
-                  <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><a href="#">TESTING HALAL JAKIM</td>
-                        <td>Pembekal</td>
-                        <td>KHAIRUL ANUAR BIN SELAMAT</td>
-                        <td>PEN. PEG. TEK. MAKLUMAT</td>
-                        <td>0137057666</td>
-                        <td>ICTHALAL@ISLAM.GOV.MY</td>
-                        <td align="center">
-                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
-							    <i class="fa fa-pencil-square-o fa-lg"></i>
-                            </a>
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa" data-backdrop="static">
-							    <i class="fa fa-file-text fa-lg"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-              </table>
+                <input type="hidden" name="soalan_id" value="" />
+                <div class="x_panel">
+                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);padding:10px;">
+
+                    <div class="form-group">
+                        <div class="row" style="padding-left:20px;">
+                            <h6 class="panel-title col-md-10"><font color="#000000"><b>Senarai Staf</b></font> </h6>
+
+                            <div class="col-2" align="right" style="padding-right:20px;">
+                                <button class="btn btn-primary float-right" style="margin:0px;">
+                                    <a href="/admin/staff/edit" data-toggle="modal" data-target="#myModal" title="Tambah Staff Baru" class="fa">
+                                        <i class=" fa fa-plus-square" style="color:white;"> <font style="font-family:Verdana, Geneva, sans-serif; color:white;">Tambah</font></i>
+                                    </a>
+                                </button>
+                            </div> 
+                        </div>
+                    </div>
+
+                        
+                        
+                    </header>
+                </div>
+                <br>
+
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
+                        <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
+                        <th width="30%"><font color="#000000"><div align="left">Nama</div></font></th>
+                        <!-- <th width="15%"><font color="#000000"><div align="left">No.KP</div></font></th> -->
+                        <th width="10%"><font color="#000000"><div align="left">No.Tel</font></th>
+                        <th width="15%"><font color="#000000"><div align="left">Emel</font></th>
+                        <th width="10%"><font color="#000000"><div align="left">Level Pengguna</div></font></th>
+                        <th width="5%"><font color="#000000"><div align="left">Status</div></font></th>
+                        <th width="25%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>KHAIRUL ANUAR BIN SELAMAT</td>
+                            <!-- <td>000000-00-0000</td> -->
+                            <td>0137057666</td>
+                            <td>ICTHALAL@ISLAM.GOV.MY</td>
+                            <td>ADMIN</td>
+                            <td>TIADA</td>
+                            <td align="center">
+                                <button type="button" class="btn btn-sm btn-info">
+                                    <a href="/admin/staff/resetPassword/" data-toggle="modal" data-target="#myModal" title="Tetapkan Kata Laluan" class="fa text-dark"  data-backdrop="static">
+                                        <i class="fa fa-key fa-lg" style="color: #FFFFFF;"></i>
+                                    </a>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-warning">
+                                    <a href="/admin/staff/edit/" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa text-dark" data-backdrop="static">
+                                        <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                    </a>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger">
+                                    <a href="" data-toggle="modal" data-target="#myModal" title="Padam Maklumat Bahagian" class="fa text-dark"  data-backdrop="static">
+                                        <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 		</div>
-     </div>
   <!--</div>-->    
 <!-- DataTables -->
 

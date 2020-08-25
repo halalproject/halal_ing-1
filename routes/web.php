@@ -62,4 +62,6 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Staff
     Route::get('staff','Admin\StaffController@index')->name('Staff');
+    Route::get('staff/edit','Admin\StaffController@edit');
+    Route::get('staff/resetPassword','Admin\StaffController@resetPassword');
 });
