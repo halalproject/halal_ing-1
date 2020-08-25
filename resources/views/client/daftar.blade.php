@@ -161,13 +161,16 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         </td>
                         <td align="center">
                             @if(empty($mohon->tarikh_buka) || $mohon->status == 2)
-                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
-                                <i class="fa fa-pencil-square-o fa-lg"></i>
-                            </a>
-                            &nbsp;
-                            <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
-                                <i class="fa fa-trash-o fa-lg"></i>
-                            </span>
+                            <button type="button" class="btn btn-sm btn-warning">
+                                <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Bahagian" class="fa text-dark" data-backdrop="static">
+                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                </a>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
                             @endif
                         </td>
                     </tr>
