@@ -29,7 +29,7 @@ Route::group(['prefix' => 'client'],function(){
     Route::post('daftar/store','Client\DaftarController@store');
     Route::post('daftar/upload','Client\DaftarController@upload');
     Route::get('daftar/view/{id}','Client\DaftarController@view');
-    Route::get('daftar/delete/{id}','Client\DaftarController@delete');
+    Route::post('daftar/delete/{id}','Client\DaftarController@delete');
 
     //Permohonan Diproses
     Route::get('proses','Client\PermohonanController@proses')->name('Permohonan Diproses');
@@ -55,4 +55,9 @@ Route::group(['prefix' => 'client'],function(){
 Route::group(['prefix' => 'admin'],function(){
     //Login
     Route::get('/','Admin\LoginController@index');
+
+    //Syarikat
+    Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
+    Route::get('syarikat/view/{id}','Syarikat\SyarikatnController@view');
+  
 });
