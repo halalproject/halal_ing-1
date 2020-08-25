@@ -11,4 +11,9 @@ class Ramuan_Dokumen extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function ramuan()
+    {
+        return $this->belongsTo('App\Ramuan', 'ramuan_id');
+    }
 }

@@ -307,6 +307,8 @@ $id = $rs->id ?? '';
 $bahan_rs = $rs->sumber_bahan_id ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
+
+
 @endphp
 <div class="col-md-12">
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
@@ -479,7 +481,7 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                                 <div class="row">
                                     <div class="col-md-6 control-label">
                                         <div class="input-group">
-                                            <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" 
+                                            <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}"
                                                 onchange="do_able({{$dokumen->id}})"/>&nbsp;{{ $dokumen->nama }} 
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
                                                 title="{!! $dokumen->remarks !!}"></i>
@@ -492,13 +494,11 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                                             <div class="input-group col-md-3">
                                                 <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}">
                                                 @if(!empty($upload))
-                                                @if(!$upload->isEmpty())
                                                     @foreach ($upload as $up)
                                                         @if($up->ref_dokumen_id == $dokumen->id)
                                                             {{ $up->file_name }}
                                                         @endif
                                                     @endforeach
-                                                @endif
                                                 @endif
                                             </div>
                                         </div>
