@@ -72,18 +72,18 @@
                         <td>20/8/2020</td>
                         <td>2 Tahun</td>
                         <td align="center">
-                            <button type="button" class="btn btn-sm btn-info">
-                                <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
-                                </a>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-warning">
-                                <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                                </button>
+                            </a>
+                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-warning">
                                     <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
-                                </a>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <span style="cursor:pointer;color:red" onclick="do_hapus()" title="Buang Ramuan">
+                                </button>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
+                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
                                     <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
                             </button>
