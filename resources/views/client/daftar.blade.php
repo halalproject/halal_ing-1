@@ -113,7 +113,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     </div>
                     <div class="col-md-5" align="right">
                         <a href="/client/daftar/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
-                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">
+                            <button type="button" class="btn btn-primary">
                         	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
 				        </a>
 			        </div>
@@ -161,13 +161,16 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         </td>
                         <td align="center">
                             @if(empty($mohon->tarikh_buka) || $mohon->status == 2)
-                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
-                                <i class="fa fa-pencil-square-o fa-lg"></i>
+                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan" class="fa text-dark" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
-                            &nbsp;
-                            <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
-                                <i class="fa fa-trash-o fa-lg"></i>
-                            </span>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus({{ $mohon->id }})">
+                                <span style="cursor:pointer;color:red" title="Buang Permohonan Ramuan">
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
                             @endif
                         </td>
                     </tr>

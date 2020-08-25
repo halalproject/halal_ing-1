@@ -308,9 +308,11 @@ $bahan_rs = $rs->sumber_bahan_id ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
 $nama_dokumen = '';
-foreach ($upload as $doc) {
-    if($doc->ref_dokumen_id == 6){
-        $nama_dokumen = $doc->nama_dokumen ?? '';
+if(!empty($id)){
+    foreach ($upload as $doc) {
+        if($doc->ref_dokumen_id == 6){
+            $nama_dokumen = $doc->nama_dokumen ?? '';
+        }
     }
 }
 @endphp
