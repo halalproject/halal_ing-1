@@ -148,12 +148,19 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <td valign="top" align="center">{{ date('d/m/Y', strtotime($mohon->create_dt)) }}</td>
                         <td valign="top" align="center">
                         @if($mohon->status == 0)
-                        <span class="label label-default">Draft</span>
+                        <span class="label label-info">Draft</span>
                         @elseif($mohon->status == 1)
-                        <span class="label label-success">Hantar</span>
+                            @if(empty($mohon->tarikh_buka))
+                            <span class="label label-success">Hantar</span>
+                            @elseif(!empty($mohon->tarikh_buka))
+                            <span class="label label-primary">Sedang Diprosess</span>
+                            @endif
+                        @elseif($mohon->status == 2)
+                        <span class="label label-warning">Semak Semula</span>
                         @endif
                         </td>
                         <td align="center">
+                            @if(empty($mohon->tarikh_buka) || $mohon->status == 2)
                             <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
                                 <i class="fa fa-pencil-square-o fa-lg"></i>
                             </a>
@@ -161,6 +168,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
                                 <i class="fa fa-trash-o fa-lg"></i>
                             </span>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
