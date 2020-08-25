@@ -128,9 +128,9 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <th width="20%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
                         <th width="30%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                         <th width="15%"><font color="#000000"><div align="left">Kategori</div></font></th>
-                        <th width="15%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
+                        <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
                         <th width="10%"><font color="#000000"><div align="left">Status</div></font></th>
-                        <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                        <th width="7%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -154,11 +154,11 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endif
                         </td>
                         <td align="center">
-                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
+                            <a href="/client/daftar/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan Ramuan" class="fa" data-backdrop="static" style="color: orange">
                                 <i class="fa fa-pencil-square-o fa-lg"></i>
                             </a>
                             &nbsp;
-                            <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})">
+                            <span style="cursor:pointer;color:red" onclick="do_hapus({{ $mohon->id }})" title="Buang Permohonan Ramuan">
                                 <i class="fa fa-trash-o fa-lg"></i>
                             </span>
                         </td>
