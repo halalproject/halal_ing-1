@@ -58,8 +58,16 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
+<<<<<<< HEAD
     Route::get('syarikat/view/{id}','Syarikat\SyarikatnController@view');
 
     //Staff
     Route::get('staff','Admin\StaffController@index')->name('Staff');
+=======
+    // Route::get('syarikat/view/{id}','Syarikat\SyarikatnController@view');
+    Route::get('syarikat/create', 'Admin\SyarikatController@create');
+
+
+  
+>>>>>>> 97263f4bf4c9890fbea7a664554544b272dbb7f2
 });
