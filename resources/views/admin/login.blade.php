@@ -1,10 +1,10 @@
 @extends('components.header')
 
 @section('content')
-<body style="background-image:url(images/login-bg.jpg);background-repeat:no-repeat;background-size:cover;color:white;">
+<body style="background-image:url(images/login-bg2.jpg);background-repeat:no-repeat;background-size:cover;color:white;">
 		<!-- start: page -->
 			<div class="row" align="center">
-				<h2 style="font-size: 40px;font-weight: bold;color:#ffffff">SISTEM My Halal Ingredient</h2>
+				<h2 style="font-size: 40px;font-weight: bold;color:#ffffff; padding:30px;">SISTEM My Halal Ingredient</h2>
 			</div>
             <br>
 		<section class="body-sign" style="margin-top:-80px">
