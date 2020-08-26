@@ -9,7 +9,7 @@
             <div class="box-body">
                 <input type="hidden" name="soalan_id" value="" />
                 <div class="x_panel">
-                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);padding:15px;">
+                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:15px;">
                         <h6 class="panel-title"><font color="#000000"><b>Carian Staf</b></font></h6> 
                     </header>
                 </div>
@@ -56,7 +56,7 @@
 
                 <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                     <thead>
-                        <tr style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
+                        <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                         <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
                         <th width="30%"><font color="#000000"><div align="left">Nama</div></font></th>
                         <!-- <th width="15%"><font color="#000000"><div align="left">No.KP</div></font></th> -->
