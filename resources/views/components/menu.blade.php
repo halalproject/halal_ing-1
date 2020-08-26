@@ -95,6 +95,7 @@
 										</a>
 									</li>
 									@if(\Request::is('client*'))
+									
 									<li class="@if(\Request::is('client/daftar*')) nav-expanded nav-active @endif">
 										<a href="/client/daftar">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -129,7 +130,7 @@
 
 									@else
 									
-									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('admin/permohonan*')) nav-expanded nav-active @endif">
 										<a href="/admin/syarikat">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Senarai Permohonan</span>
@@ -138,14 +139,14 @@
 
 									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
 										<a href="/admin/syarikat">
-											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<i class="fa fa-building" aria-hidden="true"></i>
 											<span>Syarikat</span>
 										</a>
 									</li>
 
 									<li class="@if(\Request::is('admin/staff*')) nav-expanded nav-active @endif">
 										<a href="/admin/staff">
-											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<i class="fa fa-users" aria-hidden="true"></i>
 											<span>Staff</span>
 										</a>
 									</li>
