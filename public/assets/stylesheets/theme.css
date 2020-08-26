@@ -84,7 +84,7 @@ a:active {
 .sidebar-left {
 	/*background: #34495e;*/
 	background: #1C2B36 ;
-	box-shadow: inset -5px 0px 0px #C82E29;
+	box-shadow: inset -5px 0px 0px #00EAFF;
 	color: #777777;
 	display: table-cell;
 	position: relative;
@@ -1555,14 +1555,14 @@ html.header-dark .header .input-search .input-group-btn .btn-default {
 	width: 73px;
 	height: 50px;
 	/* background-color: #171717; */
-	background-color: #C82E29;
+	background-color: #00EAFF;
 	border-radius: 0 0 0 5px;
 	text-align: center;
 	cursor: pointer;
 }
 
 .sidebar-left .sidebar-header .sidebar-toggle i {
-	color: #c3c3c3;
+	color: #465162;
 	font-size: 17px;
 	font-size: 1.7rem;
 	line-height: 50px;

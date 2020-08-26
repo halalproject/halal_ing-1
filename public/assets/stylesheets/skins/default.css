@@ -23,12 +23,12 @@ a:active,
 @media only screen and (min-width: 768px) {
 	html.sidebar-left-collapsed.scroll .sidebar-left .nav-main li.nav-active a:hover,
 	html.sidebar-left-collapsed.boxed .sidebar-left .nav-main li.nav-active a:hover {
-		color: #C82E29;
+		color: #00EAFF;
 	}
 
 	html.sidebar-left-collapsed.scroll .sidebar-left .nav-main > li:hover > a span.label,
 	html.sidebar-left-collapsed.boxed .sidebar-left .nav-main > li:hover > a span.label {
-		background-color: #C82E29;
+		background-color: #00EAFF;
 	}
 }
 /* Layout Boxed - small than min-width */
@@ -310,11 +310,11 @@ p.drop-caps.colored.secundary:first-child:first-letter {
 }
 /* Header */
 .header .toggle-sidebar-left {
-	background: #C82E29;
+	background: #00EAFF;
 }
 /* Page Header */
 .page-header h2 {
-	border-bottom-color: #C82E29;
+	border-bottom-color: #00EAFF;
 }
 
 .page-header .sidebar-right-toggle:hover {
@@ -322,15 +322,15 @@ p.drop-caps.colored.secundary:first-child:first-letter {
 }
 /* Navigation */
 ul.nav-main > li.nav-active > a {
-	box-shadow: 5px 0 0 #C82E29 inset;
+	box-shadow: 5px 0 0 #00EAFF inset;
 }
 
 ul.nav-main > li.nav-active > i {
-	color: #C82E29;
+	color: #00EAFF;
 }
 
 ul.nav-main li .nav-children li.nav-active > a {
-	color: #C82E29;
+	color: #00EAFF;
 }
 /* Nano Scroller Plugin */
 html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
