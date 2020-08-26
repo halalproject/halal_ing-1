@@ -84,17 +84,22 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="@if(\Request::is('client')) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('client') || (\Request::is('admin/dashboard'))) nav-expanded nav-active @endif">
+										@if(\Request::is('client'))
 										<a href="/client/">
+										@else
+										<a href="/admin/dashboard">
+										@endif
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard Utama</span>
 										</a>
 									</li>
 									@if(\Request::is('client*'))
+									
 									<li class="@if(\Request::is('client/daftar*')) nav-expanded nav-active @endif">
 										<a href="/client/daftar">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
-											<span>Permohonan Baru</span>
+											<span>Daftar Permohonan Baru</span>
 										</a>
 									</li>
 
@@ -125,16 +130,23 @@
 
 									@else
 									
-									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('admin/permohonan*')) nav-expanded nav-active @endif">
 										<a href="/admin/syarikat">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<span>Senarai Permohonan</span>
+										</a>
+									</li>
+
+									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
+										<a href="/admin/syarikat">
+											<i class="fa fa-building" aria-hidden="true"></i>
 											<span>Syarikat</span>
 										</a>
 									</li>
 
 									<li class="@if(\Request::is('admin/staff*')) nav-expanded nav-active @endif">
 										<a href="/admin/staff">
-											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<i class="fa fa-users" aria-hidden="true"></i>
 											<span>Staff</span>
 										</a>
 									</li>

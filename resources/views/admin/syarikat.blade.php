@@ -10,7 +10,7 @@
             <div class="box-body">
         	<input type="hidden" name="soalan_id" value="" />
             <div class="x_panel">
-			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
+			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                 <div class="panel-actions">
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
@@ -53,28 +53,34 @@
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
-                <tr style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
+                <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">Nama Syarikat</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Kategori</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">No. Syarikat</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Orang yang Dihubungi</font></th>
                   <th width="10%"><font color="#000000"><div align="left">H/P</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Emel</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">Alamat</div></font></th>
+                  <th width="20%"><font color="#000000"><div align="left">Senarai Ramuan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><a href="/admin/syarikat/create" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
+                        <td><a href="/admin/syarikat/view/12" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
                         TESTING HALAL JAKIM</td>
                         <td>Pembekal</td>
                         <td>000000</td>
-                        <td>KHAIRUL ANUAR BIN SELAMAT</td>
                         <td>0137057666</td>
                         <td>ICTHALAL@ISLAM.GOV.MY</td>
                         <td>qwerty </td>
+                        <td>
+                            <a href="/admin/syarikat/ramuan/12">
+                                <span class="btn btn-primary">
+                                    <i class="fa fa-list"></i>
+                                </span>
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
               </table>

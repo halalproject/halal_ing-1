@@ -24,9 +24,9 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Permohonan Baru</h4>
+                                            <h4 class="title">Daftar Permohonan</h4>
                                             <div class="info">
-                                                <strong class="amount"></strong>
+                                                <strong class="amount">7</strong>
                                                 <!--<span class="text-primary">(14 unread)</span>-->
                                             </div>
                                         </div>
