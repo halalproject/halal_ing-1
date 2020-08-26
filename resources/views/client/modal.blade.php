@@ -13,6 +13,7 @@ function do_able(ids)
             }
         } else if(ids=='6'){
             $('.addrow_6').show();
+            $('#doc_1').prop('disabled',true);
         } else {
             $('#doc_1').prop('disabled',true);
         }
@@ -24,11 +25,13 @@ function do_able(ids)
             {
                 $('#doc_'+i).prop('disabled',false);
             }
+            $('#tarikh_tamat_sijil').val('')
         } else if(!$('#doc_2').prop('checked') && !$('#doc_3').prop('checked') && !$('#doc_4').prop('checked') && !$('#doc_5').prop('checked') && !$('#doc_6').prop('checked')){
             $('#doc_1').prop('disabled',false);
         }
         if(ids == '6'){
             $('.addrow_6').hide();
+            $('#nama_lain').val('');
         }
 
         $('#upload_'+ids).val('');
@@ -102,142 +105,46 @@ function do_simpan()
 
 function do_hantar()
 {
-    var halal = $('#doc_1').prop('checked');
-    var msds = $('#doc_2').prop('checked');
-    var carta = $('#doc_3').prop('checked');
-    var sumber_bahan = $('#doc_4').prop('checked');
-    var produk = $('#doc_5').prop('checked');
-    var lain = $('#doc_6').prop('checked');
+    $("input:checked").each(function () {
+        var id = $(this).val();
+        // alert(id);
+        var file = $('#upload_'+id).val();
+        var date = $('#tarikh_tamat_sijil').val();
+        var input = $('#nama_lain').val();
 
-    if(halal || msds || carta || sumber_bahan || produk || lain){
-        if(halal){
-            var file = $('#upload_1').val();
-            var date = $('#tarikh_tamat_sijil').val()
-
-            if(file == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan dokumen yang diperlukan.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else if(date.trim() == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan tarikh tamat sijil halal.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else {
-                hantar_to();
-            }
+        if(id == 6 && input.trim() == ''){
+            swal({
+                title: 'Amaran',
+                text: 'Sila masukkan maklumat dokumen yang dihantar.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            });
+        } else if(file == ''){
+            swal({
+                title: 'Amaran',
+                text: 'Sila masukkan dokumen yang diperlukan.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            });
+        } else if(id == 1 && date.trim() == ''){
+            swal({
+                title: 'Amaran',
+                text: 'Sila masukkan tarikh tamat sijil halal.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            });
+        } else {
+            hantar_to();
         }
-        if(msds) {
-            var file = $('#upload_2').val();
-
-            if(file == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan dokumen yang diperlukan.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else {
-                hantar_to();
-            }
-        }
-        if(carta) {
-            var file = $('#upload_3').val();
-
-            if(file == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan dokumen yang diperlukan.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else {
-                hantar_to();
-            }
-        }
-        if(sumber_bahan) {
-            var file = $('#upload_4').val();
-
-            if(file == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan dokumen yang diperlukan.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else {
-                hantar_to();
-            }
-        }
-        if(produk) {
-            var file = $('#upload_5').val();
-
-            if(file == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan dokumen yang diperlukan.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else {
-                hantar_to();
-            }
-        }
-        if(lain) {
-            var input = $('#nama_lain').val();
-            var file = $('#upload_6').val();
-            
-            if(input.trim() == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan maklumat dokumen yang dihantar.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else if(file == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan dokumen yang diperlukan.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-            } else {
-                hantar_to();
-            }
-        }
-
-    } else {
-        swal({
-            title: 'Amaran',
-            text: 'Sila tanda dan masukkan dokumen yang diperlukan untuk dihantar.',
-            type: 'warning',
-            confirmButtonClass: "btn-warning",
-            confirmButtonText: "Ok",
-            showConfirmButton: true,
-        });
-    }
-    
+        
+        
+    });
 }
 
 function hantar_to()
@@ -415,7 +322,7 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-md-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negara Asal Pembekal: </label>
+                                    <label class="col-md-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negeri Asal Pembekal: </label>
                                     <div class="col-md-4">
                                         <select name="negeri_bekal" id="negeri_bekal" class="form-control">
                                             <option value="">Pilih Negeri</option>
@@ -487,7 +394,7 @@ if(!empty($id)){
                                 <div class="row">
                                     <div class="col-md-6 control-label">
                                         <div class="input-group">
-                                            <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}"
+                                            <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" value="{{$dokumen->id}}"
                                                 onchange="do_able({{$dokumen->id}})"/>&nbsp;{{ $dokumen->nama }} 
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
                                                 title="{!! $dokumen->remarks !!}"></i>
