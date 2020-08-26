@@ -4,6 +4,10 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+            <div class="x_title">
+                <h2><b>Paparan Utama MyHalal Ingredient</b> </h2>
+                <div class="clearfix"></div>
+            </div>
             <!-- MULA BARIS PERTAMA -->
             <div class="clearfix"></div>
             <div class="col-md-12 col-lg-12 col-xl-12">

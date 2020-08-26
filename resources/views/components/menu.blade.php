@@ -50,8 +50,7 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="" 
-										data-toggle="modal" data-target="#myModal"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
+									<a role="menuitem" tabindex="-1" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
 								</li>
 								<!--<li>
 									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Kunci Paparan Skrin</a>
@@ -72,7 +71,6 @@
 			<div class="inner-wrapper">
 				<!-- start: sidebar -->
 				<aside id="sidebar-left" class="sidebar-left">
-				
 					<div class="sidebar-header">
 						<div class="sidebar-title">
 							<font color="white"><b>Menu Utama</b></font>
@@ -86,8 +84,12 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="@if(\Request::is('client')) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('client') || (\Request::is('admin'))) nav-expanded nav-active @endif">
+										@if(\Request::is('client'))
 										<a href="/client/">
+										@else
+										<a href="/admin/">
+										@endif
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard Utama</span>
 										</a>
@@ -96,7 +98,7 @@
 									<li class="@if(\Request::is('client/daftar*')) nav-expanded nav-active @endif">
 										<a href="/client/daftar">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
-											<span>Permohonan Baru</span>
+											<span>Daftar Permohonan Baru</span>
 										</a>
 									</li>
 
@@ -127,6 +129,13 @@
 
 									@else
 									
+									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
+										<a href="/admin/syarikat">
+											<i class="fa fa-list-alt" aria-hidden="true"></i>
+											<span>Senarai Permohonan</span>
+										</a>
+									</li>
+
 									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
 										<a href="/admin/syarikat">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>

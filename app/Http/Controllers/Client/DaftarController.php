@@ -22,7 +22,7 @@ class DaftarController extends Controller
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
         
-        $permohonan = $permohonan->paginate(10);
+        $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
         
         return view('client/daftar',compact('permohonan','cat'));
@@ -72,7 +72,7 @@ class DaftarController extends Controller
             $ingredient->alamat_pengilang_2 = $request->kilang_alamat_2;
             $ingredient->alamat_pengilang_3 = $request->kilang_bandar;
             $ingredient->poskod_pengilang = $request->kilang_poskod;
-            $ingredient->negara_pembekal_id = $request->negeri_bekal;
+            $ingredient->negeri_pembekal_id = $request->negeri_bekal;
             $ingredient->alamat_pembekal_1 = $request->bekal_alamat_1;
             $ingredient->alamat_pembekal_2 = $request->bekal_alamat_2;
             $ingredient->alamat_pembekal_3 = $request->bekal_bandar;
