@@ -72,7 +72,6 @@
 			<div class="inner-wrapper">
 				<!-- start: sidebar -->
 				<aside id="sidebar-left" class="sidebar-left">
-				
 					<div class="sidebar-header">
 						<div class="sidebar-title">
 							<font color="white"><b>Menu Utama</b></font>
