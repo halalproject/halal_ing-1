@@ -84,11 +84,11 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="@if(\Request::is('client') || (\Request::is('admin'))) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('client') || (\Request::is('admin/dashboard'))) nav-expanded nav-active @endif">
 										@if(\Request::is('client'))
 										<a href="/client/">
 										@else
-										<a href="/admin/">
+										<a href="/admin/dashboard">
 										@endif
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard Utama</span>

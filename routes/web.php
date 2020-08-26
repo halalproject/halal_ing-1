@@ -56,6 +56,9 @@ Route::group(['prefix' => 'admin'],function(){
     //Login
     Route::get('/','Admin\LoginController@index');
 
+    //Dashboard
+    Route::get('/dashboard','Admin\LoginController@dashboard');
+
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
     Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
