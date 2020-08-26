@@ -25,7 +25,7 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                 <div class="row">
                     <label class="col-sm-5 control-label"><font color="#FF0000">*</font> Kata Laluan Baru :</label>
                     <div class="col-sm-7">
-                        <input type="text" name="kata_laluan_baru" id="kata_laluan_baru" class="form-control" value="">
+                        <input type="password" name="kata_laluan_baru" id="kata_laluan_baru" class="form-control" value="">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                 <div class="row">
                     <label class="col-sm-5 control-label"><font color="#FF0000">*</font> Sahkan Kata Laluan :</label>
                     <div class="col-sm-7">
-                        <input type="text" name="sahkan_laluan_baru" id="sahkan_laluan_baru" class="form-control" value="">
+                        <input type="password" name="sahkan_laluan_baru" id="sahkan_laluan_baru" class="form-control" value="">
                     </div>
                 </div>
             </div>
