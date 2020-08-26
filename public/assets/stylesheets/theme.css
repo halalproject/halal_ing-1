@@ -2493,7 +2493,8 @@ ul.nav-main li .nav-children .nav-children .nav-children li a {
 }
 
 .page-header .breadcrumbs li {
-	color: #c3c3c3;
+	/* color: #c3c3c3; */
+	color: #ffffff;
 	display: inline-block;
 	font-weight: 300;
 }
@@ -2522,7 +2523,8 @@ ul.nav-main li .nav-children .nav-children .nav-children li a {
 
 .page-header .breadcrumbs a,
 .page-header .breadcrumbs span {
-	color: #c3c3c3;
+	/* color: #c3c3c3; */
+	color: #ffffff;
 	display: inline-block;
 	font-size: 14px;
 	font-size: 1.4rem;

@@ -1,11 +1,8 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-	// Remove advanced tabs for all editors.
-	CKEDITOR.config.removeDialogTabs = 'image:advanced;link:advanced;flash:advanced;creatediv:advanced;editdiv:advanced';
-</script>
-
-<script>
-    function do_close()
+// Remove advanced tabs for all editors.
+CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
+function do_close()
 {
     location.reload();
 }
@@ -163,23 +160,10 @@
 </div>
 
 <script>
-	CKEDITOR.replace('dokumen', {height: 500});
-</script>
+CKEDITOR.replace('dokumen', {height: 250});
 
-<!-- @if(empty($id))
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('#tab2').toggleClass('disabled');
-  $('#tab-2').removeAttr('data-toggle');
-})
+$('input:checkbox').click(function() {
+    $('input:checkbox').not(this).prop('checked', false);
+});
+
 </script>
-@else
-<script>
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('#tab2').toogleClass('disabled');
-    $('#tab-2').attr('data-toggle','tab');
-})
-</script>
-@endif -->
