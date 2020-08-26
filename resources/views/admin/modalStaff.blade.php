@@ -1,5 +1,5 @@
 <script>
-    $("button[type='button']").click(function() {
+    $("#upload").click(function() {
         $("input[id='my_file']").click();
     });
 
