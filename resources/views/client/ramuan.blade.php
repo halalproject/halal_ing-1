@@ -22,14 +22,14 @@
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <select name="lj_kategori" onchange="" class="form-control">
                             <option value="">Status Sijil</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3" >
                         <select name="lj_status" onchange="" class="form-control">
                             <option value="">Kategori</option>
                             <option value="9">Belum Diagihkan</option>
@@ -37,11 +37,11 @@
                             <option value="2">Telah Dijawab</option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-4" style="0px">
                     	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-1" align="right">
+        			<div class="col-md-2" align="right" style="padding-right:25px">
                         <button type="button" class="btn btn-success" 
                         	onclick="">
                         	<i class="fa fa-search"></i> Carian</button>
