@@ -10,7 +10,7 @@
             <div class="box-body">
         	<input type="hidden" name="soalan_id" value="" />
             <div class="x_panel">
-			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #b0c4de 43%,#ffffff 100%);">
+			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                 <div class="panel-actions">
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
