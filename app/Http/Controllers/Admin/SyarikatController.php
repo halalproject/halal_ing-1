@@ -13,9 +13,14 @@ class SyarikatController extends Controller
         return view('admin/syarikat');
     }
 
-    public function create()
+    public function view($id)
     {
-       
-        return view('admin/modalsyarikat');
+        return view('admin/modalSyarikat');
+    }
+
+    public function ramuan($id)
+    {
+        // dd($id);
+        return view('admin/ramuan');
     }
 }
