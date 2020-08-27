@@ -12,14 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Portal
 Route::get('/','PortalController@index');
+<<<<<<< HEAD
 Route::get('/ramuanList','PortalController@ramuanList');
+=======
+//Login
+Route::get('/login','LoginController@index')->name('login');
+Route::post('/auth','LoginController@auth');
+>>>>>>> 2dcf20b6a9bd29aed59da32632f094ce29169c04
 
 //Client Webpage
 Route::group(['prefix' => 'client'],function(){
     //Dashboard
-    Route::get('/','Client\DashboardController@index');
+    Route::get('/','DashboardController@client');
 
     //Permohonan Baru
     Route::get('daftar','Client\DaftarController@index')->name('Permohonan Baru');
@@ -52,11 +58,9 @@ Route::group(['prefix' => 'client'],function(){
 
 //Admin Webpage
 Route::group(['prefix' => 'admin'],function(){
-    //Login
-    Route::get('/','Admin\LoginController@index');
 
     //Dashboard
-    Route::get('/dashboard','Admin\LoginController@dashboard');
+    Route::get('/','DashboardController@admin');
 
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');

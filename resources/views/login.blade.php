@@ -53,16 +53,12 @@
 							<div class="row" align="right">
 								<div class="col-sm-12 text-right">
 									<button type="button" class="btn btn-primary hidden-xs" onClick="do_login()" >Log Masuk</button>
-									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onClick="do_login()">Log Masuk</button>
+									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onclick="do_login()">Log Masuk</button>
 								</div>
 							</div>
 
                             <div class="row" align="center">
-                                <div class="col-sm-12 text-right"><a href="index.php?data=<?php print base64_encode('lupa_katalaluan;;;;;');?>" >Lupa Kata Laluan?</a>
-									<!--<div class="checkbox-custom checkbox-default">
-										<input id="RememberMe" name="rememberme" type="checkbox"/>
-										<label for="RememberMe">Remember Me</label>
-									</div>-->
+                                <div class="col-sm-12 text-right"><a href="" >Lupa Kata Laluan?</a>
 								</div>
                             </div>
 
@@ -114,22 +110,11 @@
                               confirmButtonClass: "btn-success",
                               confirmButtonText: "Ok",
                               showConfirmButton: true,
-                            }).then(function () {
-                              window.location.href = "/dashboard";
                             });
-                        } else if(data=='XADA'){
+                        } else {
                             swal({
                               title: 'Amaran',
                               text: 'ID Pengguna atau Katalaluan anda salah. Sila cuba lagi.',
-                              type: 'error',
-                              confirmButtonClass: "btn-danger",
-                              confirmButtonText: "Ok",
-                              showConfirmButton: true,
-                            });
-                        } else if(data=='XSTAT'){
-                            swal({
-                              title: 'Amaran',
-                              text: 'Sila pilih kategori pengguna sistem.',
                               type: 'error',
                               confirmButtonClass: "btn-danger",
                               confirmButtonText: "Ok",
