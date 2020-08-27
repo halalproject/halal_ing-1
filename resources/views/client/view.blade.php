@@ -143,9 +143,9 @@ function do_close()
 
                         <div class="form-group">
                             <div align="right">
-                                <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_simpan()" id="simpan">
-                                    <i class="fa fa-save"></i> Simpan</button>
-                                <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                                <button type="button" class="btn btn-inline btn-secondary" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                                <button type="button" class="mt-sm mb-sm btn btn-info" style="color:#000000" onclick="do_simpan()" id="simpan">
+                                    <i class="fa fa-save"></i> <b>Simpan</b></button>
                             </div>
                         </div>
                     </div>
