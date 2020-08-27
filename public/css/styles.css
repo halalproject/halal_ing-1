@@ -159,7 +159,7 @@ sup {
 }
 
 a {
-  color: #d10000;
+  color: #ff0a0a;
   text-decoration: none;
   background-color: transparent;
 }
@@ -597,7 +597,7 @@ pre code {
 }
 
 .container-login{
-	background:rgba(87, 241, 255, 0.31);
+	background:#212529;
 	padding:20px;
 	height: 325px;
 }
@@ -10040,7 +10040,7 @@ p {
 }
 
 ::selection {
-  background: #fed136;
+  background: #fcff00;
   text-shadow: none;
 }
 
