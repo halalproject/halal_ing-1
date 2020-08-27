@@ -52,6 +52,8 @@ class DaftarController extends Controller
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
 
+        // dd($upload);
+
         return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen'));
     }
 
