@@ -43,11 +43,7 @@
                         </section>
                     </div>
                     
-                    <div class="col-md-12 col-lg-2 col-xl-2">
-                        
-                    </div>
-                    
-                    <div class="col-md-12 col-lg-6 col-xl-6">
+                    <div class="col-md-12 col-lg-8 col-xl-8">
                         <div class="row">
                             <section class="panel" style="cursor: pointer" onclick="do_berita()">
                                 <div class="panel-body">
@@ -68,8 +64,11 @@
                             </section>
                         </div>
                         <div class="row">
-                            {!! $calendar->calendar() !!}
-                            {!!  $calendar->script() !!}
+                            <section class="panel">
+                                <div class="panel-body">
+                                    {!! $calendar->calendar() !!}
+                                </div>
+                            </section>
                         </div>
                         
                     </div>
@@ -78,5 +77,8 @@
             <!-- AKHIR BARIS PERTAMA -->
         </div>
     </div>
-</div>                        
+</div>
+
+
+{!!  $calendar->script() !!}
 @endsection

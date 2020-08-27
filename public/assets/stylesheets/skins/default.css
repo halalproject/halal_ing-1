@@ -2,6 +2,7 @@
 a,
 .btn-link {
 	color: #0088cc;
+	cursor: pointer;
 }
 
 a:hover,
