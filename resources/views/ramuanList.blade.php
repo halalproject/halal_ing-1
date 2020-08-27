@@ -29,10 +29,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/" target="_blank">Utama</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#ramuanList">Senarai Ramuan</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Hubungi Kami</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/" target="_blank">Log Masuk</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sop" target="_blank">SOP</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/" target="_blank">SOP</a></li>
                     </ul>
                 </div>
             </div>

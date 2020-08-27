@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Utama</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Log Masuk</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Log Masuk</a></li> -->
                         <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang Kami</a></li> -->
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Hubungi Kami</a></li>
                     </ul>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="form-group row col-12 text-center">
                             <div class="col-sm-4">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="">
                                             <i class="fab fa-pagelines fa-2x"></i>
@@ -90,7 +90,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-atom fa-2x"></i>
@@ -102,7 +102,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-paw fa-2x"></i>
@@ -119,7 +119,7 @@
 
                         <div class="form-group row col-12 text-center">
                             <div class="col-sm-4">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-leaf fa-2x"></i>
@@ -131,7 +131,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="far fa-smile fa-2x"></i>
@@ -143,7 +143,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-book-open fa-2x"></i>
@@ -159,24 +159,22 @@
                     </div>
                     <div class="col-lg-4 col-12 mb-20">
                         <div class="about-content-two container-login">
-                            <h2 class="mb-30"><b>LOG MASUK</b></h2>
-                            <form class="form-signin" name="form1" id="form-id" method="post" action="">
+                            <h2 class="mb-30 text-white"><b>LOG MASUK</b></h2>
+                            <form class="form-signin text-white" name="form1" id="form-id" method="post" action="">
                                 <label for="" >ID Penguna</label>
                                 <input style="height: 35px;" type="text" id="xuser" name="xuser" class="form-control" required >
                                 <br>
                                 <label for="inputPassword">Kata Laluan</label>
                                     <input style="height: 35px;"  type="password" id="xpass" name="xpass" class="form-control"  required >
-                                    <div class="checkbox mb-3 text-right login-forget-password">
-                                        <a class="text-red" href="#">Lupa Kata Laluan ?</a>
+                                    <div class="text-danger mb-3 float-right" data-toggle="modal" data-target="#modalLupaKataLaluan" >
+                                        <small class="text-red">Lupa Kata Laluan ?</small>
                                     </div>
-                                    <button class="btnx btn-sm btn-block btn-dark" type="button">Masuk</button>
+                                    <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" type="button">Masuk</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-            
         </section>
         <!-- About-->
         <!-- <section class="page-section" id="about">
@@ -320,8 +318,47 @@
                 </div>
                 <!--Footer bottom end-->
             </footer>
-         </section>
-         <!--Footer section end--> 
+        </section>
+        <!--Footer section end--> 
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLupaKataLaluan" role="dialog">
+        <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background:-webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:10px;">
+            <h4 class="modal-title">Lupa Kata Laluan</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Emel :</label>
+                            <div class="col-sm-9">
+                                <input type="email" name="emel" id="emel" class="form-control" value=""><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12" style="padding:0px;">
+                            <small class="text-danger">* Note: Masukkan emel anda dan kami akan menghantar pautan untuk menetapkan semula kata laluan anda.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
+            <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
+                        <i class="fa fa-save"></i> Hantar</button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
         
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
