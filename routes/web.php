@@ -14,13 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 //Portal
 Route::get('/','PortalController@index');
-<<<<<<< HEAD
 Route::get('/ramuanList','PortalController@ramuanList');
-=======
 //Login
 Route::get('/login','LoginController@index')->name('login');
 Route::post('/auth','LoginController@auth');
->>>>>>> 2dcf20b6a9bd29aed59da32632f094ce29169c04
 
 //Client Webpage
 Route::group(['prefix' => 'client'],function(){

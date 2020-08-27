@@ -1,6 +1,10 @@
 @extends('components.page')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/vendor/fullcalendar/main.css') }}">
+<script src="{{ asset('assets/vendor/fullcalendar/lib/jquery-ui.custom.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/fullcalendar/lib/moment.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/fullcalendar/main.js') }}"></script>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -64,7 +68,8 @@
                             </section>
                         </div>
                         <div class="row">
-                            
+                            {!! $calendar->calendar() !!}
+                            {!!  $calendar->script() !!}
                         </div>
                         
                     </div>
