@@ -116,7 +116,7 @@ function do_close()
             <div align="right">
                 <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
             </div>
-        </div>
+         </div>
     </div>
 </section>
 </form>
