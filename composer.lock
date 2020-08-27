@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e107b62251edf95ed1cff5fb4bf6ea19",
+    "content-hash": "01ab5f1b008b75d3732d0c6720ae7449",
     "packages": [
+        {
+            "name": "acaronlex/laravel-calendar",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/acaronlex/laravel-calendar.git",
+                "reference": "779ac81d9ad10d78c97824b9eddf71bb88a53db4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/acaronlex/laravel-calendar/zipball/779ac81d9ad10d78c97824b9eddf71bb88a53db4",
+                "reference": "779ac81d9ad10d78c97824b9eddf71bb88a53db4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~7.0",
+                "php": ">=7.2.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Acaronlex\\LaravelCalendar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Calendar": "Acaronlex\\LaravelCalendar\\Facades\\Calendar"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Acaronlex\\LaravelCalendar": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "acaronlex",
+                    "email": "acaronlex@outlook.com"
+                }
+            ],
+            "description": "Laravel helper for FullCalendar.io",
+            "time": "2020-05-12T01:08:01+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.1",
@@ -5838,16 +5885,16 @@
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.18.1.1",
+            "version": "v9.18.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "52fc21c99fd888e33aed4879e55a3646f8d40558"
+                "reference": "efb6e445494a9458aa59b0af5edfa4bdcc6809d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/52fc21c99fd888e33aed4879e55a3646f8d40558",
-                "reference": "52fc21c99fd888e33aed4879e55a3646f8d40558",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/efb6e445494a9458aa59b0af5edfa4bdcc6809d9",
+                "reference": "efb6e445494a9458aa59b0af5edfa4bdcc6809d9",
                 "shasum": ""
             },
             "require": {
@@ -5909,7 +5956,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-02T05:59:21+00:00"
+            "time": "2020-08-27T03:24:44+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
