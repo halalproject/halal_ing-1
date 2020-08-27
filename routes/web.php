@@ -12,13 +12,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Portal
 Route::get('/','PortalController@index');
+//Login
+Route::get('/login','LoginController@index')->name('login');
+Route::post('/auth','LoginController@auth');
 
 //Client Webpage
 Route::group(['prefix' => 'client'],function(){
     //Dashboard
-    Route::get('/','Client\DashboardController@index');
+    Route::get('/','DashboardController@client');
 
     //Permohonan Baru
     Route::get('daftar','Client\DaftarController@index')->name('Permohonan Baru');
@@ -51,11 +54,9 @@ Route::group(['prefix' => 'client'],function(){
 
 //Admin Webpage
 Route::group(['prefix' => 'admin'],function(){
-    //Login
-    Route::get('/','Admin\LoginController@index');
 
     //Dashboard
-    Route::get('/dashboard','Admin\LoginController@dashboard');
+    Route::get('/','DashboardController@admin');
 
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
