@@ -10,4 +10,9 @@ class PortalController extends Controller
     {
         return view('clientPortal');
     }
+
+    public function ramuanList()
+    {
+        return view('ramuanList');
+    }
 }

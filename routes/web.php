@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','PortalController@index');
+Route::get('/ramuanList','PortalController@ramuanList');
 
 //Client Webpage
 Route::group(['prefix' => 'client'],function(){

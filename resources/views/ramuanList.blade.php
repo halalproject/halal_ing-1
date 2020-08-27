@@ -29,46 +29,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Utama</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Log Masuk</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang Kami</a></li> -->
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#ramuanList">Senarai Ramuan</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Hubungi Kami</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="" target="_blank">Log Masuk</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sop" target="_blank">SOP</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!-- Masthead-->
-        <header class="">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset('images/login-bg2.jpg') }}" alt="First slide" height="250px;">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('images/login-bg2.jpg') }}" alt="Second slide" height="250px;">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('images/login-bg2.jpg') }}" alt="Third slide" height="250px;">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </header>
 
         <!-- semak status halal + login -->
-        <section class="page-section bg-light" id="login" style="padding: 45px;">
+        <section class="page-section bg-light" id="ramuanList" style="padding: 45px;">
             <div class="container">
                 <div class="row row-25 align-items-center">
-                    <div class="col-lg-8 col-12 mb-30 text-center about-content-two container-login" style="background:#ffffff;">
-                        <div class="form-group row">
-                            <label for="colFormLabelLg" class="col-sm-4 col-form-label">Semak Status Halal :</label>
+                    <div class="col-lg-12 col-12 mb-30 text-center about-content-two container" style="background:#ffffff;padding-top:30px;">
+                        <div class="form-group row" style="padding-top:40px;padding-bottom:10px;padding-left:80px;">
+                            <label for="colFormLabelLg" class="col-sm-3 col-form-label">Semak Status Halal :</label>
                                 <div class="input-group col-sm-7">
                                     <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" style="box-shadow: 1px 3px #d6d6d6;">
                                     <div class="input-group-prepend">
@@ -76,8 +52,9 @@
                                     </div>
                                 </div>
                         </div>
+                        <br>
                         <div class="form-group row col-12 text-center">
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <a href="/ramuanList" target="_blank">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="">
@@ -89,7 +66,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <a href="/ramuanList" target="_blank">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
@@ -101,7 +78,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <a href="/ramuanList" target="_blank">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
@@ -113,12 +90,7 @@
                                     </button>
                                 </a>
                             </div>
-                        </div>
-
-                        <br>
-
-                        <div class="form-group row col-12 text-center">
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <a href="/ramuanList" target="_blank">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
@@ -130,7 +102,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <a href="/ramuanList" target="_blank">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
@@ -142,7 +114,7 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <a href="/ramuanList" target="_blank">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
@@ -155,91 +127,42 @@
                                 </a>
                             </div>
                         </div>
-                        
                     </div>
-                    <div class="col-lg-4 col-12 mb-20">
-                        <div class="about-content-two container-login">
-                            <h2 class="mb-30"><b>LOG MASUK</b></h2>
-                            <form class="form-signin" name="form1" id="form-id" method="post" action="">
-                                <label for="" >ID Penguna</label>
-                                <input style="height: 35px;" type="text" id="xuser" name="xuser" class="form-control" required >
-                                <br>
-                                <label for="inputPassword">Kata Laluan</label>
-                                    <input style="height: 35px;"  type="password" id="xpass" name="xpass" class="form-control"  required >
-                                    <div class="checkbox mb-3 text-right login-forget-password">
-                                        <a class="text-red" href="#">Lupa Kata Laluan ?</a>
-                                    </div>
-                                    <button class="btnx btn-sm btn-block btn-dark" type="button">Masuk</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            
-        </section>
-        <!-- About-->
-        <!-- <section class="page-section" id="about">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <br>
+
+                    <div class="col-12">
+                        <h4 style="padding-top:15px;"><b>Senarai Ramuan (Tumbuhan) </b></h4>
+                        <br>
+                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
+                                <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
+                                <th width="70%"><font color="#000000"><div align="left">Nama Ramuan & Alamat Syarikat</div></font></th>
+                                <th width="20%"><font color="#000000"><div align="left">Tarikh Luput Sijil Halal</font></th>
+                                <th width="5%"><font color="#000000"><div align="left">Syarikat</font></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>	
+                                        <b>MILK FLAVOR SC003932</b><br>
+                                        AB MAURI MALAYSIA SDN. BHD.<br>
+                                        LOT 4185, JALAN KB 1/9,<br>
+                                        MYS.<br>
+                                        03-89612864.
+                                    </td>
+                                    <td>19/9/2023</td>
+                                    <td><i class="fas fa-search"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>March 2011</h4>
-                                <h4 class="subheading">An Agency is Born</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>December 2012</h4>
-                                <h4 class="subheading">Transition to Full Service</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>July 2014</h4>
-                                <h4 class="subheading">Phase Two Expansion</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <h4>
-                                Be Part
-                                <br />
-                                Of Our
-                                <br />
-                                Story!
-                            </h4>
-                        </div>
-                    </li>
-                </ul>
             </div>
-        </section> -->
+        </section>
+        
         <!--Footer section start-->
         <section class="page-section" id="contact">
             <footer class="footer-section section">
