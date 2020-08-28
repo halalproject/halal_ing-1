@@ -20,30 +20,11 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
     </header>
     <div class="panel-body ">
         <div class="col-md-12">
-            <!-- <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}"> -->
             <div class="form-group">
-                <div class="row">
-                    <label class="col-sm-5 control-label"><font color="#FF0000">*</font> Kata Laluan Baru :</label>
-                    <div class="col-sm-7">
-                        <input type="password" name="kata_laluan_baru" id="kata_laluan_baru" class="form-control" value="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <label class="col-sm-5 control-label"><font color="#FF0000">*</font> Sahkan Kata Laluan :</label>
-                    <div class="col-sm-7">
-                        <input type="password" name="sahkan_laluan_baru" id="sahkan_laluan_baru" class="form-control" value="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div align="right">
+                <div align="center">
+                    <p>Anda Pasti Ingin Tetapkan Kata Laluan Sebagai Lalai ?</p>
                     <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                    <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                        <i class="fa fa-save"></i> Simpan</button>
+                    <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan"> Ya</button>
                 </div>
             </div>
                 

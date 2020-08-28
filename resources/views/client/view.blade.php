@@ -17,16 +17,16 @@ function do_close()
          <!-- Start Tab -->
         <div class="tabbable">
             <!-- Tab Menu -->
-			<ul id="tabs" class="nav nav-tabs printnone" role="tablist">
+			<!-- <ul id="tabs" class="nav nav-tabs printnone" role="tablist">
 				<li class="nav-item active">
 					<a id="tab-1" href="#t1" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Maklumat Permohonan</span></a>
 				</li>
 				<li id="tab2" class="nav-item">
 					<a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Process Admin</span></a>
 				</li>
-			</ul>
+			</ul> -->
             <!-- End Tab Menu -->
-            <div id="content" class="tab-content padding-10 bg-light-grey" role="tablist">
+            <!-- <div id="content" class="tab-content padding-10 bg-light-grey" role="tablist"> -->
                 <!-- First Tab -->
                 <div id="t1" class="card tab-pane row in active row" role="tabpanel" aria-labelledby="tab-1">
                     <div class="panel-body">
@@ -43,42 +43,42 @@ function do_close()
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
+                                    <label class="col-sm-2 control-label">Nama Ramuan :</label>
+                                    <div class="col-sm-6">
+                                        Ayam
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <label class="col-sm-2 control-label">Nama Saintifik :</label>
+                                    <div class="col-sm-6">
+                                        Ayam Belanda
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
+                                    <label class="col-sm-2 control-label">Nama Kategori :</label>
+                                    <div class="col-sm-6">
+                                        Semula Jadi
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
+                                    <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
+                                    <div class="col-sm-6">
+                                        20/8/2020
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
+                                    <label class="col-sm-2 control-label">Status :</label>
+                                    <div class="col-sm-6">
+                                        Ditolak
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -94,7 +94,7 @@ function do_close()
                 <!-- End First Tab -->
                 
                 <!-- Second Tab -->
-                <div id="t2" class="card tab-pane row in" role="tabpanel" aria-labelledby="tab-2">
+                <!-- <div id="t2" class="card tab-pane row in" role="tabpanel" aria-labelledby="tab-2">
                     <div class="panel-body">
                         <div class="col-md-12">
                         
@@ -149,8 +149,8 @@ function do_close()
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
                 <!-- End Second Tab -->
             </div>
         </div>
