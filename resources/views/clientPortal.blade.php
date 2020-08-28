@@ -59,12 +59,17 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-                <marquee behavior="scroll" direction="left">PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000</marquee>
             </div>
         </header>
-
+        <div class="d-flex justify-content-center">
+            <div class="col-md-6">
+                <marquee behavior="scroll" direction="left" scrollamount="10">
+                    PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000
+                </marquee>
+            </div>
+        </div>
         <!-- semak status halal + login -->
-        <section class="page-section bg-light" id="login" style="padding: 45px;">
+        <section class="page-section bg-light" id="login" style="padding: 20px;">
             <div class="container">
                 <div class="row row-25 align-items-center">
                     <div class="col-lg-8 col-12 mb-30 text-center about-content-two container-login" style="background:#ffffff;">

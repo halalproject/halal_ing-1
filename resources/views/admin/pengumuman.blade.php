@@ -15,38 +15,28 @@
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
                 </div>
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN</b></font></h6> 
+                <h6 class="panel-title"><font color="#000000"><b>SENARAI PENGUMUMAN</b></font></h6> 
             </header>
 			</div>
             </div>            
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-3">
-                        <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3" >
-                        <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Kategori</option>
-                            <option value="9">Belum Diagihkan</option>
-                            <option value="1">Belum Dijawab</option>
-                            <option value="2">Telah Dijawab</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4" style="0px">
+                    <div class="col-md-4">
                     	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-2" align="right" style="padding-right:25px">
-                        <button type="button" class="btn btn-success" 
-                        	onclick="">
+        			<div class="col-md-1">
+                        <button type="button" class="btn btn-success" onclick="">
                         	<i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>       
+                    <div class="col-md-7" align="right">
+                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <button type="button" class="btn btn-primary">
+                            <i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
+                        </a>
+                    </div>
+                </div>    
             </div>
             <br>
             <br>
@@ -73,11 +63,6 @@
                         </td>
                         <td>12/12/2020</td>
                         <td>
-                            <a href="/admin/syarikat/ramuan/12">
-                                <span class="btn btn-primary">
-                                    <i class="fa fa-list"></i>
-                                </span>
-                            </a>
                         </td>
                     </tr>
 
@@ -88,11 +73,6 @@
                         <td>Tiada</td>
                         <td>28/8/2020</td>
                         <td>
-                            <a href="/admin/syarikat/ramuan/12">
-                                <span class="btn btn-primary">
-                                    <i class="fa fa-list"></i>
-                                </span>
-                            </a>
                         </td>
                     </tr>
 

@@ -115,7 +115,7 @@ function do_pengumuman()
                                                     <div class="summary">
                                                         <h4 class="title">Pengumuman</h4>
                                                         <div class="info">
-                                                            <i class="">Kak Ayu Hebat</i>
+                                                            <i class="">Pengumuman tentang makanan A</i>
                                                         </div>
                                                     </div>
                                                     <div class="summary-footer" style="text-align: left">

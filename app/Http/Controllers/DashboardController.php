@@ -59,4 +59,9 @@ class DashboardController extends Controller
 
         return view('admin/dashboard',compact('calendar'));
     }
+
+    public function pengumuman()
+    {
+        return view('admin/pengumuman');
+    }
 }
