@@ -42,8 +42,8 @@ Route::group(['prefix' => 'client'],function(){
     Route::get('ramuan/view/{id}','Client\RamuanController@view');
 
     //Ramuan Yang Dihapuskan
-    Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
-    Route::get('hapus/view/{id}','Client\RamuanController@view');
+    Route::get('hapus','Client\RamuanHapusController@hapus')->name('Ramuan Yang Dihapuskan');
+    Route::get('hapus/view/{id}','Client\RamuanHapusController@view');
 });
 
 //Admin Webpage

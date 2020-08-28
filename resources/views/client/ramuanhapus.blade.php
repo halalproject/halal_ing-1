@@ -15,7 +15,7 @@
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
                 </div>
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN</b></font></h6> 
+                <h6 class="panel-title"><font color="#000000"><b>RAMUAN YANG DIHAPUSKAN</b></font></h6> 
             </header>
 			</div>
             </div>            
