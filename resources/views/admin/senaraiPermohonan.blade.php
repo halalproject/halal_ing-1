@@ -72,6 +72,7 @@
                 <th width="30%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                 <th width="15%"><font color="#000000"><div align="left">Kategori</div></font></th>
                 <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
+                <th width="13%"><font color="#000000"><div align="left">Sijil Halal</div></font></th>
                 <th width="7%"><font color="#000000"><div align="left">Tindakan</div></font></th>
             </tr>
             </thead>
@@ -82,8 +83,9 @@
                     <td>Ayam</td>
                     <td>Semulajadi</td>
                     <td>20/8/2020</td>
+                    <td>Ada</td>
                     <td align="center">
-                        <a href="" data-toggle="modal" data-target="#maklumatRamuanModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                        <a href="premohonan/modalSenaraiPermohonan" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-sm btn-primary">
                                 <i class="far fa-folder-open fa-lg" style="color: #FFFFFF;"></i> Buka
                             </button>
@@ -94,74 +96,6 @@
             </table>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="maklumatRamuanModal" role="dialog">
-        <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content" style="top:350px;left: 50%;transform: translate(-50%, -50%);width:max-content;">
-            <div class="modal-header" style="background:-webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:10px;">
-            <h4 class="modal-title">Maklumat Syarikat</h4>
-            </div>
-            <div class="modal-body">
-                <div class="col-12">
-                    <fieldset class="form-group">
-                        <div class="row">
-                            <label class="col-form-label col-sm-2 pt-0">Status :</label>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
-                                        <label class="form-check-label" for="semak">
-                                        Semak
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="semula" id="semula" value="semula">
-                                        <label class="form-check-label" for="semula">
-                                            Semak Semula
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="lulus" id="lulus" value="lulus">
-                                        <label class="form-check-label" for="gridRadios3">
-                                        Lulus
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="tolak" id="tolak" value="tolak">
-                                        <label class="form-check-label" for="tolak">
-                                        Tolak
-                                        </label>
-                                    </div>
-                                </div>
-                        </div>
-                    </fieldset>
-                        <br>
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="col-sm-2 control-label" for="exampleFormControlTextarea1">Catatan :</label>
-                            <div class="col-sm-10">
-                            <textarea name="dokumen" cols="50" rows="10" id="story" style="width:100%"></textarea>
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <div align="right">
-                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                        <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                            <i class="fa fa-save"></i> Simpan</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        </div>
-    </div>
-  <!--</div>-->    
-<!-- DataTables -->
 
 <script>
     CKEDITOR.replace('dokumen', {height: 250});

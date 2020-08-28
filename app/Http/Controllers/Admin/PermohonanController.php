@@ -11,4 +11,9 @@ class PermohonanController extends Controller
     {
         return view('admin/senaraiPermohonan');
     }
+
+    public function modalSenaraiPermohonan(Request $request)
+    {
+        return view('admin/modalSenaraiPermohonan');
+    }
 }
