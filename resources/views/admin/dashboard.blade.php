@@ -5,6 +5,12 @@
 <script src="{{ asset('assets/vendor/fullcalendar/lib/jquery-ui.custom.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/fullcalendar/lib/moment.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/fullcalendar/main.js') }}"></script>
+<script>
+function do_pengumuman()
+{
+    window.location = '/admin/pengumuman'
+}
+</script>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -91,7 +97,7 @@
                     
                     <div class="col-md-12 col-lg-8 col-xl-8">
                         <div class="row">
-                            <section class="panel" style="cursor: pointer" onclick="do_berita()">
+                            <section class="panel" style="cursor: pointer" onclick="do_pengumuman()">
                                 <div class="panel-body">
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                         <!-- Indicators -->
