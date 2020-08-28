@@ -47,17 +47,46 @@
                         <div class="row">
                             <section class="panel" style="cursor: pointer" onclick="do_berita()">
                                 <div class="panel-body">
-                                    <div class="widget-summary">
-                                        <div class="widget-summary-col">
-                                            <div class="summary">
-                                                <h4 class="title">Berita</h4>
-                                                <div class="info">
-                                                    <i class="">Berita</i>
+                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                        <!-- Indicators -->
+                                        <ol class="carousel-indicators">
+                                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                        </ol>
+                                      
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                          <div class="item active">
+                                            <div class="widget-summary">
+                                                <div class="widget-summary-col">
+                                                    <div class="summary">
+                                                        <h4 class="title">Pengumuman</h4>
+                                                        <div class="info">
+                                                            <i class="">Kak Ayu Hebat</i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="summary-footer" style="text-align: left">
+                                                        <i class="fa fa-clock-o"></i> 2019-10-12 &nbsp; <i class="fa fa-play-circle-o"></i> Lihat 1
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="summary-footer" style="text-align: left">
-                                                <i class="fa fa-clock-o"></i> 2019-10-12 &nbsp; <i class="fa fa-play-circle-o"></i> Lihat 1
+                                          </div>
+                                          <div class="item">
+                                            <div class="widget-summary">
+                                                <div class="widget-summary-col">
+                                                    <div class="summary">
+                                                        <h4 class="title">Pengumuman</h4>
+                                                        <div class="info">
+                                                            <i class="">Sila pakai mask ye kalau nk keluar</i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="summary-footer" style="text-align: left">
+                                                        <i class="fa fa-clock-o"></i> 2019-10-12 &nbsp; <i class="fa fa-play-circle-o"></i> Lihat 1
+                                                    </div>
+                                                </div>
                                             </div>
+                                          </div>
                                         </div>
                                     </div>
                                 </div>
@@ -81,4 +110,10 @@
 
 
 {!!  $calendar->script() !!}
+<script>
+$('.carousel').carousel({
+  interval: 4000
+})
+
+</script>
 @endsection

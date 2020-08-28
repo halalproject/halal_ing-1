@@ -87,7 +87,7 @@
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
                                 <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="glyphicon glyphicon-trash fa-lg" style="color: #FFFFFF;"></i>
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
                             </button>
                         </td>
@@ -116,7 +116,7 @@
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
                                 <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="glyphicon glyphicon-trash fa-lg" style="color: #FFFFFF;"></i>
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
                             </button>
                         </td>
@@ -145,7 +145,7 @@
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
                                 <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="glyphicon glyphicon-trash fa-lg" style="color: #FFFFFF;"></i>
+                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
                             </button>
                         </td>
