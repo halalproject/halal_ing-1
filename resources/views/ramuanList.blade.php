@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MYHALAL INGREDIENT</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -55,73 +56,79 @@
                         <br>
                         <div class="form-group row col-12 text-center">
                             <div class="col-sm-2">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList" >
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="">
                                             <i class="fab fa-pagelines fa-2x"></i>
                                         </div>
                                         <div class="">
-                                            <label class="title">Tumbuhan</label>
+                                            <label class="title">Tumbuhan </label><br>
+                                            <span class="badge badge-danger">15999</span>
                                         </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList" >
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-atom fa-2x"></i>
                                         </div>
                                         <div class="">
-                                            <label class="title">Kimia</label>
+                                            <label class="title">Kimia </label><br>
+                                            <span class="badge badge-danger">70000</span>
                                         </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList" >
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-paw fa-2x"></i>
                                         </div>
                                         <div class="">
-                                            <label class="title">Haiwan</label>
+                                            <label class="title">Haiwan </label><br>
+                                            <span class="badge badge-danger">2000</span>
                                         </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList" >
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-leaf fa-2x"></i>
                                         </div>
                                         <div class="">
-                                            <label class="title">Semula Jadi</label>
+                                            <label class="title">Semula Jadi </label><br>
+                                            <span class="badge badge-danger">35</span>
                                         </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList" >
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="far fa-smile fa-2x"></i>
                                         </div>
                                         <div class="">
-                                            <label class="title">Lain-lain</label>
+                                            <label class="title">Lain-lain </label><br>
+                                            <span class="badge badge-danger">100</span>
                                         </div>
                                     </button>
                                 </a>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" target="_blank">
+                                <a href="/ramuanList" >
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-book-open fa-2x"></i>
                                         </div>
                                         <div class="">
-                                            <label class="title">Semua</label>
+                                            <label class="title">Semua </label><br>
+                                            <span class="badge badge-danger">5</span>
                                         </div>
                                     </button>
                                 </a>
@@ -154,14 +161,151 @@
                                         03-89612864.
                                     </td>
                                     <td>19/9/2023</td>
-                                    <td><i class="fas fa-search"></i></td>
+                                    <td>
+                                        <button type="button" class="btn btn-info col-sm-10" data-target="#companyDetail" data-toggle="modal">
+                                            <i class="fa fa-list"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <ul class="pagination" style="padding-right:450px;padding-left:450px;">
+                            <li><a href="#">Sebelum</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">Selepas</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="companyDetail" role="dialog">
+        <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background:-webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:10px;">
+            <h4 class="modal-title">Maklumat Syarikat</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">Nama Syarikat :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control text-uppercase">era whiz ict</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">Alamat :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control">NO.1 Jalan Ostia Bangi, Selangor</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">Negeri :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control">Selangor</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">No. Tel :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control">012-0000000</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">No. Fax :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control">03-000000000</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">Emel :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="email" class="form-control" >erawhizict.gmail.com</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">Laman Web :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control">www.erawhizict.com.my</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">No. Rujukan :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control">AA123456</b>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin:0px;">
+                        <div class="row">
+                            <label class="col-sm-3 control-label">Pegawai Rujukan :</label>
+                            <div class="col-sm-9">
+                                <b style="border:none;" type="text" class="form-control text-uppercase">ABU BIN BAKAR</b>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
+                            <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
+                            <th width="70%"><font color="#000000"><div align="left">Nama Ramuan & Alamat Syarikat</div></font></th>
+                            <th width="20%"><font color="#000000"><div align="left">Tarikh Luput Sijil Halal</font></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>	
+                                    <b>MILK FLAVOR SC003932</b><br>
+                                    AB MAURI MALAYSIA SDN. BHD.<br>
+                                    LOT 4185, JALAN KB 1/9,<br>
+                                    MYS.<br>
+                                    03-89612864.
+                                </td>
+                                <td>19/9/2023</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
+            </button>
+            </div>
+        </div>
+        
+        </div>
+    </div>
         
         <!--Footer section start-->
         <section class="page-section" id="contact">
@@ -206,7 +350,7 @@
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
                                 <h4 class="title"><span class="text-white"><b>Hubungi Kami</b></span></h4>
-                                <h6 style="color:#00eaff;">Tel: 03-5514 3600/3400 <br>Fax: 03-5510 3368<br>Email: info@jais.gov.my</h6>             
+                                <h6 style="color:#00eaff;">Tel: 03-5514 3600/3400 <br>Fax: 03-5510 3368<br>text: info@jais.gov.my</h6>             
                             </div>
                             <!--Footer Widget end-->
 

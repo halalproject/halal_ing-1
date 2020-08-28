@@ -77,16 +77,6 @@
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-warning">
-                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
-                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
-                                </span>
-                            </button>
                         </td>
                     </tr>
                 </tbody>

@@ -59,6 +59,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
+                <marquee behavior="scroll" direction="left">PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000</marquee>
             </div>
         </header>
 
