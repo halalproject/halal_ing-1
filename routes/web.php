@@ -52,6 +52,9 @@ Route::group(['prefix' => 'admin'],function(){
     //Dashboard
     Route::get('/','DashboardController@admin');
 
+    //Audit
+    Route::get('audit','Admin\AuditController@index')->name('Audit');
+
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
     Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
