@@ -109,12 +109,14 @@
 											<span>Permohonan Ditolak</span>
 										</a>
 									</li>
+
 									<li class="@if(\Request::is('client/ramuan*')) nav-expanded nav-active @endif">
 										<a href="/client/ramuan">
 											<i class="fa fa-list" aria-hidden="true"></i>
 											<span>Senarai Ramuan</span>
 										</a>
-									</li>    
+									</li>   
+
 									<li class="@if(\Request::is('client/hapus*')) nav-expanded nav-active @endif">
 										<a href="/client/hapus">
 											<i class="fa fa-folder" aria-hidden="true"></i>
@@ -125,9 +127,30 @@
 									@else
 									
 									<li class="@if(\Request::is('admin/permohonan*')) nav-expanded nav-active @endif">
-										<a href="/admin/syarikat">
+										<a href="/admin/permohonan">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Senarai Permohonan</span>
+										</a>
+									</li>
+
+									<li class="@if(\Request::is('admin/proses*')) nav-expanded nav-active @endif">
+										<a href="/admin/proses">
+										<i class="fa fa-retweet" aria-hidden="true"></i>
+											<span>Proses Permohonan</span>
+										</a>
+									</li>
+
+									<li class="@if(\Request::is('client/tolak*')) nav-expanded nav-active @endif">
+										<a href="/client/tolak">
+											<i class="fa fa-ban" aria-hidden="true"></i>
+											<span>Permohonan Ditolak</span>
+										</a>
+									</li>
+
+									<li class="@if(\Request::is('admin/audit*')) nav-expanded nav-active @endif">
+										<a href="/admin/audit">
+											<i class="fa fa-folder" aria-hidden="true"></i>
+											<span>Audit</span>
 										</a>
 									</li>
 

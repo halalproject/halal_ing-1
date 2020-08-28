@@ -61,4 +61,10 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('staff','Admin\StaffController@index')->name('Staff');
     Route::get('staff/create','Admin\StaffController@create');
     Route::get('staff/resetPassword','Admin\StaffController@resetPassword');
+
+    //Permohonan
+    Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
+
+    //Proses
+    Route::get('proses','Admin\ProsesPermohonanController@index')->name('Semak Permohonan');
 });
