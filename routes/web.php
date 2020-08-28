@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
+    Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan');
 
     //Proses
     Route::get('proses','Admin\ProsesPermohonanController@index')->name('Semak Permohonan');
