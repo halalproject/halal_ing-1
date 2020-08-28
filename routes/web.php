@@ -25,23 +25,16 @@ Route::group(['prefix' => 'client'],function(){
     Route::get('/','DashboardController@client');
 
     //Permohonan Baru
-    Route::get('daftar','Client\DaftarController@index')->name('Permohonan Baru');
-    Route::get('daftar/create', 'Client\DaftarController@create');
-    Route::get('daftar/edit/{id}','Client\DaftarController@edit');
-    Route::post('daftar/store','Client\DaftarController@store');
-    Route::post('daftar/upload','Client\DaftarController@upload');
-    Route::get('daftar/view/{id}','Client\DaftarController@view');
-    Route::post('daftar/delete/{id}','Client\DaftarController@delete');
-
-    //Permohonan Diproses
-    Route::get('proses','Client\PermohonanController@proses')->name('Permohonan Diproses');
-    Route::get('proses/edit/{id}', 'Client\PermohonanController@edit');
-    Route::get('proses/view/{id}', 'Client\PermohonanController@view');
-    Route::get('proses/delete/{id}', 'Client\PermohonanController@delete');
+    Route::get('permohonan','Client\PermohonanController@index')->name('Permohonan Ramuan');
+    Route::get('permohonan/create', 'Client\PermohonanController@create');
+    Route::get('permohonan/edit/{id}','Client\PermohonanController@edit');
+    Route::post('permohonan/store','Client\PermohonanController@store');
+    Route::post('permohonan/upload','Client\PermohonanController@upload');
+    Route::get('permohonan/view/{id}','Client\PermohonanController@view');
+    Route::post('permohonan/delete/{id}','Client\PermohonanController@delete');
 
     //Permohonan Ditolak
     Route::get('tolak','Client\PermohonanController@tolak')->name('Permohonan Ditolak');
-    Route::get('tolak/edit/{id}','Client\PermohonanController@edit');
     Route::get('tolak/view/{id}','Client\PermohonanController@view');
 
     //Senarai Ramuan

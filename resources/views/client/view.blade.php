@@ -31,7 +31,7 @@ function do_close()
                 <div id="t1" class="card tab-pane row in active row" role="tabpanel" aria-labelledby="tab-1">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}">
+                            <input type="hidden" name="id" id="id" class="form-control" value="">
 
                             <div class="form-group">
                                 <div class="row">

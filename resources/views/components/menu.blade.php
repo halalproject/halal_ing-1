@@ -85,7 +85,7 @@
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
 									<li class="@if(\Request::is('client') || (\Request::is('admin'))) nav-expanded nav-active @endif">
-										@if(\Request::is('client'))
+										@if(\Request::is('client*'))
 										<a href="/client/">
 										@else
 										<a href="/admin/">
@@ -96,19 +96,13 @@
 									</li>
 									@if(\Request::is('client*'))
 									
-									<li class="@if(\Request::is('client/daftar*')) nav-expanded nav-active @endif">
-										<a href="/client/daftar">
+									<li class="@if(\Request::is('client/permohonan*')) nav-expanded nav-active @endif">
+										<a href="/client/permohonan">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
-											<span>Daftar Permohonan Baru</span>
+											<span>Permohonan Ramuan</span>
 										</a>
 									</li>
 
-									<li class="@if(\Request::is('client/proses*')) nav-expanded nav-active @endif">
-										<a href="/client/proses">
-											<i class="fa fa-refresh" aria-hidden="true"></i>
-											<span>Permohonan Diproses</span>
-										</a>
-									</li>
 									<li class="@if(\Request::is('client/tolak*')) nav-expanded nav-active @endif">
 										<a href="/client/tolak">
 											<i class="fa fa-ban" aria-hidden="true"></i>
