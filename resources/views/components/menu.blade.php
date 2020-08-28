@@ -140,8 +140,8 @@
 										</a>
 									</li>
 
-									<li class="@if(\Request::is('client/tolak*')) nav-expanded nav-active @endif">
-										<a href="/client/tolak">
+									<li class="@if(\Request::is('admin/tolak*')) nav-expanded nav-active @endif">
+										<a href="/admin/tolak">
 											<i class="fa fa-ban" aria-hidden="true"></i>
 											<span>Permohonan Ditolak</span>
 										</a>

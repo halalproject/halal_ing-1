@@ -11,4 +11,10 @@ class PermohonanController extends Controller
     {
         return view('admin/senaraiPermohonan');
     }
+
+    public function tolak()
+    {
+        // dd('hello');
+        return view('admin/permohonantolak');
+    }
 }
