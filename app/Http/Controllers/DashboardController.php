@@ -53,8 +53,13 @@ class DashboardController extends Controller
         ]);
         $calendar->setId('1');
         $calendar->setCallbacks([
-            'select' => 'function(selectionInfo){alert()}',
-            'eventClick' => 'function(event){ alert(event.title) }'
+            'navLinks' => true,
+            'navLinkDayClick' => 'function() {
+                $("#myModal").modal("show").find(".modal-content").load("/client/permohonan/view/1"); 
+              }',
+            'eventClick' => 'function(){ 
+                $("#myModal").modal("show").find(".modal-content").load("/client/permohonan/view/1"); 
+             }'
         ]);
 
         return view('admin/dashboard',compact('calendar'));
