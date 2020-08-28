@@ -17,7 +17,7 @@ body {
 	margin: 0;
 	font-size: 13px;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: hidden;
 }
 
 a {
