@@ -41,6 +41,52 @@
                                 </div>
                             </div>
                         </section>
+                        <section class="panel panel-featured-left panel-featured-warning">
+                            <div class="panel-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-warning">
+                                            <i class="fa fa-retweet"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Proses Permohonan</h4>
+                                            <div class="info">
+                                                <strong class="amount">54</strong>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="summary-footer">
+                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="panel panel-featured-left panel-featured-success">
+                            <div class="panel-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-success">
+                                            <i class="fa fa-folder"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Audit</h4>
+                                            <div class="info">
+                                                <strong class="amount">231010</strong>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="summary-footer">
+                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     
                     <div class="col-md-12 col-lg-8 col-xl-8">
