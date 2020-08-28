@@ -52,6 +52,9 @@ Route::group(['prefix' => 'admin'],function(){
     //Dashboard
     Route::get('/','DashboardController@admin');
 
+    //Audit
+    Route::get('audit','Admin\AuditController@index')->name('Audit');
+
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
     Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
@@ -64,6 +67,7 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
+    Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan');
 
     //Proses
     Route::get('proses','Admin\ProsesPermohonanController@index')->name('Semak Permohonan');
