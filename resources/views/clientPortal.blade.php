@@ -169,7 +169,11 @@
                                     <div class="text-danger mb-3 float-right" data-toggle="modal" data-target="#modalLupaKataLaluan" >
                                         <small class="text-red">Lupa Kata Laluan ?</small>
                                     </div>
-                                    <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" type="button">Masuk</button>
+                                    <!-- <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" type="button">Masuk</button> -->
+                                    <a href="/client">
+                                        <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" type="button">Masuk
+                                        </button>
+                                    </a>
                             </form>
                         </div>
                     </div>
@@ -353,7 +357,8 @@
             <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
             <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                        <i class="fa fa-save"></i> Hantar</button>
+                <i class="fa fa-save"></i> Hantar
+            </button>
             </div>
         </div>
         

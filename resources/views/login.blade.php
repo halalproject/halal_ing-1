@@ -52,8 +52,10 @@
 
 							<div class="row" align="right">
 								<div class="col-sm-12 text-right">
-									<button type="button" class="btn btn-primary hidden-xs" onClick="do_login()" >Log Masuk</button>
-									<button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onclick="do_login()">Log Masuk</button>
+                                    <a href="/admin">
+                                        <button type="button" class="btn btn-primary hidden-xs" onClick="do_login()" >Log Masuk</button>
+                                        <button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onclick="do_login()">Log Masuk</button>
+                                    </a>
 								</div>
 							</div>
 
