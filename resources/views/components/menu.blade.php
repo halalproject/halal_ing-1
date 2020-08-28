@@ -94,6 +94,7 @@
 											<span>Dashboard Utama</span>
 										</a>
 									</li>
+									{{-- Client --}}
 									@if(\Request::is('client*'))
 									
 									<li class="@if(\Request::is('client/permohonan*')) nav-expanded nav-active @endif">
@@ -125,7 +126,7 @@
 									</li>
 
 									@else
-									
+									{{-- Admin --}}
 									<li class="@if(\Request::is('admin/permohonan*')) nav-expanded nav-active @endif">
 										<a href="/admin/permohonan">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -136,7 +137,14 @@
 									<li class="@if(\Request::is('admin/proses*')) nav-expanded nav-active @endif">
 										<a href="/admin/proses">
 										<i class="fa fa-retweet" aria-hidden="true"></i>
-											<span>Proses Permohonan</span>
+											<span>Proses Semakan</span>
+										</a>
+									</li>
+									
+									<li class="@if(\Request::is('admin/proses*')) nav-expanded nav-active @endif">
+										<a href="/admin/proses">
+										<i class="fa fa-retweet" aria-hidden="true"></i>
+											<span>Proses Kelulusan</span>
 										</a>
 									</li>
 

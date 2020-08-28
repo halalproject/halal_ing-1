@@ -63,7 +63,7 @@
         </header>
         <div class="d-flex justify-content-center">
             <div class="col-md-6">
-                <marquee behavior="scroll" direction="left" scrollamount="10">
+                <marquee behavior="scroll" direction="left" scrollamount="6">
                     PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000
                 </marquee>
             </div>
