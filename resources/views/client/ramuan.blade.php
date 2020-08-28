@@ -59,7 +59,7 @@
                   <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                   <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
                   <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
-                  <th width="13%"><font color="#000000"><div align="left">Tempoh Tamat Sijil</font></th>
+                  <th width="13%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
                   <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
@@ -70,7 +70,65 @@
                         <td>Ayam</td>
                         <td>Semulajadi</td>
                         <td>20/8/2020</td>
-                        <td>2 Tahun</td>
+                        <td>
+                            <span class="label label-success">20/10/2020</span>
+                        </td>
+                        <td align="center">
+                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-info">
+                                    <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
+                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
+                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
+                                    <i class="fa fa-undo fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>HQ0012411124</td>
+                        <td>Kentang</td>
+                        <td>Tumbuhan</td>
+                        <td>21/8/2020</td>
+                        <td>
+                            <span class="label label-warning">20/11/2020</span>
+                        </td>
+                        <td align="center">
+                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-info">
+                                    <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
+                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
+                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
+                                    <i class="fa fa-undo fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>HQ0012411125</td>
+                        <td>Ikan</td>
+                        <td>Semulajadi</td>
+                        <td>25/8/2020</td>
+                        <td>
+                            <span class="label label-danger">10/12/2020</span>
+                        </td>
                         <td align="center">
                             <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
@@ -79,7 +137,7 @@
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
                                 <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                    <i class="fa fa-undo fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
                             </button>
                         </td>
