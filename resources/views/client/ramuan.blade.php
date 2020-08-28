@@ -71,7 +71,8 @@
                         <td>Semulajadi</td>
                         <td>20/8/2020</td>
                         <td>
-                            <span class="label label-success">20/10/2020</span>
+                            <span class="label label-success">3 Bulan Lagi</span><br>
+                            <p>20/10/2020</p>
                         </td>
                         <td align="center">
                             <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
@@ -99,7 +100,8 @@
                         <td>Tumbuhan</td>
                         <td>21/8/2020</td>
                         <td>
-                            <span class="label label-warning">20/11/2020</span>
+                            <span class="label label-warning">1 Minggu Lagi</span><br>
+                            <p>5/9/2020</p>
                         </td>
                         <td align="center">
                             <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
@@ -127,7 +129,8 @@
                         <td>Semulajadi</td>
                         <td>25/8/2020</td>
                         <td>
-                            <span class="label label-danger">10/12/2020</span>
+                            <span class="label label-danger">1 Hari Lagi</span><br>
+                            <p>1/8/2020</p>
                         </td>
                         <td align="center">
                             <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
