@@ -80,7 +80,6 @@
         
         <script language="javascript">
         function do_login(){
-            var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
             var userid = $('#userid').val();
             var password = $('#password').val();
             //alert("dd");
@@ -94,11 +93,6 @@
                 $.ajax({
                     url:'/auth', //&datas='+datas,
                     type:'POST',
-                    //dataType: 'json',
-                    beforeSend: function () {
-                        //$('.btn-primary').attr("disabled","disabled");
-                        $('.dispmodal').css('opacity', '.5');
-                    },
                     data: $("form").serialize(),
                     //data: datas,
                     success: function(data){

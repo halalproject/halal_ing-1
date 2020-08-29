@@ -8,11 +8,11 @@ class PortalController extends Controller
 {
     public function index()
     {
-        return view('clientPortal');
+        return view('portal');
     }
 
     public function ramuanList()
     {
-        return view('ramuanList');
+        return view('ramuan_list');
     }
 }

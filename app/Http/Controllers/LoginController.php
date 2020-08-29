@@ -14,6 +14,7 @@ class LoginController extends Controller
 
     public function auth(Request $request)
     {
+        dd($request->all());
         $credentials = $request->only('userid', 'password');
         // dd($credentials);
         if(Auth::guard('client')->attempt($credentials)){
@@ -35,7 +36,6 @@ class LoginController extends Controller
             // dd($admin);
             if($admin == 0){
                 return response()->json('OK');
-                return redirect()->route('admin');
             } else {
                 return response()->json('ERR');
             }

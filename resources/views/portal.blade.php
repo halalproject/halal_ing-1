@@ -7,7 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>MYHALAL INGREDIENT</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -16,6 +16,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- Sweetalert -->
+		<link rel="stylesheet" href="{{ asset('salert/sweetalert2.css') }}">
     </head>
     
     <body id="page-top">
@@ -30,8 +32,6 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Utama</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Log Masuk</a></li> -->
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Tentang Kami</a></li> -->
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Hubungi Kami</a></li>
                     </ul>
                 </div>
@@ -163,21 +163,75 @@
                         </div>
                         
                     </div>
+
+                    <script>
+                    function do_login()
+                    {
+                        var userid = $('#userid').val();
+                        var password = $('#password').val();
+
+                        if(userid.trim() == '' || password.trim() == ''){
+                            swal({
+                                title: 'Amaran',
+                                text: 'Sila masukkan ID penguna dan katalaluan yang sah',
+                                type: 'warning',
+                                confirmButtonClass: "btn-warning",
+                                confirmButtonText: "Ok",
+                                showConfirmButton: true,
+                            });
+                        } else {
+                            // alert($("form").serialize());
+                            $.ajax({
+                                url:'/auth', //&datas='+datas,
+                                type:'POST',
+                                data: $("form").serialize(),
+                                //data: datas,
+                                success: function(data){
+                                    console.log(data);
+                                    // alert(data);
+                                    if(data == 'OK'){
+                                        swal({
+                                        title: 'Berjaya',
+                                        text: 'Log Masuk Anda Berjaya',
+                                        type: 'success',
+                                        confirmButtonClass: "btn-success",
+                                        confirmButtonText: "Ok",
+                                        showConfirmButton: true,
+                                        });
+                                    } else {
+                                        swal({
+                                        title: 'Amaran',
+                                        text: 'ID Pengguna atau Katalaluan anda salah. Sila cuba lagi.',
+                                        type: 'error',
+                                        confirmButtonClass: "btn-danger",
+                                        confirmButtonText: "Ok",
+                                        showConfirmButton: true,
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    </script>
+
                     <div class="col-lg-4 col-12 mb-20">
                         <div class="about-content-two container-login">
                             <h2 class="mb-30 text-white"><b>LOG MASUK</b></h2>
-                            <form class="form-signin text-white" name="form1" id="form-id" method="post" action="">
+                            <form class="form-signin text-white">
+                                @csrf
                                 <label for="" >ID Penguna</label>
-                                <input style="height: 35px;" type="text" id="xuser" name="xuser" class="form-control" required >
+                                <input style="height: 35px;" type="text" id="userid" name="userid" class="form-control" required >
                                 <br>
                                 <label for="inputPassword">Kata Laluan</label>
-                                    <input style="height: 35px;"  type="password" id="xpass" name="xpass" class="form-control"  required >
-                                    <div class="text-danger mb-3 float-right" data-toggle="modal" data-target="#modalLupaKataLaluan" >
-                                        <small class="text-red">Lupa Kata Laluan ?</small>
+                                    <input style="height: 35px;"  type="password" id="password" name="password" class="form-control"  required >
+                                    <div class="text-danger mb-3 float-right">
+                                        <span style="cursor: pointer" data-toggle="modal" data-target="#modalLupaKataLaluan" >
+                                            <small class="text-red">Lupa Kata Laluan ?</small>
+                                        </span>
                                     </div>
-                                    <!-- <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" type="button">Masuk</button> -->
                                     <a href="/client">
-                                        <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" type="button">Masuk
+                                        <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" onclick="do_login()">
+                                            Masuk
                                         </button>
                                     </a>
                             </form>
@@ -186,68 +240,6 @@
                 </div>
             </div>
         </section>
-        <!-- About-->
-        <!-- <section class="page-section" id="about">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-                <ul class="timeline">
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>March 2011</h4>
-                                <h4 class="subheading">An Agency is Born</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>December 2012</h4>
-                                <h4 class="subheading">Transition to Full Service</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="" /></div>
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4>July 2014</h4>
-                                <h4 class="subheading">Phase Two Expansion</h4>
-                            </div>
-                            <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                        </div>
-                    </li>
-                    <li class="timeline-inverted">
-                        <div class="timeline-image">
-                            <h4>
-                                Be Part
-                                <br />
-                                Of Our
-                                <br />
-                                Story!
-                            </h4>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section> -->
         <!--Footer section start-->
         <section class="page-section" id="contact">
             <footer class="footer-section section">
@@ -378,5 +370,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <!-- Sweetalert -->
+		<script src="{{ asset('salert/sweetalert2.min.js') }}"></script>
+		<script src="{{ asset('salert/sweetalert2.common.js') }}"></script>
     </body>
 </html>
