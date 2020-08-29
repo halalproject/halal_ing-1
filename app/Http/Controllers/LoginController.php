@@ -28,7 +28,7 @@ class LoginController extends Controller
                 return response()->json('ERR');
             }
 
-        } elseif(Auth::guard('admin')->attempt($credentials)){
+        } else if(Auth::guard('admin')->attempt($credentials)){
             // dd('admin');
             // dd(Auth::guard('admin')->user());
             $details = Auth::guard('admin')->user();
@@ -41,7 +41,7 @@ class LoginController extends Controller
             }
 
         } else {
-            return response()->json('ERR');
+            return response()->json('XADA');
         }
     }
 }

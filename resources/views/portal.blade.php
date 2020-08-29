@@ -69,7 +69,7 @@
             </div>
         </div>
         <!-- semak status halal + login -->
-        <section class="page-section bg-light" id="login" style="padding: 20px;">
+        <section class="page-section bg-light" id="login" style="padding: 10px;">
             <div class="container">
                 <div class="row row-25 align-items-center">
                     <div class="col-lg-8 col-12 mb-30 text-center about-content-two container-login" style="background:#ffffff;">
@@ -164,76 +164,24 @@
                         
                     </div>
 
-                    <script>
-                    function do_login()
-                    {
-                        var userid = $('#userid').val();
-                        var password = $('#password').val();
-
-                        if(userid.trim() == '' || password.trim() == ''){
-                            swal({
-                                title: 'Amaran',
-                                text: 'Sila masukkan ID penguna dan katalaluan yang sah',
-                                type: 'warning',
-                                confirmButtonClass: "btn-warning",
-                                confirmButtonText: "Ok",
-                                showConfirmButton: true,
-                            });
-                        } else {
-                            // alert($("form").serialize());
-                            $.ajax({
-                                url:'/auth', //&datas='+datas,
-                                type:'POST',
-                                data: $("form").serialize(),
-                                //data: datas,
-                                success: function(data){
-                                    console.log(data);
-                                    // alert(data);
-                                    if(data == 'OK'){
-                                        swal({
-                                        title: 'Berjaya',
-                                        text: 'Log Masuk Anda Berjaya',
-                                        type: 'success',
-                                        confirmButtonClass: "btn-success",
-                                        confirmButtonText: "Ok",
-                                        showConfirmButton: true,
-                                        });
-                                    } else {
-                                        swal({
-                                        title: 'Amaran',
-                                        text: 'ID Pengguna atau Katalaluan anda salah. Sila cuba lagi.',
-                                        type: 'error',
-                                        confirmButtonClass: "btn-danger",
-                                        confirmButtonText: "Ok",
-                                        showConfirmButton: true,
-                                        });
-                                    }
-                                }
-                            });
-                        }
-                    }
-                    </script>
-
                     <div class="col-lg-4 col-12 mb-20">
                         <div class="about-content-two container-login">
-                            <h2 class="mb-30 text-white"><b>LOG MASUK</b></h2>
-                            <form class="form-signin text-white">
+                            <form class="text-white">
+                                <h2 class="mb-30"><b>LOG MASUK</b></h2>
                                 @csrf
-                                <label for="" >ID Penguna</label>
+                                <label for="idPengguna" >ID Penguna</label>
                                 <input style="height: 35px;" type="text" id="userid" name="userid" class="form-control" required >
                                 <br>
                                 <label for="inputPassword">Kata Laluan</label>
-                                    <input style="height: 35px;"  type="password" id="password" name="password" class="form-control"  required >
-                                    <div class="text-danger mb-3 float-right">
-                                        <span style="cursor: pointer" data-toggle="modal" data-target="#modalLupaKataLaluan" >
-                                            <small class="text-red">Lupa Kata Laluan ?</small>
-                                        </span>
-                                    </div>
-                                    <a href="/client">
-                                        <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" onclick="do_login()">
-                                            Masuk
-                                        </button>
-                                    </a>
+                                <input style="height: 35px;"  type="password" id="password" name="password" class="form-control"  required >
+                                <div class="text-danger mb-3 float-right">
+                                    <span style="cursor: pointer" data-toggle="modal" data-target="#modalLupaKataLaluan" >
+                                        <small class="text-red">Lupa Kata Laluan ?</small>
+                                    </span>
+                                </div>
+                                <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" onclick="do_login()">
+                                    Masuk
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -372,6 +320,59 @@
         <script src="js/scripts.js"></script>
         <!-- Sweetalert -->
 		<script src="{{ asset('salert/sweetalert2.min.js') }}"></script>
-		<script src="{{ asset('salert/sweetalert2.common.js') }}"></script>
+        <script src="{{ asset('salert/sweetalert2.common.js') }}"></script>
+        
+        <script>
+        function do_login()
+        {
+            var userid = $('#userid').val();
+            var password = $('#password').val();
+
+            if(userid.trim() == '' || password.trim() == ''){
+                swal({
+                    title: 'Amaran',
+                    text: 'Sila masukkan ID penguna dan katalaluan yang sah',
+                    type: 'warning',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                });
+            } else {
+                // alert($("form").serialize());
+                $.ajax({
+                    url:'/auth', //&datas='+datas,
+                    type:'POST',
+                    data: $("form").serialize(),
+                    //data: datas,
+                    success: function(data){
+                        console.log(data);
+                        // alert(data);
+                        if(data == 'OK'){
+                            swal({
+                            title: 'Berjaya',
+                            text: 'Log Masuk Anda Berjaya',
+                            type: 'success',
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Ok",
+                            showConfirmButton: true,
+                            }).then(
+                                window.location = '/client'
+                            );
+                        } else {
+                            swal({
+                            title: 'Amaran',
+                            text: 'ID Pengguna atau Katalaluan anda salah. Sila cuba lagi.',
+                            type: 'error',
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Ok",
+                            showConfirmButton: true,
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        </script>
+
     </body>
 </html>

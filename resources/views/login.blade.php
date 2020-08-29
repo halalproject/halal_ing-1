@@ -11,12 +11,6 @@
 			<div class="row center-sign">
 
 				<div class="panel panel-sign" style="margin-top: -60px">
-					<!--<div class="panel-title-sign mt-xl text-left">
-						<h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Log Masuk Sistem</h2>
-					</div>-->
-                    <!--<div class="panel-title-sign mt-xl text-right">
-						<img src="images/logologin_parlimen.png">
-					</div>-->
 					<div class="panel-body" style="background:rgba(0, 0, 0, 0.45);">
 						<form >
                         @csrf
@@ -52,10 +46,8 @@
 
 							<div class="row" align="right">
 								<div class="col-sm-12 text-right">
-                                    <a href="/admin">
-                                        <button type="button" class="btn btn-primary hidden-xs" onClick="do_login()" >Log Masuk</button>
-                                        <button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onclick="do_login()">Log Masuk</button>
-                                    </a>
+                                    <button type="button" class="btn btn-primary hidden-xs" onClick="do_login()" >Log Masuk</button>
+                                    <button type="button" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" onclick="do_login()">Log Masuk</button>
 								</div>
 							</div>
 
@@ -106,7 +98,9 @@
                               confirmButtonClass: "btn-success",
                               confirmButtonText: "Ok",
                               showConfirmButton: true,
-                            });
+                            }).then(
+                                window.location = '/admin'
+                            );
                         } else {
                             swal({
                               title: 'Amaran',

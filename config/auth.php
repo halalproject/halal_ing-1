@@ -14,12 +14,18 @@ return [
     */
 
     'defaults' => [
-        'guard' => [
-            'web',
-            'client',
-            'admin',
-        ],
+        'guard' => 'web',
         'passwords' => 'users',
+    ],
+
+    [
+        'guard' => 'admin',
+        'password' => 'admin',
+    ],
+
+    [
+        'guard' => 'client',
+        'password' => 'client',
     ],
 
     /*
