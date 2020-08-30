@@ -28,7 +28,7 @@
 										data-toggle="modal" data-target="#myModal"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
 								</li>
 								<li title="Sila klik disini untuk log keluar daripada sistem">
-									<a role="menuitem" tabindex="-1" href="logout"><i class="fa fa-power-off"></i> Log Keluar</a>
+									<a role="menuitem" tabindex="-1" href="/logout"><i class="fa fa-power-off"></i> Log Keluar</a>
 								</li>
 							</ul>
 						</div>
@@ -56,7 +56,7 @@
 									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Kunci Paparan Skrin</a>
 								</li>-->
 								<li title="Sila klik disini untuk log keluar daripada sistem">
-									<a role="menuitem" tabindex="-1" href="logout.php"><i class="fa fa-power-off"></i> Log Keluar</a>
+									<a role="menuitem" tabindex="-1" href="/logout"><i class="fa fa-power-off"></i> Log Keluar</a>
 								</li>
 							</ul>
 						</div>

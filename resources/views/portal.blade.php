@@ -348,15 +348,15 @@
                         // alert(data);
                         if(data == 'OK'){
                             swal({
-                            title: 'Berjaya',
-                            text: 'Anda berjaya untuk log masuk',
-                            type: 'success',
-                            confirmButtonClass: "btn-success",
-                            confirmButtonText: "Ok",
-                            showConfirmButton: true,
-                            }).then(
-                                window.location = '/client'
-                            );
+                                title: 'Berjaya',
+                                text: 'Anda berjaya untuk log masuk',
+                                type: 'success',
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Ok",
+                                showConfirmButton: true
+                            }).then(function(){
+                                window.location = '/client';
+                            });
                         } else {
                             swal({
                             title: 'Amaran',

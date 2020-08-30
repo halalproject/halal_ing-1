@@ -10,7 +10,7 @@ class Client extends Model implements Authenticatable
 {
     use AuthenticableTrait;
 
-    protected $table = "client_halal_ingredient";
+    protected $table = "syarikat";
 
     protected $guarded = [];
 

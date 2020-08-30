@@ -44,4 +44,11 @@ class LoginController extends Controller
             return response()->json('XADA');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        // dd('yeay');
+        return redirect('/');
+    }
 }
