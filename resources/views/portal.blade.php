@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -165,10 +164,10 @@
                     </div>
 
                     <div class="col-lg-4 col-12 mb-20">
-                        <div class="about-content-two container-login">
+                        <div class="container-login">
                             <form class="text-white">
-                                <h2 class="mb-30"><b>LOG MASUK</b></h2>
                                 @csrf
+                                <h2 class="mb-30"><b>LOG MASUK</b></h2>
                                 <label for="idPengguna" >ID Penguna</label>
                                 <input style="height: 35px;" type="text" id="userid" name="userid" class="form-control" required >
                                 <br>
@@ -179,7 +178,7 @@
                                         <small class="text-red">Lupa Kata Laluan ?</small>
                                     </span>
                                 </div>
-                                <button class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" onclick="do_login()">
+                                <button type="button" class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" onclick="do_login()">
                                     Masuk
                                 </button>
                             </form>
@@ -340,7 +339,7 @@
             } else {
                 // alert($("form").serialize());
                 $.ajax({
-                    url:'/auth', //&datas='+datas,
+                    url:'auth', //&datas='+datas,
                     type:'POST',
                     data: $("form").serialize(),
                     //data: datas,
@@ -350,7 +349,7 @@
                         if(data == 'OK'){
                             swal({
                             title: 'Berjaya',
-                            text: 'Log Masuk Anda Berjaya',
+                            text: 'Anda berjaya untuk log masuk',
                             type: 'success',
                             confirmButtonClass: "btn-success",
                             confirmButtonText: "Ok",
@@ -361,7 +360,7 @@
                         } else {
                             swal({
                             title: 'Amaran',
-                            text: 'ID Pengguna atau Katalaluan anda salah. Sila cuba lagi.',
+                            text: 'ID pengguna atau katalaluan anda salah. Sila cuba lagi.',
                             type: 'error',
                             confirmButtonClass: "btn-danger",
                             confirmButtonText: "Ok",
@@ -373,6 +372,5 @@
             }
         }
         </script>
-
     </body>
 </html>

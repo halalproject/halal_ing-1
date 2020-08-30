@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function auth(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $credentials = $request->only('userid', 'password');
         // dd($credentials);
         if(Auth::guard('client')->attempt($credentials)){
