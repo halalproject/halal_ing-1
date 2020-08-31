@@ -8,11 +8,6 @@ use Acaronlex\LaravelCalendar\Calendar;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth:admin,client']);
-    }
-
     public function client()
     {
         return view('client/dashboard');

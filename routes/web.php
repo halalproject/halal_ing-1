@@ -22,7 +22,7 @@ Route::post('/auth','LoginController@auth');
 Route::get('/logout','LoginController@logout');
 
 //Client Webpage
-Route::group(['prefix' => 'client'],function(){
+Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     //Dashboard
     Route::get('/','DashboardController@client');
 
