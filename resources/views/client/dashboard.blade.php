@@ -93,11 +93,11 @@
                     </div>
                     
                     <div class="col-md-12 col-lg-3 col-xl-3">
-                        <section class="panel panel-featured-left panel-featured-dark">
+                        <section class="panel panel-featured-left panel-featured-quartenary">
                             <div class="panel-body">
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
-                                        <div class="summary-icon bg-dark">
+                                        <div class="summary-icon bg-quartenary">
                                             <i class="fa fa-folder"></i>
                                         </div>
                                     </div>
