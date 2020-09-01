@@ -70,12 +70,12 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td>KHAIRUL ANUAR BIN SELAMAT</td>
+                            <td>Khairul Anuar Bin Selamat</td>
                             <!-- <td>000000-00-0000</td> -->
                             <td>0137057666</td>
                             <td>ICTHALAL@ISLAM.GOV.MY</td>
-                            <td>ADMIN</td>
-                            <td>TIADA</td>
+                            <td>Admin</td>
+                            <td>Tiada</td>
                             <td align="center">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <a href="/admin/staff/resetPassword/" data-toggle="modal" data-target="#myModal" title="Tetapkan Kata Laluan" class="fa text-dark"  data-backdrop="static">

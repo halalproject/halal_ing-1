@@ -19,7 +19,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Syarikat :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="nama" id="nama" class="form-control" value="" placeholder="TESTING HALAL JAKIM" disabled>
+                    <input type="text" name="nama" id="nama" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Kategori :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="kategori" id="kategori" class="form-control" value="" placeholder="Pembekal" disabled>
+                    <input type="text" name="kategori" id="kategori" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nombor Syarikat :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="syarikat" id="syarikat" class="form-control" value="" placeholder="000000" disabled>
+                    <input type="text" name="syarikat" id="syarikat" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font>Orang yang Dihubungi:</label>
                 <div class="col-sm-9">
-                    <input type="text" name="orang" id="orang" class="form-control" value="" placeholder="Ali Bin Abu" disabled>
+                    <input type="text" name="orang" id="orang" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> H/P :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="hp" id="hp" class="form-control" value="" placeholder="0137057666" disabled>
+                    <input type="text" name="hp" id="hp" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> E-mel :</label>
                 <div class="col-sm-9">
-                    <input type="email" name="emel" id="emel" class="form-control" value="" placeholder="ICTHALAL@ISLAM.GOV.MY" disabled>
+                    <input type="email" name="emel" id="emel" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="alamat1" id="alamat1" class="form-control" value="" placeholder="Ostia Bangi" disabled >
+                    <input type="text" name="alamat1" id="alamat1" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"> </label>
                 <div class="col-sm-9">
-                    <input type="text" name="alamat2" id="alamat2" class="form-control" value="" placeholder="" disabled>
+                    <input type="text" name="alamat2" id="alamat2" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"></label>
                 <div class="col-sm-9">
-                    <input type="text" name="alamat3" id="alamat3" class="form-control" value=""  placeholder="" disabled>
+                    <input type="text" name="alamat3" id="alamat3" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -92,12 +92,12 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Poskod :</label>
                 <div class="col-sm-3">
-                    <input type="text" name="poskod" id="poskod" class="form-control" value=""  placeholder="43650" disabled>
+                    <input type="text" name="poskod" id="poskod" class="form-control" value="">
                 </div>
 
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Bandar :</label>
                 <div class="col-sm-3">
-                    <input type="text" name="bandar" id="bandar" class="form-control" value="" placeholder="Bandar Baru Bangi" disabled>
+                    <input type="text" name="bandar" id="bandar" class="form-control" value="">
                 </div>
             </div>
         </div>
@@ -106,7 +106,7 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Negeri :</label>
                 <div class="col-sm-3">
-                    <input type="text" name="negeri" id="negeri" class="form-control" value="" placeholder="Selangor" disabled>
+                    <input type="text" name="negeri" id="negeri" class="form-control" value="">
                     </div>
             </div>
         </div>
