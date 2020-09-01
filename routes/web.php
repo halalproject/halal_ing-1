@@ -55,6 +55,8 @@ Route::group(['prefix' => 'admin'],function(){
     //Dashboard
     Route::get('/','DashboardController@admin');
     Route::get('/pengumuman','DashboardController@pengumuman')->name('Pengumuman');
+    Route::get('/event','DashboardController@create');
+    Route::get('/event/view/{id}','DashboardController@view');
 
     //Permohonan Ditolak
     Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
