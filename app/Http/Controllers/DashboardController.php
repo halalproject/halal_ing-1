@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Acaronlex\LaravelCalendar\Calendar;
+use App\Ramuan;
 
 class DashboardController extends Controller
 {
     public function client()
     {
-        return view('client/dashboard');
+        $user = Auth::guard('client')->user()->userid;
+        // dd($user);
+        // dd($request->all());
+        $mohon = Ramuan::where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->where('create_by',$user)->get();
+        $tolak = Ramuan::where('status',6)->where('is_delete',0)->where('create_by',$user)->get();
+        $ramuan = Ramuan::where('status',3)->where('is_delete',0)->where('create_by',$user)->get();
+        $hapus = Ramuan::where('is_delete',1)->where('create_by',$user)->get();
+
+        return view('client/dashboard',compact('mohon','tolak','ramuan','hapus'));
     }
 
     public function admin()

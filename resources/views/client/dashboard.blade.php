@@ -13,7 +13,7 @@
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="row">
                 
-                    <div class="col-md-12 col-lg-4 col-xl-4">
+                    <div class="col-md-12 col-lg-3 col-xl-3">
                         <section class="panel panel-featured-left panel-featured-primary">
                             <div class="panel-body">
                                 <div class="widget-summary">
@@ -26,13 +26,40 @@
                                         <div class="summary">
                                             <h4 class="title">Daftar Permohonan</h4>
                                             <div class="info">
-                                                <strong class="amount">7</strong>
+                                                <strong class="amount">{{ $mohon->count() }}</strong>
                                                 <!--<span class="text-primary">(14 unread)</span>-->
                                             </div>
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="/client/daftar" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/client/permohonan" class="text-muted text-uppercase">Papar Maklumat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-md-12 col-lg-3 col-xl-3">
+                        <section class="panel panel-featured-left panel-featured-secondary">
+                            <div class="panel-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-secondary">
+                                            <i class="fa fa-ban"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Permohonan Ditolak</h4>
+                                            <div class="info">
+                                                <strong class="amount">{{ $tolak->count() }}</strong>
+                                                <!--<span class="text-primary">(14 unread)</span>-->
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="summary-footer">
+                                            <a href="/client/tolak" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -40,12 +67,12 @@
                         </section>
                     </div>
                     
-                    <div class="col-md-12 col-lg-4 col-xl-4">
-                        <section class="panel panel-featured-left panel-featured-secondary">
+                    <div class="col-md-12 col-lg-3 col-xl-3">
+                        <section class="panel panel-featured-left panel-featured-tertiary">
                             <div class="panel-body">
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
-                                        <div class="summary-icon bg-secondary">
+                                        <div class="summary-icon bg-tertiary">
                                             <i class="fa fa-list"></i>
                                         </div>
                                     </div>
@@ -53,7 +80,7 @@
                                         <div class="summary">
                                             <h4 class="title">Senarai Ramuan</h4>
                                             <div class="info">
-                                                <strong class="amount"></strong>
+                                                <strong class="amount">{{ $ramuan->count() }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
@@ -65,12 +92,12 @@
                         </section>
                     </div>
                     
-                    <div class="col-md-12 col-lg-4 col-xl-4">
-                        <section class="panel panel-featured-left panel-featured-tertiary">
+                    <div class="col-md-12 col-lg-3 col-xl-3">
+                        <section class="panel panel-featured-left panel-featured-quartenary">
                             <div class="panel-body">
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
-                                        <div class="summary-icon bg-tertiary">
+                                        <div class="summary-icon bg-quartenary">
                                             <i class="fa fa-folder"></i>
                                         </div>
                                     </div>
@@ -78,7 +105,7 @@
                                         <div class="summary">
                                             <h4 class="title">Ramuan Yang Dihapuskan</h4>
                                             <div class="info">
-                                                <strong class="amount"></strong>
+                                                <strong class="amount">{{ $hapus->count() }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">

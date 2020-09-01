@@ -19,13 +19,13 @@ class PermohonanController extends Controller
         $user = Auth::guard('client')->user()->userid;
         // dd($user);
         // dd($request->all());
-        $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
+        $permohonan = Ramuan::where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
         if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
         
-        $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
+        $permohonan = $permohonan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
         
         return view('client/permohonan',compact('permohonan','cat'));
@@ -74,11 +74,13 @@ class PermohonanController extends Controller
             $ingredient->nama_saintifik = $request->saintifik;
             $ingredient->sumber_bahan_id = $request->sumber;
             $ingredient->negara_pengilang_id = $request->negara_kilang;
+            $ingredient->nama_pengilang = $request->nama_pengilang;
             $ingredient->alamat_pengilang_1 = $request->kilang_alamat_1;
             $ingredient->alamat_pengilang_2 = $request->kilang_alamat_2;
             $ingredient->alamat_pengilang_3 = $request->kilang_bandar;
             $ingredient->poskod_pengilang = $request->kilang_poskod;
             $ingredient->negeri_pembekal_id = $request->negeri_bekal;
+            $ingredient->nama_pembekal = $request->nama_pembekal;
             $ingredient->alamat_pembekal_1 = $request->bekal_alamat_1;
             $ingredient->alamat_pembekal_2 = $request->bekal_alamat_2;
             $ingredient->alamat_pembekal_3 = $request->bekal_bandar;
@@ -103,11 +105,13 @@ class PermohonanController extends Controller
                 'nama_saintifik' => $request->saintifik,
                 'sumber_bahan_id' => $request->sumber,
                 'negara_pengilang_id' => $request->negara_kilang,
+                'nama_pengilang' => $request->nama_pengilang,
                 'alamat_pengilang_1' => $request->kilang_alamat_1,
                 'alamat_pengilang_2' => $request->kilang_alamat_2,
                 'alamat_pengilang_3' => $request->kilang_bandar,
                 'poskod_pengilang' => $request->kilang_poskod,
                 'negeri_pembekal_id' => $request->negeri_bekal,
+                'nama_pemebekal' => $request->nama_pemebekal,
                 'alamat_pembekal_1' => $request->bekal_alamat_1,
                 'alamat_pembekal_2' => $request->bekal_alamat_2,
                 'alamat_pembekal_3' => $request->bekal_bandar,
@@ -208,13 +212,13 @@ class PermohonanController extends Controller
         $user = Auth::guard('client')->user()->userid;
         // dd($user);
         // dd($request->all());
-        $permohonan = Ramuan::where('create_by',$user)->where('status',6);
+        $permohonan = Ramuan::where('status',6);
 
         if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
         
-        $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
+        $permohonan = $permohonan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
 
         return view('client/tolak',compact('permohonan','cat'));

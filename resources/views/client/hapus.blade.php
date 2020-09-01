@@ -112,12 +112,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
         			<div class="col-md-1" align="right">
                         <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                    <div class="col-md-5" align="right">
-                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
-                            <button type="button" class="btn btn-primary">
-                        	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
-				        </a>
-			        </div>
                 </div>
             </div>
             <div align="right" style="padding-right:10px"><b>{{ $ramuan->total() }} rekod dijumpai</b></div>
@@ -125,38 +119,50 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                  <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
-                  <th width="17%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
-                  <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
-                  <th width="13%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                    <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
+                    <th width="15%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
+                    <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
+                    <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
+                    <th width="20%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
+                    <th width="10%"><font color="#000000"><div align="left">Status Sijil Halal</font></th>
+                    <th width="10%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
+                    <th width="13%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
                     @php $bil = $ramuan->perPage()*($ramuan->currentPage()-1) @endphp
-                    @foreach($ramuan as $tolak)
+                    @foreach($ramuan as $hapus)
                     <tr>
                         <td valign="top" align="center">{{ ++$bil }}</td>
-                        <td valign="top" align="left">{{ $tolak->ing_kod }}</td>
+                        <td valign="top" align="left">{{ $hapus->ing_kod }}</td>
                         <td valign="top" align="left">
-                            {{ $tolak->nama_ramuan }}
+                            {{ $hapus->nama_ramuan }}
                             <br>
-                            ({{ $tolak->nama_saintifik }})
+                            ({{ $hapus->nama_saintifik }})
                         </td>
-                        <td valign="top" align="left">{{ optional($tolak->sumber)->nama }}</td>
-                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($tolak->create_dt)) }}</td>
+                        <td valign="top" align="left">{{ optional($hapus->sumber)->nama }}</td>
+                        <td valign="top" align="left">
+                            <u><b>{{ $hapus->nama_pengilang }}</b></u>
+                            <br>
+                            {{ $hapus->alamat_pengilang_1 }} {{ $hapus->alamat_pengilang_2 }} {{ $hapus->alamat_pengilang_3 }}
+                        </td>
+                        <td valign="top" align="center">
+                        @if ($hapus->is_sijil == 0)
+                            Tiada
+                        @else
+                            Ada
+                        @endif
+                        </td>
                         <td>
-                            <span class="label label-success">20/10/2020</span>
+                            <span class="label label-success">{{ $hapus->tarikh_tamat_sijil }}</span>
                         </td>
                         <td align="center">
-                            <a href="/client/hapus/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/hapus/view/{{ $hapus->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_restore({{ $tolak->id }})">
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_restore({{ $hapus->id }})">
                                 <span style="cursor:pointer;color:red" title="Kembalikan Ramuan">
                                     <i class="fa fa-undo fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
