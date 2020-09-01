@@ -124,8 +124,8 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                   <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
                   <th width="20%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Status Sijil Halal</font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
+                  <th width="10%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
+                  <th width="10%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
                   <th width="13%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
@@ -153,9 +153,23 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             Ada
                         @endif
                         </td>
-                        <td>
-                            <span class="label label-success">3 Bulan Lagi</span><br>
-                            <p>{{ $ing->tarikh_tamat_sijil }}</p>
+                        <td valign="top" align="center">
+                            <p>{{ date('d/m/Y', strtotime($ing->tarikh_tamat_sijil)) }}</p>
+                            @php
+                            $from = now();
+                            $to = $ing->tarikh_tamat_sijil;
+                            if(!empty($to)){
+                                $diff_month = $from->diffInMonths($to);
+                                if($diff_month <=3){
+                                    echo "<span class='label label-success'>".$diff_month." Bulan Lagi</span>";
+                                } else if($diff_month <=1){
+                                    echo "<span class='label label-success'>".$diff_month." Bulan Lagi</span>";
+                                } else if($diff_month <=0){
+                                    $diff_day = $from->diffInDays($to);
+                                    echo "<span class='label label-danger'>".$diff_day." Hari Lagi</span>";
+                                }
+                            }
+                            @endphp
                         </td>
                         <td align="center">
                             <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">

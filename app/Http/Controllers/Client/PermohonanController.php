@@ -111,7 +111,7 @@ class PermohonanController extends Controller
                 'alamat_pengilang_3' => $request->kilang_bandar,
                 'poskod_pengilang' => $request->kilang_poskod,
                 'negeri_pembekal_id' => $request->negeri_bekal,
-                'nama_pemebekal' => $request->nama_pemebekal,
+                'nama_pembekal' => $request->nama_pembekal,
                 'alamat_pembekal_1' => $request->bekal_alamat_1,
                 'alamat_pembekal_2' => $request->bekal_alamat_2,
                 'alamat_pembekal_3' => $request->bekal_bandar,

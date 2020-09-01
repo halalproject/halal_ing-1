@@ -124,8 +124,8 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                     <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
                     <th width="20%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
-                    <th width="10%"><font color="#000000"><div align="left">Status Sijil Halal</font></th>
-                    <th width="10%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
+                    <th width="10%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
+                    <th width="10%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
                     <th width="13%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
@@ -153,8 +153,8 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             Ada
                         @endif
                         </td>
-                        <td>
-                            <span class="label label-success">{{ $hapus->tarikh_tamat_sijil }}</span>
+                        <td valign="top" align="center">
+                            <span class="label label-success">{{ date('d/m/Y',strtotime($hapus->tarikh_tamat_sijil)) }}</span>
                         </td>
                         <td align="center">
                             <a href="/client/hapus/view/{{ $hapus->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">

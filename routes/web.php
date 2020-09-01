@@ -26,6 +26,10 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     //Dashboard
     Route::get('/','DashboardController@client');
 
+    //Profile & Password
+    Route::get('/profile','Client\ClientController@profile');
+    Route::get('/password','Client\ClientController@password');
+
     //Permohonan Baru
     Route::get('permohonan','Client\PermohonanController@index')->name('Permohonan Ramuan');
     Route::get('permohonan/create', 'Client\PermohonanController@create');
