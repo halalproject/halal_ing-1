@@ -65,12 +65,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
         			<div class="col-md-1" align="right">
                         <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                    <div class="col-md-5" align="right">
-                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
-                            <button type="button" class="btn btn-primary">
-                        	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
-				        </a>
-			        </div>
                 </div> 
             </div>
             <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>

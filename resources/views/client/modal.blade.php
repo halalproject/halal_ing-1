@@ -46,13 +46,15 @@ function do_simpan()
     var saintifik = $('#saintifik').val();
     var sumber = $('#sumber').val();
     var negara_kilang = $('#negara_kilang').val();
+    var nama_pengilang = $('#nama_pengilang').val();
     var kilang_alamat_1 = $('#kilang_alamat_1').val();
     var kilang_poskod = $('#kilang_poskod').val();
     var negeri_bekal = $('#negeri_bekal').val();
+    var nama_pembekal = $('#nama_pembekal').val();
     var bekal_alamat_1 = $('#bekal_alamat_1').val();
     var bekal_poskod = $('#bekal_poskod').val();
 
-    if(ramuan.trim() == '' || saintifik.trim() == '' || sumber.trim() == '' || negara_kilang.trim() == '' || kilang_alamat_1.trim() == '' || kilang_poskod.trim() == '' || negeri_bekal.trim() == '' || bekal_alamat_1.trim() == '' || bekal_poskod.trim() == ''){
+    if(ramuan.trim() == '' || saintifik.trim() == '' || sumber.trim() == '' || negara_kilang.trim() == '' || nama_pengilang.trim() == '' || kilang_alamat_1.trim() == '' || kilang_poskod.trim() == '' || negeri_bekal.trim() == '' || nama_pembekal.trim() == '' || bekal_alamat_1.trim() == '' || bekal_poskod.trim() == ''){
         swal({
             title: 'Amaran',
             text: 'Maklumat tidak lengkap.\nSila masukkan maklumat yang betul.',
@@ -269,11 +271,11 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                <label class="col-md-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Sumber Bahan 
+                                <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Sumber Bahan 
                                     <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" 
                                         title="This is tooltips <br> for information.Thank you"></i> :
                                 </label>
-                                <div class="col-md-4">
+                                <div class="col-sm-4">
                                 <select name="sumber" id="sumber" class="form-control">
                                     <option value="">Sila pilih sumber</option>
                                     @foreach($bahan as $bah)
@@ -286,8 +288,8 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-md-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar: </label>
-                                    <div class="col-md-4">
+                                    <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar: </label>
+                                    <div class="col-sm-4">
                                         <select name="negara_kilang" id="negara_kilang" class="form-control">
                                             <option value="">Pilih Negara</option>
                                             @foreach($negara as $negara)
@@ -301,6 +303,15 @@ if(!empty($id)){
                             <div class="form-group">
                                 <div class="row">
                                     <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Pengilang/Pengeluar : </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="nama_pengilang" id="nama_pengilang" placeholder="Nama Pengilang/Pengeluar" class="form-control" value="{{$rs->nama_pengilang??''}}">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat Pengilang/Pengeluar : </label>
                                     <div class="col-sm-8">
                                         <input type="text" name="kilang_alamat_1" id="kilang_alamat_1" placeholder="Alamat 1" class="form-control" value="{{$rs->alamat_pengilang_1??''}}">
                                     </div>
@@ -322,8 +333,8 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-md-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negeri Asal Pembekal: </label>
-                                    <div class="col-md-4">
+                                    <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negeri Asal Pembekal: </label>
+                                    <div class="col-sm-4">
                                         <select name="negeri_bekal" id="negeri_bekal" class="form-control">
                                             <option value="">Pilih Negeri</option>
                                             @foreach($negeri as $negeri)
@@ -333,10 +344,19 @@ if(!empty($id)){
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="row">
                                     <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Pembekal : </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="nama_pembekal" id="nama_pembekal" placeholder="Nama Pembekal" class="form-control" value="{{$rs->nama_pembekal??''}}">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="row">
+                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat Pembekal : </label>
                                     <div class="col-sm-8">
                                         <input type="text" name="bekal_alamat_1" id="bekal_alamat_1" placeholder="Alamat 1" class="form-control" value="{{$rs->alamat_pembekal_1??''}}">
                                     </div>
@@ -383,10 +403,10 @@ if(!empty($id)){
                 <!-- Second Tab -->
 				<div id="t2" class="card tab-pane row in" role="tabpanel" aria-labelledby="tab-2">
                     <div class="panel-body ">
-                        <div class="col-md-12">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-md-5 control-label" for="sijil"><h4><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </h4></label>
+                                    <label class="col-sm-5 control-label" for="sijil"><h4><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </h4></label>
                                 </div>
                             </div>
                             @foreach($dokumen as $dokumen)
@@ -402,7 +422,7 @@ if(!empty($id)){
                             @endphp
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-6 control-label">
+                                    <div class="col-sm-6 control-label">
                                         <div class="input-group">
                                             <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" value="{{$dokumen->id}}"
                                                 @if($checked == 1) checked @endif
@@ -417,8 +437,8 @@ if(!empty($id)){
                                         @endif
                                     </div>
                                     <div id="box_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
-                                        <div class="col-md-3 control-label">
-                                            <div class="input-group col-md-3">
+                                        <div class="col-sm-3 control-label">
+                                            <div class="input-group col-sm-3">
                                                 <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}">
                                                 @if(!empty($upload))
                                                 @foreach ($upload as $up)
@@ -430,9 +450,9 @@ if(!empty($id)){
                                             </div>
                                         </div>
                                         @if($dokumen->nama == 'Sijil Halal')
-                                        <div class="col-md-3 control-label">
+                                        <div class="col-sm-3 control-label">
                                             <div class="input-group">
-                                                <label class="col-md-8 control-label" for="sijil">Tarikh Tamat Sijil : </label>
+                                                <label class="col-sm-8 control-label" for="sijil">Tarikh Tamat Sijil : </label>
                                                 <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}"> 
                                             </div>
                                         </div>

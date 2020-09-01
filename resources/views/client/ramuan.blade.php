@@ -35,7 +35,7 @@ function do_hapus(id)
         reverseButtons: true
     }).then(function () {
         $.ajax({
-			url:'/client/permohonan/delete/'+id, //&datas='+datas,
+			url:'/client/ramuan/delete/'+id, //&datas='+datas,
 			type:'POST',
 			data: $("form").serialize(),
 			//data: datas,
@@ -112,12 +112,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
         			<div class="col-md-1" align="right">
                         <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                    <div class="col-md-5" align="right">
-                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
-                            <button type="button" class="btn btn-primary">
-                        	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
-				        </a>
-			        </div>
                 </div>
             </div>
             <div align="right" style="padding-right:10px"><b>{{ $ramuan->total() }} rekod dijumpai</b></div>
@@ -126,12 +120,13 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
-                  <th width="17%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
+                  <th width="15%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
-                  <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
-                  <th width="13%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
+                  <th width="20%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Status Sijil Halal</font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
+                  <th width="13%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -146,18 +141,29 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             ({{ $ing->nama_saintifik }})
                         </td>
                         <td valign="top" align="left">{{ optional($ing->sumber)->nama }}</td>
-                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($ing->create_dt)) }}</td>
+                        <td valign="top" align="left">
+                            <u><b>{{ $ing->nama_pengilang }}</b></u>
+                            <br>
+                            {{ $ing->alamat_pengilang_1 }} {{ $ing->alamat_pengilang_2 }} {{ $ing->alamat_pengilang_3 }}
+                        </td>
+                        <td valign="top" align="center">
+                        @if ($ing->is_sijil == 0)
+                            Tiada
+                        @else
+                            Ada
+                        @endif
+                        </td>
                         <td>
                             <span class="label label-success">3 Bulan Lagi</span><br>
-                            <p>20/10/2020</p>
+                            <p>{{ $ing->tarikh_tamat_sijil }}</p>
                         </td>
                         <td align="center">
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            <a href="/client/ramuan/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/ramuan/edit/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-warning">
                                     <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

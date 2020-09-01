@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     //Senarai Ramuan
     Route::get('ramuan','Client\RamuanController@index')->name('Senarai Ramuan');
     Route::get('ramuan/view/{id}','Client\RamuanController@view');
+    Route::post('ramuan/delete/{id}','Client\RamuanController@delete');
 
     //Ramuan Yang Dihapuskan
     Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
