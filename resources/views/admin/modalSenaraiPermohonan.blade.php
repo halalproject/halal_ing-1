@@ -77,7 +77,7 @@ function do_close()
                                 <div class="row">
                                     <label class="col-sm-2 control-label">Status :</label>
                                     <div class="col-sm-6">
-                                        Ditolak
+                                        Semak
                                     </div>
                                 </div>
                             </div>

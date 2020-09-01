@@ -141,8 +141,8 @@
 										</a>
 									</li>
 									
-									<li class="@if(\Request::is('admin/proses*')) nav-expanded nav-active @endif">
-										<a href="/admin/proses">
+									<li class="@if(\Request::is('admin/proseslulus*')) nav-expanded nav-active @endif">
+										<a href="/admin/proseslulus">
 										<i class="fa fa-retweet" aria-hidden="true"></i>
 											<span>Proses Kelulusan</span>
 										</a>
