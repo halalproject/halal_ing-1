@@ -4,6 +4,11 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
+            <marquee behavior="scroll" scrollamount="6" >
+                <h4 class="title">
+                    <i>PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000</i>&emsp;&emsp;
+                </h4>
+            </marquee>
             <div class="x_title">
                 <h2><b>Paparan Utama MyHalal Ingredient</b> </h2>
                 <div class="clearfix"></div>

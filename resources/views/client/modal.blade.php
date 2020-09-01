@@ -87,7 +87,7 @@ function do_simpan()
 					  showConfirmButton: true,
 					}).then(function () {
                         $('#id').val(data[1]);
-                        $('#tab2').toggleClass('disabled');
+                        $('#tab2').removeClass('disabled');
                         $('#tab-2').attr('data-toggle','tab');
 					});
 				} else if(data[0]=='ERR'){
@@ -163,7 +163,7 @@ function hantar_to()
         reverseButtons: true
     }).then(function () {
         var formdata = new FormData($('#create')[0]);
-        alert(formdata);
+        // alert(formdata);
         $.ajaxSetup({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -464,8 +464,8 @@ if(!empty($id)){
                             <div class="form-group">
                                 <div align="right">
                                     <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                                    <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                                        <i class="fa fa-save"></i> Simpan</button>
+                                    <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_hantar()" id="hantar">
+                                        <i class="fa fa-arrow-right"></i> Hantar</button>
                                 </div>
                                 </div>
                             </div>

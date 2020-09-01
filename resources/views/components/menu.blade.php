@@ -24,8 +24,10 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="" 
-										data-toggle="modal" data-target="#myModal"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
+									<a role="menuitem" tabindex="-1" href="/client/profile" data-toggle="modal" data-target="#myModal" data-backdrop="static"><i class="fa fa-user"></i> Profil Syarikat</a>
+								</li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="/client/password" data-toggle="modal" data-target="#myModal" data-backdrop="static"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
 								</li>
 								<li title="Sila klik disini untuk log keluar daripada sistem">
 									<a role="menuitem" tabindex="-1" href="/logout"><i class="fa fa-power-off"></i> Log Keluar</a>
@@ -50,11 +52,11 @@
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
+									<a role="menuitem" tabindex="-1" href="/client/profile" data-toggle="modal" data-target="#myModal" data-backdrop="static"><i class="fa fa-user"></i> Profil Syarikat</a>
 								</li>
-								<!--<li>
-									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Kunci Paparan Skrin</a>
-								</li>-->
+								<li>
+									<a role="menuitem" tabindex="-1" href="/client/password" data-toggle="modal" data-target="#myModal" data-backdrop="static"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
+								</li>
 								<li title="Sila klik disini untuk log keluar daripada sistem">
 									<a role="menuitem" tabindex="-1" href="/logout"><i class="fa fa-power-off"></i> Log Keluar</a>
 								</li>

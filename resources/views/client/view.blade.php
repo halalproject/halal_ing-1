@@ -101,6 +101,5 @@ function do_close()
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </div>
