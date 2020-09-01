@@ -68,7 +68,7 @@ function do_simpan()
 			}
 		});
         $.ajax({
-			url:'/client/daftar/store', //&datas='+datas,
+			url:'/client/permohonan/store', //&datas='+datas,
 			type:'POST',
 			data: $("#create").serialize(),
 			//data: datas,
@@ -168,7 +168,7 @@ function hantar_to()
 			}
 		});
         $.ajax({
-			url:'/client/daftar/upload', //&datas='+datas,
+			url:'/client/permohonan/upload', //&datas='+datas,
 			type:'POST',
 			data: formdata,
             contentType: false,

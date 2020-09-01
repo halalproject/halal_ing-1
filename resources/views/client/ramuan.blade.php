@@ -5,6 +5,74 @@
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+<script>
+function do_page()
+{
+    var sijil = $('#sijil').val();
+    var kategori = $('#kategori').val();
+    var carian = $('#carian').val();
+//   alert(sijil);
+    var pathname = window.location.pathname;
+
+    if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
+    window.location = pathname;
+    } else {
+    window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
+    }
+}
+
+function do_hapus(id)
+{
+    // alert(id);
+    swal({
+        title: 'Adakah anda pasti untuk menghapuskan ramuan ini?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Teruskan',
+        cancelButtonText: 'Tidak, Batal!',
+        reverseButtons: true
+    }).then(function () {
+        $.ajax({
+			url:'/client/permohonan/delete/'+id, //&datas='+datas,
+			type:'POST',
+			data: $("form").serialize(),
+			//data: datas,
+			success: function(data){
+				console.log(data);
+				//alert(data);
+				if(data=='OK'){
+					swal({
+					  title: 'Berjaya',
+					  text: 'Permohonan telah dihapuskan',
+					  type: 'success',
+					  confirmButtonClass: "btn-success",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					}).then(function () {
+                        location.reload();
+					});
+				} else if(data=='ERR'){
+					swal({
+					  title: 'Amaran',
+					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
+					  type: 'error',
+					  confirmButtonClass: "btn-warning",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					});
+				}
+			}
+		});
+    });
+}
+</script>
+@php
+$carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+$sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
+$kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
+@endphp
 		<div class="box" style="background-color:#F2F2F2">
 
             <div class="box-body">
@@ -22,34 +90,37 @@
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-3">
-                        <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
+                    <div class="col-md-2">
+                        <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
+                            <option value="">Status Sijil Halal</option>
+                            <option value="1" @if($sijil == '1') selected @endif>Ada</option>
+                            <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                         </select>
                     </div>
-                    <div class="col-md-3" >
-                        <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Kategori</option>
-                            <option value="9">Belum Diagihkan</option>
-                            <option value="1">Belum Dijawab</option>
-                            <option value="2">Telah Dijawab</option>
+                    <div class="col-md-2">
+                        <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
+                            <option value="">Kategori Bahan</option>
+                            @foreach ($cat as $cat)
+                            <option value="{{$cat->id}}" @if($kategori == $cat->id) selected @endif>{{$cat->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4" style="0px">
-                    	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-2" align="right" style="padding-right:25px">
-                        <button type="button" class="btn btn-success" 
-                        	onclick="">
-                        	<i class="fa fa-search"></i> Carian</button>
+        			<div class="col-md-1" align="right">
+                        <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>       
+                    <div class="col-md-5" align="right">
+                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <button type="button" class="btn btn-primary">
+                        	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
+				        </a>
+			        </div>
+                </div>
             </div>
-            <br>
-            <br>
+            <div align="right" style="padding-right:10px"><b>{{ $ramuan->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -64,12 +135,18 @@
                 </tr>
                 </thead>
                 <tbody>
+                    @php $bil = $ramuan->perPage()*($ramuan->currentPage()-1) @endphp
+                    @foreach($ramuan as $ing)
                     <tr>
-                        <td>1</td>
-                        <td>HQ0012411123</td>
-                        <td>Ayam</td>
-                        <td>Semulajadi</td>
-                        <td>20/8/2020</td>
+                        <td valign="top" align="center">{{ ++$bil }}</td>
+                        <td valign="top" align="left">{{ $ing->ing_kod }}</td>
+                        <td valign="top" align="left">
+                            {{ $ing->nama_ramuan }}
+                            <br>
+                            ({{ $ing->nama_saintifik }})
+                        </td>
+                        <td valign="top" align="left">{{ optional($ing->sumber)->nama }}</td>
+                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($ing->create_dt)) }}</td>
                         <td>
                             <span class="label label-success">3 Bulan Lagi</span><br>
                             <p>20/10/2020</p>
@@ -80,80 +157,26 @@
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/ramuan/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-warning">
                                     <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus({{$ing->id}})">
                                 <span style="cursor:pointer;color:red" title="Buang Ramuan">
                                     <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
                                 </span>
                             </button>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>HQ0012411124</td>
-                        <td>Kentang</td>
-                        <td>Tumbuhan</td>
-                        <td>21/8/2020</td>
-                        <td>
-                            <span class="label label-warning">1 Minggu Lagi</span><br>
-                            <p>5/9/2020</p>
-                        </td>
-                        <td align="center">
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-info">
-                                    <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-warning">
-                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
-                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>HQ0012411125</td>
-                        <td>Ikan</td>
-                        <td>Semulajadi</td>
-                        <td>25/8/2020</td>
-                        <td>
-                            <span class="label label-danger">1 Hari Lagi</span><br>
-                            <p>1/8/2020</p>
-                        </td>
-                        <td align="center">
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-info">
-                                    <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                            <a href="/client/proses/edit/12" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-warning">
-                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus()">
-                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
-                                </span>
-                            </button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
               </table>
             </div>
 		</div>
+        <div align="center" class="d-flex justify-content-center">
+          {!! $ramuan->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
+        </div>
      </div>
   <!--</div>-->    
 <!-- DataTables -->

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ramuan extends Model
 {
-    protected $table = 'ramuan';
+    // protected $table = 'ramuan';
+    protected $table = 'ingredient';
 
     protected $guarded = [];
 

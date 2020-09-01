@@ -5,7 +5,28 @@
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
-		<div class="box" style="background-color:#F2F2F2">
+<script>
+function do_page()
+{
+    var sijil = $('#sijil').val();
+    var kategori = $('#kategori').val();
+    var carian = $('#carian').val();
+//   alert(sijil);
+    var pathname = window.location.pathname;
+
+    if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
+    window.location = pathname;
+    } else {
+    window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
+    }
+}
+</script>
+@php
+$carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+$sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
+$kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
+@endphp
+        <div class="box" style="background-color:#F2F2F2">
 
             <div class="box-body">
         	<input type="hidden" name="soalan_id" value="" />
@@ -22,34 +43,37 @@
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-3">
-                        <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
+                    <div class="col-md-2">
+                        <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
+                            <option value="">Status Sijil Halal</option>
+                            <option value="1" @if($sijil == '1') selected @endif>Ada</option>
+                            <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                         </select>
                     </div>
-                    <div class="col-md-3" >
-                        <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Kategori</option>
-                            <option value="9">Belum Diagihkan</option>
-                            <option value="1">Belum Dijawab</option>
-                            <option value="2">Telah Dijawab</option>
+                    <div class="col-md-2">
+                        <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
+                            <option value="">Kategori Bahan</option>
+                            @foreach ($cat as $cat)
+                            <option value="{{$cat->id}}" @if($kategori == $cat->id) selected @endif>{{$cat->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4" style="0px">
-                    	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-2" align="right" style="padding-right:25px">
-                        <button type="button" class="btn btn-success" 
-                        	onclick="">
-                        	<i class="fa fa-search"></i> Carian</button>
+        			<div class="col-md-1" align="right">
+                        <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>       
+                    <div class="col-md-5" align="right">
+                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
+                            <button type="button" class="btn btn-primary">
+                        	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
+				        </a>
+			        </div>
+                </div> 
             </div>
-            <br>
-            <br>
+            <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -64,13 +88,19 @@
                 </tr>
                 </thead>
                 <tbody>
+                    @php $bil = $permohonan->perPage()*($permohonan->currentPage()-1) @endphp
+                    @foreach($permohonan as $tolak)
                     <tr>
-                        <td>1</td>
-                        <td>HQ0012411123</td>
-                        <td>Ayam</td>
-                        <td>Semulajadi</td>
-                        <td>20/8/2020</td>
-                        <td>
+                        <td valign="top" align="center">{{ ++$bil }}</td>
+                        <td valign="top" align="left">{{ $tolak->ing_kod }}</td>
+                        <td valign="top" align="left">
+                            {{ $tolak->nama_ramuan }}
+                            <br>
+                            ({{ $tolak->nama_saintifik }})
+                        </td>
+                        <td valign="top" align="left">{{ optional($tolak->sumber)->nama }}</td>
+                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($tolak->create_dt)) }}</td>
+                        <td valign="top" align="center">
                             <span class="label label-danger">Ditolak</span>
                         </td>
                         <td align="center">
@@ -81,10 +111,14 @@
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
               </table>
             </div>
 		</div>
+        <div align="center" class="d-flex justify-content-center">
+          {!! $permohonan->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
+        </div>
      </div>
   <!--</div>-->    
 <!-- DataTables -->

@@ -44,8 +44,8 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     Route::get('ramuan/view/{id}','Client\RamuanController@view');
 
     //Ramuan Yang Dihapuskan
-    Route::get('hapus','Client\Ramuan@hapus')->name('Ramuan Yang Dihapuskan');
-    Route::get('hapus/view/{id}','Client\Ramuan@view');
+    Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
+    Route::get('hapus/view/{id}','Client\RamuanController@view');
 });
 
 //Admin Webpage

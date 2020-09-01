@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Acaronlex\LaravelCalendar\Calendar;
 
 class DashboardController extends Controller

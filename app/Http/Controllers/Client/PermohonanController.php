@@ -10,15 +10,18 @@ use App\Ref_Negeri;
 use App\Ref_Dokumen;
 use App\Ramuan;
 use App\Ramuan_Dokumen;
+use Illuminate\Support\Facades\Auth;
 
 class PermohonanController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::guard('client')->user()->userid;
+        // dd($user);
         // dd($request->all());
-        $permohonan = Ramuan::where('is_delete',0);
+        $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
-        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
         
@@ -59,6 +62,7 @@ class PermohonanController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::guard('client')->user()->userid;
         // dd($request->all());
         if(empty($request->id)){
 
@@ -81,7 +85,7 @@ class PermohonanController extends Controller
             $ingredient->poskod_pembekal = $request->bekal_poskod;
             $ingredient->status = 0;
             $ingredient->create_dt = now();
-            $ingredient->create_by = 1;
+            $ingredient->create_by = $user;
             $ingredient->update_dt = now();
             $ingredient->update_by = 1;
 
@@ -109,7 +113,7 @@ class PermohonanController extends Controller
                 'alamat_pembekal_3' => $request->bekal_bandar,
                 'poskod_pembekal' => $request->bekal_poskod,
                 'update_dt' => now(),
-                'update_by' => 1,
+                'update_by' => $user,
             );
 
             $permohonan = Ramuan::where('id',$request->id)->update($data);
@@ -124,6 +128,7 @@ class PermohonanController extends Controller
 
     public function upload(Request $request)
     {
+        $user = Auth::guard('client')->user()->userid;
         // dd($request->all());
         if(!empty($request->upload_1)){
             $file = $request->upload_1->getClientOriginalName();
@@ -138,7 +143,7 @@ class PermohonanController extends Controller
             $ramuan_doc->save();
 
             if($ramuan_doc){
-                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>1]);
+                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
                 
                 return response()->json('OK');
             } else {
@@ -171,7 +176,7 @@ class PermohonanController extends Controller
                 }
             }
             
-            $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>1]);
+            $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
             if($ramuan) {   
                 return response()->json('OK');
             } else {
@@ -187,8 +192,9 @@ class PermohonanController extends Controller
 
     public function delete($id)
     {
+        $user = Auth::guard('client')->user()->userid;
         // dd($id);
-        $ramuan = Ramuan::find($id)->update(['is_delete'=>1,'delete_dt'=>now(),'delete_by'=>1]);
+        $ramuan = Ramuan::find($id)->update(['is_delete'=>1,'delete_dt'=>now(),'delete_by'=>$user]);
 
         if($ramuan){
             return response()->json('OK');
@@ -197,8 +203,20 @@ class PermohonanController extends Controller
         }
     }
 
-    public function tolak()
+    public function tolak(Request $request)
     {
-        return view('client/tolak');
+        $user = Auth::guard('client')->user()->userid;
+        // dd($user);
+        // dd($request->all());
+        $permohonan = Ramuan::where('create_by',$user)->where('status',6);
+
+        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        
+        $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
+        $cat = Ref_Sumber_Bahan::get();
+
+        return view('client/tolak',compact('permohonan','cat'));
     }
 }

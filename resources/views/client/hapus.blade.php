@@ -8,24 +8,24 @@
 <script>
 function do_page()
 {
-  var sijil = $('#sijil').val();
-  var kategori = $('#kategori').val();
-  var carian = $('#carian').val();
+    var sijil = $('#sijil').val();
+    var kategori = $('#kategori').val();
+    var carian = $('#carian').val();
 //   alert(sijil);
-  var pathname = window.location.pathname;
+    var pathname = window.location.pathname;
 
-  if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
+    if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
     window.location = pathname;
-  } else {
+    } else {
     window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
-  }
+    }
 }
 
-function do_hapus(id)
+function do_restore(id)
 {
     // alert(id);
     swal({
-        title: 'Adakah anda pasti untuk menghapuskan permohonan ini?',
+        title: 'Adakah anda pasti untuk mengaktifkan semula ramuan ini?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -74,17 +74,18 @@ $sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
 $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
 		<div class="box" style="background-color:#F2F2F2">
+
             <div class="box-body">
-                @csrf
-                <div class="x_panel">
-                    <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                        <div class="panel-actions">
-                        <!--<a href="#" class="fa fa-caret-down"></a>
-                        <a href="#" class="fa fa-times"></a>-->
-                        </div>
-                        <h6 class="panel-title"><font color="#000000"><b>SENARAI PERMOHONAN RAMUAN</b></font></h6> 
-                    </header>
+        	<input type="hidden" name="soalan_id" value="" />
+            <div class="x_panel">
+			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
+                <div class="panel-actions">
+                <!--<a href="#" class="fa fa-caret-down"></a>
+                <a href="#" class="fa fa-times"></a>-->
                 </div>
+                <h6 class="panel-title"><font color="#000000"><b>RAMUAN YANG DIHAPUSKAN</b></font></h6> 
+            </header>
+			</div>
             </div>            
             <br />
             <div class="box-body">
@@ -117,67 +118,49 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
 				        </a>
 			        </div>
-                </div>       
+                </div>
             </div>
-            <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>
+            <div align="right" style="padding-right:10px"><b>{{ $ramuan->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
-                    <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                        <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
-                        <th width="20%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
-                        <th width="30%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                        <th width="15%"><font color="#000000"><div align="left">Kategori</div></font></th>
-                        <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
-                        <th width="10%"><font color="#000000"><div align="left">Status</div></font></th>
-                        <th width="7%"><font color="#000000"><div align="left">Tindakan</div></font></th>
-                    </tr>
+                <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
+                  <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
+                  <th width="17%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
+                  <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
+                  <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
+                  <th width="13%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                </tr>
                 </thead>
                 <tbody>
-                    @php $bil = $permohonan->perPage()*($permohonan->currentPage()-1) @endphp
-                    @foreach($permohonan as $mohon)
+                    @php $bil = $ramuan->perPage()*($ramuan->currentPage()-1) @endphp
+                    @foreach($ramuan as $tolak)
                     <tr>
                         <td valign="top" align="center">{{ ++$bil }}</td>
-                        <td valign="top" align="left">{{ $mohon->ing_kod }}</td>
+                        <td valign="top" align="left">{{ $tolak->ing_kod }}</td>
                         <td valign="top" align="left">
-                            {{ $mohon->nama_ramuan }}
+                            {{ $tolak->nama_ramuan }}
                             <br>
-                            ({{ $mohon->nama_saintifik }})
+                            ({{ $tolak->nama_saintifik }})
                         </td>
-                        <td valign="top" align="left">{{ optional($mohon->sumber)->nama }}</td>
-                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($mohon->create_dt)) }}</td>
-                        <td valign="top" align="center">
-                        @if($mohon->status == 0)
-                        <span class="label label-info">Draft</span>
-                        @elseif($mohon->status == 1)
-                            @if(empty($mohon->tarikh_buka))
-                            <span class="label label-success">Hantar</span>
-                            @elseif(!empty($mohon->tarikh_buka))
-                            <span class="label label-primary">Sedang Diprosess</span>
-                            @endif
-                        @elseif($mohon->status == 2)
-                        <span class="label label-warning">Semak Semula</span>
-                        @endif
+                        <td valign="top" align="left">{{ optional($tolak->sumber)->nama }}</td>
+                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($tolak->create_dt)) }}</td>
+                        <td>
+                            <span class="label label-success">20/10/2020</span>
                         </td>
                         <td align="center">
-                            @if(empty($mohon->tarikh_buka) || $mohon->status == 2)
-                            <a href="/client/permohonan/edit/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Kemaskini Permohonan" class="fa text-dark" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-warning">
-                                    <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus({{ $mohon->id }})">
-                                <span style="cursor:pointer;color:red" title="Buang Permohonan Ramuan">
-                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
-                                </span>
-                            </button>                                
-                            @else
-                            <a href="/client/permohonan/view/{{$mohon->id}}" data-toggle="modal" data-target="#myModal" title="Papar Permohonan" class="fa text-dark" data-backdrop="static">
+                            <a href="/client/hapus/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            @endif
+                            <button type="button" class="btn btn-sm btn-danger" onclick="do_restore({{ $tolak->id }})">
+                                <span style="cursor:pointer;color:red" title="Kembalikan Ramuan">
+                                    <i class="fa fa-undo fa-lg" style="color: #FFFFFF;"></i>
+                                </span>
+                            </button>
                         </td>
                     </tr>
                     @endforeach
@@ -186,22 +169,10 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             </div>
 		</div>
         <div align="center" class="d-flex justify-content-center">
-          {!! $permohonan->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
+          {!! $ramuan->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
         </div>
      </div>
   <!--</div>-->    
 <!-- DataTables -->
-{{-- @php
-$from = now();
-$to = $mohon->tarikh_tamat_sijil;
-if(!empty($to)){
-    $diff_month = $from->diffInMonths($to);
-    if($diff_month <=0){
-        $diff_day = $from->diffInDays($to);
-        echo $diff_day." days";
-    } else {
-        echo $diff_month." months";
-    }
-}
-@endphp --}}
+
 @endsection
