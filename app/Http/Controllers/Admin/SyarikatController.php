@@ -23,4 +23,9 @@ class SyarikatController extends Controller
         // dd($id);
         return view('admin/ramuan');
     }
+
+    public function modalTindakan(Request $request)
+    {
+        return view('admin/modalTindakan');
+    }
 }

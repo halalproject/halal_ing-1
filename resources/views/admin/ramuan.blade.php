@@ -75,7 +75,7 @@
                             <p>20/10/2020</p>
                         </td>
                         <td align="center">
-                            <a href="/admin/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/admin/syarikat/modalTindakan" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
@@ -84,7 +84,7 @@
                     </tr>
                     
                     <tr>
-                        <td>1</td>
+                        <td>2</td>
                         <td>HQ0012411123</td>
                         <td>Ayam</td>
                         <td>Semulajadi</td>
@@ -94,7 +94,7 @@
                             <p>20/10/2020</p>
                         </td>
                         <td align="center">
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/admin/syarikat/modalTindakan" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
@@ -103,7 +103,7 @@
                     </tr>
 
                     <tr>
-                        <td>1</td>
+                        <td>3</td>
                         <td>HQ0012411123</td>
                         <td>Ayam</td>
                         <td>Semulajadi</td>
@@ -113,7 +113,7 @@
                             <p>20/10/2020</p>
                         </td>
                         <td align="center">
-                            <a href="/client/proses/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/admin/syarikat/modalTindakan" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

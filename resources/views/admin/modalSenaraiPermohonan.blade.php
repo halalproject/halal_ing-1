@@ -34,63 +34,103 @@ function do_close()
                             <input type="hidden" name="id" id="id" class="form-control" value="">
 
                             <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">No Permohonan :</label>
-                                    <div class="col-sm-6">
-                                        C0005f410b821ca04
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Ramuan :</label>
-                                    <div class="col-sm-6">
-                                        Ayam
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Saintifik :</label>
-                                    <div class="col-sm-6">
-                                        Ayam Belanda
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Nama Kategori :</label>
-                                    <div class="col-sm-6">
-                                        Semula Jadi
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
-                                    <div class="col-sm-6">
-                                        20/8/2020
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="col-sm-2 control-label">Status :</label>
-                                    <div class="col-sm-6">
-                                        Semak
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div align="right">
-                                    <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                                    <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                                        <i class="fa fa-save"></i> Simpan</button>
-                                </div>
-                            </div>
+                    <div class="row">
+                        <label class="col-sm-3 control-label">No Permohonan :</label>
+                        <div class="col-sm-5">
+                            C0005f410b821ca04
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Nama Ramuan :</label>
+                        <div class="col-sm-5">
+                            Ayam
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Nama Saintifik :</label>
+                        <div class="col-sm-5">
+                            Ayam Kampung
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Nama Kategori :</label>
+                        <div class="col-sm-5">
+                            Semula Jadi
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Tarikh Permohonan :</label>
+                        <div class="col-sm-5">
+                            20/8/2020
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Negara Asal Pengilang/Pengeluar :</label>
+                        <div class="col-sm-5">
+                            Australia
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Nama Pengilang/Pengeluar :</label>
+                        <div class="col-sm-5">
+                            Qwerty
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Alamat Pengilang/Pengeluar :</label>
+                        <div class="col-sm-5">
+                            Autralia
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Negeri Asal Pembekal :</label>
+                        <div class="col-sm-5">
+                            Negeri Sembilan
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Nama Pembekal :</label>
+                        <div class="col-sm-5">
+                            Abcde
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Alamat Pembekal :</label>
+                        <div class="col-sm-5">
+                            Seremban, Negeri Sembilan, Malaysia
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div align="right">
+                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                        <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
+                            <i class="fa fa-save"></i> Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                 <!-- End First Tab -->
                 
                 <!-- Second Tab -->
@@ -100,8 +140,8 @@ function do_close()
                         
                             <fieldset class="form-group">
                                 <div class="row">
-                                    <label class="col-form-label col-sm-2 pt-0">Status :</label>
-                                        <div class="col-sm-10">
+                                    <label class="col-form-label col-sm-3 pt-0">Status :</label>
+                                        <div class="col-sm-9">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
                                                 <label class="form-check-label" for="semak">
@@ -132,8 +172,8 @@ function do_close()
                                 <br>
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-2 control-label" for="exampleFormControlTextarea1">Catatan :</label>
-                                    <div class="col-sm-10">
+                                    <label class="col-sm-3 control-label" for="exampleFormControlTextarea1">Catatan :</label>
+                                    <div class="col-sm-9">
                                     <textarea name="dokumen" cols="50" rows="10" id="story" style="width:100%"></textarea>
                                     </div>
                                 </div>

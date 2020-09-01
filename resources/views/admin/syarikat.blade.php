@@ -74,7 +74,8 @@
                         <td>0137057666</td>
                         <td>ICTHALAL@ISLAM.GOV.MY</td>
                         <td>Ostia Bangi, 43650, Bandar Baru Bangi, Selangor </td>
-                        <td>
+                        <td align="center">
+                        
                             <a href="/admin/syarikat/ramuan/12">
                                 <span class="btn btn-primary">
                                     <i class="fa fa-list"></i>

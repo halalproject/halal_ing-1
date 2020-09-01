@@ -58,29 +58,35 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('/event','DashboardController@create');
     Route::get('/event/view/{id}','DashboardController@view');
 
-    //Permohonan Ditolak
-    Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
-
-    //Audit
-    Route::get('audit','Admin\AuditController@index')->name('Audit');
-
-    //Syarikat
-    Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
-    Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
-    Route::get('syarikat/view/{id}','Admin\SyarikatController@view');
-
-    //Staff
-    Route::get('staff','Admin\StaffController@index')->name('Staff');
-    Route::get('staff/create','Admin\StaffController@create');
-    Route::get('staff/resetPassword','Admin\StaffController@resetPassword');
-
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
-    Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan');
+    Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan'); 
 
     //Proses Semakan
     Route::get('proses','Admin\ProsesPermohonanController@index')->name('Semak Permohonan');
 
     //Proses Kelulusan
     Route::get('lulus','Admin\ProsesKelulusanController@index')->name('Kelulusan Permohonan');
+
+    //Permohonan Ditolak
+    Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
+    Route::get('tolak/modalPermohonanDitolak','Admin\PermohonanController@modalPermohonanDitolak');
+
+    //Audit
+    Route::get('audit','Admin\AuditController@index')->name('Audit');
+    Route::get('audit/modalAudit','Admin\AuditController@modalAudit');
+
+    //Syarikat
+    Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
+    Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
+    // Route::get('syarikat/view/{id}','Admin\SyarikatController@view');
+    Route::get('syarikat/modalTindakan','Admin\SyarikatController@modalTindakan');
+
+    //Staff
+    Route::get('staff','Admin\StaffController@index')->name('Staff');
+    Route::get('staff/create','Admin\StaffController@create');
+    Route::get('staff/resetPassword','Admin\StaffController@resetPassword');
+
+   
+    
 });

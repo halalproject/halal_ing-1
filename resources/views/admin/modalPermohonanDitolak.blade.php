@@ -1,25 +1,35 @@
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-
+// Remove advanced tabs for all editors.
+CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
 function do_close()
 {
     location.reload();
 }
 
 </script>
-<div class="col-md-8" style="top:300px;left: 50%;transform: translate(-50%, -50%);">
+<div class="col-md-12">
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="panel panel-featured panel-featured-info">
     <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-        <h6 class="panel-title"><font color="#000000" size="3"><b>MYHALAL: PELANGGAN</font></h6>
+        <h6 class="panel-title"><font color="#000000" size="3"><b>Permohonan Ditolak</b></font></h6>
     </header>
 
     <div class="panel-body">
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Syarikat :</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No Permohonan :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="nama" id="nama" class="form-control" value="">
+                    HQ0012411123
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Ramuan :</label>
+                <div class="col-sm-9">
+                    Ayam
                 </div>
             </div>
         </div>
@@ -27,114 +37,101 @@ function do_close()
             <div class="row">
                 <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Kategori :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="kategori" id="kategori" class="form-control" value="">
+                    Semulajadi
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nombor Syarikat :</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font>Tarikh Permohonan:</label>
                 <div class="col-sm-9">
-                    <input type="text" name="syarikat" id="syarikat" class="form-control" value="">
+                    20/8/2020
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font>Orang yang Dihubungi:</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Status :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="orang" id="orang" class="form-control" value="">
+                    Ditolak
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> H/P :</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="hp" id="hp" class="form-control" value="">
+                    Australia
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> E-mel :</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Pengilang/Pengeluar :</label>
                 <div class="col-sm-9">
-                    <input type="email" name="emel" id="emel" class="form-control" value="">
+                    Qwerty
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat :</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat Pengilang/Pengeluar :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="alamat1" id="alamat1" class="form-control" value="">
+                    Autralia
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"> </label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Negeri Asal Pembekal :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="alamat2" id="alamat2" class="form-control" value="">
+                    Negeri Sembilan
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"></label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Pembekal :</label>
                 <div class="col-sm-9">
-                    <input type="text" name="alamat3" id="alamat3" class="form-control" value="">
+                    Abcde
                 </div>
             </div>
         </div>
-       
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Poskod :</label>
-                <div class="col-sm-3">
-                    <input type="text" name="poskod" id="poskod" class="form-control" value="">
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat Pembekal :</label>
+                <div class="col-sm-9">
+                    Seremban, Negeri Sembilan, Malaysia
                 </div>
-
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Bandar :</label>
-                <div class="col-sm-3">
-                    <input type="text" name="bandar" id="bandar" class="form-control" value="">
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Negeri :</label>
-                <div class="col-sm-3">
-                    <input type="text" name="negeri" id="negeri" class="form-control" value="">
-                    </div>
             </div>
         </div>
 
-
         <div class="form-group">
-            <div align="right">
-                <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+            <div class="row">
+                <label class="col-sm-3 control-label" for="exampleFormControlTextarea1">Catatan :</label>
+                <div class="col-sm-9">
+                <textarea name="dokumen" cols="50" rows="10" id="story" style="width:100%"></textarea>
+                </div>
             </div>
-         </div>
+        </div>
+
+        <div align="right">
+            <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+            <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
+                <i class="fa fa-save"></i> Simpan</button>
+        </div>
     </div>
 </section>
 </form>
 </div>
 @if(empty($id))
+
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('#tab2').toggleClass('disabled');
-  $('#tab-2').removeAttr('data-toggle');
-})
-</script>
-@else
-<script>
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('#tab2').toogleClass('disabled');
-    $('#tab-2').attr('data-toggle','tab');
-})
+CKEDITOR.replace('dokumen', {height: 250});
+
+$('input:checkbox').click(function() {
+    $('input:checkbox').not(this).prop('checked', false);
+});
+
 </script>
 @endif
