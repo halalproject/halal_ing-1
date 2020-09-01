@@ -80,5 +80,5 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('proses','Admin\ProsesPermohonanController@index')->name('Semak Permohonan');
 
     //Proses Kelulusan
-    Route::get('proseslulus','Admin\ProsesKelulusanController@index')->name('Kelulusan Permohonan');
+    Route::get('lulus','Admin\ProsesKelulusanController@index')->name('Kelulusan Permohonan');
 });

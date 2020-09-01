@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProsesKelulusanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('admin/prosesKelulusan');
     }
