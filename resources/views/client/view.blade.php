@@ -16,7 +16,7 @@ function do_close()
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">No Permohonan :</label>
-                        <div class="col-sm-6"><b>{{$rs->ing_kod}}</b></div>
+                        <div class="col-sm-5"><b>{{$rs->ing_kod}}</b></div>
 
                         <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
                         <div class="col-sm-2"><b>{{ date('d/m/Y',strtotime($rs->create_dt)) }}</b></div>
@@ -25,14 +25,14 @@ function do_close()
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Ramuan :</label>
-                        <div class="col-sm-8">{{$rs->nama_ramuan}}</div>
+                        <div class="col-sm-5">{{$rs->nama_ramuan}}</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Saintifik :</label>
-                        <div class="col-sm-8">{{$rs->nama_saintifik}}</div>
+                        <div class="col-sm-5">{{$rs->nama_saintifik}}</div>
                     </div>
                 </div>
 
@@ -53,14 +53,14 @@ function do_close()
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Pengilang/Pengeluar : </label>
-                        <div class="col-sm-8">{{$rs->nama_pengilang}}</div>
+                        <div class="col-sm-5">{{$rs->nama_pengilang}}</div>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Alamat Pengilang/Pengeluar : </label>
-                        <div class="col-sm-8">{{$rs->alamat_pengilang_1}} {{$rs->alamat_pengilang_2}} {{$rs->alamat_pengilang_3}} {{$rs->poskod_pengilang}}</div>
+                        <div class="col-sm-5">{{$rs->alamat_pengilang_1}} {{$rs->alamat_pengilang_2}} {{$rs->alamat_pengilang_3}} {{$rs->poskod_pengilang}}</div>
                     </div>
                 </div>
 
@@ -74,22 +74,22 @@ function do_close()
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Pembekal : </label>
-                        <div class="col-sm-8">{{$rs->nama_pembekal}}</div>
+                        <div class="col-sm-5">{{$rs->nama_pembekal}}</div>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Alamat Pembekal : </label>
-                        <div class="col-sm-8">{{$rs->alamat_pembekal_1}} {{$rs->alamat_pembekal_2}} {{$rs->alamat_pembekal_3}} {{$rs->poskod_pembekal}}</div>
+                        <div class="col-sm-5">{{$rs->alamat_pembekal_1}} {{$rs->alamat_pembekal_2}} {{$rs->alamat_pembekal_3}} {{$rs->poskod_pembekal}}</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Dokumentasi Ramuan : </label>
-                        <div class="col-sm-8">
-                            <div class="row">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
+                        <div class="row">
+                            <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
                         </div>
                     </div>
                 </div>
