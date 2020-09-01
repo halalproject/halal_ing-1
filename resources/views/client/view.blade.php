@@ -15,6 +15,15 @@ function do_close()
                 <input type="hidden" name="id" id="id" class="form-control" value="{{$rs->id}}">
                 <div class="form-group">
                     <div class="row">
+                        <label class="col-sm-3 control-label">No Permohonan :</label>
+                        <div class="col-sm-6"><b>{{$rs->ing_kod}}</b></div>
+
+                        <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
+                        <div class="col-sm-2"><b>{{ date('d/m/Y',strtotime($rs->create_dt)) }}</b></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
                         <label class="col-sm-3 control-label">Nama Ramuan :</label>
                         <div class="col-sm-8">{{$rs->nama_ramuan}}</div>
                     </div>
