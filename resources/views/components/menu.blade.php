@@ -84,7 +84,7 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="@if(\Request::is('client') || (\Request::is('admin'))) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('client') || (\Request::is('admin')) || (\Request::is('admin/pengumuman'))) nav-expanded nav-active @endif">
 										@if(\Request::is('client*'))
 										<a href="/client/">
 										@else
@@ -143,7 +143,7 @@
 									
 									<li class="@if(\Request::is('admin/proses*')) nav-expanded nav-active @endif">
 										<a href="/admin/proses">
-										<i class="fa fa-retweet" aria-hidden="true"></i>
+										<i class="fa fa-check" aria-hidden="true"></i>
 											<span>Proses Kelulusan</span>
 										</a>
 									</li>

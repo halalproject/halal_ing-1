@@ -59,10 +59,10 @@ class DashboardController extends Controller
         $calendar->setCallbacks([
             'navLinks' => true,
             'navLinkDayClick' => 'function() {
-                $("#myModal").modal("show").find(".modal-content").load("/client/permohonan/view/1"); 
+                $("#myModal").modal("show").find(".modal-content").load("/admin/event"); 
               }',
-            'eventClick' => 'function(){ 
-                $("#myModal").modal("show").find(".modal-content").load("/client/permohonan/view/1"); 
+            'eventClick' => 'function(info){
+                $("#myModal").modal("show").find(".modal-content").load("/admin/event/view/"+info.event.id+""); 
              }'
         ]);
 
@@ -72,5 +72,16 @@ class DashboardController extends Controller
     public function pengumuman()
     {
         return view('admin/pengumuman');
+    }
+    
+    public function create()
+    {
+        return view('admin/create_event');
+    }
+    
+    public function view($id)
+    {
+        // dd($id);
+        return view('admin/view_event');
     }
 }

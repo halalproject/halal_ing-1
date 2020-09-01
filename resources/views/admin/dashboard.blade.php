@@ -57,9 +57,32 @@ function do_pengumuman()
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Proses Permohonan</h4>
+                                            <h4 class="title">Proses Semakan</h4>
                                             <div class="info">
                                                 <strong class="amount">54</strong>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="summary-footer">
+                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="panel panel-featured-left panel-featured-info">
+                            <div class="panel-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-info">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Proses Kelulusan</h4>
+                                            <div class="info">
+                                                <strong class="amount">14</strong>
                                             </div>
                                         </div>
                                         
@@ -130,7 +153,7 @@ function do_pengumuman()
                                                     <div class="summary">
                                                         <h4 class="title">Pengumuman</h4>
                                                         <div class="info">
-                                                            <i class="">Sila pakai mask ye kalau nk keluar</i>
+                                                            <i class="">Pengumuman tentang makanan B</i>
                                                         </div>
                                                     </div>
                                                     <div class="summary-footer" style="text-align: left">
@@ -164,7 +187,7 @@ function do_pengumuman()
 {!!  $calendar->script() !!}
 <script>
 $('.carousel').carousel({
-  interval: 4000
+  interval: 12000
 })
 
 </script>
