@@ -14,7 +14,7 @@ function do_close()
             <div class="col-md-12">
                 <input type="hidden" name="id" id="id" class="form-control" value="">
                 <div class="form-group">
-                    Password
+                    
                 </div>
                 
                 <div class="form-group">

@@ -154,7 +154,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endif
                         </td>
                         <td valign="top" align="center">
-                            <span class="label label-success">{{ date('d/m/Y',strtotime($hapus->tarikh_tamat_sijil)) }}</span>
+                            {{ date('d/m/Y',strtotime($hapus->tarikh_tamat_sijil)) }}
                         </td>
                         <td align="center">
                             <a href="/client/hapus/view/{{ $hapus->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">

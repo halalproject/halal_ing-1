@@ -105,12 +105,12 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
+                        <select name="status" id="status" onchange="do_page()" class="form-control">
                             <option value="">Status</option>
-                            <option value="0" @if($sijil == '1') selected @endif>Draft</option>
-                            <option value="1" @if($sijil == '0') selected @endif>Hantar</option>
-                            <option value="1" @if($sijil == '0') selected @endif>Sedang Diprosess</option>
-                            <option value="2" @if($sijil == '0') selected @endif>Semak Semula</option>
+                            <option value="0">Draft</option>
+                            <option value="1">Hantar</option>
+                            <option value="2">Sedang Diprosess</option>
+                            <option value="3">Semak Semula</option>
                         </select>
                     </div>
                     <div class="col-md-2">
@@ -162,7 +162,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             @if(empty($mohon->tarikh_buka))
                             <span class="label label-success">Hantar</span>
                             @elseif(!empty($mohon->tarikh_buka))
-                            <span class="label label-primary">Sedang Diprosess</span>
+                            <span class="label label-primary">Sedang Diproses</span>
                             @endif
                         @elseif($mohon->status == 2)
                         <span class="label label-warning">Semak Semula</span>

@@ -51,11 +51,22 @@
 						<div class="dropdown-menu">
 							<ul class="list-unstyled">
 								<li class="divider"></li>
+								@php
+								if(\Request::is('client*')){
+									$path = 'client';
+								} else {
+									$path = 'admin';
+								}
+								@endphp
 								<li>
-									<a role="menuitem" tabindex="-1" href="/client/profile" data-toggle="modal" data-target="#myModal" data-backdrop="static"><i class="fa fa-user"></i> Profil Syarikat</a>
+									<a role="menuitem" tabindex="-1" href="/{{ $path }}/profile" data-toggle="modal" data-target="#myModal" data-backdrop="static">
+										<i class="fa fa-user"></i> Profil Syarikat
+									</a>
 								</li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="/client/password" data-toggle="modal" data-target="#myModal" data-backdrop="static"><i class="fa fa-key"></i> Tukar Kata Laluan</a>
+									<a role="menuitem" tabindex="-1" href="/{{ $path }}/password" data-toggle="modal" data-target="#myModal" data-backdrop="static">
+										<i class="fa fa-key"></i> Tukar Kata Laluan
+									</a>
 								</li>
 								<li title="Sila klik disini untuk log keluar daripada sistem">
 									<a role="menuitem" tabindex="-1" href="/logout"><i class="fa fa-power-off"></i> Log Keluar</a>
