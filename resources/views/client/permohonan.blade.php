@@ -200,17 +200,4 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
      </div>
   <!--</div>-->    
 <!-- DataTables -->
-{{-- @php
-$from = now();
-$to = $mohon->tarikh_tamat_sijil;
-if(!empty($to)){
-    $diff_month = $from->diffInMonths($to);
-    if($diff_month <=0){
-        $diff_day = $from->diffInDays($to);
-        echo $diff_day." days";
-    } else {
-        echo $diff_month." months";
-    }
-}
-@endphp --}}
 @endsection
