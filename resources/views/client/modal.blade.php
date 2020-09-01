@@ -320,10 +320,12 @@ if(!empty($id)){
                                     <div class="col-sm-8 control-label">
                                         <input type="text" name="kilang_alamat_2" id="kilang_alamat_2" placeholder="Alamat 2" class="form-control" value="{{$rs->alamat_pengilang_2??''}}">
                                     </div>
+
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-8 control-label">
                                         <input type="text" name="kilang_bandar" id="kilang_bandar" placeholder="Bandar" class="form-control" value="{{$rs->alamat_pengilang_3??''}}">
                                     </div>
+                                    
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-2 control-label">
                                         <input type="text" name="kilang_poskod" id="kilang_poskod" placeholder="Poskod" class="form-control" value="{{$rs->poskod_pengilang??''}}">
