@@ -19,6 +19,8 @@ class ClientController extends Controller
 
     public function password()
     {
-        return view('client/password');
+        $user = Auth::guard('client')->user();
+
+        return view('client/password',compact('user'));
     }
 }
