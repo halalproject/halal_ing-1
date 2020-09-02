@@ -67,11 +67,18 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Sumber Bahan :</label>
                                         <div class="col-sm-5">
-                                            Semula Jadi
+                                            Semula jadi
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label">Status :</label>
+                                        <div class="col-sm-5">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Negara Asal Pengilang/Pengeluar :</label>
@@ -152,12 +159,6 @@
                                                 <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
                                                 <label class="form-check-label" for="semak">
                                                 Semak
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="semula" id="semula" value="semula">
-                                                <label class="form-check-label" for="semula">
-                                                    Semak Semula
                                                 </label>
                                             </div>
                                             <div class="form-check">

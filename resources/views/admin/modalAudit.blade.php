@@ -21,7 +21,12 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">No Permohonan :</label>
                         <div class="col-sm-5">
-                            C0005f410b821ca04
+                            <b>C0005f410b821ca04</b>
+                        </div>
+
+                        <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
+                        <div class="col-sm-2">
+                            <b>20/8/2020</b>
                         </div>
                     </div>
                 </div>
@@ -43,17 +48,9 @@ function do_close()
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-3 control-label">Nama Kategori :</label>
+                        <label class="col-sm-3 control-label">Sumber Bahan :</label>
                         <div class="col-sm-5">
-                            Semula Jadi
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <label class="col-sm-3 control-label">Tarikh Permohonan :</label>
-                        <div class="col-sm-5">
-                            20/8/2020
+                            Semula jadi
                         </div>
                     </div>
                 </div>
