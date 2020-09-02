@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
+                            <option value="">Status Sijil Halal</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
                         </select>
@@ -72,11 +72,11 @@
                         <small class="text-muted">(Tarikh Tamat: 28/8/2020)</small>
                         </td>
                         <td>12/12/2020</td>
-                        <td>
-                            <a href="/admin/syarikat/ramuan/12">
-                                <span class="btn btn-primary">
-                                    <i class="fa fa-list"></i>
-                                </span>
+                        <td align="center">
+                            <a href="/admin/audit/modalAudit" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-info">
+                                    <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
                         </td>
                     </tr>
@@ -87,11 +87,11 @@
                         <td>Ayamas Sdn. Bhd.</td>
                         <td>Tiada</td>
                         <td>28/8/2020</td>
-                        <td>
-                            <a href="/admin/syarikat/ramuan/12">
-                                <span class="btn btn-primary">
-                                    <i class="fa fa-list"></i>
-                                </span>
+                        <td align="center">
+                            <a href="/admin/syarikat/modalTindakan" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-info">
+                                    <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
                         </td>
                     </tr>

@@ -12,4 +12,9 @@ class AuditController extends Controller
         
         return view('admin/audit');
     }
+
+    public function modalAudit(Request $request)
+    {
+        return view('admin/modalAudit');
+    }
 }

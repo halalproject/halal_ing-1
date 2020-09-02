@@ -37,7 +37,7 @@
             <div class="form-group">
                 <div class="col-md-3">
                     <select name="lj_kategori" onchange="" class="form-control">
-                        <option value="">Status Sijil</option>
+                        <option value="">Status Sijil Halal</option>
                         <option value="">Ada</option>
                         <option value="">Tiada</option>
                     </select>

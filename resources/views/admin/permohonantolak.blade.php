@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
+                            <option value="">Status Sijil Halal</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
                         </select>
@@ -74,7 +74,7 @@
                             <span class="label label-danger">Ditolak</span>
                         </td>
                         <td align="center">
-                            <a href="/client/tolak/view/12" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/admin/tolak/modalPermohonanDitolak" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

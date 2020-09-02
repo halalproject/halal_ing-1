@@ -20,6 +20,13 @@ class PermohonanController extends Controller
     
     public function modalSenaraiPermohonan(Request $request)
     {
+        // dd('jj');
         return view('admin/modalSenaraiPermohonan');
+    }
+
+    public function modalPermohonanDitolak(Request $request)
+    {
+        // dd('jj');
+        return view('admin/modalPermohonanDitolak');
     }
 }

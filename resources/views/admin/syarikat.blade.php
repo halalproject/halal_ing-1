@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
+                            <option value="">Status Sijil Halal</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
                         </select>
@@ -74,7 +74,7 @@
                         <td>0137057666</td>
                         <td>ICTHALAL@ISLAM.GOV.MY</td>
                         <td>Ostia Bangi, 43650, Bandar Baru Bangi, Selangor </td>
-                        <td>
+                        <td align="center">
                             <a href="/admin/syarikat/ramuan/12">
                                 <span class="btn btn-primary">
                                     <i class="fa fa-list"></i>
