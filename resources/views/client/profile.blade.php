@@ -90,7 +90,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama pegawai :</label>
                         <div class="col-sm-8">
-                            <input type="text" name="contact_name" id="contact_name" class="form-control" value="">
+                            <input type="text" name="contact_name" id="contact_name" class="form-control" value="{{ $user->contact_name }}">
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No K/P :</label>
                         <div class="col-sm-3">
-                            <input type="text" name="contact_ic" id="contact_ic" class="form-control" value="">
+                            <input type="text" name="contact_ic" id="contact_ic" class="form-control" value="{{ $user->contact_ic }}">
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Jawatan :</label>
                         <div class="col-sm-8">
-                            <input type="text" name="contact_position" id="contact_position" class="form-control" value="">
+                            <input type="text" name="contact_position" id="contact_position" class="form-control" value="{{ $user->contact_position }}">
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No. Telefon :</label>
                         <div class="col-sm-3">
-                            <input type="text" name="contact_tel" id="contact_tel" class="form-control" value="">
+                            <input type="text" name="contact_tel" id="contact_tel" class="form-control" value="{{ $user->contact_tel }}">
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Email Pegawai :</label>
                         <div class="col-sm-4">
-                            <input type="text" name="contact_email" id="contact_email" class="form-control" value="">
+                            <input type="text" name="contact_email" id="contact_email" class="form-control" value="{{ $user->contact_email }}">
                         </div>
                     </div>
                 </div>
