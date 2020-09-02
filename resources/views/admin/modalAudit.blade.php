@@ -114,6 +114,14 @@ function do_close()
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Dokumentasi Ramuan : </label>
+                        <div class="row">
+                            <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div align="right">
                         <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
                         <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">

@@ -73,7 +73,7 @@
                         </td>
                         <td>12/12/2020</td>
                         <td align="center">
-                            <a href="/admin/syarikat/modalTindakan" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
+                            <a href="/admin/audit/modalAudit" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

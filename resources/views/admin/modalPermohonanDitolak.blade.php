@@ -1,7 +1,4 @@
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-// Remove advanced tabs for all editors.
-CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
 function do_close()
 {
     location.reload();
@@ -105,12 +102,19 @@ function do_close()
                 </div>
             </div>
         </div>
-
+        <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label">Dokumentasi Ramuan : </label>
+                        <div class="row">
+                            <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
+                        </div>
+                    </div>
+                </div>
         <div class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label" for="exampleFormControlTextarea1">Catatan :</label>
                 <div class="col-sm-9">
-                <textarea name="dokumen" cols="50" rows="10" id="story" style="width:100%"></textarea>
+                    Dokumen ini tidak lengkap.
                 </div>
             </div>
         </div>
@@ -127,7 +131,7 @@ function do_close()
 @if(empty($id))
 
 <script>
-CKEDITOR.replace('dokumen', {height: 250});
+
 
 $('input:checkbox').click(function() {
     $('input:checkbox').not(this).prop('checked', false);
