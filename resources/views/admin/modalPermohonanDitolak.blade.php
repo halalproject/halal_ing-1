@@ -16,9 +16,14 @@ function do_close()
     <div class="panel-body">
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No Permohonan :</label>
-                <div class="col-sm-9">
-                    HQ0012411123
+                <label class="col-sm-3 control-label">No Permohonan :</label>
+                <div class="col-sm-5">
+                    <b>C0005f410b821ca04</b>
+                </div>
+
+                <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
+                <div class="col-sm-2">
+                    <b>20/8/2020</b>
                 </div>
             </div>
         </div>
@@ -32,17 +37,17 @@ function do_close()
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Kategori :</label>
-                <div class="col-sm-9">
-                    Semulajadi
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font>Nama Saintifik :</label>
+                <div class="col-sm-5">
+                    Ayam Kampung
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 control-label"><font color="#FF0000">*</font>Tarikh Permohonan:</label>
+                <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Sumber Bahan :</label>
                 <div class="col-sm-9">
-                    20/8/2020
+                    Semula jadi
                 </div>
             </div>
         </div>

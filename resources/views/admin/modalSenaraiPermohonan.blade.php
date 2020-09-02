@@ -67,11 +67,18 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Sumber Bahan :</label>
                                         <div class="col-sm-5">
-                                            Semula Jadi
+                                            Semula jadi
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-sm-3 control-label">Status :</label>
+                                        <div class="col-sm-5">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Negara Asal Pengilang/Pengeluar :</label>
@@ -155,15 +162,6 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-<<<<<<< HEAD
-=======
-                                                <input class="form-check-input" type="checkbox" name="semula" id="semula" value="semula">
-                                                <label class="form-check-label" for="semula">
-                                                    Semak Semula
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
->>>>>>> e116d9259735c34f4ac27403f5e056b88dc8812d
                                                 <input class="form-check-input" type="checkbox" name="lulus" id="lulus" value="lulus">
                                                 <label class="form-check-label" for="gridRadios3">
                                                 Lulus

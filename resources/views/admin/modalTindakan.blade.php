@@ -18,10 +18,15 @@ function do_close()
                 <input type="hidden" name="id" id="id" class="form-control" value="">
 
                 <div class="form-group">
-                    <div class="row">
+                <div class="row">
                         <label class="col-sm-3 control-label">No Permohonan :</label>
                         <div class="col-sm-5">
-                            C0005f410b821ca04
+                            <b>C0005f410b821ca04</b>
+                        </div>
+
+                        <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
+                        <div class="col-sm-2">
+                            <b>20/8/2020</b>
                         </div>
                     </div>
                 </div>
@@ -45,18 +50,11 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Kategori :</label>
                         <div class="col-sm-5">
-                            Semula Jadi
+                            Semula jadi
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <label class="col-sm-3 control-label">Tarikh Permohonan :</label>
-                        <div class="col-sm-5">
-                            20/8/2020
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">Status :</label>

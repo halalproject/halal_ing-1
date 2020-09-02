@@ -24,17 +24,19 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Status Sijil</option>
+                            <option value="">Sijil Halal</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
                         </select>
                     </div>
                     <div class="col-md-3" >
                         <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Kategori</option>
-                            <option value="9">Belum Diagihkan</option>
-                            <option value="1">Belum Dijawab</option>
-                            <option value="2">Telah Dijawab</option>
+                            <option value="">Sumber Bahan</option>
+                            <option value="9">Tumbuhan</option>
+                            <option value="1">Kimia</option>
+                            <option value="2">Haiwan</option>
+                            <option value="2">Semula jadi</option>
+                            <option value="2">Lain-lain</option>
                         </select>
                     </div>
                     <div class="col-md-4" style="0px">
@@ -57,7 +59,7 @@
                   <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
                   <th width="17%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Kategori</font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Sumber Bahan</font></th>
                   <th width="13%"><font color="#000000"><div align="left">Tarikh Permohonan</font></th>
                   <th width="13%"><font color="#000000"><div align="left">Tarikh Tamat Sijil</font></th>
                   <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
@@ -68,7 +70,7 @@
                         <td>1</td>
                         <td>HQ0012411123</td>
                         <td>Ayam</td>
-                        <td>Semulajadi</td>
+                        <td>Semula jadi</td>
                         <td>1/1/2020  </td>
                         <td>
                             <span class="label label-success">3 Bulan Lagi</span><br>
@@ -87,7 +89,7 @@
                         <td>2</td>
                         <td>HQ0012411123</td>
                         <td>Ayam</td>
-                        <td>Semulajadi</td>
+                        <td>Semula jadi</td>
                         <td>1/1/2020</td>
                         <td>
                             <span class="label label-warning">1 Minggu Lagi</span><br>
@@ -106,7 +108,7 @@
                         <td>3</td>
                         <td>HQ0012411123</td>
                         <td>Ayam</td>
-                        <td>Semulajadi</td>
+                        <td>Semula jadi</td>
                         <td>1/1/2020</td>
                         <td>
                         <span class="label label-danger">1 Hari Lagi</span><br>

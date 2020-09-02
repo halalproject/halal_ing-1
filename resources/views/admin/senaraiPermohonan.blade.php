@@ -48,7 +48,7 @@
                         <option value="9">Tumbuhan</option>
                         <option value="1">Kimia</option>
                         <option value="2">Haiwan</option>
-                        <option value="2">Semulajadi</option>
+                        <option value="2">Semula jadi</option>
                         <option value="2">Lain-Lain</option>
                     </select>
                 </div>
@@ -83,7 +83,7 @@
                     <td>1</td>
                     <td>HQ0012411123</td>
                     <td>Ayam</td>
-                    <td>Semulajadi</td>
+                    <td>Semula jadi</td>
                     <td>20/8/2020</td>
                     <td>Ada</td>
                     <td align="center">
