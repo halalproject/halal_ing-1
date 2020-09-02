@@ -22,15 +22,15 @@
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                     	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-1">
+        			<div class="col-md-2">
                         <button type="button" class="btn btn-success" onclick="">
                         	<i class="fa fa-search"></i> Carian</button>
                     </div>
-                    <div class="col-md-7" align="right">
+                    <div class="col-md-2" align="right">
                         <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-primary">
                             <i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
