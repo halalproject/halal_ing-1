@@ -20,6 +20,7 @@
                             <option value="">Status</option>
                             <option value="">Ada</option>
                             <option value="">Tiada</option>
+                            <option value="">Cuti</option>
                         </select>
                     </div>
                     <div class="col-md-3" >
@@ -28,6 +29,7 @@
                             <option value="9">Admin</option>
                             <option value="1">Penyemak</option>
                             <option value="2">Pelulus</option>
+                            <option value="3">Staf</option>
                         </select>
                     </div>
                     <div class="col-md-3" style="0px">

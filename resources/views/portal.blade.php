@@ -205,7 +205,7 @@
                                 <div class="footer-social">
                                     <a href="http://www.ssm.com.my" title="Suruhanjaya Syarikat Malaysia"><img class="logoimg" src="{{ asset('images/footer/ssm.png') }}" style="width:40px; height:40px;"></a>
                                     <a href="http://www.dvs.gov.my" title="Jabatan Perkhidmatan Veterinar"><img class="logoimg" src="{{ asset('images/footer/veterinaryMalaysia.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.dvs.gov.my" title="Kementerian Kesihatan Malaysia"><img class="logoimg" src="{{ asset('images/footer/kkm.png') }}" style="width:40px; height:40px;"></a>
+                                    <a href="https://www.moh.gov.my" title="Kementerian Kesihatan Malaysia"><img class="logoimg" src="{{ asset('images/footer/kkm.png') }}" style="width:40px; height:40px;"></a>
                                 </div>
                             </div>
                             <!--Footer Widget end-->

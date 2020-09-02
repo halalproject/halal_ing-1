@@ -13,7 +13,7 @@ $bahan_rs = $rs->sumber_bahan_id ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
 @endphp
-<div class="col-md-8" style="top:300px;left: 50%;transform: translate(-50%, -50%);">
+<div class="col-md-12" >
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="panel panel-featured panel-featured-info">
@@ -26,7 +26,7 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
         <div class="col-md-12">
             <!-- <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}"> -->
 
-            <div>
+            <div align="center">
             <!-- gambar -->
                 <!-- <table>
                     <img style="margin-left:250px;" src="{{ asset('images/person.jpg') }}" width="200" height="200" />
@@ -34,9 +34,9 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                 </table> -->
 
                 <body>
-                    <input type="image" src="{{ asset('images/person.jpg') }}" width="200" height="200" style="margin-left:250px;"/>
-                    <input type="file" id="my_file" style="padding-left:260px;display: none;" /><br>
-                    <button type="button" class="btn btn-info" style="margin-left:263px;" id="upload"><i class="fa fa-upload" aria-hidden="true"></i> Muat Naik Gambar</button>
+                    <input type="image" src="{{ asset('images/person.jpg') }}" width="200" height="200"/>
+                    <input type="file" id="my_file" style="display: none;" /><br>
+                    <button type="button" class="btn btn-info" id="upload"><i class="fa fa-upload" aria-hidden="true" align="center"></i> Muat Naik Gambar</button>
                 </body>
             </div>
             <br>
@@ -85,6 +85,7 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                             <option value="">Admin</option>
                             <option value="">Penyemak</option>
                             <option value="">Pelulus</option>
+                            <option value="">Staf</option>
                         </select>
                     </div>
                     
@@ -92,8 +93,9 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
                     <div class="col-md-4">
                         <select name="status" onchange="" class="form-control">
                             <option value="">Pilih Status</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
+                            <option value="">Aktif</option>
+                            <option value="">Tidak Aktif</option>
+                            <option value="">Cuti</option>
                         </select>
                     </div>
                 </div>

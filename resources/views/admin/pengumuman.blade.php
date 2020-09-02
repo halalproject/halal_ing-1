@@ -22,15 +22,15 @@
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                     	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-1">
+        			<div class="col-md-2">
                         <button type="button" class="btn btn-success" onclick="">
                         	<i class="fa fa-search"></i> Carian</button>
                     </div>
-                    <div class="col-md-7" align="right">
+                    <div class="col-md-2" align="right">
                         <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-primary">
                             <i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
@@ -45,34 +45,33 @@
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Nama Syarikat</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Sijil Halal</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Tajuk Pengumuman</div></font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Tarikh Awal</font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Tarikh Akhir</div></font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Dituju Kepada</div></font></th>
                   <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Ayam</td>
-                        <td>Ayamas Sdn. Bhd.</td>
-                        <td>Ada
-                        <br>
-                        <small class="text-muted">(Tarikh Tamat: 28/8/2020)</small>
-                        </td>
-                        <td>12/12/2020</td>
+                        <td>Pengumuman tantang makanan A</td>
+                        <td>27/8/2020</td>
+                        <td>12/9/2020</td>
+                        <td>Dalaman</td>
                         <td>
+
                         </td>
                     </tr>
 
                     <tr>
-                        <td>1</td>
-                        <td>Ayam</td>
-                        <td>Ayamas Sdn. Bhd.</td>
-                        <td>Tiada</td>
-                        <td>28/8/2020</td>
+                        <td>2</td>
+                        <td>Pengumuman tentang makanan B</td>
+                        <td>29/8/2020</td>
+                        <td>6/9/2020</td>
+                        <td>Umum</td>
                         <td>
+
                         </td>
                     </tr>
 
