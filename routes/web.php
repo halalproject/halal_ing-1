@@ -83,7 +83,7 @@ Route::group(['prefix' => 'admin'],function(){
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
     Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
-    // Route::get('syarikat/view/{id}','Admin\SyarikatController@view');
+    Route::get('syarikat/view/{id}','Admin\SyarikatController@view');
     Route::get('syarikat/modalTindakan','Admin\SyarikatController@modalTindakan');
 
     //Staff
