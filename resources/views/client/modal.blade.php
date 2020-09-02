@@ -213,6 +213,7 @@ function do_close()
 </script>
 @php
 $id = $rs->id ?? '';
+$status = $rs->status ?? '';
 $bahan_rs = $rs->sumber_bahan_id ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
@@ -230,7 +231,7 @@ if(!empty($id)){
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <section class="panel panel-featured panel-featured-info">
     <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-        <h6 class="panel-title"><font color="#000000" size="3"><b>@if(empty($id)) Tambah @else Kemaskini @endif Maklumat Permohonan</b> @if($rs->status == 0)[Draf] @else [Hantar]@endif</font></h6>
+        <h6 class="panel-title"><font color="#000000" size="3"><b>@if(empty($id)) Tambah @else Kemaskini @endif Maklumat Permohonan</b> @if($status == 0)[Draf] @else [Hantar]@endif</font></h6>
     </header>
     <div class="panel-body">
         <!-- Start Tab -->
