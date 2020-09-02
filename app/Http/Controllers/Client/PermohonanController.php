@@ -191,7 +191,9 @@ class PermohonanController extends Controller
 
     public function view($id)
     {
-        return view('client/view',compact('id'));
+        $rs = Ramuan::find($id);
+
+        return view('client/view',compact('rs'));
     }
 
     public function delete($id)

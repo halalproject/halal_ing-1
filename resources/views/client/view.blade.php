@@ -8,7 +8,11 @@ function do_close()
 <div class="col-md-12">
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-            <h6 class="panel-title"><font color="#000000" size="3"><b>Maklumat Ramuan</b></font></h6>
+            <h6 class="panel-title">
+                <font color="#000000" size="3"><b>Maklumat Ramuan</b>
+                @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
+                </font>
+            </h6>
         </header>
         <div class="panel-body ">
             <div class="col-md-12">
