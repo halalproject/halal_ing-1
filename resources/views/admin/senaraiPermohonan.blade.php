@@ -97,8 +97,4 @@
         </div>
     </div>
 
-<script>
-    CKEDITOR.replace('dokumen', {height: 250});
-</script>
-
 @endsection

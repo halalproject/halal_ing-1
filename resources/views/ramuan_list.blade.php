@@ -49,7 +49,9 @@
                                 <div class="input-group col-sm-7">
                                     <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" style="box-shadow: 1px 3px #d6d6d6;">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;"><i class="fas fa-search text-white"></i></div>
+                                        <button class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;">
+                                            <i class="fas fa-search text-white"></i>
+                                        </button>
                                     </div>
                                 </div>
                         </div>

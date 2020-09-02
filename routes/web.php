@@ -62,6 +62,10 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('/event','DashboardController@create');
     Route::get('/event/view/{id}','DashboardController@view');
 
+    //Profile and Password
+    Route::get('/profile','Admin\AdminController@profile');
+    Route::get('/password','Admin\AdminController@password');
+
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
     Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan'); 

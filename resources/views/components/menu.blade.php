@@ -60,7 +60,7 @@
 								@endphp
 								<li>
 									<a role="menuitem" tabindex="-1" href="/{{ $path }}/profile" data-toggle="modal" data-target="#myModal" data-backdrop="static">
-										<i class="fa fa-user"></i> Profil Syarikat
+										<i class="fa fa-user"></i> Profil
 									</a>
 								</li>
 								<li>
