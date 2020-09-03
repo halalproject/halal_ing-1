@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //Portal
 Route::get('/','PortalController@index')->name('portal');
 Route::get('/ramuanList','PortalController@ramuanList');
