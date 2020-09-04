@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Tumbuhan </label><br>
-                                            <span class="badge badge-danger">{{ $tumbuhan->count() }}</span>
+                                            <span class="badge badge-danger">{{ $tumbuhan->total() }}</span>
                                         </div>
                                     </button>
                                 </a>
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Kimia </label><br>
-                                            <span class="badge badge-danger">{{ $kimia->count() }}</span>
+                                            <span class="badge badge-danger">{{ $kimia->total() }}</span>
                                         </div>
                                     </button>
                                 </a>
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Haiwan </label><br>
-                                            <span class="badge badge-danger">{{ $haiwan->count() }}</span>
+                                            <span class="badge badge-danger">{{ $haiwan->total() }}</span>
                                         </div>
                                     </button>
                                 </a>
