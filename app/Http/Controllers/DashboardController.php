@@ -80,6 +80,11 @@ class DashboardController extends Controller
         return view('admin/event_view');
     }
     
+    public function pengumuman()
+    {
+        return view('admin/pengumuman');
+    }
+    
     public function pengumuman_create()
     {
         return view('admin/pengumuman_create');

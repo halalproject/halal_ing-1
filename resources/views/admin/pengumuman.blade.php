@@ -45,11 +45,11 @@
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Tajuk Pengumuman</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Tarikh Awal</font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Tarikh Akhir</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Dituju Kepada</div></font></th>
-                  <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                  <th width="20%"><font color="#000000"><div align="left">Tajuk Pengumuman</div></font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Tarikh Awal</font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Tarikh Akhir</div></font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Dituju Kepada</div></font></th>
+                  <th width="10%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
