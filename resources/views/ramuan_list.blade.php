@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Kimia </label><br>
-                                            <span class="badge badge-danger"></span>
+                                            <span class="badge badge-danger">{{ $kimia->count() }}</span>
                                         </div>
                                     </button>
                                 </a>
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Haiwan </label><br>
-                                            <span class="badge badge-danger"></span>
+                                            <span class="badge badge-danger">{{ $haiwan->count() }}</span>
                                         </div>
                                     </button>
                                 </a>
