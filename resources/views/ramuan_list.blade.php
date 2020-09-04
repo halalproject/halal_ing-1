@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Tumbuhan </label><br>
-                                            <span class="badge badge-danger">15999</span>
+                                            <span class="badge badge-danger">{{ $tumbuhan->count() }}</span>
                                         </div>
                                     </button>
                                 </a>
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Kimia </label><br>
-                                            <span class="badge badge-danger">70000</span>
+                                            <span class="badge badge-danger"></span>
                                         </div>
                                     </button>
                                 </a>
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Haiwan </label><br>
-                                            <span class="badge badge-danger">2000</span>
+                                            <span class="badge badge-danger"></span>
                                         </div>
                                     </button>
                                 </a>
@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Semula Jadi </label><br>
-                                            <span class="badge badge-danger">35</span>
+                                            <span class="badge badge-danger"></span>
                                         </div>
                                     </button>
                                 </a>
@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Lain-lain </label><br>
-                                            <span class="badge badge-danger">100</span>
+                                            <span class="badge badge-danger"></span>
                                         </div>
                                     </button>
                                 </a>
@@ -130,7 +130,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Semua </label><br>
-                                            <span class="badge badge-danger">5</span>
+                                            <span class="badge badge-danger"></span>
                                         </div>
                                     </button>
                                 </a>
