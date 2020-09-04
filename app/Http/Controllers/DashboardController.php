@@ -68,20 +68,25 @@ class DashboardController extends Controller
 
         return view('admin/dashboard',compact('calendar'));
     }
-
-    public function pengumuman()
+    
+    public function event_create()
     {
-        return view('admin/pengumuman');
+        return view('admin/event_create');
     }
     
-    public function create()
-    {
-        return view('admin/create_event');
-    }
-    
-    public function view($id)
+    public function event_view($id)
     {
         // dd($id);
-        return view('admin/view_event');
+        return view('admin/event_view');
+    }
+    
+    public function pengumuman_create()
+    {
+        return view('admin/pengumuman_create');
+    }
+    
+    public function pengumuman_view($id)
+    {
+        return view('admin/pengumuman_view');
     }
 }

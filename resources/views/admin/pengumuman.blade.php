@@ -31,7 +31,7 @@
                         	<i class="fa fa-search"></i> Carian</button>
                     </div>
                     <div class="col-md-2" align="right">
-                        <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
+                        <a href="/admin/pengumuman/create" data-toggle="modal" data-target="#myModal" title="Tambah Pengumuman" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-primary">
                             <i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
                         </a>

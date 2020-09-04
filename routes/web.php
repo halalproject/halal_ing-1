@@ -60,8 +60,10 @@ Route::group(['prefix' => 'admin'],function(){
     //Dashboard
     Route::get('/','DashboardController@admin');
     Route::get('/pengumuman','DashboardController@pengumuman')->name('Pengumuman');
-    Route::get('/event','DashboardController@create');
-    Route::get('/event/view/{id}','DashboardController@view');
+    Route::get('/pengumuman/create','DashboardController@pengumuman_create');
+    Route::get('/pengumuman/view/{id}','DashboardController@pengumuman_view');
+    Route::get('/event','DashboardController@event_create');
+    Route::get('/event/view/{id}','DashboardController@event_view');
 
     //Profile and Password
     Route::get('/profile','Admin\AdminController@profile');
