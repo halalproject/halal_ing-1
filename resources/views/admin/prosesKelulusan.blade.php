@@ -7,18 +7,6 @@
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
 
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script>
-    // Remove advanced tabs for all editors.
-    CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
-
-    function do_close()
-    {
-        location.reload();
-    }
-</script>
-
-
     <div class="box" style="background-color:#F2F2F2">
         <div class="box-body">
             <input type="hidden" name="soalan_id" value="" />
@@ -100,9 +88,4 @@
             </table>
         </div>
     </div>
-
-<script>
-    CKEDITOR.replace('dokumen', {height: 250});
-</script>
-
 @endsection
