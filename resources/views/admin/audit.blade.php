@@ -5,6 +5,27 @@
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+<script>
+function do_page()
+{
+    var sijil = $('#sijil').val();
+    var kategori = $('#kategori').val();
+    var carian = $('#carian').val();
+//   alert(sijil);
+    var pathname = window.location.pathname;
+
+    if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
+    window.location = pathname;
+    } else {
+    window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
+    }
+}
+</script>
+@php
+$carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+$sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
+$kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
+@endphp
 		<div class="box" style="background-color:#F2F2F2">
 
             <div class="box-body">
@@ -22,90 +43,89 @@
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-3">
-                        <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Sijil Halal</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
+                    <div class="col-md-2">
+                        <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
+                            <option value="">Status Sijil Halal</option>
+                            <option value="1" @if($sijil == '1') selected @endif>Ada</option>
+                            <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                         </select>
                     </div>
-                    <div class="col-md-3" >
-                        <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Sumber Bahan</option>
-                            <option value="9">Tumbuhan</option>
-                            <option value="1">Kimia</option>
-                            <option value="2">Haiwan</option>
-                            <option value="2">Semula jadi</option>
-                            <option value="2">Lain-lain</option>
+                    <div class="col-md-2">
+                        <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
+                            <option value="">Kategori Bahan</option>
+                            @foreach ($cat as $cat)
+                            <option value="{{$cat->id}}" @if($kategori == $cat->id) selected @endif>{{$cat->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4" style="0px">
-                    	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-2" align="right" style="padding-right:25px">
-                        <button type="button" class="btn btn-success" 
-                        	onclick="">
-                        	<i class="fa fa-search"></i> Carian</button>
+        			<div class="col-md-1" align="right">
+                        <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>       
+                </div>
             </div>
-            <br>
-            <br>
+            <div align="right" style="padding-right:10px"><b>{{ $list->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">Nama Syarikat</div></font></th>
+                  <th width="15%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
+                  <th width="20%"><font color="#000000"><div align="left">Nama Syarikat</div></font></th>
+                  <th width="8%"><font color="#000000"><div align="left">Sumber Bahan</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Sijil Halal</font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Tarikh Permohonan</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Sumber Bahan</div></font></th>
+                  <th width="4%"><font color="#000000"><div align="center">Tarikh Permohonan</div></font></th>
                   <th width="5%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
+                    @php $bil = $list->perPage()*($list->currentPage()-1) @endphp
+                    @foreach ($list as $rs)
                     <tr>
-                        <td>1</td>
-                        <td>Ayam</td>
-                        <td>Ayamas Sdn. Bhd.</td>
-                        <td>Ada
+                        <td valign="top" align="center">{{ ++$bil }}</td>
+                        <td valign="top" align="left">
+                            {{ $rs->nama_ramuan }}
+                            <br>
+                            ({{ $rs->nama_saintifik }})
+                        </td>
+                        <td valign="top" align="left">
+                            <u><b>{{ $rs->nama_pengilang }}</b></u>
+                            <br>
+                            {{ $rs->alamat_pengilang_1 }} {{ $rs->alamat_pengilang_2 }} {{ $rs->alamat_pengilang_3 }}
+                        </td>
+                        <td valign="top" align="left">{{ optional($rs->sumber)->nama }}</td>
+                        <td valign="top" align="center">
+                        @if ($rs->is_sijil == 0)
+                            Tiada
+                        @else
+                            Ada
+                        @endif
+                        <br>                        
+                        <small class="text-muted">(Tarikh Tamat: {{ date('d/m/Y', strtotime($rs->tarikh_tamat_sijil)) }})</small>
                         <br>
-                        <small class="text-muted">(Tarikh Tamat: 28/8/2020)</small>
                         </td>
-                        <td>12/12/2020</td>
-                        <td>Haiwan</td>
+                        <td valign="top" align="center">
+                            <p>{{ date('d/m/Y', strtotime($rs->create_dt)) }}</p>
+                        </td>
                         <td align="center">
-                            <a href="/admin/audit/modalAudit" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
+                            <a href="/admin/audit/modalAudit/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
-                                    <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
+                                    <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>Ayam</td>
-                        <td>Ayamas Sdn. Bhd.</td>
-                        <td>Tiada</td>
-                        <td>28/8/2020</td>
-                        <td>Haiwan</td>
-                        <td align="center">
-                            <a href="/admin/syarikat/modalTindakan" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-info">
-                                    <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-
-                    
+                    @endforeach
                 </tbody>
               </table>
             </div>
 		</div>
+        <div align="center" class="d-flex justify-content-center">
+            {!! $list->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
+        </div>
      </div>
   <!--</div>-->    
 <!-- DataTables -->
