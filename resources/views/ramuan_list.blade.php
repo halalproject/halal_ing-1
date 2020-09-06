@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="">
                                             <label class="title">Tumbuhan </label><br>
-                                            <span class="badge badge-danger">{{ $tumbuhan->total() }}</span>
+                                            <span class="badge badge-danger">{{ $tumbuhan->count() }}</span>
                                         </div>
                                     </button>
                                 </a>
