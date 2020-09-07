@@ -4,29 +4,49 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Ramuan;
+use App\Ref_Sumber_Bahan;
 
 class PermohonanController extends Controller
 {
     public function index(Request $request)
     {
-        return view('admin/senaraiPermohonan');
+        $cat = Ref_Sumber_Bahan::get();
+        $permohonan = Ramuan::where('status',1)->whereNull('tarikh_buka');
+
+        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+
+        $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
+        // dd($permohonan);
+        return view('admin/permohonan',compact('cat','permohonan'));
     }
 
     public function tolak()
     {
-        // dd('hello');
-        return view('admin/permohonantolak');
+        $cat = Ref_Sumber_Bahan::get();
+        $permohonan = Ramuan::where('status',6);
+
+        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+
+        $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
+
+        return view('admin/permohonan_tolak',compact('cat','permohonan'));
     }
     
-    public function modalSenaraiPermohonan(Request $request)
+    public function modal_permohonan($id)
     {
-        // dd('jj');
-        return view('admin/modalSenaraiPermohonan');
+        // dd($id);
+        $rs = Ramuan::find($id);
+        return view('admin/modal_permohonan',compact('rs'));
     }
 
-    public function modalPermohonanDitolak(Request $request)
+    public function detail($id)
     {
-        // dd('jj');
-        return view('admin/modalPermohonanDitolak');
+        $rs = Ramuan::find($id);
+        return view('admin/modal_detail',compact('rs'));
     }
 }

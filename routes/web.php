@@ -71,27 +71,27 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
-    Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan');
+    Route::get('premohonan/modal_permohonan/{id}','Admin\PermohonanController@modal_permohonan');
 
     //Proses Semakan
-    Route::get('proses','Admin\ProsesPermohonanController@index')->name('Semak Permohonan');
+    Route::get('proses','Admin\SemakanController@index')->name('Semak Permohonan');
 
     //Proses Kelulusan
-    Route::get('lulus','Admin\ProsesKelulusanController@index')->name('Kelulusan Permohonan');
+    Route::get('lulus','Admin\KelulusanController@index')->name('Kelulusan Permohonan');
 
     //Permohonan Ditolak
     Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
-    Route::get('tolak/modalPermohonanDitolak','Admin\PermohonanController@modalPermohonanDitolak');
+    Route::get('tolak/detail/{id}','Admin\PermohonanController@detail');
 
     //Audit
     Route::get('audit','Admin\AuditController@index')->name('Audit');
-    Route::get('audit/modalAudit/{id}','Admin\AuditController@modalAudit');
+    Route::get('audit/detail/{id}','Admin\AuditController@detail');
 
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
     Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
     Route::get('syarikat/view/{id}','Admin\SyarikatController@view');
-    Route::get('syarikat/modalTindakan','Admin\SyarikatController@modalTindakan');
+    Route::get('syarikat/detail/{id}','Admin\SyarikatController@detail');
 
     //Staff
     Route::get('staff','Admin\StaffController@index')->name('Staff');

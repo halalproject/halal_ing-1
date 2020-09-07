@@ -1,11 +1,12 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-    // Remove advanced tabs for all editors.
-    CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
-    function do_close()
-    {
-        location.reload();
-    }
+// Remove advanced tabs for all editors.
+CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
+
+function do_close()
+{
+    location.reload();
+}
 </script>
 
 <div class="col-md-12">
@@ -31,18 +32,18 @@
                     <div id="t1" class="card tab-pane row in active row" role="tabpanel" aria-labelledby="tab-1">
                         <div class="panel-body">
                             <div class="col-md-12">
-                                <input type="hidden" name="id" id="id" class="form-control" value="">
+                                <input type="hidden" name="id" id="id" class="form-control" value="{{ $rs->id }}">
 
                                 <div class="form-group">
                                     <div class="row">
                                         <label class="col-sm-3 control-label">No Permohonan :</label>
                                         <div class="col-sm-5">
-                                            <b>C0005f410b821ca04</b>
+                                            <b>{{ $rs->ing_kod }}</b>
                                         </div>
 
                                         <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
                                         <div class="col-sm-2">
-                                            <b>20/8/2020</b>
+                                            <b>{{ date('d/m/Y',strtotime($rs->create_dt)) }}</b>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +52,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Nama Ramuan :</label>
                                         <div class="col-sm-5">
-                                            Ayam
+                                            {{ $rs->nama_ramuan }}
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +60,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Nama Saintifik :</label>
                                         <div class="col-sm-5">
-                                            Ayam Kampung
+                                            {{ $rs->nama_saintifik }}
                                         </div>
                                     </div>
                                 </div>
@@ -67,15 +68,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Sumber Bahan :</label>
                                         <div class="col-sm-5">
-                                            Semula jadi
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <label class="col-sm-3 control-label">Status :</label>
-                                        <div class="col-sm-5">
-                                            
+                                            {{ optional($rs->sumber)->nama }}
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +76,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Negara Asal Pengilang/Pengeluar :</label>
                                         <div class="col-sm-5">
-                                            Australia
+                                            {{ $rs->negara_pengilang }}
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +84,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Nama Pengilang/Pengeluar :</label>
                                         <div class="col-sm-5">
-                                            Qwerty
+                                            {{ $rs->nama_pengilang }}
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +92,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Alamat Pengilang/Pengeluar :</label>
                                         <div class="col-sm-5">
-                                            Autralia
+                                            {{ $rs->alamat_pengilang_1 }}, {{ $rs->alamat_pengilang_2 }}, {{ $rs->alamat_pengilang_3 }}, {{ $rs->poskod_pengilang }}
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +100,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Negeri Asal Pembekal :</label>
                                         <div class="col-sm-5">
-                                            Negeri Sembilan
+                                            {{ $rs->negeri_pembekal_id }}
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +108,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Nama Pembekal :</label>
                                         <div class="col-sm-5">
-                                            Abcde
+                                            {{ $rs->nama_pembekal }}
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +116,7 @@
                                     <div class="row">
                                         <label class="col-sm-3 control-label">Alamat Pembekal :</label>
                                         <div class="col-sm-5">
-                                            Seremban, Negeri Sembilan, Malaysia
+                                            {{ $rs->alamat_pembekal_1 }}, {{ $rs->alamat_pembekal_2 }}, {{ $rs->alamat_pembekal_3 }}, {{ $rs->poskod_pembekal }}
                                         </div>
                                     </div>
                                 </div>
@@ -138,8 +131,6 @@
                                 <div class="form-group">
                                     <div align="right">
                                         <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                                        <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                                            <i class="fa fa-save"></i> Simpan</button>
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +154,7 @@
                                             </div>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="lulus" id="lulus" value="lulus">
-                                                <label class="form-check-label" for="gridRadios3">
+                                                <label class="form-check-label" for="lulus">
                                                 Lulus
                                                 </label>
                                             </div>
@@ -186,7 +177,9 @@
                                         <textarea name="dokumen" cols="50" rows="10" id="story" style="width:100%"></textarea>
                                         </div>
                                     </div>
-                                </div>      
+                                </div>
+                                
+                                <textarea name="ruj_dokumen" cols="50" rows="10" id="story" style="width:100%" hidden></textarea>
                             </div>
 
                             <div class="form-group">
