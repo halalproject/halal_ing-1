@@ -21,7 +21,7 @@
 
     <style>
         .highlight {
-            color: yellow;
+            color: red;
         }
     </style>
 
@@ -196,14 +196,17 @@
                             <tbody>
                                 @php $bil = $list->perPage()*($list->currentPage()-1) @endphp
                                 @foreach($list as $l)
-
                                 @php
-                                $text = preg_replace('#'. preg_quote($cari) .'#i', '<span class="highlight">\\0</span>', $l->nama_ramuan);
+                                    if(!empty($cari)){
+                                        $text = preg_replace('#('.$cari.')#i', '<span class="highlight">\1</span>', $l->nama_ramuan);
+                                    } else {
+                                        $text = $l->nama_ramuan;
+                                    }
                                 @endphp
                                 <tr>
                                     <td>{{ ++$bil }}</td>
                                     <td>	
-                                        <b>{{ $text }} @if(!empty($l->nama_saintifik)) ({{ $l->nama_saintifik }}) @endif </b><br>
+                                        <b>{!! $text !!} @if(!empty($l->nama_saintifik)) ({{ $l->nama_saintifik }}) @endif </b><br>
                                         {{ $l->nama_pengilang }}<br>    
                                         {{ $l->alamat_pengilang_1 }}<br>
                                     </td>
