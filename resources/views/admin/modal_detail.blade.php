@@ -11,22 +11,22 @@ function do_close()
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <section class="panel panel-featured panel-featured-info">
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <h6 class="panel-title"><font color="#000000" size="3"><b>Maklumat Permohonan</b></font></h6>
+                <h6 class="panel-title"><font color="#000000" size="3"><b>Maklumat Ramuan</b></font></h6>
             </header>
 
             <div class="panel-body">
-                <input type="hidden" name="id" id="id" class="form-control" value="">
+                <input type="hidden" name="id" id="id" class="form-control" value="{{ $rs->id }}">
 
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-3 control-label">No Permohonan :</label>
                         <div class="col-sm-5">
-                            <b>C0005f410b821ca04</b>
+                            <b>{{ $rs->ing_kod }}</b>
                         </div>
 
                         <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
                         <div class="col-sm-2">
-                            <b>20/8/2020</b>
+                            <b>{{ date('d/m/Y',strtotime($rs->create_dt)) }}</b>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Ramuan :</label>
                         <div class="col-sm-5">
-                            Ayam
+                            {{ $rs->nama_ramuan }}
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Saintifik :</label>
                         <div class="col-sm-5">
-                            Ayam Kampung
+                            {{ $rs->nama_saintifik }}
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Sumber Bahan :</label>
                         <div class="col-sm-5">
-                            Semula jadi
+                            {{ optional($rs->sumber)->nama }}
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Status :</label>
                         <div class="col-sm-5">
-                            Lulus
+                            {{ $rs->is_lulus }}
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Negara Asal Pengilang/Pengeluar :</label>
                         <div class="col-sm-5">
-                            Australia
+                            {{ $rs->negara_pengilang_id }}
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Pengilang/Pengeluar :</label>
                         <div class="col-sm-5">
-                            Qwerty
+                            {{ $rs->nama_pengilang }}
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Alamat Pengilang/Pengeluar :</label>
                         <div class="col-sm-5">
-                            Autralia
+                            {{ $rs->alamat_pengilang_1 }}, {{ $rs->alamat_pengilang_2 }}, {{ $rs->alamat_pengilang_3 }}, {{ $rs->poskod_pengilang }}
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Negeri Asal Pembekal :</label>
                         <div class="col-sm-5">
-                            Negeri Sembilan
+                            {{ $rs->negeri_pembekal_id }}
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Nama Pembekal :</label>
                         <div class="col-sm-5">
-                            Abcde
+                            {{ $rs->nama_pembekal }}
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Alamat Pembekal :</label>
                         <div class="col-sm-5">
-                            Seremban, Negeri Sembilan, Malaysia
+                            {{ $rs->alamat_pembekal_1 }}, {{ $rs->alamat_pembekal_2 }}, {{ $rs->alamat_pembekal_3 }}, {{ $rs->poskod_pembekal }}
                         </div>
                     </div>
                 </div>
@@ -121,8 +121,6 @@ function do_close()
                 <div class="form-group">
                     <div align="right">
                         <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                        <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
-                            <i class="fa fa-save"></i> Simpan</button>
                     </div>
                 </div>
             
@@ -131,20 +129,3 @@ function do_close()
         </section>
     </form>
 </div>
-@if(empty($id))
-<script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('#tab2').toggleClass('disabled');
-  $('#tab-2').removeAttr('data-toggle');
-})
-</script>
-@else
-<script>
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-    $('#tab2').toogleClass('disabled');
-    $('#tab-2').attr('data-toggle','tab');
-})
-</script>
-@endif

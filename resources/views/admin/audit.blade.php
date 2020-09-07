@@ -36,7 +36,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
                 </div>
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN</b></font></h6> 
+                <h6 class="panel-title"><font color="#000000"><b>AUDIT RAMUAN</b></font></h6> 
             </header>
 			</div>
             </div>            
@@ -104,14 +104,15 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             Ada
                         @endif
                         <br>                        
-                        <small class="text-muted">(Tarikh Tamat: {{ date('d/m/Y', strtotime($rs->tarikh_tamat_sijil)) }})</small>
+                        <small class="text-muted">
+                            (Tarikh Tamat: @if ($rs->tarikh_tamat_sijil != '0000-00-00') {{ date('d/m/Y', strtotime($rs->tarikh_tamat_sijil)) }} @else ?? @endif )</small>
                         <br>
                         </td>
                         <td valign="top" align="center">
                             <p>{{ date('d/m/Y', strtotime($rs->create_dt)) }}</p>
                         </td>
                         <td align="center">
-                            <a href="/admin/audit/modalAudit/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
+                            <a href="/admin/audit/detail/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

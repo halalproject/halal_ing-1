@@ -14,16 +14,16 @@ class StaffController extends Controller
 
     public function create()
     {
-        return view('admin/modalStaff');
+        return view('admin/modal_staff');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin/modalStaff');
+        return view('admin/modal_Staff');
     }
 
     public function resetPassword()
     {
-        return view('admin/modalResetPassword');
+        return view('admin/reset_password');
     }
 }

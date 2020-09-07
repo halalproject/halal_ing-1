@@ -21,7 +21,7 @@
             </div>            
             <br />
             <div class="box-body">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <div class="col-md-3">
                         <select name="lj_kategori" onchange="" class="form-control">
                             <option value="">Sijil Halal</option>
@@ -46,10 +46,9 @@
                         	onclick="">
                         	<i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>       
+                </div>        --}}
             </div>
-            <br>
-            <br>
+            <div align="right" style="padding-right:10px"><b>{{ $client->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -65,27 +64,37 @@
                 </tr>
                 </thead>
                 <tbody>
+                    @php $bil = $client->perPage()*($client->currentPage()-1) @endphp
+                    @foreach ($client as $rs)
                     <tr>
-                        <td>1</td>
-                        <td><a href="/admin/syarikat/view/12" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
-                        TESTING HALAL JAKIM</td>
-                        <td>Pembekal</td>
-                        <td>000000</td>
-                        <td>0137057666</td>
-                        <td>ICTHALAL@ISLAM.GOV.MY</td>
-                        <td>Ostia Bangi, 43650, Bandar Baru Bangi, Selangor </td>
+                        <td valign="top" align="center">{{ ++$bil }}</td>
+                        <td valign="top" align="left">
+                            <a href="/admin/syarikat/view/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
+                            {{ $rs->company_name }}
+                        </td>
+                        <td valign="top" align="left">{{ $rs->company_type }}</td>
+                        <td valign="top" align="center">{{ $rs->company_reg_code }}</td>
+                        <td valign="top" align="center">{{ $rs->company_tel }}</td>
+                        <td valign="top" align="center">{{ $rs->company_email }}</td>
+                        <td valign="top" align="left">
+                            {{ $rs->company_address_1 }} {{ $rs->company_address_2 }} {{ $rs->company_address_3 }} {{ $rs->company_city }} {{ $rs->company_poscode }}
+                        </td>
                         <td align="center">
-                            <a href="/admin/syarikat/ramuan/12">
-                                <span class="btn btn-primary">
-                                    <i class="fa fa-list"></i>
-                                </span>
+                            <a href="/admin/syarikat/ramuan/{{ $rs->userid }}">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
               </table>
             </div>
 		</div>
+        <div align="center" class="d-flex justify-content-center">
+            {!! $client->render() !!}
+        </div>
      </div>
   <!--</div>-->    
 <!-- DataTables -->
