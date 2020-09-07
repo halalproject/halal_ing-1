@@ -18,6 +18,46 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+
+    <style>
+        .highlight {
+            color: yellow;
+        }
+    </style>
+
+    <script>
+        function do_page(nama)
+        {
+            
+            var pathname = window.location.pathname;
+
+            if(nama.trim()==''){
+                window.location = pathname;
+            } else {
+                window.location = pathname+'?carian='+nama;
+            }
+
+           
+        }
+
+        function do_cari() {
+            var cari = $('#cari').val();
+
+            var pathname = window.location.pathname;
+
+            if(cari.trim()==''){
+            window.location = pathname;
+            } else {
+            window.location = pathname+'?cari='+cari;
+            }
+            
+
+        }
+    </script>
+    @php
+    $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+    $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
+    @endphp
     
     <body id="page-top">
         <!-- Navigation-->
@@ -47,9 +87,9 @@
                         <div class="form-group row" style="padding-top:40px;padding-bottom:10px;padding-left:80px;">
                             <label for="colFormLabelLg" class="col-sm-3 col-form-label">Semak Status Halal :</label>
                                 <div class="input-group col-sm-7">
-                                    <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" style="box-shadow: 1px 3px #d6d6d6;">
+                                    <input type="text" class="form-control form-control-lg" style="box-shadow: 1px 3px #d6d6d6;" name="cari" id="cari" value="{{ $cari }}">
                                     <div class="input-group-prepend">
-                                        <button class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;">
+                                        <button class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;" onclick="do_cari()">
                                             <i class="fas fa-search text-white"></i>
                                         </button>
                                     </div>
@@ -58,82 +98,70 @@
                         <br>
                         <div class="form-group row col-12 text-center">
                             <div class="col-sm-2">
-                                <a href="/ramuanList" >
-                                    <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
-                                        <div class="">
-                                            <i class="fab fa-pagelines fa-2x"></i>
-                                        </div>
-                                        <div class="">
-                                            <label class="title">Tumbuhan </label><br>
-                                            <span class="badge badge-danger">{{ $tumbuhan->count() }}</span>
-                                        </div>
-                                    </button>
-                                </a>
+                                <button name="tumbuhan" id="tumbuhan" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('tumbuhan')">
+                                    <div class="">
+                                        <i class="fab fa-pagelines fa-2x"></i>
+                                    </div>
+                                    <div class="">
+                                        <label class="title">Tumbuhan </label><br>
+                                        <span class="badge badge-danger">{{ $tumbuhan->count() }}</span>
+                                    </div>
+                                </button>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" >
-                                    <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
-                                        <div class="image">
-                                            <i class="fas fa-atom fa-2x"></i>
-                                        </div>
-                                        <div class="">
-                                            <label class="title">Kimia </label><br>
-                                            <span class="badge badge-danger">{{ $kimia->total() }}</span>
-                                        </div>
-                                    </button>
-                                </a>
+                                <button name="kimia" id="kimia" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('kimia')">
+                                    <div class="image">
+                                        <i class="fas fa-atom fa-2x"></i>
+                                    </div>
+                                    <div class="">
+                                        <label class="title">Kimia </label><br>
+                                        <span class="badge badge-danger">{{ $kimia->count() }}</span>
+                                    </div>
+                                </button>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" >
-                                    <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
-                                        <div class="image">
-                                            <i class="fas fa-paw fa-2x"></i>
-                                        </div>
-                                        <div class="">
-                                            <label class="title">Haiwan </label><br>
-                                            <span class="badge badge-danger">{{ $haiwan->total() }}</span>
-                                        </div>
-                                    </button>
-                                </a>
+                                <button name="haiwan" id="haiwan" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('haiwan')">
+                                    <div class="image">
+                                        <i class="fas fa-paw fa-2x"></i>
+                                    </div>
+                                    <div class="">
+                                        <label class="title">Haiwan </label><br>
+                                        <span class="badge badge-danger">{{ $haiwan->count() }}</span>
+                                    </div>
+                                </button>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" >
-                                    <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
-                                        <div class="image">
-                                            <i class="fas fa-leaf fa-2x"></i>
-                                        </div>
-                                        <div class="">
-                                            <label class="title">Semula Jadi </label><br>
-                                            <span class="badge badge-danger"></span>
-                                        </div>
-                                    </button>
-                                </a>
+                                <button name="semulaJadi" id="semulaJadi" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('semulaJadi')">
+                                    <div class="image">
+                                        <i class="fas fa-leaf fa-2x"></i>
+                                    </div>
+                                    <div class="">
+                                        <label class="title">Semula Jadi </label><br>
+                                        <span class="badge badge-danger">{{ $semulaJadi->count() }}</span>
+                                    </div>
+                                </button>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" >
-                                    <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
-                                        <div class="image">
-                                            <i class="far fa-smile fa-2x"></i>
-                                        </div>
-                                        <div class="">
-                                            <label class="title">Lain-lain </label><br>
-                                            <span class="badge badge-danger"></span>
-                                        </div>
-                                    </button>
-                                </a>
+                                <button name="other" id="other" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('other')">
+                                    <div class="image">
+                                        <i class="far fa-smile fa-2x"></i>
+                                    </div>
+                                    <div class="">
+                                        <label class="title">Lain-lain </label><br>
+                                        <span class="badge badge-danger">{{ $other->count() }}</span>
+                                    </div>
+                                </button>
                             </div>
                             <div class="col-sm-2">
-                                <a href="/ramuanList" >
-                                    <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
-                                        <div class="image">
-                                            <i class="fas fa-book-open fa-2x"></i>
-                                        </div>
-                                        <div class="">
-                                            <label class="title">Semua </label><br>
-                                            <span class="badge badge-danger"></span>
-                                        </div>
-                                    </button>
-                                </a>
+                                <button name="all" id="all" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('')">
+                                    <div class="image">
+                                        <i class="fas fa-book-open fa-2x"></i>
+                                    </div>
+                                    <div class="">
+                                        <label class="title">Semua </label><br>
+                                        <span class="badge badge-danger">{{ $all->count() }}</span>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -141,7 +169,20 @@
                     <br>
 
                     <div class="col-12">
-                        <h4 style="padding-top:15px;"><b>Senarai Ramuan (Tumbuhan) </b></h4>
+                        <h4 style="padding-top:15px;"><b>Senarai Ramuan 
+                        ( @if($carian == 'tumbuhan') 
+                            Tumbuhan
+                        @elseif($carian == 'kimia') 
+                            Kimia
+                        @elseif($carian == 'haiwan') 
+                            Haiwan
+                        @elseif($carian == 'semulaJadi') 
+                            Semula Jadi
+                        @elseif($carian == 'other') 
+                            Lain-lain
+                        @elseif($carian == '') 
+                            Semua
+                        @endif ) </b></h4>
                         <br>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
@@ -153,36 +194,41 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $bil = $list->perPage()*($list->currentPage()-1) @endphp
+                                @foreach($list as $l)
+
+                                @php
+                                $text = preg_replace('#'. preg_quote($cari) .'#i', '<span class="highlight">\\0</span>', $l->nama_ramuan);
+                                @endphp
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ ++$bil }}</td>
                                     <td>	
-                                        <b>MILK FLAVOR SC003932</b><br>
-                                        AB MAURI MALAYSIA SDN. BHD.<br>
-                                        LOT 4185, JALAN KB 1/9,<br>
-                                        MYS.<br>
-                                        03-89612864.
+                                        <b>{{ $text }} @if(!empty($l->nama_saintifik)) ({{ $l->nama_saintifik }}) @endif </b><br>
+                                        {{ $l->nama_pengilang }}<br>    
+                                        {{ $l->alamat_pengilang_1 }}<br>
                                     </td>
-                                    <td>19/9/2023</td>
+                                    <td>{{ date('d/m/Y', strtotime($l->tarikh_tamat_sijil)) }}</td>
                                     <td>
                                         <button type="button" class="btn btn-info col-sm-10" data-target="#companyDetail" data-toggle="modal">
                                             <i class="fa fa-list"></i>
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
-
-                        <ul class="pagination" style="padding-right:450px;padding-left:450px;">
-                            <li><a href="#">Sebelum</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">Selepas</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div align="center" class="d-flex justify-content-center">
+            @if(!empty($carian))
+                {!! $list->appends(['carian'=>$carian])->render() !!}
+            @else
+                {!! $list->appends(['cari'=>$cari])->render() !!}
+            @endif
+        </div>
 
     <!-- Modal -->
     <div class="modal fade" id="companyDetail" role="dialog">
@@ -362,7 +408,7 @@
                                 <h4 class="title"><span class="text-white"><b>Pengunjung</b></span></h4>
                                 
                                 <h6 style="color:#00eaff;">
-                                    Jumlah : <span name="totalvis" id="totalvis">xxx</span><br>
+                                    Jumlah : <span name="countvis" id="totalvis">xxx</span><br>
                                     Hari Ini : <span name="todayvis" id="todayvis">xxx</span><br>
                                     Kelmarin : <span name="yesterdayvis" id="yesterdayvis">xxx</span><br>
                                     Bulan Ini : <span name="thismonthvis" id="thismonthvis">xxx</span><br>

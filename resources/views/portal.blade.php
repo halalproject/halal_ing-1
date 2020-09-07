@@ -84,7 +84,7 @@
                         </div>
                         <div class="form-group row col-12 text-center">
                             <div class="col-sm-4">
-                                <a href="/ramuanList">
+                                <a href="/ramuanList?carian=tumbuhan">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="">
                                             <i class="fab fa-pagelines fa-2x"></i>
@@ -96,7 +96,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList">
+                                <a href="/ramuanList?carian=kimia">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-atom fa-2x"></i>
@@ -108,7 +108,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList">
+                                <a href="/ramuanList?carian=haiwan">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-paw fa-2x"></i>
@@ -125,7 +125,7 @@
 
                         <div class="form-group row col-12 text-center">
                             <div class="col-sm-4">
-                                <a href="/ramuanList">
+                                <a href="/ramuanList?carian=semulaJadi">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="fas fa-leaf fa-2x"></i>
@@ -137,7 +137,7 @@
                                 </a>
                             </div>
                             <div class="col-sm-4">
-                                <a href="/ramuanList">
+                                <a href="/ramuanList?carian=other">
                                     <button type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" >
                                         <div class="image">
                                             <i class="far fa-smile fa-2x"></i>
