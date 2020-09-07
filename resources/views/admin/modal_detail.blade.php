@@ -58,7 +58,11 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label">Status :</label>
                         <div class="col-sm-5">
-                            {{ $rs->is_lulus }}
+                            @if($rs->status == 6)
+                                <span class='label label-danger'>Tolak</span>
+                            @else
+                                <span class='label label-success'>Lulus</span>
+                            @endif
                         </div>
                     </div>
                 </div>

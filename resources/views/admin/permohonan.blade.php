@@ -65,7 +65,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                 <div class="col-md-1" align="right">
                     <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                 </div>
-            </div>  
+            </div>
         </div>
         <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>
         <div class="box-body">
@@ -102,7 +102,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endif
                         </td>
                         <td align="center">
-                            <a href="premohonan/modalSenaraiPermohonan" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="premohonan/modal_permohonan/{{ $mohon->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-primary">
                                     <i class="far fa-folder-open fa-lg" style="color: #FFFFFF;"></i> Buka
                                 </button>

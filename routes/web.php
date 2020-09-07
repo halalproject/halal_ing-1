@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
-    Route::get('premohonan/modalSenaraiPermohonan','Admin\PermohonanController@modalSenaraiPermohonan');
+    Route::get('premohonan/modal_permohonan/{id}','Admin\PermohonanController@modal_permohonan');
 
     //Proses Semakan
     Route::get('proses','Admin\SemakanController@index')->name('Semak Permohonan');
@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin'],function(){
 
     //Permohonan Ditolak
     Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
-    Route::get('tolak/modalPermohonanDitolak','Admin\PermohonanController@modalPermohonanDitolak');
+    Route::get('tolak/detail/{id}','Admin\PermohonanController@detail');
 
     //Audit
     Route::get('audit','Admin\AuditController@index')->name('Audit');

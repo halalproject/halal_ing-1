@@ -12,28 +12,41 @@ class PermohonanController extends Controller
     public function index(Request $request)
     {
         $cat = Ref_Sumber_Bahan::get();
-        $permohonan = Ramuan::where('status',1)->whereNull('tarikh_buka')->paginate(10);
+        $permohonan = Ramuan::where('status',1)->whereNull('tarikh_buka');
 
+        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+
+        $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
         // dd($permohonan);
         return view('admin/permohonan',compact('cat','permohonan'));
     }
 
     public function tolak()
     {
-        // dd('hello');
+        $cat = Ref_Sumber_Bahan::get();
+        $permohonan = Ramuan::where('status',6);
 
-        return view('admin/permohonan_tolak');
+        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
+        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+
+        $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
+
+        return view('admin/permohonan_tolak',compact('cat','permohonan'));
     }
     
-    public function modalSenaraiPermohonan(Request $request)
+    public function modal_permohonan($id)
     {
-        // dd('jj');
-        return view('admin/modalSenaraiPermohonan');
+        // dd($id);
+        $rs = Ramuan::find($id);
+        return view('admin/modal_permohonan',compact('rs'));
     }
 
-    public function modalPermohonanDitolak(Request $request)
+    public function detail($id)
     {
-        // dd('jj');
-        return view('admin/modalPermohonanDitolak');
+        $rs = Ramuan::find($id);
+        return view('admin/modal_detail',compact('rs'));
     }
 }
