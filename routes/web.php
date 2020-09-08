@@ -95,10 +95,10 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('syarikat/detail/{id}','Admin\SyarikatController@detail');
 
     //Staff
-    Route::get('staff','Admin\StaffController@index')->name('Staff');
+    Route::get('staff','Admin\StaffController@index')->name('Kakitangan');
     Route::get('staff/create','Admin\StaffController@create');
-    Route::get('staff/resetPassword','Admin\StaffController@resetPassword');
-
-   
+    Route::get('staff/edit/{id}','Admin\StaffController@edit');
+    Route::post('staff/store','Admin\StaffController@store');
+    Route::post('staff/reset/{id}','Admin\StaffController@reset');
     
 });

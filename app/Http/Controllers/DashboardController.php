@@ -66,7 +66,13 @@ class DashboardController extends Controller
              }'
         ]);
 
-        return view('admin/dashboard',compact('calendar'));
+        $baru = Ramuan::where('status',1)->whereNull('tarikh_buka');
+        $semak = Ramuan::where('status',1)->whereNotNull('tarikh_buka');
+        $lulus = Ramuan::where('status',1)->where('is_semak',1);
+        $audit = Ramuan::where('is_lulus',1)->where('is_delete',0);
+
+
+        return view('admin/dashboard',compact('calendar','baru','semak','lulus','audit'));
     }
     
     public function event_create()
