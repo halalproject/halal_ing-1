@@ -47,4 +47,12 @@ class PortalController extends Controller
         // dd(DB::getQueryLog());
         return view('ramuan_list', compact('tumbuhan','haiwan','kimia','semulaJadi','other','all','list'));
     }
+
+    public function syarikat($id)
+    {
+        // dd($id);
+        $company = Ramuan::find($id);
+        $list = Ramuan::where('create_by', $company->create_by)->paginate(10);
+        return view('modalSyarikat', compact('company','list'));
+    }
 }

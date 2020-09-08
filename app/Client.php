@@ -15,4 +15,9 @@ class Client extends Model implements Authenticatable
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function negeri()
+    {
+        return $this->belongsTo('App\Ref_Negeri','company_state');
+    }
 }

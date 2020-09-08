@@ -26,4 +26,9 @@ class Ramuan extends Model
     {
         return $this->belongsTo('App\Ref_Negeri','negeri_pembekal_id');
     }
+
+    public function syarikat()
+    {
+        return $this->belongsTo('App\Client','create_by','userid');
+    }
 }

@@ -18,6 +18,23 @@
         <!-- Sweetalert -->
 		<link rel="stylesheet" href="{{ asset('salert/sweetalert2.css') }}">
     </head>
+
+    <script>
+        function do_cari() {
+            var cari = $('#cari').val();
+            var pathname = window.location.pathname;
+
+            if(cari.trim()==''){
+            window.location = pathname;
+            } else {
+            window.location = pathname+'ramuanList?cari='+cari;
+            }
+        }
+    </script>
+
+    @php
+    $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
+    @endphp
     
     <body id="page-top">
         <!-- Navigation-->
@@ -76,9 +93,9 @@
                         <div class="form-group row">
                             <label for="colFormLabelLg" class="col-sm-4 col-form-label">Semak Status Halal :</label>
                                 <div class="input-group col-sm-7">
-                                    <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" style="box-shadow: 1px 3px #d6d6d6;">
+                                    <input type="text" class="form-control form-control-lg" name="cari" id="cari" value="{{ $cari }}" style="box-shadow: 1px 3px #d6d6d6;">
                                     <div class="input-group-prepend">
-                                        <button class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;"><i class="fas fa-search text-white"></i></button>
+                                        <button class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;"><i class="fas fa-search text-white" onclick="do_cari()"></i></button>
                                     </div>
                                 </div>
                         </div>

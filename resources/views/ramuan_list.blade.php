@@ -16,14 +16,10 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 
-    <style>
-        .highlight {
-            color: red;
-        }
-    </style>
+        
+    </head>
 
     <script>
         function do_page(nama)
@@ -50,8 +46,6 @@
             } else {
             window.location = pathname+'?cari='+cari;
             }
-            
-
         }
     </script>
     @php
@@ -96,9 +90,9 @@
                                 </div>
                         </div>
                         <br>
-                        <div class="form-group row col-12 text-center">
+                        <div class="form-group row col-12 text-center" >
                             <div class="col-sm-2">
-                                <button name="tumbuhan" id="tumbuhan" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('tumbuhan')">
+                                <button name="tumbuhan" id="tumbuhan" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='tumbuhan') active @endif" style="padding: 10px;" onclick="do_page('tumbuhan')">
                                     <div class="">
                                         <i class="fab fa-pagelines fa-2x"></i>
                                     </div>
@@ -109,7 +103,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="kimia" id="kimia" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('kimia')">
+                                <button name="kimia" id="kimia" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='kimia') active @endif" style="padding: 10px;" onclick="do_page('kimia')">
                                     <div class="image">
                                         <i class="fas fa-atom fa-2x"></i>
                                     </div>
@@ -120,7 +114,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="haiwan" id="haiwan" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('haiwan')">
+                                <button name="haiwan" id="haiwan" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='haiwan') active @endif" style="padding: 10px;" onclick="do_page('haiwan')">
                                     <div class="image">
                                         <i class="fas fa-paw fa-2x"></i>
                                     </div>
@@ -131,7 +125,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="semulaJadi" id="semulaJadi" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('semulaJadi')">
+                                <button name="semulaJadi" id="semulaJadi" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='semulaJadi') active @endif" style="padding: 10px;" onclick="do_page('semulaJadi')">
                                     <div class="image">
                                         <i class="fas fa-leaf fa-2x"></i>
                                     </div>
@@ -142,7 +136,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="other" id="other" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('other')">
+                                <button name="other" id="other" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='other') active @endif" style="padding: 10px;" onclick="do_page('other')">
                                     <div class="image">
                                         <i class="far fa-smile fa-2x"></i>
                                     </div>
@@ -153,7 +147,7 @@
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="all" id="all" type="button" class="btn btn-outline-info col-sm-10" style="padding: 10px;" onclick="do_page('')">
+                                <button name="all" id="all" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='') active @endif" style="padding: 10px;" onclick="do_page('')">
                                     <div class="image">
                                         <i class="fas fa-book-open fa-2x"></i>
                                     </div>
@@ -184,6 +178,8 @@
                             Semua
                         @endif ) </b></h4>
                         <br>
+
+                        <div align="right" style="padding-right:10px"><b>{{ $list->total() }} rekod dijumpai</b></div>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
@@ -198,23 +194,35 @@
                                 @foreach($list as $l)
                                 @php
                                     if(!empty($cari)){
-                                        $text = preg_replace('#('.$cari.')#i', '<span class="highlight">\1</span>', $l->nama_ramuan);
+                                        $text = preg_replace('#('.$cari.')#i', '<font color="red">\1</font>', $l->nama_ramuan);
                                     } else {
                                         $text = $l->nama_ramuan;
+                                    }
+
+                                    if(!empty($cari)){
+                                        $text2 = preg_replace('#('.$cari.')#i', '<font color="red">\1</font>', $l->nama_saintifik);
+                                    } else {
+                                        $text2 = $l->nama_saintifik;
                                     }
                                 @endphp
                                 <tr>
                                     <td>{{ ++$bil }}</td>
                                     <td>	
-                                        <b>{!! $text !!} @if(!empty($l->nama_saintifik)) ({{ $l->nama_saintifik }}) @endif </b><br>
-                                        {{ $l->nama_pengilang }}<br>    
-                                        {{ $l->alamat_pengilang_1 }}<br>
+                                        <b>{!! $text !!} @if(!empty($l->nama_saintifik)) ({!! $text2 !!}) @endif </b><br>
+                                        {{ $l->syarikat->company_name }}<br> 
+                                        {{ $l->syarikat->company_address_1 }} <br>
+                                        {{ $l->syarikat->company_address_2 }} <br>
+                                        {{ $l->syarikat->company_poscode }} {{ $l->syarikat->company_address_3 }} <br>
+                                        {{ $l->syarikat->company_city }} <br> 
+                                        {{ $l->syarikat->company_country }}
                                     </td>
                                     <td>{{ date('d/m/Y', strtotime($l->tarikh_tamat_sijil)) }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-info col-sm-10" data-target="#companyDetail" data-toggle="modal">
-                                            <i class="fa fa-list"></i>
-                                        </button>
+                                        <a href="/view/{{ $l->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Syarikat" data-backdrop="static">
+                                            <button type="button" class="btn btn-info col-sm-10" >
+                                                <i class="fa fa-list"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -222,141 +230,26 @@
                         </table>
                     </div>
                 </div>
+                <div align="center" class="d-flex justify-content-center">
+                    @if(!empty($carian))
+                        {!! $list->appends(['carian'=>$carian])->render() !!}
+                    @else
+                        {!! $list->appends(['cari'=>$cari])->render() !!}
+                    @endif
+                </div>
             </div>
         </section>
 
-        <div align="center" class="d-flex justify-content-center">
-            @if(!empty($carian))
-                {!! $list->appends(['carian'=>$carian])->render() !!}
-            @else
-                {!! $list->appends(['cari'=>$cari])->render() !!}
-            @endif
-        </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="companyDetail" role="dialog">
-        <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header" style="background:-webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:10px;">
-            <h4 class="modal-title">Maklumat Syarikat</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="col-md-12">
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">Nama Syarikat :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control text-uppercase">era whiz ict</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">Alamat :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control">NO.1 Jalan Ostia Bangi, Selangor</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">Negeri :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control">Selangor</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">No. Tel :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control">012-0000000</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">No. Fax :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control">03-000000000</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">Emel :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="email" class="form-control" >erawhizict.gmail.com</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">Laman Web :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control">www.erawhizict.com.my</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">No. Rujukan :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control">AA123456</b>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin:0px;">
-                        <div class="row">
-                            <label class="col-sm-3 control-label">Pegawai Rujukan :</label>
-                            <div class="col-sm-9">
-                                <b style="border:none;" type="text" class="form-control text-uppercase">ABU BIN BAKAR</b>
-                            </div>
-                        </div>
-                    </div>
-
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                        <thead>
-                            <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                            <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
-                            <th width="70%"><font color="#000000"><div align="left">Nama Ramuan & Alamat Syarikat</div></font></th>
-                            <th width="20%"><font color="#000000"><div align="left">Tarikh Luput Sijil Halal</font></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>	
-                                    <b>MILK FLAVOR SC003932</b><br>
-                                    AB MAURI MALAYSIA SDN. BHD.<br>
-                                    LOT 4185, JALAN KB 1/9,<br>
-                                    MYS.<br>
-                                    03-89612864.
-                                </td>
-                                <td>19/9/2023</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
-            </button>
-            </div>
-        </div>
+        <!-- Modal -->
+        <div class="bs-example">
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog modal-lg static">
+					<div class="modal-content">
+					</div>
+				</div>
+			</div>
+		</div>
         
-        </div>
-    </div>
         
         <!--Footer section start-->
         <section class="page-section" id="contact">
@@ -441,12 +334,13 @@
          </section>
          <!--Footer section end--> 
         
+        
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
     </body>
 </html>

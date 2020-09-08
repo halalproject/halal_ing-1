@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 //Portal
 Route::get('/','PortalController@index')->name('portal');
 Route::get('/ramuanList','PortalController@ramuanList');
+Route::get('/view/{id}','PortalController@syarikat');
 //Login
 Route::get('/login','LoginController@index')->name('login');
 Route::post('/auth','LoginController@auth');

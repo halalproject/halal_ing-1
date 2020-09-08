@@ -4635,8 +4635,8 @@ input[type=button].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #fed136;
-  border-color: #fed136;
+  background-color: #00eaff;
+  border-color: #00eaff;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -5465,6 +5465,7 @@ a.close.disabled {
   max-height: calc(100vh - 1rem);
   overflow: hidden;
 }
+
 .modal-dialog-scrollable .modal-header,
 .modal-dialog-scrollable .modal-footer {
   flex-shrink: 0;
