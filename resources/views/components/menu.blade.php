@@ -185,7 +185,7 @@
 									<li class="@if(\Request::is('admin/staff*')) nav-expanded nav-active @endif">
 										<a href="/admin/staff">
 											<i class="fa fa-users" aria-hidden="true"></i>
-											<span>Staff</span>
+											<span>Kakitangan</span>
 										</a>
 									</li>
 

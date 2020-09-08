@@ -36,12 +36,12 @@ function do_pengumuman()
                                         <div class="summary">
                                             <h4 class="title">Permohonan Baru</h4>
                                             <div class="info">
-                                                <strong class="amount">54</strong>
+                                                <strong class="amount">{{ $baru->count() }}</strong>
                                             </div>
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/admin/permohonan" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -59,12 +59,12 @@ function do_pengumuman()
                                         <div class="summary">
                                             <h4 class="title">Proses Semakan</h4>
                                             <div class="info">
-                                                <strong class="amount">54</strong>
+                                                <strong class="amount">{{ $semak->count() }}</strong>
                                             </div>
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/admin/proses" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -82,12 +82,12 @@ function do_pengumuman()
                                         <div class="summary">
                                             <h4 class="title">Proses Kelulusan</h4>
                                             <div class="info">
-                                                <strong class="amount">14</strong>
+                                                <strong class="amount">{{ $lulus->count() }}</strong>
                                             </div>
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/admin/lulus" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -105,12 +105,12 @@ function do_pengumuman()
                                         <div class="summary">
                                             <h4 class="title">Audit</h4>
                                             <div class="info">
-                                                <strong class="amount">231010</strong>
+                                                <strong class="amount">{{ $audit->count() }}</strong>
                                             </div>
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/admin/audit" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
