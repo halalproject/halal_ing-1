@@ -52,7 +52,7 @@
 		<script src="{{ asset('salert/sweetalert2.common.js') }}"></script>
 
   	</head>
-	  @if(\Request::is('login'))
+	  @if(\Request::is('login') || \Request::is('ramuanList'))
 	  	@yield('content')
 	  @else	  
 		<x-menu />

@@ -18,7 +18,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 
-        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
     </head>
 
     <script>
@@ -46,6 +48,11 @@
             } else {
             window.location = pathname+'?cari='+cari;
             }
+        }
+
+        function do_modal(id)
+        {
+            $('.modal-content').load('/view/'+id);
         }
     </script>
     @php
@@ -218,7 +225,7 @@
                                     </td>
                                     <td>{{ date('d/m/Y', strtotime($l->tarikh_tamat_sijil)) }}</td>
                                     <td>
-                                        <a href="/view/{{ $l->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Syarikat" data-backdrop="static">
+                                        <a onclick="do_modal({{ $l->id }})" data-toggle="modal" data-target="#myModal" title="Maklumat Syarikat" data-backdrop="static">
                                             <button type="button" class="btn btn-info col-sm-10" >
                                                 <i class="fa fa-list"></i>
                                             </button>
@@ -335,9 +342,7 @@
          <!--Footer section end--> 
         
         
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
