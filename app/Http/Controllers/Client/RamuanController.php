@@ -20,6 +20,16 @@ class RamuanController extends Controller
         if(!empty($request->sijil)){ $ramuan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $ramuan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+
+        if(!empty($request->days)){
+            if($request->days == 90){
+                $ramuan->whereBetween('tarikh_tamat_sijil',[now()->addDays(30),now()->addDays(90)]);
+            } else if($request->days == 30){
+                $ramuan->whereBetween('tarikh_tamat_sijil',[now()->addDays(7),now()->addDays(30)]);
+            } else {
+                $ramuan->where('tarikh_tamat_sijil','<=',now()->addDays(7));
+            }
+        }
         
         $ramuan = $ramuan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();

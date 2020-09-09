@@ -33,7 +33,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-2 control-label"><b>Jenis Syarikat :</b></label>
                         <div class="col-sm-5">{{ $user->company_type }}</div>
-                        <label class="col-sm-3 control-label"><b>Kategori Syarikat :</b></label>
+                        <label class="col-sm-2 control-label"><b>Kategori Syarikat :</b></label>
                         <div class="col-sm-2">{{ $user->company_category }}</div>
                     </div>
                 </div>
@@ -58,22 +58,31 @@ function do_close()
                         <div class="col-sm-5">
                             <input type="text" name="company_web" id="company_web" class="form-control" value="{{ $user->company_web }}">
                         </div>
-                        <label class="col-sm-3 control-label"><b>No. Fax :</b></label>
+                        <label class="col-sm-2 control-label"><b>No. Fax :</b></label>
                         <div class="col-sm-2">
-                            <input type="text" name="company_fax" id="company_fax" class="form-control" value="{{ $user->company_fax }}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" name="company_fax" id="company_fax" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->company_fax }}">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><b>Emel :</b></label>
+                        <label class="col-sm-2 control-label"><b>Email :</b></label>
                         <div class="col-sm-5">
-                            <input type="text" name="company_email" id="company_email" class="form-control" value="{{ $user->company_email }}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" name="company_email" id="company_email" data-plugin-masked-input placeholder="abc@gmail.com" class="form-control" value="{{ $user->company_email }}">
+                            </div>
                         </div>
-                        <label class="col-sm-3 control-label"><b>No. Telefon :</b></label>
+                        <label class="col-sm-2 control-label"><b>No. Telefon :</b></label>
                         <div class="col-sm-2">
-                            <input type="text" name="company_tel" id="company_tel" class="form-control" value="{{ $user->company_tel }}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" name="company_tel" id="company_tel" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->company_tel }}">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +97,7 @@ function do_close()
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama pegawai :</label>
+                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Nama pegawai :</label>
                         <div class="col-sm-8">
                             <input type="text" name="contact_name" id="contact_name" class="form-control" value="{{ $user->contact_name }}">
                         </div>
@@ -97,7 +106,7 @@ function do_close()
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No K/P :</label>
+                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No K/P :</label>
                         <div class="col-sm-3">
                             <input type="text" name="contact_ic" id="contact_ic" class="form-control" value="{{ $user->contact_ic }}">
                         </div>
@@ -106,7 +115,7 @@ function do_close()
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Jawatan :</label>
+                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Jawatan :</label>
                         <div class="col-sm-8">
                             <input type="text" name="contact_position" id="contact_position" class="form-control" value="{{ $user->contact_position }}">
                         </div>
@@ -115,18 +124,24 @@ function do_close()
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No. Telefon :</label>
-                        <div class="col-sm-3">
-                            <input type="text" name="contact_tel" id="contact_tel" class="form-control" value="{{ $user->contact_tel }}">
+                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. Telefon :</label>
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                                <input type="text" name="contact_tel" id="contact_tel" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->contact_tel }}">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Email Pegawai :</label>
+                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Email Pegawai :</label>
                         <div class="col-sm-4">
-                            <input type="text" name="contact_email" id="contact_email" class="form-control" value="{{ $user->contact_email }}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input type="text" name="contact_email" id="contact_email" data-plugin-masked-input placeholder="abc@gmail.com" class="form-control" value="{{ $user->contact_email }}">
+                            </div>
                         </div>
                     </div>
                 </div>

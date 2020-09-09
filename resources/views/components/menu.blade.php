@@ -18,7 +18,11 @@
                         <a href="#" data-toggle="dropdown"></a>
 						<div class="dropdown-menu" style="margin-left:-50px;width:250px">
 							<div style="padding-left:10px"><br>
-							<span class="name"><b>dasdadasdasdad</b></span>
+							@if(Auth::guard('client')->user())
+							<span class="name"><b>{{ Auth::guard('client')->user()->company_name }}</b></span>
+							@else
+							<span class="name"><b>{{ Auth::guard('admin')->user()->company_name }}</b></span>
+							@endif
 							</div>
                             
 							<ul class="list-unstyled">
@@ -44,7 +48,12 @@
 								<img src="{{ asset('images/person.jpg') }}" alt="" class="img-circle" data-lock-picture="{{ asset('images/person.jpg') }}" />
 							</figure>
 							<div class="profile-info" data-lock-name="wwwww" data-lock-email="">
-								<span class="name"><b>asdadasdasdasdadasdad</b></span>
+								@if(\Request::is('client*'))
+								<span class="name"><b>{{ Auth::guard('client')->user()->company_name }}</b></span>
+								@else
+								<span class="name"><b>{{ Auth::guard('admin')->user()->username }}</b></span>
+								<span class="name">{{ Auth::guard('admin')->user()->jawatan->nama }} ( {{ Auth::guard('admin')->user()->level->nama }} )</span>
+								@endif
 							</div>
 							<i class="fa custom-caret"></i>
 						</a>

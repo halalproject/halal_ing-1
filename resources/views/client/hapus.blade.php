@@ -155,7 +155,30 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endif
                         </td>
                         <td valign="top" align="center">
-                            {{ date('d/m/Y',strtotime($hapus->tarikh_tamat_sijil)) }}
+                            <p>{{ date('d/m/Y', strtotime($hapus->tarikh_tamat_sijil)) }}</p>
+                            @php
+                            $tkh = $hapus->tarikh_tamat_sijil;
+                            $date1 = time();
+                            $y = substr($tkh,0,4);
+                            $m = substr($tkh,5,2);
+                            $d = substr($tkh,8,2);
+                            $date2 = mktime(0,0,0,$m,$d,$y);
+                            $dateDiff = $date2 - $date1;
+                            $fullDays = floor($dateDiff/(60*60*24));
+                            if($fullDays<=7) {
+                                if($fullDays<0) { 
+                                    $fd=0-$fullDays; 
+                                    $fd="( -".$fd.") Hari"; 
+                                } else { 
+                                    $fd=$fullDays." Hari Lagi"; 
+                                }
+                                print "<span class='label label-danger'><b>".$fd."</b></span>";
+                            } else if($fullDays <= 30) {
+                                print "<span class='label label-warning'><b>".$fullDays." Hari Lagi</b></span>";
+                            } else if($fullDays <= 90){
+                                print "<span class='label label-success'><b>".$fullDays." Hari Lagi</b></span>";
+                            }
+                            @endphp
                         </td>
                         <td align="center">
                             <a href="/client/hapus/view/{{ $hapus->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
