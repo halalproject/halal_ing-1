@@ -11,16 +11,65 @@ function do_close()
 
 function do_simpan()
 {
-    var 
 	var docContents = CKEDITOR.instances['catatan'].getData(); 
 	document.halal.catatan_text.value=docContents;
+
+    if(!$("input:checkbox").is(":checked")){
+        swal({
+            title: 'Amaran',
+            text: 'Sila lengkapkan maklumat sebelum simpan.',
+            type: 'warning',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
+    } else {
+        $.ajax({
+            url:'/admin/semak/komen', //&datas='+datas,
+            type:'POST',
+            //dataType: 'json',
+            beforeSend: function () {
+                $('#simpan').attr("disabled","disabled");
+                $('.dispmodal').css('opacity', '.5');
+            },
+            data: $('form').serialize(),
+            //data: datas,
+            success: function(data){
+                console.log(data);
+                //alert(data);
+                if(data=='OK'){
+                    swal({
+                    title: 'Berjaya',
+                    text: 'Maklumat telah berjaya dikemaskini',
+                    type: 'success',
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                    }).then(function () {
+                        reload = window.location; 
+                        window.location = reload;
+                    });
+                } else if(data=='ERR'){
+                    swal({
+                    title: 'Amaran',
+                    text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
+                    type: 'error',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                    });
+                }
+            }
+        });
+    }
 }
 </script>
 
 <div class="col-md-12">
+    @csrf
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-            <h6 class="panel-title"><font color="#000000" size="3"><b>Maklumat Permohonan</b></font></h6>
+            <h6 class="panel-title"><font color="#000000" size="3"><b>Maklumat Permohonan (@if(empty($rs->is_semak)) Semakan @else Kelululsan @endif)</b></font></h6>
         </header>
         <div class="panel-body">
             <!-- Start Tab -->
@@ -41,7 +90,6 @@ function do_simpan()
                         <div class="panel-body">
                             <div class="col-md-12">
                                 <input type="hidden" name="id" id="id" class="form-control" value="{{ $rs->id }}">
-
                                 <div class="form-group">
                                     <div class="row">
                                         <label class="col-sm-3 control-label">No Permohonan :</label>
@@ -152,21 +200,19 @@ function do_simpan()
                             <div class="col-md-12">
                                 <fieldset class="form-group">
                                     <div class="row">
-                                        <label class="col-form-label col-sm-3 pt-0">Status :</label>
+                                        <label class="col-form-label col-sm-3 pt-0"><font color="#FF0000">*</font> Status :</label>
                                         <div class="col-sm-9">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
                                                 <label class="form-check-label" for="semak">
                                                 Semak
                                                 </label>
-                                            </div>
-                                            <div class="form-check">
+
                                                 <input class="form-check-input" type="checkbox" name="lulus" id="lulus" value="lulus">
                                                 <label class="form-check-label" for="lulus">
                                                 Lulus
                                                 </label>
-                                            </div>
-                                            <div class="form-check">
+
                                                 <input class="form-check-input" type="checkbox" name="tolak" id="tolak" value="tolak">
                                                 <label class="form-check-label" for="tolak">
                                                 Tolak

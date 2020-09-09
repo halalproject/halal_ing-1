@@ -23,6 +23,46 @@ class KelulusanController extends Controller
         return view('admin/kelulusan',compact('cat','kelulusan'));
     }
 
+    public function komen(Request $request)
+    {
+        // dd($request->all());
+
+        if ($request->input('lulus')) {
+            // dd('lulus dan semak');
+
+            $komen = new Ramuan_Komen();
+            $komen->ramuan_id = $request->id;
+            $komen->komen_type = 'LULUS';
+            $komen->catatan = $request->catatan_text;
+            $komen->create_dt = now();
+            $komen->create_by = 1;
+            $komen->update_dt = now();
+            $komen->update_by = 1;
+
+            $komen->save();
+
+            if($komen){
+                $status = Ramuan::find($request->id)->update(['status'=>3,'is_lulus'=>1]);
+
+                return response()->json('OK');
+
+            } else {
+                return response()->json('ERR');
+            }
+
+        } else if($request->input('tolak')) {
+            // dd('tolak');
+            $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_lulus'=>2]);
+
+            if($tolak){
+                return response()->json('OK');
+            } else {
+                return response()->json('ERR');
+            }
+        }
+
+    }
+
     public function modal_permohonan($id)
     {
         // dd($id);
