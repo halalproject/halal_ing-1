@@ -120,14 +120,14 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                  <th width="3%"><font color="#000000"><div align="left">Bil.</div></font></th>
-                  <th width="14%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
-                  <th width="18%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
-                  <th width="6%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
-                  <th width="8%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
-                  <th width="21%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                    <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
+                    <th width="14%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
+                    <th width="18%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
+                    <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
+                    <th width="18%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
+                    <th width="10%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
+                    <th width="10%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
+                    <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>

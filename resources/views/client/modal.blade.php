@@ -9,13 +9,13 @@ function do_able(ids)
         {
             for(i=2;i<=6;i++)
             {
-                $('#doc_'+i).prop('disabled',true);
+                // $('#doc_'+i).prop('disabled',true);
             }
         } else if(ids=='6'){
             $('.addrow_6').show();
-            $('#doc_1').prop('disabled',true);
+            // $('#doc_1').prop('disabled',true);
         } else {
-            $('#doc_1').prop('disabled',true);
+            // $('#doc_1').prop('disabled',true);
         }
         
         $('#box_'+ids).show();
@@ -23,11 +23,11 @@ function do_able(ids)
         if(ids == '1'){
             for(i=1;i<=6;i++)
             {
-                $('#doc_'+i).prop('disabled',false);
+                // $('#doc_'+i).prop('disabled',false);
             }
             $('#tarikh_tamat_sijil').val('')
         } else if(!$('#doc_2').prop('checked') && !$('#doc_3').prop('checked') && !$('#doc_4').prop('checked') && !$('#doc_5').prop('checked') && !$('#doc_6').prop('checked')){
-            $('#doc_1').prop('disabled',false);
+            // $('#doc_1').prop('disabled',false);
         }
         if(ids == '6'){
             $('.addrow_6').hide();
@@ -278,7 +278,7 @@ if(!empty($id)){
                                 </label>
                                 <div class="col-sm-4">
                                 <select name="sumber" id="sumber" class="form-control">
-                                    <option value="">Sila pilih sumber</option>
+                                    <option value="">Pilih Sumber Bahan</option>
                                     @foreach($bahan as $bah)
                                     <option value="{{ $bah->id }}" @if($bahan_rs == $bah->id) selected @endif>{{ $bah->nama }}</option>
                                     @endforeach
@@ -366,11 +366,11 @@ if(!empty($id)){
                                     
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-8 control-label">
-                                        <input type="text" name="bekal_alamat_2" id="bekal_alamat_2" placeholder="Alamat 2" class="form-control" value="{{$rs->alamat_pembekal_2??''}}">
+                                        <input type="text" name="bekal_alamat_2" id="bekal_alamat_2" placeholder="Bandar" class="form-control" value="{{$rs->alamat_pembekal_2??''}}">
                                     </div>
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-8 control-label">
-                                        <input type="text" name="bekal_bandar" id="bekal_bandar" placeholder="Bandar" class="form-control" value="{{$rs->alamat_pembekal_3??''}}">
+                                        <input type="text" name="bekal_bandar" id="bekal_bandar" placeholder="Negeri" class="form-control" value="{{$rs->alamat_pembekal_3??''}}">
                                     </div>
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-2 control-label">
@@ -425,7 +425,7 @@ if(!empty($id)){
                             @endphp
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-6 control-label">
+                                    <div class="col-sm-4 control-label">
                                         <div class="input-group">
                                             <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" value="{{$dokumen->id}}"
                                                 @if($checked == 1) checked @endif
@@ -453,12 +453,15 @@ if(!empty($id)){
                                             </div>
                                         </div>
                                         @if($dokumen->nama == 'Sijil Halal')
-                                        <div class="col-sm-3 control-label">
-                                            <div class="input-group">
-                                                <label class="col-sm-8 control-label" for="sijil">Tarikh Tamat Sijil : </label>
-                                                <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}"> 
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
+                                                <div class="col-sm-3">
+                                                    <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
+                                                </div>
                                             </div>
                                         </div>
+                                        
                                         @endif
                                     </div>
                                 </div>

@@ -133,7 +133,7 @@
 
 									<li class="@if(\Request::is('client/hapus*')) nav-expanded nav-active @endif">
 										<a href="/client/hapus">
-											<i class="fa fa-folder" aria-hidden="true"></i>
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
 											<span>Ramuan Yang Dihapuskan</span>
 										</a>
 									</li>
