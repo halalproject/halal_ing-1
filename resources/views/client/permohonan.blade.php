@@ -117,10 +117,10 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-1" align="right">
+        			<div class="col-md-2" align="right">
                         <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
-                    <div class="col-md-3" align="right">
+                    <div class="col-md-2" align="right">
                         <a href="/client/permohonan/create" data-toggle="modal" data-target="#myModal" title="Tambah Permohonan Ramuan" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-primary">
                         	<i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
@@ -128,6 +128,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 			        </div>
                 </div>       
             </div>
+            <br>
             <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

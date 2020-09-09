@@ -92,12 +92,12 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                 <div class="form-group">
                     <div class="col-md-2">
                         <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
-                            <option value="">Status Sijil Halal</option>
+                            <option value="">Sijil Halal</option>
                             <option value="1" @if($sijil == '1') selected @endif>Ada</option>
                             <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                             <option value="">Kategori Bahan</option>
                             @foreach ($cat as $cat)
@@ -105,28 +105,29 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-5">
                         <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
         
-        			<div class="col-md-1" align="right">
+        			<div class="col-md-2" align="right">
                         <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
                 </div>
             </div>
+            <br>
             <div align="right" style="padding-right:10px"><b>{{ $ramuan->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                  <th width="5%"><font color="#000000"><div align="left">Bil.</div></font></th>
-                  <th width="15%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
+                  <th width="3%"><font color="#000000"><div align="left">Bil.</div></font></th>
+                  <th width="14%"><font color="#000000"><div align="left">No. Permohonan</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">Nama Ramuan</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Kategori</font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
-                  <th width="10%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
-                  <th width="10%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
-                  <th width="13%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                  <th width="18%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
+                  <th width="6%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
+                  <th width="8%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
+                  <th width="21%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>

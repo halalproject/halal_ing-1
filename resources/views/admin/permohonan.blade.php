@@ -50,7 +50,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                         <option value="">Kategori Bahan</option>
                         @foreach ($cat as $cat)
@@ -58,15 +58,16 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                 </div>
     
-                <div class="col-md-1" align="right">
+                <div class="col-md-2" align="right">
                     <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                 </div>
             </div>
         </div>
+        <br>
         <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>
         <div class="box-body">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
