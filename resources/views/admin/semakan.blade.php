@@ -35,7 +35,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <!--<a href="#" class="fa fa-caret-down"></a>
                     <a href="#" class="fa fa-times"></a>-->
                     </div>
-                    <h6 class="panel-title"><font color="#000000"><b>SENARAI PERMOHONAN</b></font></h6> 
+                    <h6 class="panel-title"><font color="#000000"><b>PROSES PERMOHONAN</b></font></h6> 
                 </header>
             </div>
         </div>            
@@ -49,7 +49,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                         <option value="">Kategori Bahan</option>
                         @foreach ($cat as $cat)
@@ -57,17 +57,16 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                 </div>
     
-                <div class="col-md-2" align="right">
+                <div class="col-md-1" align="right">
                     <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                 </div>
-            </div>
+            </div>       
         </div>
-        <br>
-        <div align="right" style="padding-right:10px"><b>{{ $permohonan->total() }} rekod dijumpai</b></div>
+        <div align="right" style="padding-right:10px"><b>{{ $semakan->total() }} rekod dijumpai</b></div>
         <div class="box-body">
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -82,27 +81,27 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     </tr>
                 </thead>
                 <tbody>
-                    @php $bil = $permohonan->perPage()*($permohonan->currentPage()-1) @endphp
-                    @foreach($permohonan as $mohon)
+                    @php $bil = $semakan->perPage()*($semakan->currentPage()-1) @endphp
+                    @foreach($semakan as $semak)
                     <tr>
                         <td valign="top" align="center">{{ ++$bil }}</td>
-                        <td valign="top" align="left">{{ $mohon->ing_kod }}</td>
+                        <td valign="top" align="left">{{ $semak->ing_kod }}</td>
                         <td valign="top" align="left">
-                            {{ $mohon->nama_ramuan }}
+                            {{ $semak->nama_ramuan }}
                             <br>
-                            ({{ $mohon->nama_saintifik }})
+                            ({{ $semak->nama_saintifik }})
                         </td>
-                        <td valign="top" align="left">{{ optional($mohon->sumber)->nama }}</td>
-                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($mohon->create_dt)) }}</td>
+                        <td valign="top" align="left">{{ optional($semak->sumber)->nama }}</td>
+                        <td valign="top" align="center">{{ date('d/m/Y', strtotime($semak->create_dt)) }}</td>
                         <td valign="top" align="center">
-                        @if($mohon->is_sijil == 0)
+                        @if($semak->is_sijil == 0)
                             Tiada
                         @else
                             Ada
                         @endif
                         </td>
                         <td align="center">
-                            <a href="premohonan/modal_permohonan/{{ $mohon->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="semak/modal_permohonan/{{ $semak->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-primary">
                                     <i class="far fa-folder-open fa-lg" style="color: #FFFFFF;"></i> Buka
                                 </button>
@@ -114,9 +113,4 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             </table>
         </div>
     </div>
-    <div align="center" class="d-flex justify-content-center">
-      {!! $permohonan->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
-    </div>
-</div>
-
 @endsection

@@ -15,8 +15,6 @@ class PortalController extends Controller
 
     public function ramuanList(Request $request)
     { 
-        
-
         $tumbuhan = Ramuan::where('ing_category',1)->where('is_lulus',1)->where('is_delete',0);
         $haiwan = Ramuan::where('ing_category',2)->where('is_delete',0)->where('is_lulus',1);
         $kimia = Ramuan::where('ing_category',3)->where('is_delete',0)->where('is_lulus',1);
