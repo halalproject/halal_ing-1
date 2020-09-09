@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
 });
 
 //Admin Webpage
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
 
     //Dashboard
     Route::get('/','DashboardController@admin');
