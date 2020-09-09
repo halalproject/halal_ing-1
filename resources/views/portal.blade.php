@@ -18,25 +18,25 @@
         <!-- Sweetalert -->
 		<link rel="stylesheet" href="{{ asset('salert/sweetalert2.css') }}">
     </head>
-
-    <script>
-        function do_cari() {
-            var cari = $('#cari').val();
-            var pathname = window.location.pathname;
-
-            if(cari.trim()==''){
-            window.location = pathname;
-            } else {
-            window.location = pathname+'ramuanList?cari='+cari;
-            }
-        }
-    </script>
-
-    @php
-    $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
-    @endphp
     
     <body id="page-top">
+        <script>
+            function do_cari() {
+                var cari = $('#cari').val();
+                var pathname = window.location.pathname;
+
+                if(cari.trim()==''){
+                window.location = pathname;
+                } else {
+                window.location = pathname+'ramuanList?cari='+cari;
+                }
+            }
+        </script>
+
+        @php
+        $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
+        @endphp
+        
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">

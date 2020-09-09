@@ -20,47 +20,48 @@
 
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.js"></script>
     </head>
 
-    <script>
-        function do_page(nama)
-        {
-            
-            var pathname = window.location.pathname;
-
-            if(nama.trim()==''){
-                window.location = pathname;
-            } else {
-                window.location = pathname+'?carian='+nama;
-            }
-
-           
-        }
-
-        function do_cari() {
-            var cari = $('#cari').val();
-
-            var pathname = window.location.pathname;
-
-            if(cari.trim()==''){
-            window.location = pathname;
-            } else {
-            window.location = pathname+'?cari='+cari;
-            }
-        }
-
-        function do_modal(id)
-        {
-            $('.modal-content').load('/view/'+id);
-        }
-    </script>
-    @php
-    $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
-    $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
-    @endphp
-    
     <body id="page-top">
+        
+        <script>
+            function do_page(nama)
+            {
+                
+                var pathname = window.location.pathname;
+
+                if(nama.trim()==''){
+                    window.location = pathname;
+                } else {
+                    window.location = pathname+'?carian='+nama;
+                }
+
+            
+            }
+
+            function do_cari() {
+                var cari = $('#cari').val();
+
+                var pathname = window.location.pathname;
+
+                if(cari.trim()==''){
+                window.location = pathname;
+                } else {
+                window.location = pathname+'?cari='+cari;
+                }
+            }
+
+            function do_modal(id)
+            {
+                $('.modal-content').load('/view/'+id);
+            }
+        </script>
+        @php
+        $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+        $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
+        @endphp
+        
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
@@ -250,7 +251,7 @@
         <!-- Modal -->
         <div class="bs-example">
 			<div id="myModal" class="modal fade" role="dialog">
-				<div class="modal-dialog modal-lg static">
+				<div class="modal-dialog modal-xl static">
 					<div class="modal-content">
 					</div>
 				</div>
