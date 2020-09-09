@@ -138,8 +138,11 @@
 										</a>
 									</li>
 
-									@else
-									{{-- Admin --}}
+									@else {{-- Admin --}}
+
+									@if(Auth::guard('admin')->user()->user_level <> 4)
+
+									@if(Auth::guard('admin')->user()->user_level <> 2)
 									<li class="@if(\Request::is('admin/permohonan*')) nav-expanded nav-active @endif">
 										<a href="/admin/permohonan">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -153,13 +156,16 @@
 											<span>Proses Semakan</span>
 										</a>
 									</li>
+									@endif
 									
+									@if (Auth::guard('admin')->user()->user_level <> 3)
 									<li class="@if(\Request::is('admin/lulus*')) nav-expanded nav-active @endif">
 										<a href="/admin/lulus">
 										<i class="fa fa-check" aria-hidden="true"></i>
 											<span>Proses Kelulusan</span>
 										</a>
 									</li>
+									@endif
 
 									<li class="@if(\Request::is('admin/tolak*')) nav-expanded nav-active @endif">
 										<a href="/admin/tolak">
@@ -167,6 +173,7 @@
 											<span>Permohonan Ditolak</span>
 										</a>
 									</li>
+									@endif
 
 									<li class="@if(\Request::is('admin/audit*')) nav-expanded nav-active @endif">
 										<a href="/admin/audit">
@@ -182,12 +189,14 @@
 										</a>
 									</li>
 
+									@if (Auth::guard('admin')->user()->user_level == 1)
 									<li class="@if(\Request::is('admin/staff*')) nav-expanded nav-active @endif">
 										<a href="/admin/staff">
 											<i class="fa fa-users" aria-hidden="true"></i>
 											<span>Kakitangan</span>
 										</a>
 									</li>
+									@endif
 
 									@endif
 
