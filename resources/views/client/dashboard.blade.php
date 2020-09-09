@@ -103,7 +103,7 @@
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
                                         <div class="summary-icon bg-quartenary">
-                                            <i class="fa fa-folder"></i>
+                                            <i class="fa fa-trash-o"></i>
                                         </div>
                                     </div>
                                     <div class="widget-summary-col">
