@@ -130,6 +130,10 @@
 			<h2><b>Tamat Tempoh Sijil</b> </h2>
             <div class="col-md-12 col-lg-12 col-xl-12">
                 <div class="row">
+
+                    @php
+                    
+                    @endphp
                 
                     <div class="col-md-12 col-lg-4 col-xl-4">
                         <section class="panel panel-featured-left panel-featured-success">
@@ -144,11 +148,11 @@
                                         <div class="summary">
                                             <h4 class="title">3 Bulan</h4>
                                             <div class="info">
-                                                <strong class="amount"></strong>
+                                                <strong class="amount">{{ $rstm->count() }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">(Papar Maklumat)</a>
+                                            <a href="/client/ramuan?days=90" class="text-muted text-uppercase">(Papar Maklumat)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -169,11 +173,11 @@
                                         <div class="summary">
                                             <h4 class="title">1 Bulan</h4>
                                             <div class="info">
-                                                <strong class="amount"></strong>
+                                                <strong class="amount">{{ $rsom->count() }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">(Papar Maklumat)</a>
+                                            <a href="/client/ramuan?days=30" class="text-muted text-uppercase">(Papar Maklumat)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -194,11 +198,11 @@
                                         <div class="summary">
                                             <h4 class="title">1 Minggu</h4>
                                             <div class="info">
-                                                <strong class="amount"></strong>
+                                                <strong class="amount">{{ $rsod->count() }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a href="" class="text-muted text-uppercase">(Papar Maklumat)</a>
+                                            <a href="/client/ramuan?days=7" class="text-muted text-uppercase">(Papar Maklumat)</a>
                                         </div>
                                     </div>
                                 </div>

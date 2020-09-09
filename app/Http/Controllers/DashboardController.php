@@ -14,12 +14,16 @@ class DashboardController extends Controller
         $user = Auth::guard('client')->user()->userid;
         // dd($user);
         // dd($request->all());
-        $mohon = Ramuan::where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->where('create_by',$user)->get();
-        $tolak = Ramuan::where('status',6)->where('is_delete',0)->where('create_by',$user)->get();
-        $ramuan = Ramuan::where('status',3)->where('is_delete',0)->where('create_by',$user)->get();
-        $hapus = Ramuan::where('is_delete',1)->where('create_by',$user)->get();
+        $mohon = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->get();
+        $tolak = Ramuan::where('create_by',$user)->where('status',6)->where('is_delete',0)->get();
+        $ramuan = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->get();
+        $hapus = Ramuan::where('create_by',$user)->where('is_delete',1)->get();
 
-        return view('client/dashboard',compact('mohon','tolak','ramuan','hapus'));
+        $rstm = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(30),now()->addDays(90)])->get();
+        $rsom = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(7),now()->addDays(30)])->get();
+        $rsod = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->where('tarikh_tamat_sijil','<=',now()->addDays(7))->get();
+
+        return view('client/dashboard',compact('mohon','tolak','ramuan','hapus','rstm','rsom','rsod'));
     }
 
     public function admin()
