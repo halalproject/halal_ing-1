@@ -40,6 +40,8 @@ class PermohonanController extends Controller
     public function modal_permohonan($id)
     {
         // dd($id);
+        Ramuan::find($id)->update(['tarikh_buka'=>now()]);
+
         $rs = Ramuan::find($id);
         return view('admin/modal_permohonan',compact('rs'));
     }

@@ -216,13 +216,9 @@
                                 <tr>
                                     <td>{{ ++$bil }}</td>
                                     <td>	
-                                        <b>{!! $text !!} @if(!empty($l->nama_saintifik)) ({!! $text2 !!}) @endif </b><br>
-                                        {{ $l->syarikat->company_name }}<br> 
-                                        {{ $l->syarikat->company_address_1 }} <br>
-                                        {{ $l->syarikat->company_address_2 }} <br>
-                                        {{ $l->syarikat->company_poscode }} {{ $l->syarikat->company_address_3 }} <br>
-                                        {{ $l->syarikat->company_city }} <br> 
-                                        {{ $l->syarikat->company_country }}
+                                        <b>{!! $text !!} @if(!empty($l->nama_saintifik)) ({!! $text2 !!}) @endif </b>
+                                        <br>
+                                        <i>{{ $l->syarikat->company_name }}</i>
                                     </td>
                                     <td>{{ date('d/m/Y', strtotime($l->tarikh_tamat_sijil)) }}</td>
                                     <td>

@@ -2,10 +2,18 @@
 <script>
 // Remove advanced tabs for all editors.
 CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
-
+</script>
+<script>
 function do_close()
 {
     location.reload();
+}
+
+function do_simpan()
+{
+    var 
+	var docContents = CKEDITOR.instances['catatan'].getData(); 
+	document.halal.catatan_text.value=docContents;
 }
 </script>
 
@@ -174,12 +182,12 @@ function do_close()
                                     <div class="row">
                                         <label class="col-sm-3 control-label" for="exampleFormControlTextarea1">Catatan :</label>
                                         <div class="col-sm-9">
-                                        <textarea name="dokumen" cols="50" rows="10" id="story" style="width:100%"></textarea>
+                                        <textarea name="catatan" cols="50" rows="10" id="catatan" style="width:100%"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <textarea name="ruj_dokumen" cols="50" rows="10" id="story" style="width:100%" hidden></textarea>
+                                <textarea name="catatan_text"  style="display:none;"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -199,7 +207,7 @@ function do_close()
 </div>
 
 <script>
-    CKEDITOR.replace('dokumen', {height: 250});
+	CKEDITOR.replace('catatan');
 
     $('input:checkbox').click(function() {
         $('input:checkbox').not(this).prop('checked', false);
