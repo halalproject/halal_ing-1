@@ -30,7 +30,9 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
 
     //Profile & Password
     Route::get('/profile','Client\ClientController@profile');
+    Route::post('/store','Client\ClientController@store');
     Route::get('/password','Client\ClientController@password');
+    Route::post('/reset','Client\ClientController@reset');
 
     //Permohonan Baru
     Route::get('permohonan','Client\PermohonanController@index')->name('Permohonan Ramuan');
@@ -68,7 +70,9 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
 
     //Profile and Password
     Route::get('/profile','Admin\AdminController@profile');
+    Route::post('/store','Client\AdminController@store');
     Route::get('/password','Admin\AdminController@password');
+    Route::post('/reset','Admin\AdminController@reset');
 
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');

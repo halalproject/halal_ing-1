@@ -39,5 +39,4 @@
                 @yield('content')
             </div>						
 		</section>
-    </form>
 @endsection
