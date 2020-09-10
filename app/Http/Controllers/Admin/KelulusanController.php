@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Ref_Sumber_Bahan;
 use App\Ramuan;
 
@@ -26,6 +27,7 @@ class KelulusanController extends Controller
     public function komen(Request $request)
     {
         // dd($request->all());
+        $user = Auth::guard('admin')->user()->id;
 
         if ($request->input('lulus')) {
             // dd('lulus dan semak');
@@ -35,14 +37,14 @@ class KelulusanController extends Controller
             $komen->komen_type = 'LULUS';
             $komen->catatan = $request->catatan_text;
             $komen->create_dt = now();
-            $komen->create_by = 1;
+            $komen->create_by = $user;
             $komen->update_dt = now();
-            $komen->update_by = 1;
+            $komen->update_by = $user;
 
             $komen->save();
 
             if($komen){
-                $status = Ramuan::find($request->id)->update(['status'=>3,'is_lulus'=>1]);
+                $status = Ramuan::find($request->id)->update(['status'=>3,'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
 
                 return response()->json('OK');
 
@@ -52,7 +54,7 @@ class KelulusanController extends Controller
 
         } else if($request->input('tolak')) {
             // dd('tolak');
-            $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_lulus'=>2]);
+            $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_lulus'=>2,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
 
             if($tolak){
                 return response()->json('OK');
