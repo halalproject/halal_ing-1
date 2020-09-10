@@ -117,6 +117,28 @@ class StaffController extends Controller
 
     public function reset($id)
     {
+        // dd($id);
 
+        $password = Admin::find($id);
+        // dd($password->nombor_kp);
+        $user = Admin::find($id)->update(['password'=> md5($password->nombor_kp)]);
+
+        if($user){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
+    }
+
+    public function delete($id)
+    {
+        // dd($id);
+        $user = Admin::find($id)->update(['is_delete'=> 1]);
+
+        if($user){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
     }
 }

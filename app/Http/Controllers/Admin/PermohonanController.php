@@ -14,8 +14,8 @@ class PermohonanController extends Controller
         $cat = Ref_Sumber_Bahan::get();
         $permohonan = Ramuan::where('status',1)->whereNull('tarikh_buka');
 
-        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
-        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
 
         $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
@@ -28,8 +28,8 @@ class PermohonanController extends Controller
         $cat = Ref_Sumber_Bahan::get();
         $permohonan = Ramuan::where('status',6);
 
-        if(!empty($request->sijil)){ $permohonan->where('is_sijil',$request->sijil); }
-        if(!empty($request->kategori)){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
 
         $permohonan = $permohonan->orderBy('create_dt')->paginate(10);

@@ -17,8 +17,8 @@ class RamuanController extends Controller
         // dd($request->all());
         $ramuan = Ramuan::where('status',3)->where('is_delete',0);
 
-        if(!empty($request->sijil)){ $ramuan->where('is_sijil',$request->sijil); }
-        if(!empty($request->kategori)){ $ramuan->where('sumber_bahan_id',$request->kategori); }
+        if($request->sijil != ''){ $ramuan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $ramuan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
 
         if(!empty($request->days)){
@@ -44,8 +44,8 @@ class RamuanController extends Controller
         // dd($request->all());
         $ramuan = Ramuan::where('is_delete',1);
 
-        if(!empty($request->sijil)){ $ramuan->where('is_sijil',$request->sijil); }
-        if(!empty($request->kategori)){ $ramuan->where('sumber_bahan_id',$request->kategori); }
+        if($request->sijil != ''){ $ramuan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $ramuan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
         
         $ramuan = $ramuan->where('create_by',$user)->orderBy('delete_dt','DESC')->paginate(10);

@@ -108,5 +108,6 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::get('staff/edit/{id}','Admin\StaffController@edit');
     Route::post('staff/store','Admin\StaffController@store');
     Route::post('staff/reset/{id}','Admin\StaffController@reset');
+    Route::post('staff/delete/{id}','Admin\StaffController@delete');
     
 });

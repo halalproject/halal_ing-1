@@ -8,8 +8,8 @@
 <script>
 function do_page()
 {
-    var status = $('#status').val();
-    var level = $('#level').val();
+    var status = $('#status_c').val();
+    var level = $('#level_c').val();
     var carian = $('#carian').val();
 //   alert(sijil);
     var pathname = window.location.pathname;
@@ -32,6 +32,38 @@ function do_reset(id)
         confirmButtonText: 'Ya, Teruskan',
         cancelButtonText: 'Tidak, Batal!',
         reverseButtons: true
+    }).then(function () {
+        $.ajax({
+			url:'/admin/staff/reset/'+id, //&datas='+datas,
+			type:'POST',
+			data: $("form").serialize(),
+			//data: datas,
+			success: function(data){
+				console.log(data);
+				//alert(data);
+				if(data=='OK'){
+					swal({
+					  title: 'Berjaya',
+					  text: 'Permohonan telah dihapuskan',
+					  type: 'success',
+					  confirmButtonClass: "btn-success",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					}).then(function () {
+                        location.reload();
+					});
+				} else if(data=='ERR'){
+					swal({
+					  title: 'Amaran',
+					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
+					  type: 'error',
+					  confirmButtonClass: "btn-warning",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					});
+				}
+			}
+		});
     });
 }
 
@@ -46,6 +78,38 @@ function do_hapus(id)
         confirmButtonText: 'Ya, Teruskan',
         cancelButtonText: 'Tidak, Batal!',
         reverseButtons: true
+    }).then(function () {
+        $.ajax({
+			url:'/admin/staff/delete/'+id, //&datas='+datas,
+			type:'POST',
+			data: $("form").serialize(),
+			//data: datas,
+			success: function(data){
+				console.log(data);
+				//alert(data);
+				if(data=='OK'){
+					swal({
+					  title: 'Berjaya',
+					  text: 'Permohonan telah dihapuskan',
+					  type: 'success',
+					  confirmButtonClass: "btn-success",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					}).then(function () {
+                        location.reload();
+					});
+				} else if(data=='ERR'){
+					swal({
+					  title: 'Amaran',
+					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
+					  type: 'error',
+					  confirmButtonClass: "btn-warning",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					});
+				}
+			}
+		});
     });
 }
 </script>
@@ -62,10 +126,13 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                 <h6 class="panel-title"><font color="#000000"><b>SENARAI KAKITANGAN</b></font></h6> 
             </header>
         </div>
-        <br>
+    </div>
+    <br>
+    <div class="box-body">
+        @csrf
         <div class="form-group">
             <div class="col-md-3">
-                <select name="level" id="level" onchange="do_page()" class="form-control">
+                <select name="level_c" id="level_c" onchange="do_page()" class="form-control">
                     <option value="">Level Pengguna</option>
                     @foreach ($rsl as $rsl)
                     <option value="{{ $rsl->id }}" @if($level == $rsl->id) selected @endif>{{ $rsl->nama }}</option>
@@ -73,7 +140,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                 </select>
             </div>
             <div class="col-md-2" >
-                <select name="status" id="status" onchange="do_page()" class="form-control">
+                <select name="status_c" id="status_c" onchange="do_page()" class="form-control">
                     <option value="">Status</option>
                     @foreach ($rss as $rss)
                     <option value="{{ $rss->id }}" @if($status == $rss->id) selected @endif>{{ $rss->nama }}</option>

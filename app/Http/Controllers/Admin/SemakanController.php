@@ -15,8 +15,8 @@ class SemakanController extends Controller
         $cat = Ref_Sumber_Bahan::get();
         $semakan = Ramuan::where('status',1)->whereNotNull('tarikh_buka')->where('is_semak',0);
 
-        if(!empty($request->sijil)){ $semakan->where('is_sijil',$request->sijil); }
-        if(!empty($request->kategori)){ $semakan->where('sumber_bahan_id',$request->kategori); }
+        if($request->sijil != ''){ $semakan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $semakan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $semakan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
 
         $semakan = $semakan->orderBy('create_dt')->paginate(10);
