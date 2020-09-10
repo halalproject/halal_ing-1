@@ -127,7 +127,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <th width="18%"><font color="#000000"><div align="left">Nama & Alamat Pengilang/Pengeluar</font></th>
                     <th width="10%"><font color="#000000"><div align="center">Status Sijil Halal</font></th>
                     <th width="10%"><font color="#000000"><div align="center">Tarikh Tamat Sijil</font></th>
-                    <th width="15%"><font color="#000000"><div align="left">Tindakan</div></font></th>
+                    <th width="15%"><font color="#000000"><div align="center">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -181,6 +181,11 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             @endphp
                         </td>
                         <td align="center">
+                            <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Cetak Maklumat Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-dark">
+                                    <i class="fa fa-print fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
                             <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
