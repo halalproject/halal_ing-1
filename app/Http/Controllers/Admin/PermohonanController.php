@@ -23,7 +23,7 @@ class PermohonanController extends Controller
         return view('admin/permohonan',compact('cat','permohonan'));
     }
 
-    public function tolak()
+    public function tolak(Request $request)
     {
         $cat = Ref_Sumber_Bahan::get();
         $permohonan = Ramuan::where('status',6);
