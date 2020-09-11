@@ -14,7 +14,7 @@ class Ramuan extends Model
 
     public function sumber()
     {
-        return $this->belongsTo('App\Ref_Sumber_Bahan','sumber_bahan_id');
+        return $this->belongsTo('App\Ref_Sumber_Bahan','ing_category');
     }
 
     public function negara()
