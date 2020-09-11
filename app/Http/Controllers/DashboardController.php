@@ -145,6 +145,12 @@ class DashboardController extends Controller
             $type = '';
         }
 
+        if($request->pengumuman_untuk !='4') { 
+            $company = '';
+        } else { 
+            $company = $request->compName;
+        }
+
         if(empty($request->id)) {
             $event = new calendar_event();
             $event->event = $request->event;
@@ -153,7 +159,7 @@ class DashboardController extends Controller
             $event->kategori = $request->kategori;
             $event->announcement = $request->catatan_text;
             $event->is_public = $request->pengumuman_untuk;
-            $event->company_id = $request->compName;
+            $event->company_id = $company;
             $event->file_name = $file;
             $event->file_type = $type; 
             $event->created_dt = now();
@@ -177,12 +183,14 @@ class DashboardController extends Controller
                 'kategori' => $request->kategori,
                 'announcement' => $request->catatan_text,
                 'is_public' => $request->pengumuman_untuk,
-                'company_id' => $request->compName,
+                'company_id' => $company ,
                 'file_name' => $file,
                 'file_type' => $type,
                 'updated_dt' => now(),
                 'updated_by' => $user,
             );
+
+            
 
             $event = calendar_event::where('id',$request->id)->update($data);
 

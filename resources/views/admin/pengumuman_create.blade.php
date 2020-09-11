@@ -232,4 +232,8 @@ $pub = $calendar->is_public ?? '';
     $('input:checkbox').click(function() {
         $('input:checkbox').not(this).prop('checked', false);
     });
+
+    var specificComp = document.getElementById("specificComp");
+    var listComp = document.getElementById("listComp");
+    listComp.style.display = specificComp.checked ? "block" : "none";
 </script>
