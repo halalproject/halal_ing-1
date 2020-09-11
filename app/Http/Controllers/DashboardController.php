@@ -13,7 +13,10 @@ class DashboardController extends Controller
     public function client()
     {
         $user = Auth::guard('client')->user()->userid;
-        // dd($user);
+
+        $pengumuman = calendar_event::where('kategori',3)->where('is_public',3)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+
+        // dd($pengumuman);
         // dd($request->all());
         $mohon = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->get();
         $tolak = Ramuan::where('create_by',$user)->where('status',6)->where('is_delete',0)->get();
@@ -24,7 +27,7 @@ class DashboardController extends Controller
         $rsom = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(7),now()->addDays(30)])->get();
         $rsod = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->where('tarikh_tamat_sijil','<=',now()->addDays(7))->get();
 
-        return view('client/dashboard',compact('mohon','tolak','ramuan','hapus','rstm','rsom','rsod'));
+        return view('client/dashboard',compact('pengumuman','mohon','tolak','ramuan','hapus','rstm','rsom','rsod'));
     }
 
     public function admin()

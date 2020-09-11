@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ramuan;
+use App\calendar_event;
 use DB;
 
 class PortalController extends Controller
 {
     public function index()
     {
-        return view('portal');
+        $pengumuman = calendar_event::where('kategori',3)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+
+        return view('portal',compact('pengumuman'));
     }
 
     public function ramuanList(Request $request)

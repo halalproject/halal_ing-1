@@ -6,7 +6,9 @@
         <div class="x_panel">
             <marquee behavior="scroll" scrollamount="6" >
                 <h4 class="title">
-                    <i style="color: #fa0000;">PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000</i>&emsp;&emsp;
+                    @foreach ($pengumuman as $umum)
+                    <i style="color: #fa0000;">{!! $umum->announcement !!}</i>&emsp;&emsp;
+                    @endforeach
                 </h4>
             </marquee>
             <div class="x_title">

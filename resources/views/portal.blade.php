@@ -80,8 +80,9 @@
         <div class="d-flex justify-content-center">
             <div class="col-md-6" style="color:red;">
                 <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
-                    <i>PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000</i> <span style="color:#000;"><i class="fas fa-atom"></i></span>
-                    <i>PERHATIAN! PERINGATAN! MAKANAN A DIDAPATI MENGANDUNGI LEMAK KHINZIR! SEBARANG PERTANYAAN SILA HUBUNGI KAMI DI 00-000000000</i>
+                    @foreach ($pengumuman as $umum)
+                    <i>{!! $umum->announcement !!}</i> <span style="color:#000;"><i class="fas fa-atom"></i></span>
+                    @endforeach
                 </marquee>
             </div>
         </div>
