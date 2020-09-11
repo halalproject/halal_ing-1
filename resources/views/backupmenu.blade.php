@@ -52,6 +52,7 @@
 								<span class="name"><b>{{ Auth::guard('client')->user()->company_name }}</b></span>
 								@else
 								<span class="name"><b>{{ Auth::guard('admin')->user()->username }}</b></span>
+								<span class="name">{{ Auth::guard('admin')->user()->jawatan->nama }} ( {{ Auth::guard('admin')->user()->level->nama }} )</span>
 								@endif
 							</div>
 							<i class="fa custom-caret"></i>

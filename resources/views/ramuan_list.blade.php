@@ -46,9 +46,9 @@
                 var pathname = window.location.pathname;
 
                 if(cari.trim()==''){
-                window.location = pathname;
+                    window.location = pathname;
                 } else {
-                window.location = pathname+'?cari='+cari;
+                    swindow.location = pathname+'?cari='+cari;
                 }
             }
 

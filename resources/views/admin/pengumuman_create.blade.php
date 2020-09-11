@@ -2,21 +2,23 @@
 <script>
     // Remove advanced tabs for all editors.
     CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
-
     function do_close()
     {
         location.reload();
     }
 
     function do_simpan() {
+
         var event = $('#event').val();
         var start_date = $('#start_date').val();
         var end_date = $('#end_date').val();
         var kategori = $('#kategori').val();
-        var announcement = $('#announcement').val();
         var is_public = $('#pengumuman_untuk').val();
-
-        if(event.trim() == '' || start_date.trim() == '' || end_date.trim() == '' || kategori.trim() == '' || announcement.trim() == '' || is_public.trim() == '' ){
+        var docContents = CKEDITOR.instances['announcement'].getData();
+	    document.create.catatan_text.value=docContents;
+        var file = $('#doc').val();
+        
+        if(event == '' || start_date == '' || end_date == '' || kategori == '' || docContents == '' || is_public == '' ){
             swal({
                 title: 'Amaran',
                 text: 'Maklumat tidak lengkap.\nSila masukkan maklumat yang betul.',
@@ -25,21 +27,28 @@
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             });
-        } else {
+        } else { 
+            var formdata = new FormData($('#create')[0]);
+            // alert(formdata);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             $.ajax({
-                url:'/dashboard/store', //&datas='+datas,
+                url:'/admin/pengumuman/store',
                 type:'POST',
-                data: $("#create").serialize(),
+                beforeSend: function () {
+                    $('#simpan').attr("disabled","disabled");
+                    $('.dispmodal').css('opacity', '.5');
+                },
+                data: formdata,
+                contentType: false,
+                processData: false,
                 //data: datas,
                 success: function(data){
-                    console.log(data);
-                    //alert(data);
-                    if(data[0]=='OK'){
+                    // console.log(data);
+                    if(data =='OK'){ 
                         swal({
                         title: 'Berjaya',
                         text: 'Maklumat telah berjaya disimpan',
@@ -48,11 +57,10 @@
                         confirmButtonText: "Ok",
                         showConfirmButton: true,
                         }).then(function () {
-                            $('#id').val(data[1]);
-                            $('#tab2').removeClass('disabled');
-                            $('#tab-2').attr('data-toggle','tab');
+                            reload = window.location; 
+                            window.location = reload;
                         });
-                    } else if(data[0]=='ERR'){
+                    } else if(data =='ERR'){
                         swal({
                         title: 'Amaran',
                         text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya disimpan.',
@@ -74,22 +82,24 @@
     }
     
 </script>
-
+@php
+$id = $calendar->id ?? '';
+@endphp
 <div class="col-md-12">
-    <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
+    <form name="create" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <section class="panel panel-featured panel-featured-info">
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <h6 class="panel-title"><font color="#000000" size="3"><b>Tambah Pengumuman</b></font></h6>
+                <h6 class="panel-title"><font color="#000000" size="3"><b>@if(empty($id)) Tambah @else Kemaskini @endif Pengumuman</b></font></h6>
             </header>
             <div class="panel-body ">
                 <div class="col-md-12">
-                    <input type="hidden" name="id" id="id" class="form-control" value="">
+                    <input type="hidden" name="id" id="id" class="form-control" value="{{ $id }}">
                     <div class="form-group">
                         <div class="row">
                             <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Tajuk :</label>
                             <div class="col-sm-9">
-                                <input type="text" name="event" id="event" class="form-control" value="">
+                                <input type="text" name="event" id="event" class="form-control" value="{{ $calendar->event ?? '' }}">
                             </div>
                         </div>
                     </div>
@@ -98,26 +108,34 @@
                         <div class="row">
                             <label class="col-sm-3 control-label"><font color="#FF0000">*</font>Tarikh Mula : </label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control" name="start_date" id="start_date"  value="" style="padding-left:0px;">
+                                <input type="date" class="form-control" name="start_date" id="start_date"  value="{{ $calendar->start_date ?? '' }}" style="padding-left:0px;">
                             </div>
 
                             <label class="col-sm-3 control-label" style="padding-left:50px;"><font color="#FF0000">*</font>Tarikh Tamat : </label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control" name="end_date" id="end_date"  value="" style="padding-left:0px;">
+                                <input type="date" class="form-control" name="end_date" id="end_date"  value="{{ $calendar->end_date ?? '' }}" style="padding-left:0px;">
                             </div>
                         </div>
                     </div>
-
+                   
                     <div class="form-group">
                         <div class="row">
                             <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Kategori :</label>
                             <div class="col-sm-3">
-                                <select name="kategori" id="kategori" class="form-control">
-                                    <option value="">Pilih Kategori</option>
-                                    <option value="1">Pengumuman</option>
-                                    <option value="2">Aktiviti</option>
-                                    <option value="3">Mesyuarat</option>
-                                    <option value="4">SOP</option>
+                                <select name="kategori" id="kategori" class="form-control"> 
+                                @if(!empty($id))
+                                    <option value="" @if($calendar->kategori == '') selected @endif>Pilih Kategori</option>
+                                    <option value="1" @if($calendar->kategori == '1') selected @endif >Pengumuman</option>
+                                    <option value="2" @if($calendar->kategori == '2') selected @endif >Aktiviti</option>
+                                    <option value="3" @if($calendar->kategori == '3') selected @endif >Mesyuarat</option>
+                                    <option value="4" @if($calendar->kategori == '4') selected @endif >SOP</option>
+                                @else
+                                    <option value="" >Pilih Kategori</option>
+                                    <option value="1" >Pengumuman</option>
+                                    <option value="2" >Aktiviti</option>
+                                    <option value="3" >Mesyuarat</option>
+                                    <option value="4" >SOP</option> 
+                                @endif
                                 </select>
                             </div>
                         </div>
@@ -127,9 +145,11 @@
                         <div class="row">
                             <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Pengumuman :</label>
                             <div class="col-sm-9">
-                                <textarea name="announcement" cols="50" rows="10" id="announcement" style="width:100%"></textarea>
+                                <textarea name="announcement" cols="50" rows="10" id="announcement" style="width:100%">{{ $calendar->announcement ?? '' }}</textarea>
                             </div>
                         </div>
+
+                        <textarea name="catatan_text"  style="display:none;"></textarea>
                     </div>                
 
                     <div class="form-group">
@@ -138,25 +158,48 @@
                             <div class="col-sm-4">
                                 <input type="file" name="doc" id="doc" class="form-control" value="" style ="border:none; padding-left:0px;">
                             </div>
+
+                            @if(!empty($id) && $calendar->file_name != '')
+                            <div class="col-sm-4">
+                                <input type="text" name="file_name" id="file_name" class="form-control" value="{{ $calendar->file_name ?? '' }}" style ="border:none; padding-left:0px;">
+                            </div>
+                            @endif
                         </div>
                     </div> 
 
                     <div class="form-group" id="pengumumanKategori">
                         <div class="row">
-                            <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Pengumuman Untuk: </label>
+                            <label class="col-sm-3 control-label" for="pengumuman_kategori"><font color="#FF0000">*</font> Pengumuman Untuk: </label>
                             <div class="col-sm-9">
-                                <label class="radio-inline">
-                                    <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" checked> Syarikat Tertentu
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" > Awam
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()"> Dalaman
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()"> Syarikat
-                                </label>
+
+                                @if(!empty($id))
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" @if($calendar->kategori == '4') checked @endif> Syarikat Tertentu
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" @if($calendar->kategori == '1') checked @endif> Awam
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()" @if($calendar->kategori == '2') checked @endif> Dalaman
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" @if($calendar->kategori == '3') checked @endif> Syarikat
+                                    </label>
+                                @else
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" checked> Syarikat Tertentu
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" > Awam
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()" > Dalaman
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" > Syarikat
+                                    </label>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>
@@ -165,7 +208,7 @@
                         <div class="row">
                             <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Syarikat :</label>
                             <div class="col-sm-3">
-                                <select name="level" id="level" class="form-control">
+                                <select name="compName" id="compName" class="form-control">
                                     <option value="">Pilih Kategori</option>
                                     <option value="1">Pengumuman</option>
                                     <option value="2">Aktiviti</option>
@@ -189,6 +232,11 @@
         </section>
     </form>
 </div>
+
 <script>
-CKEDITOR.replace('pengumuman', {height: 250});
+	CKEDITOR.replace('announcement');
+
+    $('input:checkbox').click(function() {
+        $('input:checkbox').not(this).prop('checked', false);
+    });
 </script>
