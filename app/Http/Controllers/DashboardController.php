@@ -16,7 +16,10 @@ class DashboardController extends Controller
     public function client()
     {
         $user = Auth::guard('client')->user()->userid;
-        // dd($user);
+
+        $pengumuman = calendar_event::where('kategori',1)->where('is_public',3)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+
+        // dd($pengumuman);
         // dd($request->all());
         $mohon = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->get();
         $tolak = Ramuan::where('create_by',$user)->where('status',6)->where('is_delete',0)->get();
@@ -27,36 +30,42 @@ class DashboardController extends Controller
         $rsom = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(7),now()->addDays(30)])->get();
         $rsod = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->where('tarikh_tamat_sijil','<=',now()->addDays(7))->get();
 
-        return view('client/dashboard',compact('mohon','tolak','ramuan','hapus','rstm','rsom','rsod'));
+        return view('client/dashboard',compact('pengumuman','mohon','tolak','ramuan','hapus','rstm','rsom','rsod'));
     }
 
     public function admin()
     {
+
+        $pengumuman = calendar_event::where('kategori',1)->where('is_public',2)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+
+        $details = calendar_event::whereIn('kategori',[2,3])->where('is_public',2)->get();
+
+        // dd($pengumuman);
+
         $events = [];
 
-        $events[] = \Calendar::event(
-            'Event One', //event title
-            false, //full day event?
-            '2020-08-11T0800', //start time (you can also use Carbon instead of DateTime)
-            '2020-08-12T0800', //end time (you can also use Carbon instead of DateTime)
-            0 //optionally, you can specify an event ID
-        );
-        
-        $events[] = \Calendar::event(
-            "Valentine's Day", //event title
-            true, //full day event?
-            new \DateTime('2020-08-14'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2020-08-14'), //end time (you can also use Carbon instead of DateTime)
-            '1' //optionally, you can specify an event ID
-        );
-        
+        foreach ($details as $det) {
+            if($det->start_date == $det->end_date){
+                $status = true; 
+            } else {
+                $status = false; 
+            }
+
+            $events[] = \Calendar::event(
+                $det->event, //event title
+                $status, //full day event?
+                $det->start_date, //start time (you can also use Carbon instead of DateTime)
+                $det->end_date, //end time (you can also use Carbon instead of DateTime)
+                $det->id //optionally, you can specify an event ID
+            );   
+        }
         
         $calendar = new Calendar();
         $calendar->addEvents($events)
         ->setOptions([
             'locale' => 'ms',
             'firstDay' => 0,
-            'height' => 450,
+            'contentHeight'=> 'auto',
             'displayEventTime' => true,
             'initialView' => 'dayGridMonth',
             'headerToolbar' => [
@@ -80,7 +89,7 @@ class DashboardController extends Controller
         $audit = Ramuan::where('is_lulus',1)->where('is_delete',0);
 
 
-        return view('admin/dashboard',compact('calendar','baru','semak','lulus','audit'));
+        return view('admin/dashboard',compact('pengumuman','calendar','baru','semak','lulus','audit'));
     }
     
     public function event_create()
@@ -90,7 +99,7 @@ class DashboardController extends Controller
     
     public function event_view($id)
     {
-        // dd($id);
+        dd($id);
         return view('admin/event_view');
     }
     
