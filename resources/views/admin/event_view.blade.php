@@ -1,10 +1,3 @@
-<script>
-function do_close()
-{
-   $('#myModalm').modal('toggle')
-}
-</script>
-
 <div class="col-md-12">
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
@@ -34,7 +27,7 @@ function do_close()
 
                 <div class="form-group">
                     <div align="right">
-                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
                     </div>
                 </div>
             </div>

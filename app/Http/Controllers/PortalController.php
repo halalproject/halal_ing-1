@@ -11,7 +11,7 @@ class PortalController extends Controller
 {
     public function index()
     {
-        $pengumuman = calendar_event::where('kategori',3)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = calendar_event::where('kategori',1)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
         return view('portal',compact('pengumuman'));
     }

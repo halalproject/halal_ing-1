@@ -2,10 +2,6 @@
     $("#upload").click(function() {
         $("input[id='my_file']").click();
     });
-
-    function do_close() {
-        location.reload();
-    }
 </script>
     @php
     $id = $user->id ?? '';
@@ -102,7 +98,7 @@
 
                     <div class="form-group">
                         <div align="right">
-                            <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
                             <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
                                 <i class="fa fa-save"></i> Simpan</button>
                         </div>

@@ -5,11 +5,9 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <marquee behavior="scroll" scrollamount="6" >
-                <h4 class="title">
                     @foreach ($pengumuman as $umum)
                     <i style="color: #fa0000;">{!! $umum->announcement !!}</i>&emsp;&emsp;
                     @endforeach
-                </h4>
             </marquee>
             <div class="x_title">
                 <h2><b>Paparan Utama MyHalal Ingredient</b> </h2>

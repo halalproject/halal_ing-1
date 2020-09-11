@@ -1,9 +1,4 @@
 <script>
-function do_close()
-{
-    location.reload();
-}
-
 function do_simpan()
 {
     var reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
@@ -122,7 +117,7 @@ function do_simpan()
 
                 <div class="form-group">
                     <div align="right">
-                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
                         <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_simpan()" id="simpan"><i class="fa fa-save"></i> Simpan</button>
                     </div>
                 </div>
