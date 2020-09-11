@@ -75,11 +75,8 @@ class DashboardController extends Controller
         $calendar->setId('1');
         $calendar->setCallbacks([
             'navLinks' => true,
-            'navLinkDayClick' => 'function() {
-                $("#myModal").modal("show").find(".modal-content").load("/admin/event"); 
-              }',
             'eventClick' => 'function(info){
-                $("#myModal").modal("show").find(".modal-content").load("/admin/event/view/"+info.event.id+""); 
+                $("#myModalm").modal("show").find(".modal-content").load("/admin/event/view/"+info.event.id); 
              }'
         ]);
 
@@ -92,15 +89,13 @@ class DashboardController extends Controller
         return view('admin/dashboard',compact('pengumuman','calendar','baru','semak','lulus','audit'));
     }
     
-    public function event_create()
-    {
-        return view('admin/event_create');
-    }
-    
     public function event_view($id)
     {
-        dd($id);
-        return view('admin/event_view');
+        // dd($id);
+
+        $rs = calendar_event::find($id);
+
+        return view('admin/event_view',compact('rs'));
     }
     
     public function pengumuman(Request $request)
@@ -116,11 +111,6 @@ class DashboardController extends Controller
         // dd($calendar);
         
         return view('admin/pengumuman', compact('calendar'));
-    }
-    
-    public function pengumuman_view($id)
-    {
-        return view('admin/pengumuman_view');
     }
 
     public function pengumuman_create()
