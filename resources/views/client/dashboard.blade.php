@@ -6,7 +6,7 @@
         <div class="x_panel">
             <marquee behavior="scroll" scrollamount="6" >
                     @foreach ($pengumuman as $umum)
-                    <i style="color: #fa0000;">{!! $umum->announcement !!}</i>&emsp;&emsp;
+                    <i style="color: #fa0000;">{{ strip_tags($umum->announcement) }}</i>&emsp;&emsp;
                     @endforeach
             </marquee>
             <div class="x_title">

@@ -81,7 +81,7 @@
             <div class="col-md-6" style="color:red;">
                 <marquee behavior="scroll" direction="left" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
                     @foreach ($pengumuman as $umum)
-                    <i>{!! $umum->announcement !!}</i> <span style="color:#000;"><i class="fas fa-atom"></i></span>
+                    <i>{{ strip_tags($umum->announcement) }}</i> <span style="color:#000;"><i class="fas fa-atom"></i></span>
                     @endforeach
                 </marquee>
             </div>
