@@ -53,7 +53,7 @@ class PortalController extends Controller
     {
         // dd($id);
         $company = Ramuan::find($id);
-        $list = Ramuan::where('create_by', $company->create_by)->paginate(10);
+        $list = Ramuan::where('create_by', $company->create_by)->get();
         return view('modalSyarikat', compact('company','list'));
     }
 }

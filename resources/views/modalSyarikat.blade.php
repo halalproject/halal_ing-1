@@ -105,7 +105,7 @@
                 </tr>
             </thead>
             <tbody>
-                @php $bil = $list->perPage()*($list->currentPage()-1) @endphp
+                @php $bil = 0 @endphp
                     @foreach($list as $l)
                         <tr>
                             <td>{{ ++$bil }}</td>
@@ -123,10 +123,6 @@
                     @endforeach
             </tbody>
         </table>
-
-        <div align="center" class="d-flex justify-content-center">
-            {!! $list->render() !!}
-        </div>
     </div>
 </div>
 <div class="modal-footer">

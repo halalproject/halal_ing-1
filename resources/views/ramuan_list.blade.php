@@ -56,6 +56,14 @@
             {
                 $('.modal-content').load('/view/'+id);
             }
+
+            $(document).ready(function(){
+                $('.launch-modal').click(function(){
+                    $('#myModal').modal({
+                        backdrop: 'dismiss'
+                    });
+                }); 
+            });
         </script>
         @php
         $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
@@ -223,7 +231,7 @@
                                     <td>{{ date('d/m/Y', strtotime($l->tarikh_tamat_sijil)) }}</td>
                                     <td>
                                         <a onclick="do_modal({{ $l->id }})" data-toggle="modal" data-target="#myModal" title="Maklumat Syarikat" data-backdrop="static">
-                                            <button type="button" class="btn btn-info col-sm-10" >
+                                            <button type="button" class="btn btn-info col-sm-10 launch-modal" >
                                                 <i class="fa fa-list"></i>
                                             </button>
                                         </a>
