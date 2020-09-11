@@ -3,6 +3,59 @@ function do_close()
 {
     location.reload();
 }
+
+function do_simpan()
+{
+    var contact_name = $('#contact_name').val();
+    var contact_ic = $('#contact_ic').val();
+    var contact_position = $('#contact_position').val();
+    var contact_tel = $('#contact_tel').val();
+    var contact_email = $('#contact_email').val();
+    var formdata = $("form").serialize();
+
+    if(contact_name.trim() == '' || contact_ic.trim() == '' || contact_position.trim() == '' || contact_tel.trim() == '' || contact_email.trim() == ''){
+        swal({
+            title: 'Amaran',
+            text: 'Sila lengkapkan maklumat.',
+            type: 'warning',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
+    } else {
+        $.ajax({
+			url:'/client/store', //&datas='+datas,
+			type:'POST',
+			data: formdata,
+			//data: datas,
+			success: function(data){
+				console.log(data);
+				//alert(data);
+				if(data=='OK'){
+					swal({
+					  title: 'Berjaya',
+					  text: 'Maklumat telah berjaya dikemaskini',
+					  type: 'success',
+					  confirmButtonClass: "btn-success",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					}).then(function () {
+                        location.reload();
+					});
+				} else if(data=='ERR'){
+					swal({
+					  title: 'Amaran',
+					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya disimpan.',
+					  type: 'error',
+					  confirmButtonClass: "btn-warning",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					});
+				}
+			}
+		});
+    }
+}
 </script>
 
 <div class="col-md-12">
@@ -12,12 +65,13 @@ function do_close()
         </header>
         <div class="panel-body ">
             <div class="col-md-12">
+                @csrf
                 <input type="hidden" name="id" id="id" class="form-control" value="{{ $user->userid }}">
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-2 control-label"><b>Nama Syarikat :</b></label>
                         <div class="col-sm-5">{{ $user->company_name }}</div>
-                        <label class="col-sm-3 control-label"><b>No Pendaftaran Syarikat :</b></label>
+                        <label class="col-sm-2 control-label"><b>No Pendaftaran Syarikat :</b></label>
                         <div class="col-sm-2">{{ $user->company_reg_code }}</div>
                     </div>
                 </div>
@@ -56,7 +110,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-2 control-label"><b>Web :</b></label>
                         <div class="col-sm-5">
-                            <input type="text" name="company_web" id="company_web" class="form-control" value="{{ $user->company_web }}">
+                            <input type="text" name="company_web" id="company_web" class="form-control" placeholder="www.example.com" value="{{ $user->company_web }}">
                         </div>
                         <label class="col-sm-2 control-label"><b>No. Fax :</b></label>
                         <div class="col-sm-2">
@@ -97,34 +151,41 @@ function do_close()
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Nama pegawai :</label>
+                        <label class="col-sm-2 control-label"><b><font color="#FF0000">*</font> Nama pegawai :</b></label>
                         <div class="col-sm-8">
-                            <input type="text" name="contact_name" id="contact_name" class="form-control" value="{{ $user->contact_name }}">
+                            <input type="text" name="contact_name" id="contact_name" class="form-control" placeholder="Nama Pegawai" value="{{ $user->contact_name }}">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No K/P :</label>
+                        <label class="col-sm-2 control-label"><b><font color="#FF0000">*</font> No K/P :</b></label>
                         <div class="col-sm-3">
-                            <input type="text" name="contact_ic" id="contact_ic" class="form-control" value="{{ $user->contact_ic }}">
+                            <input type="text" name="contact_ic" id="contact_ic" class="form-control" placeholder="No. Kad Pengenalan" 
+                                value="{{ $user->contact_ic }}"  maxlength="12"
+                                onkeydown="return (event.ctrlKey || event.altKey 
+                                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                    || (95<event.keyCode && event.keyCode<106)
+                                    || (event.keyCode==8) || (event.keyCode==9) 
+                                    || (event.keyCode>34 && event.keyCode<40) 
+                                    || (event.keyCode==46) )">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Jawatan :</label>
+                        <label class="col-sm-2 control-label"><b><font color="#FF0000">*</font> Jawatan :</b></label>
                         <div class="col-sm-8">
-                            <input type="text" name="contact_position" id="contact_position" class="form-control" value="{{ $user->contact_position }}">
+                            <input type="text" name="contact_position" id="contact_position" class="form-control" placeholder="Jawatan" value="{{ $user->contact_position }}">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. Telefon :</label>
+                        <label class="col-sm-2 control-label"><b><font color="#FF0000">*</font> No. Telefon :</b></label>
                         <div class="col-sm-2">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
@@ -136,7 +197,7 @@ function do_close()
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Email Pegawai :</label>
+                        <label class="col-sm-2 control-label"><b><font color="#FF0000">*</font> Email Pegawai :</b></label>
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>

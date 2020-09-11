@@ -67,6 +67,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="bs-example">
+			<div id="myModalm" class="modal fade" role="dialog">
+				<div class="modal-dialog modal-md static">
+					<div class="modal-content">
+					</div>
+				</div>
+			</div>
+		</div>
 	
 		</form>
 		

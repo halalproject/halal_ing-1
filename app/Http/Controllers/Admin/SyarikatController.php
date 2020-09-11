@@ -19,7 +19,6 @@ class SyarikatController extends Controller
     public function view($id)
     {
         // dd($id);
-
         $client = Client::find($id);
 
         return view('admin/modal_syarikat',compact('client'));

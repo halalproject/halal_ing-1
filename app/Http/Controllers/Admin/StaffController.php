@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Ref_User_Jawatan;
 use App\Ref_User_Level;
 use App\Ref_User_Status;
@@ -55,6 +56,7 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $user = Auth::guard('admin')->user()->id;
 
         if(empty($request->id)){
             // dd('empty');
@@ -76,9 +78,9 @@ class StaffController extends Controller
                 $user->user_level = $request->level;
                 $user->user_status = $request->status;
                 $user->created_dt = now();
-                $user->created_by = 1;
+                $user->created_by = $user;
                 $user->updated_dt = now();
-                $user->updated_by = 1;
+                $user->updated_by = $user;
     
                 $user->save();
 
@@ -100,7 +102,7 @@ class StaffController extends Controller
                 'user_level' => $request->level,
                 'user_status' => $request->status,
                 'updated_dt' => now(),
-                'updated_by' => 1,
+                'updated_by' => $user,
             );
 
             $user = Admin::where('id',$request->id)->update($data);
@@ -117,6 +119,30 @@ class StaffController extends Controller
 
     public function reset($id)
     {
+        // dd($id);
+        $uid = Auth::guard('admin')->user()->id;
 
+        $password = Admin::find($id);
+        // dd($password->nombor_kp);
+        $user = Admin::find($id)->update(['password'=> md5($password->nombor_kp),'updated_by' => $uid,'updated_dt' => now()]);
+
+        if($user){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
+    }
+
+    public function delete($id)
+    {
+        $uid = Auth::guard('admin')->user()->id;
+        // dd($id);
+        $user = Admin::find($id)->update(['is_delete' => 1,'deleted_by' => $uid,'deleted_dt' => now()]);
+
+        if($user){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
     }
 }

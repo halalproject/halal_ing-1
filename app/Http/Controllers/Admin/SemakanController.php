@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Ref_Sumber_Bahan;
 use App\Ramuan;
 use App\Ramuan_Komen;
@@ -15,8 +16,8 @@ class SemakanController extends Controller
         $cat = Ref_Sumber_Bahan::get();
         $semakan = Ramuan::where('status',1)->whereNotNull('tarikh_buka')->where('is_semak',0);
 
-        if(!empty($request->sijil)){ $semakan->where('is_sijil',$request->sijil); }
-        if(!empty($request->kategori)){ $semakan->where('sumber_bahan_id',$request->kategori); }
+        if($request->sijil != ''){ $semakan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $semakan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $semakan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
 
         $semakan = $semakan->orderBy('create_dt')->paginate(10);
@@ -27,6 +28,7 @@ class SemakanController extends Controller
     public function komen(Request $request)
     {
         // dd($request->all());
+        $user = Auth::guard('admin')->user()->id;
 
         if ($request->input('lulus') || $request->input('semak')) {
             // dd('lulus dan semak');
@@ -40,17 +42,17 @@ class SemakanController extends Controller
             }
             $komen->catatan = $request->catatan_text;
             $komen->create_dt = now();
-            $komen->create_by = 1;
+            $komen->create_by = $user;
             $komen->update_dt = now();
-            $komen->update_by = 1;
+            $komen->update_by = $user;
 
             $komen->save();
 
             if($komen){
                 if ($request->input('lulus')) {
-                    $status = Ramuan::find($request->id)->update(['status'=>3,'is_semak'=>1,'is_lulus'=>1]);
+                    $status = Ramuan::find($request->id)->update(['status'=>3,'is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now(),'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
                 } else if($request->input('semak')) {
-                    $status = Ramuan::find($request->id)->update(['is_semak'=>1]);
+                    $status = Ramuan::find($request->id)->update(['is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now()]);
                 }
 
                 return response()->json('OK');
@@ -61,7 +63,7 @@ class SemakanController extends Controller
 
         } else if($request->input('tolak')) {
             // dd('tolak');
-            $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_lulus'=>2]);
+            $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now(),'is_lulus'=>2,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
 
             if($tolak){
                 return response()->json('OK');

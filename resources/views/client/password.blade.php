@@ -6,7 +6,71 @@ function do_close()
 
 function do_simpan()
 {
-    
+    var reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    var pass1 = $('#new_pass').val();
+    var pass2 = $('#re_new_pass').val();
+    var formdata = $("form").serialize();
+
+    if(pass1.trim() == '' || pass2.trim() == ''){
+        swal({
+            title: 'Amaran',
+            text: 'Sila lengkapkan maklumat.',
+            type: 'warning',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
+    } else if(!reg.test(pass1)){
+        swal({
+            title: 'Amaran',
+            text: 'Sila masukkan katalaluan yang kuat.',
+            type: 'info',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
+    } else if(pass2.trim() != pass1.trim()){
+        swal({
+            title: 'Amaran',
+            text: 'Sila masukkan katalaluan yang sama.',
+            type: 'warning',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
+    } else {
+        $.ajax({
+			url:'/client/reset', //&datas='+datas,
+			type:'POST',
+			data: formdata,
+			//data: datas,
+			success: function(data){
+				console.log(data);
+				//alert(data);
+				if(data=='OK'){
+					swal({
+					  title: 'Berjaya',
+					  text: 'Maklumat telah berjaya dikemaskini',
+					  type: 'success',
+					  confirmButtonClass: "btn-success",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					}).then(function () {
+                        location.reload();
+					});
+				} else if(data=='ERR'){
+					swal({
+					  title: 'Amaran',
+					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya disimpan.',
+					  type: 'error',
+					  confirmButtonClass: "btn-warning",
+					  confirmButtonText: "Ok",
+					  showConfirmButton: true,
+					});
+				}
+			}
+		});
+    }
 }
 </script>
 
@@ -17,34 +81,44 @@ function do_simpan()
         </header>
         <div class="panel-body ">
             <div class="col-md-12">
+                @csrf
                 <input type="hidden" name="id" id="id" class="form-control" value="{{ $user->userid }}">
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><b>Nama Syarikat :</b></label>
-                        <div class="col-sm-3">{{ $user->company_name }}</div>
+                        <label class="col-sm-4 control-label"><b>Nama Syarikat :</b></label>
+                        <div class="col-sm-6">{{ $user->company_name }}</div>
+                    </div>
+                </div>
 
-                        <label class="col-sm-3 control-label"><b>No Pendaftaran Syarikat :</b></label>
-                        <div class="col-sm-2">{{ $user->company_reg_code }}</div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-4 control-label"><b>No Pendaftaran Syarikat :</b></label>
+                        <div class="col-sm-6">{{ $user->company_reg_code }}</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><b>UserID :</b></label>
-                        <div class="col-sm-10">{{ $user->userid }}</div>
+                        <label class="col-sm-4 control-label"><b>UserID :</b></label>
+                        <div class="col-sm-6">{{ $user->userid }}</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Katalaluan Baru :</label>
-                        <div class="col-sm-3">
+                        <label class="col-sm-4 control-label"><b><font color="#FF0000">*</font> Katalaluan Baru :</b></label>
+                        <div class="col-sm-6">
                             <input type="password" name="new_pass" id="new_pass" class="form-control" value="">
                         </div>
+                    </div>
+                </div>
 
-                        <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Masukkan Semula Katalaluan Baru :</label>
-                        <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-4 control-label"><b><font color="#FF0000">*</font> Masukkan Semula Katalaluan Baru :</b></label>
+                        <div class="col-sm-6">
                             <input type="password" name="re_new_pass" id="re_new_pass" class="form-control" value="">
                         </div>
                     </div>

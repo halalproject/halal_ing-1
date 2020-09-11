@@ -64,7 +64,7 @@ function do_pengumuman()
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="/admin/proses" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/admin/semak" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>

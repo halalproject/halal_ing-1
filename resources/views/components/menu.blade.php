@@ -72,7 +72,7 @@
 									</a>
 								</li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="/{{ $path }}/password" data-toggle="modal" data-target="#myModal" data-backdrop="static">
+									<a role="menuitem" tabindex="-1" href="/{{ $path }}/password" data-toggle="modal" data-target="#myModalm" data-backdrop="static">
 										<i class="fa fa-key"></i> Tukar Kata Laluan
 									</a>
 								</li>
