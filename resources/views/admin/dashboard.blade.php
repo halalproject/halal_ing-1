@@ -13,7 +13,7 @@ function do_pengumuman()
 
 function do_detail(ids)
 {
-    alert(ids);
+    $("#myModal").modal("show").find(".modal-content").load("/admin/event/view/"+ids+"")
 }
 </script>
 <div class="row">
@@ -137,7 +137,7 @@ function do_detail(ids)
                                                 $i++;
                                                 $active = $i == 1 ? 'active' : '';
                                             @endphp
-                                            <div class="item {{ $active }}" @if(Auth::guard('admin')->user()->user_level != 1) onclick="do_detail({{ $umum->id }})" @endif>
+                                            <div class="item {{ $active }}" @if(Auth::guard('admin')->user()->user_level != 1) onclick="do_detail({{ $umum->id }})"  @endif>
                                                 <div class="widget-summary">
                                                     <div class="widget-summary-col">
                                                         <div class="summary">
@@ -178,7 +178,7 @@ function do_detail(ids)
 {!!  $calendar->script() !!}
 <script>
 $('.carousel').carousel({
-  interval: 4000
+  interval: 8000
 })
 
 </script>
