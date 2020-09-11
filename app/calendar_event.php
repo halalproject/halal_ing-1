@@ -11,4 +11,14 @@ class calendar_event extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function syarikat()
+    {
+        return $this->belongsTo('App\Client','create_by','userid');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo('App\Ref_Kategori_Event','kategori');
+    }
 }

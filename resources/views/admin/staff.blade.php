@@ -164,6 +164,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
             </div>
         </div>
     </div>
+    <br>
     <div align="right" style="padding-right:10px"><b>{{ $user->total() }} rekod dijumpai</b></div>
     <div class="box-body">
         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

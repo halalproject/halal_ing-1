@@ -17,6 +17,7 @@
         var docContents = CKEDITOR.instances['announcement'].getData();
 	    document.create.catatan_text.value=docContents;
         var file = $('#doc').val();
+        var compName = $('#compName').val();
         
         if(event == '' || start_date == '' || end_date == '' || kategori == '' || docContents == '' || is_public == '' ){
             swal({
@@ -84,6 +85,9 @@
 </script>
 @php
 $id = $calendar->id ?? '';
+$syarikat = $calendar->company_id ?? '';
+$kategori = $calendar->kategori ?? '';
+$pub = $calendar->is_public ?? '';
 @endphp
 <div class="col-md-12">
     <form name="create" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
@@ -122,20 +126,11 @@ $id = $calendar->id ?? '';
                         <div class="row">
                             <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Kategori :</label>
                             <div class="col-sm-3">
-                                <select name="kategori" id="kategori" class="form-control"> 
-                                @if(!empty($id))
-                                    <option value="" @if($calendar->kategori == '') selected @endif>Pilih Kategori</option>
-                                    <option value="1" @if($calendar->kategori == '1') selected @endif >Pengumuman</option>
-                                    <option value="2" @if($calendar->kategori == '2') selected @endif >Aktiviti</option>
-                                    <option value="3" @if($calendar->kategori == '3') selected @endif >Mesyuarat</option>
-                                    <option value="4" @if($calendar->kategori == '4') selected @endif >SOP</option>
-                                @else
-                                    <option value="" >Pilih Kategori</option>
-                                    <option value="1" >Pengumuman</option>
-                                    <option value="2" >Aktiviti</option>
-                                    <option value="3" >Mesyuarat</option>
-                                    <option value="4" >SOP</option> 
-                                @endif
+                                <select name="kategori" id="kategori" class="form-control">
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($cat as $cat)
+                                    <option value="{{ $cat->id }}" @if($kategori == $cat->id) selected @endif>{{ $cat->kategori_event }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -154,14 +149,14 @@ $id = $calendar->id ?? '';
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Dokumen :</label>
+                            <label class="col-sm-3 control-label" for="profileLastName"> Dokumen :</label>
                             <div class="col-sm-4">
                                 <input type="file" name="doc" id="doc" class="form-control" value="" style ="border:none; padding-left:0px;">
                             </div>
 
                             @if(!empty($id) && $calendar->file_name != '')
                             <div class="col-sm-4">
-                                <input type="text" name="file_name" id="file_name" class="form-control" value="{{ $calendar->file_name ?? '' }}" style ="border:none; padding-left:0px;">
+                                <input type="text" name="file_name" id="file_name" class="form-control" value="{{ $calendar->file_name ?? '' }}" style ="border:none; padding-left:0px;" disabled>
                             </div>
                             @endif
                         </div>
@@ -171,53 +166,51 @@ $id = $calendar->id ?? '';
                         <div class="row">
                             <label class="col-sm-3 control-label" for="pengumuman_kategori"><font color="#FF0000">*</font> Pengumuman Untuk: </label>
                             <div class="col-sm-9">
-
-                                @if(!empty($id))
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" @if($calendar->kategori == '4') checked @endif> Syarikat Tertentu
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" @if($calendar->kategori == '1') checked @endif> Awam
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()" @if($calendar->kategori == '2') checked @endif> Dalaman
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" @if($calendar->kategori == '3') checked @endif> Syarikat
-                                    </label>
-                                @else
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" checked> Syarikat Tertentu
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" > Awam
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()" > Dalaman
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" > Syarikat
-                                    </label>
-                                @endif
-                                
+                                <label class="radio-inline">
+                                    <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" @if($pub == '4') checked @endif> Syarikat Tertentu
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" @if($pub == '1') checked @endif> Awam
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()" @if($pub == '2') checked @endif> Dalaman
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" @if($pub == '3') checked @endif> Syarikat
+                                </label>
                             </div>
                         </div>
                     </div>
 
+                    
                     <div class="form-group" id="listComp" name="listComp">
-                        <div class="row">
-                            <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Syarikat :</label>
-                            <div class="col-sm-3">
-                                <select name="compName" id="compName" class="form-control">
-                                    <option value="">Pilih Kategori</option>
-                                    <option value="1">Pengumuman</option>
-                                    <option value="2">Aktiviti</option>
-                                    <option value="3">Mesyuarat</option>
-                                    <option value="4">SOP</option>
-                                </select>
+                        @if($pub == '4') checked 
+                            <div class="row">
+                                <label class="col-sm-3 control-label" for="compName"><font color="#FF0000">*</font> Nama Syarikat : </label>
+                                <div class="col-md-9">
+                                    <select name="compName" id="compName" class="form-control">
+                                        <option value="">Pilih Nama Syarikat</option>
+                                        @foreach ($comp as $comp)
+                                        <option value="{{ $comp->userid }}" @if($syarikat == $comp->userid) selected @endif>{{ $comp->company_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="row">
+                                <label class="col-sm-3 control-label" for="compName"><font color="#FF0000">*</font> Nama Syarikat : </label>
+                                <div class="col-md-9">
+                                    <select name="compName" id="compName" class="form-control">
+                                        <option value="">Pilih Nama Syarikat</option>
+                                        @foreach ($comp as $comp)
+                                        <option value="{{ $comp->userid }}" @if($syarikat == $comp->userid) selected @endif>{{ $comp->company_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
                     </div>
+                    
                     
                     <div class="form-group">
                         <div align="right">

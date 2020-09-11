@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Acaronlex\LaravelCalendar\Calendar;
 use App\Ramuan;
 use App\calendar_event;
+use App\Client;
+use App\Syarikat;
+use App\Ref_Kategori_Event;
 
 class DashboardController extends Controller
 {
@@ -100,6 +103,8 @@ class DashboardController extends Controller
         }
 
         $calendar = $calendar->orderBy('created_dt')->paginate(10);
+
+        // dd($calendar);
         
         return view('admin/pengumuman', compact('calendar'));
     }
@@ -111,18 +116,25 @@ class DashboardController extends Controller
 
     public function pengumuman_create()
     {
-        return view('admin/pengumuman_create');
+        $comp = Client::where('is_delete',0)->get(); 
+        $cat = Ref_Kategori_Event::where('status',0)->get(); 
+        
+        return view('admin/pengumuman_create', compact('comp', 'cat'));
     }
 
     public function pengumuman_store(Request $request)
     {
         
         $user = Auth::guard('admin')->user()->id; 
-        $file = $request->doc->getClientOriginalName();
-        $type = pathinfo($file)['extension'];
-        $path = $request->doc->storeAs('dokumen_pengumuman', $file); 
-// dd($file);
-        // dd($file);
+        
+        if(!empty($request->doc)){
+            $file = $request->doc->getClientOriginalName();
+            $type = pathinfo($file)['extension'];
+            $path = $request->doc->storeAs('dokumen_pengumuman', $file); 
+        } else {
+            $file = '';
+            $type = '';
+        }
 
         if(empty($request->id)) {
             $event = new calendar_event();
@@ -132,6 +144,7 @@ class DashboardController extends Controller
             $event->kategori = $request->kategori;
             $event->announcement = $request->catatan_text;
             $event->is_public = $request->pengumuman_untuk;
+            $event->company_id = $request->compName;
             $event->file_name = $file;
             $event->file_type = $type; 
             $event->created_dt = now();
@@ -147,7 +160,7 @@ class DashboardController extends Controller
                 return response()->json('ERR');
             }
         
-        } else {
+        } else {  
             $data = array(
                 'event' => $request->event,
                 'start_date' => $request->start_date,
@@ -155,6 +168,7 @@ class DashboardController extends Controller
                 'kategori' => $request->kategori,
                 'announcement' => $request->catatan_text,
                 'is_public' => $request->pengumuman_untuk,
+                'company_id' => $request->compName,
                 'file_name' => $file,
                 'file_type' => $type,
                 'updated_dt' => now(),
@@ -175,8 +189,11 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $calendar = calendar_event::find($id);
+        
+        $comp = Client::where('is_delete',0)->get(); 
+        $cat = Ref_Kategori_Event::where('status',0)->get();
 
-        return view('admin/pengumuman_create',compact('calendar'));
+        return view('admin/pengumuman_create',compact('calendar', 'comp', 'cat'));
     }
 
     public function delete($id)
