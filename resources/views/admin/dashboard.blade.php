@@ -13,7 +13,7 @@ function do_pengumuman()
 
 function do_detail(ids)
 {
-    $("#myModal").modal("show").find(".modal-content").load("/admin/event/view/"+ids+"")
+    $("#myModalm").modal("show").find(".modal-content").load("/admin/event/view/"+ids)
 }
 </script>
 <div class="row">

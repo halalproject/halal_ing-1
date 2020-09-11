@@ -62,14 +62,16 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
 
     //Dashboard
     Route::get('/','DashboardController@admin');
+    
+    //Pengumuman
     Route::get('/pengumuman','DashboardController@pengumuman')->name('Pengumuman');
     Route::get('/pengumuman/create','DashboardController@pengumuman_create');
-    Route::get('/pengumuman/view/{id}','DashboardController@pengumuman_view');
-    Route::get('/event','DashboardController@event_create');
-    Route::get('/event/view/{id}','DashboardController@event_view');
     Route::post('pengumuman/store','DashboardController@pengumuman_store');
     Route::get('pengumuman/edit/{id}','DashboardController@edit');
     Route::post('pengumuman/delete/{id}','DashboardController@delete');
+
+    //Event
+    Route::get('/event/view/{id}','DashboardController@event_view');
 
     //Profile and Password
     Route::get('/profile','Admin\AdminController@profile');
