@@ -48,7 +48,7 @@
                 if(cari.trim()==''){
                     window.location = pathname;
                 } else {
-                    swindow.location = pathname+'?cari='+cari;
+                    window.location = pathname+'?cari='+cari;
                 }
             }
 
