@@ -10,6 +10,8 @@ use App\calendar_event;
 use App\Client;
 use App\Syarikat;
 use App\Ref_Kategori_Event;
+use Response;
+
 
 class DashboardController extends Controller
 {
@@ -124,9 +126,9 @@ class DashboardController extends Controller
     public function pengumuman_store(Request $request)
     {
         
-        $user = Auth::guard('admin')->user()->id; 
+        $user = Auth::guard('admin')->user()->id;
         
-        if(!empty($request->doc)){
+        if(empty($request->doc_avail) && (!empty($request->doc))){
             $file = $request->doc->getClientOriginalName();
             $type = pathinfo($file)['extension'];
             $path = $request->doc->storeAs('dokumen_pengumuman', $file); 
@@ -134,6 +136,16 @@ class DashboardController extends Controller
             $file = '';
             $type = '';
         }
+
+        if(!empty($file)){
+            $showFile = $file;
+        } else {
+            $showFile = $request->curr_doc;
+        }
+
+        // (!empty($upload_status['file_name']))? $upload_status['file_name']: $dataForm['curr_doc'],
+
+        // dd($file);
 
         if($request->pengumuman_untuk !='4') { 
             $company = '';
@@ -150,7 +162,7 @@ class DashboardController extends Controller
             $event->announcement = $request->catatan_text;
             $event->is_public = $request->pengumuman_untuk;
             $event->company_id = $company;
-            $event->file_name = $file;
+            $event->file_name = $showFile;
             $event->file_type = $type; 
             $event->created_dt = now();
             $event->created_by = $user;
@@ -174,7 +186,7 @@ class DashboardController extends Controller
                 'announcement' => $request->catatan_text,
                 'is_public' => $request->pengumuman_untuk,
                 'company_id' => $company ,
-                'file_name' => $file,
+                'file_name' => $showFile,
                 'file_type' => $type,
                 'updated_dt' => now(),
                 'updated_by' => $user,
@@ -214,5 +226,34 @@ class DashboardController extends Controller
         } else {
             return response()->json('ERR');
         }
+    }
+
+    public function downloadDocument($file)
+	{
+		// dd(pathinfo($file)['extension']);
+        $path = storage_path().'/app/dokumen_pengumuman/'.$file;
+        $setFileType = pathinfo($file)['extension'];
+		if(file_exists($path)){
+            if($setFileType == "jpg" || $setFileType == "jpeg" || $setFileType == "png" ) {
+                return Response::make(file_get_contents($path), 200, [
+                    'Content-Type' => 'image/jpeg' ,
+                    'Content-Disposition' => 'inline; file="'.$file.'"'
+                    ]);
+            } elseif(pathinfo($file)['extension'] == 'pdf') {
+                return Response::make(file_get_contents($path), 200, [
+                    'Content-Type' => 'application/pdf', 
+                    'Content-Disposition' => 'inline; file="'.$file.'"'
+                ]);
+            } else {
+               return Response::download($path); 
+            }
+		} else {
+			return back();
+        }
+    }
+    
+    public function downloadDocumentTest($file)
+    {
+        return app('dokumen_pengumuman/'.$file);
     }
 }

@@ -18,6 +18,7 @@
 	    document.create.catatan_text.value=docContents;
         var file = $('#doc').val();
         var compName = $('#compName').val();
+        var curr_doc = $('#curr_doc').val();
         
         if(event == '' || start_date == '' || end_date == '' || kategori == '' || docContents == '' || is_public == '' ){
             swal({
@@ -156,7 +157,15 @@ $pub = $calendar->is_public ?? '';
 
                             @if(!empty($id) && $calendar->file_name != '')
                             <div class="col-sm-4">
-                                <input type="text" name="file_name" id="file_name" class="form-control" value="{{ $calendar->file_name ?? '' }}" style ="border:none; padding-left:0px;" disabled>
+                                <!-- <input type="text" name="file_name" id="file_name" class="form-control" value="{{ $calendar->file_name ?? '' }}" style ="border:none; padding-left:0px;" disabled> -->
+
+                                <!-- <a name="curr_file" id="curr_file" href="/admin/dokumen_pengumuman/{{ $calendar->file_name }}"><i class="fa fa-download"></i> {{ $calendar->file_name  }} </a> -->
+                                <a href="/admin/dokumen_pengumuman/{{ $calendar->file_name }}">
+                                    <i class="fa fa-download">
+                                    <input  type="text" name="curr_doc" id="curr_doc" value="{{ $calendar->file_name }}" style ="border:none; padding-left:0px;">
+                                    </i>
+                                </a>
+                                
                             </div>
                             @endif
                         </div>

@@ -75,41 +75,41 @@ function do_close()
             
             <div class="form-group">
                 <div class="row">
-                    <h6 class="panel-title"><font color="#000000" size="3"><b>Pegawai Yang Dilantik</b></font></h6>
+                    <h6 class="panel-title"><b>Pegawai Yang Dilantik</b></h6>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama pegawai :</label>
+                    <label class="col-sm-3 control-label"><b> Nama pegawai :</b></label>
                     <div class="col-sm-8">{{ $client->contact_name }}</div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No K/P :</label>
+                    <label class="col-sm-3 control-label"><b> No K/P :</b></label>
                     <div class="col-sm-3">{{ $client->contact_ic }}</div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Jawatan :</label>
+                    <label class="col-sm-3 control-label"><b> Jawatan :</b></label>
                     <div class="col-sm-8">{{ $client->contact_position }}</div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> No. Telefon :</label>
+                    <label class="col-sm-3 control-label"><b> No. Telefon :</b></label>
                     <div class="col-sm-3">{{ $client->contact_tel }}</div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Email Pegawai :</label>
+                    <label class="col-sm-3 control-label"><b> Email Pegawai :</b></label>
                     <div class="col-sm-4">{{ $client->contact_email }}</div>
                 </div>
             </div>

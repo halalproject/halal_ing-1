@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::post('pengumuman/store','DashboardController@pengumuman_store');
     Route::get('pengumuman/edit/{id}','DashboardController@edit');
     Route::post('pengumuman/delete/{id}','DashboardController@delete');
+    Route::get('/dokumen_pengumuman/{file}', 'DashboardController@downloadDocument');
 
     //Event
     Route::get('/event/view/{id}','DashboardController@event_view');

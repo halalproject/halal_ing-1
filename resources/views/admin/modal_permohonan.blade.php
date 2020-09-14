@@ -80,7 +80,7 @@ function do_simpan()
                         <a id="tab-1" href="#t1" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Maklumat Permohonan</span></a>
                     </li>
                     <li id="tab2" class="nav-item">
-                        <a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Process Pengesahan</span></a>
+                        <a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Proses Pengesahan</span></a>
                     </li>
                 </ul>
                 <!-- End Tab Menu -->

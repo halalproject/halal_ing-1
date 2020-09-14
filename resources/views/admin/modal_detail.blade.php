@@ -1,3 +1,11 @@
+<script>
+
+    function do_close()
+    {
+        location.reload();
+    }
+
+</script>
 <div class="col-md-12">
     <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -116,7 +124,8 @@
                 </div>
                 <div class="form-group">
                     <div align="right">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
+                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button> -->
+                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
                     </div>
                 </div>
             

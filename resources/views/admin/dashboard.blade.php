@@ -125,7 +125,7 @@ function do_detail(ids)
                     
                     <div class="col-md-12 col-lg-8 col-xl-8">
                         <div class="row">
-                            <section class="panel" style="cursor: pointer" @if(Auth::guard('admin')->user()->user_level == 1) onclick="do_pengumuman()" @endif>
+                            <section class="panel" style="cursor: pointer" @if(Auth::guard('admin')->user()->user_level == 1) onclick="do_pengumuman()" @endif><font color="#FF0000"><i>Sila Klik <i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Untuk Menambah Pengumuman</i></font>
                                 <div class="panel-body">
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                                                                              
