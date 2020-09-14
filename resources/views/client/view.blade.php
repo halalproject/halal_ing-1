@@ -5,6 +5,10 @@ function do_close()
 }
 </script>
 
+<style media="print" type="text/css">
+	.printButton { display: none; }
+</style>
+
 <div class="col-md-12">
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
@@ -12,6 +16,10 @@ function do_close()
                 <font color="#000000" size="3"><b>Maklumat Ramuan</b>
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
+
+                <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="window.print()" id="cetak">
+                    <i class="fa fa-print"></i> Cetak
+                </button>
             </h6>
         </header>
         <div class="panel-body ">
@@ -100,7 +108,7 @@ function do_close()
                 
                 <div class="form-group">
                     <div align="right">
-                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                        <button type="button" class="btn btn-default printButton" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
                     </div>
                 </div>
             </div>

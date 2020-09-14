@@ -389,13 +389,13 @@ if(!empty($id)){
                             
                             <div class="form-group">
                                 <div align="right">
-                                    <label class="col-sm-12 control-label">Sila klik butang simpan terlebih dahulu sebelum meletakkan dokumentasi permohonan</label>
+                                    <font color="#FF0000"><i>Sila klik butang simpan terlebih dahulu sebelum meletakkan dokumentasi permohonan</i></font>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div align="right">
-                                    <label class="col-sm-12 control-label">Sila klik butang hantar di menu maklumat dokumentasi bagi proses pengesahan</label>
+                                    <font color="#FF0000"><i>Sila klik butang hantar di menu maklumat dokumentasi bagi proses pengesahan</i></font>
                                 </div>
                             </div>
                         </div>

@@ -1,8 +1,11 @@
+<style media="print" type="text/css">
+	.printButton { display: none; }
+</style>
 <body>
 	<form name="halal" method="post" action="" enctype="multipart/form-data" autocomplete="off">
 		<section class="body" style="">
 			<!-- start: header -->
-			<header class="header" style="">
+			<header class="header printButton" style="">
 				<div class="logo-container">
 					<a href="" class="logo">
 						<img src="" height="35" alt="Halal Ingredient" />
@@ -11,7 +14,7 @@
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 						<i class="fa fa-bars" aria-label="Toggle sidebar" style="cursor:pointer"></i>
 					</div>
-                    <div id="userbox" class="userbox1 visible-xs"> Menu
+                    <div id="userbox" class="userbox1 visible-xs printButton"> Menu
                     	<figure class="profile-picture">
 								
 						</figure>
@@ -93,7 +96,7 @@
 				<!-- start: sidebar -->
 				<aside id="sidebar-left" class="sidebar-left">
 					<div class="sidebar-header">
-						<div class="sidebar-title">
+						<div class="sidebar-title printButton">
 							<font color="white"><b>Menu Utama</b></font>
 						</div>
 						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">

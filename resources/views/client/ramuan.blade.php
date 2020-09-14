@@ -68,12 +68,16 @@ function do_hapus(id)
     });
 }
 </script>
-@php
+
+<style media="print" type="text/css">
+	.printButton { display: none; }
+</style>
+@php 
 $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
 $sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
 $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
-		<div class="box" style="background-color:#F2F2F2">
+		<div class="box printButton" style="background-color:#F2F2F2">
 
             <div class="box-body">
         	<input type="hidden" name="soalan_id" value="" />
@@ -89,7 +93,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             </div>            
             <br />
             <div class="box-body">
-                <div class="form-group">
+                <div class="form-group  ">
                     <div class="col-md-2">
                         <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
                             <option value="">Sijil Halal</option>

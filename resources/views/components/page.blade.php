@@ -1,7 +1,10 @@
 @extends('components.header')
 
 @section('page')
-<section class="content-body">
+<style media="print" type="text/css">
+	.printButton { display: none; }
+</style>
+<section class="content-body printButton">
             <header class="page-header visible-lg" style="background: #34495e;background: #1C2B36">
                 <h2>Sistem MyHalal Ingredient</h2>
             
