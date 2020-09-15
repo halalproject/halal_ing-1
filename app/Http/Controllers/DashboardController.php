@@ -52,7 +52,7 @@ class DashboardController extends Controller
                 $status = false; 
             }
 
-            $events[] = \Calendar::event(
+            $events[] = Calendar::event(
                 $det->event, //event title
                 $status, //full day event?
                 $det->start_date, //start time (you can also use Carbon instead of DateTime)
@@ -233,17 +233,17 @@ class DashboardController extends Controller
         $setFileType = pathinfo($file)['extension'];
 		if(file_exists($path)){
             if($setFileType == "jpg" || $setFileType == "jpeg" || $setFileType == "png" ) {
-                return Response::make(file_get_contents($path), 200, [
+                return response()->make(file_get_contents($path), 200, [
                     'Content-Type' => 'image/jpeg' ,
                     'Content-Disposition' => 'inline; file="'.$file.'"'
                     ]);
             } elseif(pathinfo($file)['extension'] == 'pdf') {
-                return Response::make(file_get_contents($path), 200, [
+                return response()->make(file_get_contents($path), 200, [
                     'Content-Type' => 'application/pdf', 
                     'Content-Disposition' => 'inline; file="'.$file.'"'
                 ]);
             } else {
-               return Response::download($path); 
+               return response()->download($path);
             }
 		} else {
 			return back();
