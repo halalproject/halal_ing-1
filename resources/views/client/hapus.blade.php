@@ -35,7 +35,7 @@ function do_restore(id)
         reverseButtons: true
     }).then(function () {
         $.ajax({
-			url:'/client/permohonan/delete/'+id, //&datas='+datas,
+			url:'/client/ramuan/restore/'+id, //&datas='+datas,
 			type:'POST',
 			data: $("form").serialize(),
 			//data: datas,
@@ -74,8 +74,8 @@ $sijil=isset($_REQUEST["sijil"])?$_REQUEST["sijil"]:"";
 $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
 		<div class="box" style="background-color:#F2F2F2">
-
             <div class="box-body">
+            @csrf
         	<input type="hidden" name="soalan_id" value="" />
             <div class="x_panel">
 			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
