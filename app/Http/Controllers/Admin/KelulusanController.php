@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Ref_Sumber_Bahan;
 use App\Ramuan;
+use App\Ramuan_Komen;
 
 class KelulusanController extends Controller
 {
@@ -17,13 +18,22 @@ class KelulusanController extends Controller
 
         if($request->sijil != ''){ $kelulusan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $kelulusan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $kelulusan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $kelulusan->where(function($query) use ($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+        }); }
 
         $kelulusan = $kelulusan->orderBy('create_dt')->paginate(10);
 
         return view('admin/kelulusan',compact('cat','kelulusan'));
     }
 
+    public function modal_permohonan($id)
+    {
+        // dd($id);
+        $rs = Ramuan::find($id);
+        return view('admin/modal_permohonan',compact('rs'));
+    }
+    
     public function komen(Request $request)
     {
         // dd($request->all());
@@ -65,10 +75,4 @@ class KelulusanController extends Controller
 
     }
 
-    public function modal_permohonan($id)
-    {
-        // dd($id);
-        $rs = Ramuan::find($id);
-        return view('admin/modal_permohonan',compact('rs'));
-    }
 }

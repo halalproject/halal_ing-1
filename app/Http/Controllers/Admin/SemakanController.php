@@ -18,13 +18,22 @@ class SemakanController extends Controller
 
         if($request->sijil != ''){ $semakan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $semakan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $semakan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $semakan->where(function($query) use ($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+        }); }
 
         $semakan = $semakan->orderBy('create_dt')->paginate(10);
 
         return view('admin/semakan',compact('cat','semakan'));
     }
 
+    public function modal_permohonan($id)
+    {
+        // dd($id);
+        $rs = Ramuan::find($id);
+        return view('admin/modal_permohonan',compact('rs'));
+    }
+    
     public function komen(Request $request)
     {
         // dd($request->all());
@@ -74,10 +83,4 @@ class SemakanController extends Controller
 
     }
 
-    public function modal_permohonan($id)
-    {
-        // dd($id);
-        $rs = Ramuan::find($id);
-        return view('admin/modal_permohonan',compact('rs'));
-    }
 }

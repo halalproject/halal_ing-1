@@ -35,7 +35,9 @@ class SyarikatController extends Controller
 
         if(!empty($request->sijil)){ $ramuan->where('is_sijil',$request->sijil); }
         if(!empty($request->kategori)){ $ramuan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $ramuan->where(function($query) use ($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+        }); }
         
         $ramuan = $ramuan->orderBy('create_dt','DESC')->paginate(10);
         return view('admin/ramuan',compact('syarikat','cat','ramuan'));
