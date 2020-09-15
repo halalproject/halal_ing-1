@@ -94,6 +94,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             <br />
             <div class="box-body">
                 <div class="form-group  ">
+                @csrf
                     <div class="col-md-2">
                         <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
                             <option value="">Sijil Halal</option>

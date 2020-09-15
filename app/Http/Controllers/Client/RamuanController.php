@@ -31,7 +31,7 @@ class RamuanController extends Controller
             }
         }
         
-        $ramuan = $ramuan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
+        $ramuan = $ramuan->where('create_by',$user)->where('is_delete', 0)->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
         
         return view('client/ramuan',compact('cat','ramuan'));
@@ -70,6 +70,14 @@ class RamuanController extends Controller
 
     public function delete($id)
     {
-        dd($id);
+        $user = Auth::guard('client')->user()->userid;
+        // dd($id);
+        $cal = Ramuan::find($id)->update(['is_delete'=>1,'delete_dt'=>now(),'delete_by'=>$user]);
+
+        if($cal){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
     }
 }
