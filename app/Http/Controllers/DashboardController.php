@@ -8,7 +8,6 @@ use Acaronlex\LaravelCalendar\Calendar;
 use App\Ramuan;
 use App\calendar_event;
 use App\Client;
-use App\Syarikat;
 use App\Ref_Kategori_Event;
 use Response;
 
@@ -76,7 +75,6 @@ class DashboardController extends Controller
         ]);
         $calendar->setId('1');
         $calendar->setCallbacks([
-            'navLinks' => true,
             'eventClick' => 'function(info){
                 $("#myModalm").modal("show").find(".modal-content").load("/admin/event/view/"+info.event.id); 
              }'

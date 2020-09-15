@@ -16,7 +16,9 @@ class PermohonanController extends Controller
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $permohonan->where(function($query) use ($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+        }); }
 
         $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
         // dd($permohonan);
@@ -30,7 +32,9 @@ class PermohonanController extends Controller
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $permohonan->where(function($query) use ($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+        }); }
 
         $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
 

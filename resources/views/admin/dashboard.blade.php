@@ -125,13 +125,13 @@ function do_detail(ids)
                     
                     <div class="col-md-12 col-lg-8 col-xl-8">
                         <div class="row">
-                            <section class="panel" style="cursor: pointer" @if(Auth::guard('admin')->user()->user_level == 1) onclick="do_pengumuman()" @endif><font color="#FF0000"><i>Sila Klik <i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Untuk Menambah Pengumuman</i></font>
+                            <section class="panel" style="cursor: pointer" @if(Auth::guard('admin')->user()->user_level == 1) onclick="do_pengumuman()" @endif>
                                 <div class="panel-body">
                                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                                                             
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             @php $i=0; @endphp
+                                            @if(!$pengumuman->isEmpty()))
                                             @foreach ($pengumuman as $umum)
                                             @php 
                                                 $i++;
@@ -153,6 +153,32 @@ function do_detail(ids)
                                                 </div>
                                             </div>
                                             @endforeach
+                                            @else
+                                            <div class="item active">
+                                                <div class="widget-summary">
+                                                    <div class="widget-summary-col">
+                                                        <div class="summary">
+                                                            <h4 class="title">Pengumuman</h4>
+                                                            <div class="info">
+                                                                <i class="">- Tiada Pengumuman -</i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="summary-footer">
+                                                            <div class=row>
+                                                                <div class="col-md-6" style="text-align: left">
+                                                                    <i class="fa fa-clock-o"></i> {{ date('Y-m-d',strtotime(now())) }} &nbsp; <i class="fa fa-play-circle-o"></i> Lihat 1
+                                                                </div>
+                                                                @if (Auth::guard('admin')->user()->user_level == 1)
+                                                                <div class="col-md-6"  style="text-align: right">
+                                                                    <font color="#FF0000"><i><i class="fa fa-info-circle" aria-hidden="true"></i> Sila Klik Untuk Menambah Pengumuman</i></font>
+                                                                </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
