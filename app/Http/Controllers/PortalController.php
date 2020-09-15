@@ -5,20 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ramuan;
 use App\calendar_event;
-use Maher\Counters\Facades\Counters; 
 
 class PortalController extends Controller
 {
     public function index(Request $request)
     {
         // dd($request->ip());
-        Counters::incrementIfNotHasCookies('today_visitors');
-
-        
+        $this->visitors();
 
         $pengumuman = calendar_event::where('kategori',1)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
-        return view('portal',compact('pengumuman'));
+        $today = 0;
+        $yesterday = 0;
+        $month = 0;
+        $last_month = 0;
+        $total = 0;
+
+        return view('portal',compact('pengumuman','today','yesterday','month','last_month','total'));
+    }
+
+    public function visitors()
+    {
+        
     }
 
     public function ramuanList(Request $request)

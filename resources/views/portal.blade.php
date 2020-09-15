@@ -259,11 +259,11 @@
                                 <h4 class="title"><span class="text-white"><b>Pengunjung</b></span></h4>
                                 
                                 <h6 style="color:#00eaff;">
-                                    Jumlah : <span name="totalvis" id="totalvis">xxx</span><br>
-                                    Hari Ini : <span name="todayvis" id="todayvis">xxx</span><br>
-                                    Kelmarin : <span name="yesterdayvis" id="yesterdayvis">xxx</span><br>
-                                    Bulan Ini : <span name="thismonthvis" id="thismonthvis">xxx</span><br>
-                                    Bulan Lepas : <span name="lastmonthvis" id="lastmonthvis">xxx</span><br>
+                                    Jumlah : <span name="totalvis" id="totalvis">{{  $total }}</span><br>
+                                    Hari Ini : <span name="todayvis" id="todayvis">{{  $today }}</span><br>
+                                    Kelmarin : <span name="yesterdayvis" id="yesterdayvis">{{  $yesterday }}</span><br>
+                                    Bulan Ini : <span name="thismonthvis" id="thismonthvis">{{  $month }}</span><br>
+                                    Bulan Lepas : <span name="lastmonthvis" id="lastmonthvis">{{  $last_month }}</span><br>
                                 </h6>
                             </div>
                             <!--Footer Widget end-->    
