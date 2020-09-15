@@ -17,9 +17,6 @@ class PermohonanController extends Controller
 {
     public function index(Request $request)
     {
-        $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
-
-        dd($cb->fldid);
         $user = Auth::guard('client')->user()->userid;
         // dd($user);
         // dd($request->all());
@@ -27,7 +24,7 @@ class PermohonanController extends Controller
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $ramuan->where(function($query) use($request){
+        if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
         }); }
         
@@ -43,7 +40,7 @@ class PermohonanController extends Controller
         $negara = Ref_Negara::where('status',0)->get();
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
-        $cb = Ref_Islamic_Body::where('is_delete',0)->get();
+        $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
 
         // dd($negara);
 
@@ -61,7 +58,7 @@ class PermohonanController extends Controller
         $negara = Ref_Negara::where('status',0)->get();
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
-       
+        $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
 
         return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb'));
     }
