@@ -19,13 +19,15 @@ class PermohonanController extends Controller
         $user = Auth::guard('client')->user()->userid;
         // dd($user);
         // dd($request->all());
-        $permohonan = Ramuan::where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
+        $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $ramuan->where(function($query) use($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+        }); }
         
-        $permohonan = $permohonan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
+        $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
         
         return view('client/permohonan',compact('permohonan','cat'));
