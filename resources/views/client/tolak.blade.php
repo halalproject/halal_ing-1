@@ -43,13 +43,13 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <div class="col-md-2">
+                    <!-- <div class="col-md-2">
                         <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
                             <option value="">Sijil Halal</option>
                             <option value="1" @if($sijil == '1') selected @endif>Ada</option>
                             <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="col-md-3">
                         <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                             <option value="">Kategori Bahan</option>

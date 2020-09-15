@@ -185,11 +185,11 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             @endphp
                         </td>
                         <td align="center">
-                            <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Cetak Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <!-- <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Cetak Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-dark">
                                     <i class="fa fa-print fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
-                            </a>
+                            </a> -->
                             <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
