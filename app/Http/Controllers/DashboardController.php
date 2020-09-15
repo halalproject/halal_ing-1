@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Acaronlex\LaravelCalendar\Calendar;
 use App\Ramuan;
-use App\calendar_event;
+use App\Calendar_Event;
 use App\Client;
 use App\Ref_Kategori_Event;
 use Response;
@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
 
-        $pengumuman = calendar_event::where('kategori',1)->where('is_public',3)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',3)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
         // dd($pengumuman);
         // dd($request->all());
@@ -37,9 +37,9 @@ class DashboardController extends Controller
     public function admin()
     {
 
-        $pengumuman = calendar_event::where('kategori',1)->where('is_public',2)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',2)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
-        $details = calendar_event::whereIn('kategori',[2,3])->where('is_public',2)->get();
+        $details = Calendar_Event::whereIn('kategori',[2,3])->where('is_public',2)->get();
 
         // dd($pengumuman);
 
@@ -93,14 +93,14 @@ class DashboardController extends Controller
     {
         // dd($id);
 
-        $rs = calendar_event::find($id);
+        $rs = Calendar_Event::find($id);
 
         return view('admin/event_view',compact('rs'));
     }
     
     public function pengumuman(Request $request)
     {
-        $calendar = calendar_event::where('is_delete',0);
+        $calendar = Calendar_Event::where('is_delete',0);
 
         if(!empty($request->carian)) { 
             $calendar->where('event','LIKE','%'.$request->carian.'%'); 
@@ -152,7 +152,7 @@ class DashboardController extends Controller
         }
 
         if(empty($request->id)) {
-            $event = new calendar_event();
+            $event = new Calendar_Event();
             $event->event = $request->event;
             $event->start_date = $request->start_date;
             $event->end_date = $request->end_date;
@@ -192,7 +192,7 @@ class DashboardController extends Controller
 
             
 
-            $event = calendar_event::where('id',$request->id)->update($data);
+            $event = Calendar_Event::where('id',$request->id)->update($data);
 
             if($event){
                 return response()->json('OK');
@@ -205,7 +205,7 @@ class DashboardController extends Controller
 
     public function edit($id)
     {
-        $calendar = calendar_event::find($id);
+        $calendar = Calendar_Event::find($id);
         
         $comp = Client::where('is_delete',0)->get(); 
         $cat = Ref_Kategori_Event::where('status',0)->get();
@@ -217,7 +217,7 @@ class DashboardController extends Controller
     {
         $user = Auth::guard('admin')->user()->id;
         // dd($id);
-        $cal = calendar_event::find($id)->update(['is_delete'=>1,'deleted_dt'=>now(),'deleted_by'=>$user]);
+        $cal = Calendar_Event::find($id)->update(['is_delete'=>1,'deleted_dt'=>now(),'deleted_by'=>$user]);
 
         if($cal){
             return response()->json('OK');
