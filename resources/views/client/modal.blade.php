@@ -3,6 +3,7 @@ function do_able(ids)
 {
     // alert(ids)
     var doc = $('#doc_'+ids).prop('checked')
+    var doccb = $('#doc_cb').prop('checked')
     // alert(doc)
     if(doc){
         if(ids == '1')
@@ -38,6 +39,15 @@ function do_able(ids)
 
         $('#box_'+ids).hide();
     }
+
+    if(doccb){
+        $('#box_cb').show();
+    } else {
+        $('#upload_cb').val('');
+
+        $('#box_cb').hide();
+    }
+
 }
 
 function do_simpan()
@@ -461,9 +471,27 @@ if(!empty($id)){
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                         @endif
+                                        
                                     </div>
+                                    <!-- @if($rs->negara_pengilang_id == $cb->fldcountryid)
+                                        <div id="box_cb" @if($checked == 0) hidden @endif>
+                                            <div class="col-sm-3 control-label">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="file" name="upload_cb" id="upload_cb">
+                                                    @if(!empty($upload))
+                                                    @foreach ($upload as $up)
+                                                        @if($up->ref_dokumen_id == $dokumen->id)
+                                                            {{ $up->file_name }}
+                                                        @endif
+                                                    @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif     -->
+                                            
+                                        
                                 </div>
                             </div>
                             @endforeach
