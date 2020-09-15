@@ -439,7 +439,7 @@ if(!empty($id)){
                                         <div class="input-group">
                                             <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" value="{{$dokumen->id}}"
                                                 @if($checked == 1) checked @endif
-                                                onchange="do_able({{$dokumen->id}})"/>&nbsp;{{ $dokumen->nama }} 
+                                                onchange="do_able({{ $dokumen->id }})"/>&nbsp;{{ $dokumen->nama }} 
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
                                                 title="{!! $dokumen->remarks !!}"></i>
                                         </div>
@@ -472,26 +472,52 @@ if(!empty($id)){
                                             </div>
                                         </div>
                                         @endif
-                                        
                                     </div>
-                                    <!-- @if($rs->negara_pengilang_id == $cb->fldcountryid)
-                                        <div id="box_cb" @if($checked == 0) hidden @endif>
-                                            <div class="col-sm-3 control-label">
-                                                <div class="input-group col-sm-3">
-                                                    <input type="file" name="upload_cb" id="upload_cb">
-                                                    @if(!empty($upload))
-                                                    @foreach ($upload as $up)
-                                                        @if($up->ref_dokumen_id == $dokumen->id)
-                                                            {{ $up->file_name }}
-                                                        @endif
-                                                    @endforeach
+
+                                    <div id="box_cb" @if($checked == 0) hidden @endif>
+                                        <div class="col-sm-3 control-label">
+                                            <div class="input-group col-sm-3">
+                                                <input type="file" name="upload_cb" id="upload_cb">
+                                                @if(!empty($upload))
+                                                @foreach ($upload as $up)
+                                                    @if($up->ref_dokumen_id == $dokumen->id)
+                                                        {{ $up->file_name }}
                                                     @endif
+                                                @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            @foreach ($cb as $item)
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4 control-label">
+                                        <div class="input-group">
+                                            <input type="checkbox" name="doc_{{$item->fldid}}" id="doc_{{$item->fldid}}" value="{{$item->fldid}}"
+                                                @if($checked == 1) checked @endif
+                                                onchange="do_able({{$item->fldid}})"/>&nbsp;{{ $item->fldname }} 
+                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
+                                                title=""></i>
+                                        </div>
+                                    </div>
+                                    <div id="box_{{$item->id}}" @if($checked == 0) hidden @endif>
+                                        <div class="col-sm-3 control-label">
+                                            <div class="input-group col-sm-3">
+                                                <input type="file" name="upload_{{ $item->id }}" id="upload_{{ $item->id }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
+                                                <div class="col-sm-3">
+                                                    <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
                                                 </div>
                                             </div>
                                         </div>
-                                    @endif     -->
-                                            
-                                        
+                                    </div>
                                 </div>
                             </div>
                             @endforeach

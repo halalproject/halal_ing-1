@@ -75,7 +75,7 @@ class PermohonanController extends Controller
             $ingredient->ing_kod = $kod;
             $ingredient->nama_ramuan = $request->ramuan;
             $ingredient->nama_saintifik = $request->saintifik;
-            $ingredient->sumber_bahan_id = $request->sumber;
+            $ingredient->ing_category = $request->sumber;
             $ingredient->negara_pengilang_id = $request->negara_kilang;
             $ingredient->nama_pengilang = $request->nama_pengilang;
             $ingredient->alamat_pengilang_1 = $request->kilang_alamat_1;
@@ -106,7 +106,7 @@ class PermohonanController extends Controller
             $data = array(
                 'nama_ramuan'=>$request->ramuan,
                 'nama_saintifik' => $request->saintifik,
-                'sumber_bahan_id' => $request->sumber,
+                'ing_category' => $request->sumber,
                 'negara_pengilang_id' => $request->negara_kilang,
                 'nama_pengilang' => $request->nama_pengilang,
                 'alamat_pengilang_1' => $request->kilang_alamat_1,
