@@ -59,8 +59,10 @@ class PermohonanController extends Controller
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
+        $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
 
-        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb'));
+
+        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok'));
     }
 
     public function store(Request $request)
@@ -126,7 +128,7 @@ class PermohonanController extends Controller
             $permohonan = Ramuan::where('id',$request->id)->update($data);
 
             if($permohonan){
-                return response()->json(['OK',$request->id]);
+                return response()->json(['OK',$request->id,$request->negara_kilang]);
             } else {
                 return response()->json('ERR');
             }
@@ -227,5 +229,23 @@ class PermohonanController extends Controller
         $cat = Ref_Sumber_Bahan::get();
 
         return view('client/tolak',compact('permohonan','cat'));
+    }
+
+    public function getDokumen($id)
+    {
+        if($id == 'MYS'){
+            $dok = Ref_Dokumen::where('status',0)->get();
+            $cb = NULL;
+        } else {
+            $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
+            $cb = Ref_Islamic_Body::where('is_deleted',0)->where('fldcountryid',$id)->get();
+        }
+
+        if($dok){
+            return response()->json(['OK',$dok,$cb]);
+        } else {
+            return response()->json('ERR');
+        }
+
     }
 }

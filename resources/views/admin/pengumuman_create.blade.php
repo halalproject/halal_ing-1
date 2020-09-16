@@ -176,9 +176,6 @@ $pub = $calendar->is_public ?? '';
                             <label class="col-sm-3 control-label" for="pengumuman_kategori"><font color="#FF0000">*</font> Pengumuman Untuk: </label>
                             <div class="col-sm-9">
                                 <label class="radio-inline">
-                                    <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" @if($pub == '4') checked @endif> Syarikat Tertentu
-                                </label>
-                                <label class="radio-inline">
                                     <input type="radio" name="pengumuman_untuk" id="awam" value="1" onclick="ShowHideCompList()" @if($pub == '1') checked @endif> Awam
                                 </label>
                                 <label class="radio-inline">
@@ -187,13 +184,16 @@ $pub = $calendar->is_public ?? '';
                                 <label class="radio-inline">
                                     <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" @if($pub == '3') checked @endif> Syarikat
                                 </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" @if($pub == '4') checked @endif> Syarikat Tertentu
+                                </label>
                             </div>
                         </div>
                     </div>
 
                     
                     <div class="form-group" id="listComp" name="listComp">
-                        @if($pub == '4') checked 
+                        @if($pub == '4')
                             <div class="row">
                                 <label class="col-sm-3 control-label" for="compName"><font color="#FF0000">*</font> Nama Syarikat : </label>
                                 <div class="col-md-9">
