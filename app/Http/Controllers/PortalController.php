@@ -4,21 +4,57 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ramuan;
-use App\calendar_event;
-use Maher\Counters\Facades\Counters; 
+use App\Calendar_Event;
+use App\Visitor_Count;
 
 class PortalController extends Controller
 {
     public function index(Request $request)
     {
         // dd($request->ip());
+<<<<<<< HEAD
         // Counters::incrementIfNotHasCookies('today_visitors');
 
+=======
+>>>>>>> 4cde7358f66aa41ec23b6d2bbed09ef678f6e7e8
         
+        $this->visitors($request);
 
-        $pengumuman = calendar_event::where('kategori',1)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
-        return view('portal',compact('pengumuman'));
+        $today = Visitor_Count::where('type','today')->first();
+        $yesterday = Visitor_Count::where('type','yesterday')->first();
+        $month = Visitor_Count::where('type','this_month')->first();
+        $last_month = Visitor_Count::where('type','last_month')->first();
+        $total = Visitor_Count::where('type','total')->first();
+
+        return view('portal',compact('pengumuman','today','yesterday','month','last_month','total'));
+    }
+
+    public function visitors($request)
+    {
+        $today = Visitor_Count::where('type','today')->first();
+        $month = Visitor_Count::where('type','this_month')->first();
+
+        if(!array_key_exists('visitor', $_COOKIE)){
+            if($today->date == date('Y-m-d',strtotime(now()))){
+                Visitor_Count::where('type','today')->increment('value');
+            } else {
+                Visitor_Count::where('type','yesterday')->update(['value'=>$today->value,'date'=>$today->date]);
+                Visitor_Count::where('type','today')->update(['value'=>1,'date'=>now()]);
+            }
+    
+            if(date('m', strtotime($month->date)) == date('m',strtotime(now()))){
+                Visitor_Count::where('type','this_month')->increment('value');
+            } else {
+                Visitor_Count::where('type','last_month')->update(['value'=>$month->value,'date'=>$month->date]);
+                Visitor_Count::where('type','this_month')->update(['value'=>1,'date'=>now()]);
+            }
+            
+            Visitor_Count::where('type','total')->increment('value');
+
+            setcookie('visitor', 1);
+        }
     }
 
     public function ramuanList(Request $request)
