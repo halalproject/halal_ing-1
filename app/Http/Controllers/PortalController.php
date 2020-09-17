@@ -12,11 +12,8 @@ class PortalController extends Controller
     public function index(Request $request)
     {
         // dd($request->ip());
-<<<<<<< HEAD
         // Counters::incrementIfNotHasCookies('today_visitors');
 
-=======
->>>>>>> 4cde7358f66aa41ec23b6d2bbed09ef678f6e7e8
         
         $this->visitors($request);
 

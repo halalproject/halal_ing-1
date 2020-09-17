@@ -130,9 +130,11 @@ function reloadTab2($id) {
         //data: datas,
         success: function(data){
             console.log(data);
-            //alert(data);
+            alert(data);
             if(data=='OK'){
+                $('#t2').val(data[2]),
             } else if(data=='ERR'){
+                console.log('item not found');
             }
         }
     });
@@ -437,7 +439,7 @@ if(!empty($id)){
                 <!-- End First Tab -->
                 
                 <!-- Second Tab -->
-				<div id="t2" class="card tab-pane row in" role="tabpanel" aria-labelledby="tab-2">
+				<div id="t2" name="t2" class="card tab-pane row in" role="tabpanel" aria-labelledby="tab-2">
                     <div class="panel-body ">
                         <div class="col-sm-12">
                             <div class="form-group">
