@@ -61,7 +61,7 @@ class PermohonanController extends Controller
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
 
-        // dd($cb);
+        // dd($upload);
 
         return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok'));
     }
@@ -140,14 +140,24 @@ class PermohonanController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
         // dd($request->all());
-        if(!empty($request->upload_1)){
-            $file = $request->upload_1->getClientOriginalName();
-            $type = pathinfo($file)['extension'];
-            $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
+        // dd($request->id );
+        // $request->doc_1 == 1;
+            
+        if(((!empty($request->upload_1)) || (($request->upload_1) == '')) && (!empty($request->current_file)) && (!empty($request->id))){
+
+            if(!empty($request->upload_1)){
+                $file = $request->upload_1->getClientOriginalName();
+                $type = pathinfo($file)['extension'];
+                $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
+            } else {
+                $file = $request->current_file;
+                $type = pathinfo($file)['extension'];
+            }
+            
 
             $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
-                ['ramuan_id' => $request->id],
-                ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type]
+                ['ramuan_id' => $request->id, 'cbid' => $request->doc_otherNegara],
+                ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type],
             );
 
             $ramuan_doc->save();
@@ -160,7 +170,7 @@ class PermohonanController extends Controller
                 return response()->json('ERR');
             }
 
-        } else {
+        } else { 
             
             // dd($request->file('upload_3'));
             for ($i=2; $i<=6; $i++) {
@@ -171,7 +181,7 @@ class PermohonanController extends Controller
                     
                     $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
                         ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
-                        ['ref_dokumen_id' => $i,'file_name' => $file,'file_type' => $type]
+                        ['ref_dokumen_id' => $i,'file_name' => $file,'file_type' => $type],
                     );
 
                     

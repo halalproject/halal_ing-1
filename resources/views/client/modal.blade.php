@@ -147,17 +147,28 @@ function do_hantar()
         var file = $('#upload_'+id).val();
         var date = $('#tarikh_tamat_sijil').val();
         var input = $('#nama_lain').val();
+        var doc = $('#doc_otherNegara').val();
+        var current_file = $('#current_file').val();
 
         if(id == 6 && input.trim() == ''){
             swal({
                 title: 'Amaran',
-                text: 'Sila masukkan maklumat dokumen yang dihantar.',
+                text: 'Sila isi maklumat lain.',
                 type: 'warning',
                 confirmButtonClass: "btn-warning",
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             });
-        } else if(file == ''){
+        } else if(id == 1 && doc == '') { 
+            swal({
+                title: 'Amaran',
+                text: 'Sila pilih CB.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            });
+        } else if((current_file == '') && (file == '')){
             swal({
                 title: 'Amaran',
                 text: 'Sila masukkan dokumen yang diperlukan.',
@@ -166,7 +177,7 @@ function do_hantar()
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             });
-        } else if(id == 1 && date.trim() == ''){
+        } else if((id == 1) && (date.trim() == '')){
             swal({
                 title: 'Amaran',
                 text: 'Sila masukkan tarikh tamat sijil halal.',
@@ -254,6 +265,10 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
 $nama_dokumen = '';
 if(!empty($id)){
     foreach ($upload as $doc) {
+            if(!empty($doc->ramuan_id)){
+                $cb_select = $doc->cbid ?? '';
+            } 
+
         if($doc->ref_dokumen_id == 6){
             $nama_dokumen = $doc->nama_dokumen ?? '';
         }
@@ -288,7 +303,7 @@ if(!empty($id)){
                         <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}">
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Ramuan :</label>
+                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Ramuan :</b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="ramuan" id="ramuan" class="form-control" value="{{$rs->nama_ramuan??''}}">
                                     </div>
@@ -297,7 +312,7 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Saintifik :</label>
+                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Saintifik :</b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="saintifik" id="saintifik" class="form-control" value="{{$rs->nama_saintifik??''}}">
                                     </div>
@@ -306,9 +321,9 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Sumber Bahan 
+                                <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font> Sumber Bahan 
                                     <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" 
-                                        title="This is tooltips <br> for information.Thank you"></i> :
+                                        title="This is tooltips <br> for information.Thank you"></i> :</b>
                                 </label>
                                 <div class="col-sm-4">
                                 <select name="sumber" id="sumber" class="form-control">
@@ -323,7 +338,7 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar: </label>
+                                    <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar: </b></label>
                                     <div class="col-sm-4">
                                         <select name="negara_kilang" id="negara_kilang" class="form-control">
                                             <option value="">Pilih Negara</option>
@@ -337,7 +352,7 @@ if(!empty($id)){
                             
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Pengilang/Pengeluar : </label>
+                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Pengilang/Pengeluar : </b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="nama_pengilang" id="nama_pengilang" placeholder="Nama Pengilang/Pengeluar" class="form-control" value="{{$rs->nama_pengilang??''}}">
                                     </div>
@@ -346,7 +361,7 @@ if(!empty($id)){
                             
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat Pengilang/Pengeluar : </label>
+                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Alamat Pengilang/Pengeluar : </b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="kilang_alamat_1" id="kilang_alamat_1" placeholder="Alamat 1" class="form-control" value="{{$rs->alamat_pengilang_1??''}}">
                                     </div>
@@ -370,7 +385,7 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label" for="profileLastName"><font color="#FF0000">*</font> Negeri Asal Pembekal: </label>
+                                    <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font> Negeri Asal Pembekal: </b></label>
                                     <div class="col-sm-4">
                                         <select name="negeri_bekal" id="negeri_bekal" class="form-control">
                                             <option value="">Pilih Negeri</option>
@@ -384,7 +399,7 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Nama Pembekal : </label>
+                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Pembekal : </b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="nama_pembekal" id="nama_pembekal" placeholder="Nama Pembekal" class="form-control" value="{{$rs->nama_pembekal??''}}">
                                     </div>
@@ -393,7 +408,7 @@ if(!empty($id)){
                             
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Alamat Pembekal : </label>
+                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Alamat Pembekal : </b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="bekal_alamat_1" id="bekal_alamat_1" placeholder="Alamat 1" class="form-control" value="{{$rs->alamat_pembekal_1??''}}">
                                     </div>
@@ -408,7 +423,7 @@ if(!empty($id)){
                                     </div>
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-2 control-label">
-                                        <input type="text" name="bekal_poskod" id="bekal_poskod" placeholder="Poskod" class="form-control" value="{{$rs->poskod_pembekal??''}}">
+                                        <input type="number" name="bekal_poskod" id="bekal_poskod" placeholder="Poskod" class="form-control" value="{{$rs->poskod_pembekal??''}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="6">
                                     </div>
                                 </div>
                             </div>
@@ -443,20 +458,9 @@ if(!empty($id)){
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-5 control-label" for="sijil"><h4><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </h4></label>
+                                    <label class="col-sm-5 control-label" for="sijil"><h4><b><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </b></h4></label>
                                 </div>
                             </div>
-                            
-                            @php
-                                $checked = 0;
-                                if(!empty($id)){
-                                    foreach ($upload as $up) {
-                                        if($dokumen->id == $up->ref_dokumen_id){
-                                            $checked = 1; 
-                                        } 
-                                    }
-                                }   
-                            @endphp
                             <div class="form-group" @if((!empty($id)) && ($rs->negara_pengilang_id == 'MYS')) hidden @endif>
                                 <div class="row" style="padding-left:15px;">
                                     <!-- <div class="col-sm-4 control-label">
@@ -465,7 +469,7 @@ if(!empty($id)){
                                                 <option value="">Sila Pilih CB</option>
                                                 @foreach ($cb as $item)
                                                     @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
-                                                    <option value="doc_{{$item->fldid}}">{{ $item->fldname }}</option>
+                                                        <option value="{{$item->fldid}}" @if(($cb_select ?? '') == $item->fldid) selected @endif>{{ $item->fldname }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
@@ -503,7 +507,7 @@ if(!empty($id)){
                                                 </div>
                                                 @if($dokumen->id == 6)
                                                 <div class="addrow_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
-                                                    <input type="text" name="nama_lain" id="nama_lain" class="form-control"value="{{ $nama_dokumen }}" />
+                                                    <input type="text" name="nama_lain" id="nama_lain" class="form-control"value="{{ $nama_dokumen ?? '' }}" />
                                                 </div>
                                                 @endif
                                             </div>
@@ -514,7 +518,7 @@ if(!empty($id)){
                                                         @if(!empty($upload))
                                                         @foreach ($upload as $up)
                                                             @if($up->ref_dokumen_id == $dokumen->id)
-                                                                {{ $up->file_name }}
+                                                                <input type="text" name="current_file" id="current_file" value="{{ $up->file_name }}">
                                                             @endif
                                                         @endforeach
                                                         @endif
@@ -571,12 +575,12 @@ $(function() {
     if($('#doc_1').prop('checked')){
         for(i=2;i<=6;i++)
         {
-            $('#doc_'+i).prop('disabled',true);
+            // $('#doc_'+i).prop('disabled',true);
         }
     }
 
     if($('#doc_2').prop('checked') || $('#doc_3').prop('checked') || $('#doc_4').prop('checked') || $('#doc_5').prop('checked') || $('#doc_6').prop('checked')){
-        $('#doc_1').prop('disabled',true);
+        // $('#doc_1').prop('disabled',true);
     }
 
 })

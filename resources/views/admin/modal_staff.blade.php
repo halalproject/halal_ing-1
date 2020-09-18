@@ -118,7 +118,7 @@ $status = $user->user_status ?? '';
                     @if(!empty($id))
                     <div class="form-group">
                         <div class="row">
-                        <label class="col-sm-2 control-label">ID Pengguna : </label>
+                        <label class="col-sm-3 control-label"><b>ID Pengguna : </b></label>
                         <div class="col-sm-3">
                             <input type="text" name="userid" id="userid" class="form-control" placeholder="ID Pengguna" disabled="disabled" value="{{ $user->userid ?? '' }}">
                         </div>
@@ -128,7 +128,7 @@ $status = $user->user_status ?? '';
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No Kad Pengenalan : </label>
+                            <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> No Kad Pengenalan : </b></label>
                             <div class="col-sm-3">
                                 <input type="text" name="no_kp" id="no_kp" class="form-control" placeholder="No. Kad Pengenalan" 
                                 value="{{ $user->nombor_kp ?? '' }}" maxlength="12"
@@ -139,13 +139,13 @@ $status = $user->user_status ?? '';
                                     || (event.keyCode>34 && event.keyCode<40) 
                                     || (event.keyCode==46) )" > 
                             </div>
-                            <div class="col-sm-5">&nbsp;<i>(Sila masukkan No. MyKID tanpa tanda '-')</i></div>
+                            <div class="col-sm-5">&nbsp;<i><font color="#FF0000">(Sila masukkan No. MyKID tanpa tanda '-')</font></i></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="row">
-                        <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Nama Penuh : </label>
+                        <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Penuh : </b></label>
                         <div class="col-sm-8">
                             <input type="text" name="nama" id="nama" class="form-control" value="{{ $user->username ?? '' }}">
                         </div>
@@ -154,7 +154,7 @@ $status = $user->user_status ?? '';
             
                     <div class="form-group">
                         <div class="row">
-                        <label class="col-md-2 control-label"><font color="#FF0000">*</font> E-mel :</label>
+                        <label class="col-md-3 control-label"><b><font color="#FF0000">*</font> E-mel :</b></label>
                         <div class="col-md-8 control-label">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -166,7 +166,7 @@ $status = $user->user_status ?? '';
                     
                     <div class="form-group">
                         <div class="row">
-                        <label class="col-md-2 control-label"><font color="#FF0000">*</font> No. Telefon :</label>
+                        <label class="col-md-3 control-label"><b><font color="#FF0000">*</font> No. Telefon :</b></label>
                         <div class="col-md-4 control-label">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -177,7 +177,7 @@ $status = $user->user_status ?? '';
                     </div>
                     <div class="form-group">
                         <div class="row">
-                        <label class="col-md-2 control-label"><font color="#FF0000">*</font> No. Telefon Bimbit :</label>
+                        <label class="col-md-3 control-label"><b><font color="#FF0000">*</font> No. Telefon Bimbit :</b></label>
                         <div class="col-md-4 control-label">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile"></i>&nbsp;</span>
@@ -189,7 +189,7 @@ $status = $user->user_status ?? '';
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Jawatan :</label>
+                            <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Jawatan :</b></label>
                             <div class="col-sm-4">
                                 <select name="jawatan" id="jawatan" class="form-control">
                                     <option value="">Pilih Jawatan</option>
@@ -203,7 +203,7 @@ $status = $user->user_status ?? '';
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-2 control-label" for="level"><font color="#FF0000">*</font> Level Pengguna : </label>
+                            <label class="col-sm-3 control-label" for="level"><b><font color="#FF0000">*</font> Level Pengguna : </b></label>
                             <div class="col-md-4">
                                 <select name="level" id="level" class="form-control">
                                     <option value="">Pilih Level Pengguna</option>
@@ -217,7 +217,7 @@ $status = $user->user_status ?? '';
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-2 control-label " for="status"><font color="#FF0000">*</font> Status : </label>
+                            <label class="col-sm-3 control-label " for="status"><b><font color="#FF0000">*</font> Status : </b></label>
                             <div class="col-md-2">
                                 <select name="status" id="status" class="form-control">
                                     <option value="">Pilih Status</option>

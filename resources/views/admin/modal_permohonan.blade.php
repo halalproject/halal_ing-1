@@ -92,12 +92,12 @@ function do_simpan()
                                 <input type="hidden" name="id" id="id" class="form-control" value="{{ $rs->id }}">
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">No Permohonan :</label>
+                                        <label class="col-sm-3 control-label"><b>No Permohonan :</b></label>
                                         <div class="col-sm-5">
                                             <b>{{ $rs->ing_kod }}</b>
                                         </div>
 
-                                        <label class="col-sm-2 control-label">Tarikh Permohonan :</label>
+                                        <label class="col-sm-2 control-label"><b>Tarikh Permohonan :</b></label>
                                         <div class="col-sm-2">
                                             <b>{{ date('d/m/Y',strtotime($rs->create_dt)) }}</b>
                                         </div>
@@ -106,7 +106,7 @@ function do_simpan()
 
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Nama Ramuan :</label>
+                                        <label class="col-sm-3 control-label"><b>Nama Ramuan :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->nama_ramuan }}
                                         </div>
@@ -114,7 +114,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Nama Saintifik :</label>
+                                        <label class="col-sm-3 control-label"><b>Nama Saintifik :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->nama_saintifik }}
                                         </div>
@@ -122,7 +122,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Sumber Bahan :</label>
+                                        <label class="col-sm-3 control-label"><b>Sumber Bahan :</b></label>
                                         <div class="col-sm-5">
                                             {{ optional($rs->sumber)->nama }}
                                         </div>
@@ -130,7 +130,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Negara Asal Pengilang/Pengeluar :</label>
+                                        <label class="col-sm-3 control-label"><b>Negara Asal Pengilang/Pengeluar :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->negara_pengilang }}
                                         </div>
@@ -138,7 +138,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Nama Pengilang/Pengeluar :</label>
+                                        <label class="col-sm-3 control-label"><b>Nama Pengilang/Pengeluar :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->nama_pengilang }}
                                         </div>
@@ -146,7 +146,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Alamat Pengilang/Pengeluar :</label>
+                                        <label class="col-sm-3 control-label"><b>Alamat Pengilang/Pengeluar :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->alamat_pengilang_1 }}, {{ $rs->alamat_pengilang_2 }}, {{ $rs->alamat_pengilang_3 }}, {{ $rs->poskod_pengilang }}
                                         </div>
@@ -154,7 +154,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Negeri Asal Pembekal :</label>
+                                        <label class="col-sm-3 control-label"><b>Negeri Asal Pembekal :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->negeri_pembekal_id }}
                                         </div>
@@ -162,7 +162,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Nama Pembekal :</label>
+                                        <label class="col-sm-3 control-label"><b>Nama Pembekal :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->nama_pembekal }}
                                         </div>
@@ -170,7 +170,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Alamat Pembekal :</label>
+                                        <label class="col-sm-3 control-label"><b>Alamat Pembekal :</b></label>
                                         <div class="col-sm-5">
                                             {{ $rs->alamat_pembekal_1 }}, {{ $rs->alamat_pembekal_2 }}, {{ $rs->alamat_pembekal_3 }}, {{ $rs->poskod_pembekal }}
                                         </div>
@@ -178,7 +178,7 @@ function do_simpan()
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label">Dokumentasi Ramuan : </label>
+                                        <label class="col-sm-3 control-label"><b>Dokumentasi Ramuan :</b></label>
                                         <div class="row">
                                             <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
                                         </div>
@@ -200,7 +200,7 @@ function do_simpan()
                             <div class="col-md-12">
                                 <fieldset class="form-group">
                                     <div class="row">
-                                        <label class="col-form-label col-sm-3 pt-0"><font color="#FF0000">*</font> Status :</label>
+                                        <label class="col-form-label col-sm-3 pt-0"><b><font color="#FF0000">*</font> Status :</b></label>
                                         <div class="col-sm-9">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
@@ -226,7 +226,7 @@ function do_simpan()
 
                                 <div class="form-group">
                                     <div class="row">
-                                        <label class="col-sm-3 control-label" for="exampleFormControlTextarea1">Catatan :</label>
+                                        <label class="col-sm-3 control-label" for="exampleFormControlTextarea1"><b>Catatan :</b></label>
                                         <div class="col-sm-9">
                                         <textarea name="catatan" cols="50" rows="10" id="catatan" style="width:100%"></textarea>
                                         </div>
