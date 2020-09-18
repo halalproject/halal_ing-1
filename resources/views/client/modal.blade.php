@@ -121,19 +121,18 @@ function do_simpan()
     }
 }
 
-function reloadTab2($id) {
+function reloadTab2(type) {
     // console.log($id);
     $.ajax({
-        url:'/client/permohonan/getDokumen/'+ $id, //&datas='+datas,
-        type:'POST',
-        data: $id,
+        url:'/client/permohonan/getDokumen/'+ type, //&datas='+datas,
+        type:'GET',
         //data: datas,
         success: function(data){
             console.log(data);
-            alert(data);
+            // alert(data);
             if(data=='OK'){
-                $('#t2').val(data[2]),
-            } else if(data=='ERR'){
+                $('#t2').val(data[2]);
+            } else if(data=='ERR') {
                 console.log('item not found');
             }
         }
@@ -277,7 +276,7 @@ if(!empty($id)){
 					<a id="tab-1" href="#t1" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Maklumat Permohonan</span></a>
 				</li>
 				<li id="tab2" class="nav-item">
-					<a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab" onclick="reloadTab2()"><span class="text-black text-small text-bold">Maklumat Dokumentasi</span></a>
+					<a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Maklumat Dokumentasi</span></a>
 				</li>
 			</ul>
             <!-- End Tab Menu -->
@@ -447,8 +446,39 @@ if(!empty($id)){
                                     <label class="col-sm-5 control-label" for="sijil"><h4><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </h4></label>
                                 </div>
                             </div>
-                            <!-- @if(!empty($id) && ($rs->negara_pengilang_id == 'MYS')) 
                             
+                            @php
+                                $checked = 0;
+                                if(!empty($id)){
+                                    foreach ($upload as $up) {
+                                        if($dokumen->id == $up->ref_dokumen_id){
+                                            $checked = 1; 
+                                        } 
+                                    }
+                                }   
+                            @endphp
+                            <div class="form-group" @if((!empty($id)) && ($rs->negara_pengilang_id == 'MYS')) hidden @endif>
+                                <div class="row" style="padding-left:15px;">
+                                    <!-- <div class="col-sm-4 control-label">
+                                        <div class="input-group"> -->
+                                            <select name="doc_otherNegara" id="doc_otherNegara">
+                                                <option value="">Sila Pilih CB</option>
+                                                @foreach ($cb as $item)
+                                                    @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
+                                                    <option value="doc_{{$item->fldid}}">{{ $item->fldname }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
+                                                title=""></i>
+                                        <!-- </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                                
+
+
                                 @foreach($dokumen as $dokumen)
                                     @php
                                     
@@ -504,108 +534,6 @@ if(!empty($id)){
                                         </div>
                                     </div>
                                 @endforeach
-                            @endif
-
-                            @if(!empty($id) && ($rs->negara_pengilang_id != 'MYS'))
-                                @foreach ($cb as $item)
-                                    @php
-                                    
-                                        $checked = 0;
-                                        if(!empty($id)){
-                                            foreach ($upload as $up) {
-                                                if($dokumen->id == $up->ref_dokumen_id){
-                                                    $checked = 1; 
-                                                } 
-                                            }
-                                        }                             
-                                    @endphp
-                                    @if($rs->negara_pengilang_id == $item->fldcountryid)
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-4 control-label">
-                                                    <div class="input-group">
-                                                        <input type="checkbox" name="doc_{{$item->fldid}}" id="doc_{{$item->fldid}}" value="{{$item->fldid}}"
-                                                            @if($checked == 1) checked @endif
-                                                            onchange="do_able({{$item->fldid}})"/>&nbsp;{{ $item->fldname }} 
-                                                        <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                            title=""></i>
-                                                    </div>
-                                                </div>
-                                                <div id="box_{{$item->fldid}}" @if($checked == 0) hidden @endif>
-                                                    <div class="col-sm-3 control-label">
-                                                        <div class="input-group col-sm-3">
-                                                            <input type="file" name="upload_{{ $item->fldid }}" id="upload_{{ $item->fldid }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
-                                                            <div class="col-sm-3">
-                                                                <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @foreach($dok as $dok)
-                                            @php
-                                            $checked = 0;
-                                            if(!empty($id)){
-                                                foreach ($upload as $up) {
-                                                    if($dok->id == $up->ref_dokumen_id){
-                                                        $checked = 1; 
-                                                    } 
-                                                }
-                                            }                             
-                                            @endphp
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-sm-4 control-label">
-                                                        <div class="input-group">
-                                                            <input type="checkbox" name="doc_{{$dok->id}}" id="doc_{{$dok->id}}" value="{{$dok->id}}"
-                                                                @if($checked == 1) checked @endif
-                                                                onchange="do_able({{ $dok->id }})"/>&nbsp;{{ $dok->nama }} 
-                                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                                title="{!! $dok->remarks !!}"></i>
-                                                        </div>
-                                                        @if($dok->id == 6)
-                                                        <div class="addrow_{{$dok->id}}" @if($checked == 0) hidden @endif>
-                                                            <input type="text" name="nama_lain" id="nama_lain" class="form-control"value="{{ $nama_dokumen }}" />
-                                                        </div>
-                                                        @endif
-                                                    </div>
-                                                    <div id="box_{{$dok->id}}" @if($checked == 0) hidden @endif>
-                                                        <div class="col-sm-3 control-label">
-                                                            <div class="input-group col-sm-3">
-                                                                <input type="file" name="upload_{{ $dok->id }}" id="upload_{{ $dok->id }}">
-                                                                @if(!empty($upload))
-                                                                @foreach ($upload as $up)
-                                                                    @if($up->ref_dok_id == $dok->id)
-                                                                        {{ $up->file_name }}
-                                                                    @endif
-                                                                @endforeach
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        @if($dok->nama == 'Sijil Halal')
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
-                                                                <div class="col-sm-3">
-                                                                    <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                            @endif -->
-
                             <div class="form-group">
                                 <div align="right">
                                     <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>

@@ -25,7 +25,7 @@ class PermohonanController extends Controller
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
-            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
         
         $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
@@ -61,6 +61,7 @@ class PermohonanController extends Controller
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
 
+        // dd($cb);
 
         return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok'));
     }
@@ -231,14 +232,15 @@ class PermohonanController extends Controller
         return view('client/tolak',compact('permohonan','cat'));
     }
 
-    public function getDokumen($id)
+    public function getDokumen($type)
     {
-        if($id == 'MYS'){
+        // dd($type);
+        if($type == 'MYS'){
             $dok = Ref_Dokumen::where('status',0)->get();
             $cb = NULL;
         } else {
             $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
-            $cb = Ref_Islamic_Body::where('is_deleted',0)->where('fldcountryid',$id)->get();
+            $cb = Ref_Islamic_Body::where('is_deleted',0)->where('fldcountryid',$type)->get();
         }
 
         if($dok){

@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     Route::post('permohonan/upload','Client\PermohonanController@upload');
     Route::get('permohonan/view/{id}','Client\PermohonanController@view');
     Route::post('permohonan/delete/{id}','Client\PermohonanController@delete');
-    Route::post('permohonan/getDokumen/{id}','Client\PermohonanController@getDokumen');
+    Route::get('permohonan/getDokumen/{type}','Client\PermohonanController@getDokumen');
 
     //Permohonan Ditolak
     Route::get('tolak','Client\PermohonanController@tolak')->name('Permohonan Ditolak');
