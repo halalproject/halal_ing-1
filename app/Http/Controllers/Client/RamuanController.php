@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Ramuan;
 use App\Ref_Sumber_Bahan;
+use App\Ramuan_Dokumen;
 
 class RamuanController extends Controller
 {
@@ -121,6 +122,38 @@ class RamuanController extends Controller
         $cal = Ramuan::find($id)->update(['is_delete'=>0,'delete_dt'=>now(),'delete_by'=>$user]);
 
         if($cal){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
+    }
+
+    public function showEditTarikh($id)
+    {
+        $rs = Ramuan::find($id);
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->where('ref_dokumen_id', 1)->get();
+        // $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+
+        // dd($upload);
+
+        return view('client/modalTarikhTamatSijil', compact('rs', 'upload'));
+    }
+
+    public function updateSijil(request $request)
+    {
+        $user = Auth::guard('client')->user()->id;
+        
+        if(!empty($request->sijil_halal)){
+            $file = $request->sijil_halal->getClientOriginalName();
+            $type = pathinfo($file)['extension'];
+            $path = $request->sijil_halal->storeAs('dokumen_ramuan', $file); 
+
+            $sijil = Ramuan_Dokumen::where('id', $request->id)->update(['file_name'=>$file, 'file_type'=>$type]);
+        }
+
+        $sijil = Ramuan::where('id', $request->ramuan_id)->update(['tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'update_dt'=>now(),'update_by'=>$user]);
+
+        if($sijil){
             return response()->json('OK');
         } else {
             return response()->json('ERR');
