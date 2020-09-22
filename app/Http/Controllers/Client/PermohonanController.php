@@ -61,7 +61,7 @@ class PermohonanController extends Controller
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
 
-        // dd($upload);
+        // dd($rs);
 
         return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok'));
     }
@@ -143,16 +143,16 @@ class PermohonanController extends Controller
         // dd($request->id );
         // $request->doc_1 == 1;
             
-        if(((!empty($request->upload_1)) || (($request->upload_1) == '')) && (!empty($request->current_file)) && (!empty($request->id))){
+        if(!empty($request->upload_1)){
 
-            if(!empty($request->upload_1)){
+            // if(!empty($request->upload_1)){
                 $file = $request->upload_1->getClientOriginalName();
                 $type = pathinfo($file)['extension'];
                 $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
-            } else {
-                $file = $request->current_file;
-                $type = pathinfo($file)['extension'];
-            }
+            // } else {
+            //     $file = $request->current_file;
+            //     $type = pathinfo($file)['extension'];
+            // }
             
 
             $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
@@ -169,7 +169,7 @@ class PermohonanController extends Controller
             } else {
                 return response()->json('ERR');
             }
-
+        
         } else { 
             
             // dd($request->file('upload_3'));

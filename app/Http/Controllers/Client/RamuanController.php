@@ -83,6 +83,37 @@ class RamuanController extends Controller
         }
     }
 
+    public function delete_comment($id)
+    {
+        // dd($id);
+
+        $rs = Ramuan::find($id);
+
+        return view('client/modalDeleteRamuan',compact('rs'));
+    }
+
+    public function reason(Request $request)
+    {
+        $user = Auth::guard('client')->user()->userid;
+        
+        if(!empty($request->id)) {
+            $data = array(
+                'delete_comment'=>$request->catatan_text,
+                'is_delete' => 1,
+                'delete_dt' => now(),
+                'delete_by' => $user,
+            );
+
+            $permohonan = Ramuan::where('id',$request->id)->update($data);
+        }
+
+            if($permohonan){
+                return response()->json('OK');
+            } else {
+                return response()->json('ERR');
+            }
+    }
+
     public function restore($id)
     {
         $user = Auth::guard('client')->user()->userid;

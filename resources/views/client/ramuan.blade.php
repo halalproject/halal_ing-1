@@ -21,52 +21,52 @@ function do_page()
     }
 }
 
-function do_hapus(id)
-{
-    // alert(id);
-    swal({
-        title: 'Adakah anda pasti untuk menghapuskan ramuan ini?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Teruskan',
-        cancelButtonText: 'Tidak, Batal!',
-        reverseButtons: true
-    }).then(function () {
-        $.ajax({
-			url:'/client/ramuan/delete/'+id, //&datas='+datas,
-			type:'POST',
-			data: $("form").serialize(),
-			//data: datas,
-			success: function(data){
-				console.log(data);
-				//alert(data);
-				if(data=='OK'){
-					swal({
-					  title: 'Berjaya',
-					  text: 'Permohonan telah dihapuskan',
-					  type: 'success',
-					  confirmButtonClass: "btn-success",
-					  confirmButtonText: "Ok",
-					  showConfirmButton: true,
-					}).then(function () {
-                        location.reload();
-					});
-				} else if(data=='ERR'){
-					swal({
-					  title: 'Amaran',
-					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
-					  type: 'error',
-					  confirmButtonClass: "btn-warning",
-					  confirmButtonText: "Ok",
-					  showConfirmButton: true,
-					});
-				}
-			}
-		});
-    });
-}
+// function do_hapus(id)
+// {
+//     // alert(id);
+//     swal({
+//         title: 'Adakah anda pasti untuk menghapuskan ramuan ini?',
+//         type: 'warning',
+//         showCancelButton: true,
+//         confirmButtonColor: '#3085d6',
+//         cancelButtonColor: '#d33',
+//         confirmButtonText: 'Ya, Teruskan',
+//         cancelButtonText: 'Tidak, Batal!',
+//         reverseButtons: true
+//     }).then(function () {
+//         $.ajax({
+// 			url:'/client/ramuan/delete/'+id, //&datas='+datas,
+// 			type:'POST',
+// 			data: $("form").serialize(),
+// 			//data: datas,
+// 			success: function(data){
+// 				console.log(data);
+// 				//alert(data);
+// 				if(data=='OK'){
+// 					swal({
+// 					  title: 'Berjaya',
+// 					  text: 'Permohonan telah dihapuskan',
+// 					  type: 'success',
+// 					  confirmButtonClass: "btn-success",
+// 					  confirmButtonText: "Ok",
+// 					  showConfirmButton: true,
+// 					}).then(function () {
+//                         location.reload();
+// 					});
+// 				} else if(data=='ERR'){
+// 					swal({
+// 					  title: 'Amaran',
+// 					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
+// 					  type: 'error',
+// 					  confirmButtonClass: "btn-warning",
+// 					  confirmButtonText: "Ok",
+// 					  showConfirmButton: true,
+// 					});
+// 				}
+// 			}
+// 		});
+//     });
+// }
 </script>
 
 <style media="print" type="text/css">
@@ -201,11 +201,12 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                                     <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="do_hapus({{$ing->id}})">
-                                <span style="cursor:pointer;color:red" title="Buang Ramuan">
-                                    <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
-                                </span>
-                            </button>
+                            <a href="/client/ramuan/delete_comment/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Hapus Ramuan" class="fa" data-backdrop="static">
+                                <button type="button" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash-o fa-lg" style="color: #FFFFFF;"></i>
+                                    <!-- </span> -->
+                                </button>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

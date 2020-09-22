@@ -51,7 +51,9 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     //Senarai Ramuan
     Route::get('ramuan','Client\RamuanController@index')->name('Senarai Ramuan');
     Route::get('ramuan/view/{id}','Client\RamuanController@view');
+    Route::get('ramuan/delete_comment/{id}','Client\RamuanController@delete_comment');
     Route::post('ramuan/delete/{id}','Client\RamuanController@delete');
+    Route::post('ramuan/reason','Client\RamuanController@reason');
     Route::post('ramuan/restore/{id}','Client\RamuanController@restore');
 
     //Ramuan Yang Dihapuskan

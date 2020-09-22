@@ -105,6 +105,15 @@ function do_close()
                         </div>
                     </div>
                 </div>
+
+                @if($rs->is_delete == '1')
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-3 control-label"><b>Sebab Hapus : </b></label>
+                        <div class="col-sm-5">{{ strip_tags($rs->delete_comment) }}</div>
+                    </div>
+                </div>
+                @endif
                 
                 <div class="form-group">
                     <div align="right">

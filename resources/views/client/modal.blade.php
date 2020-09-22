@@ -7,6 +7,84 @@
 //     }
 // }
 
+// $(function() {
+//     var temp="MYS"; 
+//     $("#negara_kilang").val(temp);
+// });
+
+function fileValidation() { 
+    var fileInput = (($('#upload_1').val()) || ($('#upload_2').val()) || ($('#upload_3').val()) || ($('#upload_4').val()) || ($('#upload_5').val()) || ($('#upload_6').val())); 
+    var filePath = fileInput; 
+    // alert(filePath);
+    // Allowing file type 
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i; 
+        
+    if (!allowedExtensions.exec(filePath)) { 
+        swal({
+                title: 'Amaran',
+                text: 'Kami hanya menerima format .jpg, .jpeg, .png dan .pdf sahaja.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            }).then(function () {
+                $('#hantar').prop('disabled',true);
+            }); 
+            fileInput.value = ''; 
+            return false; 
+    } else {
+        $('#hantar').prop('disabled',false);
+        fileInput.value = ''; 
+        return true;
+    }  
+} 
+
+function ValidateSize(file) {
+    {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+            swal({
+                title: 'Amaran',
+                text: 'Fail Anda Melebihi 2MB ! Sila cetak dan hantar dokumen tersebut di Jabatan Agama Islam Selangor.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            }).then(function () {
+                $('#hantar').prop('disabled',true);
+            });
+        } else {
+            $('#hantar').prop('disabled',false);
+        }
+    }
+    {
+        var fileInput = (($('#upload_1').val()) || ($('#upload_2').val()) || ($('#upload_3').val()) || ($('#upload_4').val()) || ($('#upload_5').val()) || ($('#upload_6').val())); 
+        var filePath = fileInput; 
+        // alert(filePath);
+        // Allowing file type 
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i; 
+            
+        if (!allowedExtensions.exec(filePath)) { 
+            swal({
+                    title: 'Amaran',
+                    text: 'Kami hanya menerima format .jpg, .jpeg, .png dan .pdf sahaja.',
+                    type: 'warning',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                }).then(function () {
+                    $('#hantar').prop('disabled',true);
+                }); 
+                fileInput.value = ''; 
+                return false; 
+        } else {
+            $('#hantar').prop('disabled',false);
+            fileInput.value = ''; 
+            return true;
+        }  
+    }
+}
+
 function do_able(ids)
 {
     // alert(ids)
@@ -143,13 +221,14 @@ function do_hantar()
 {
     $("input:checked").each(function () {
         var id = $(this).val();
-        // alert(id);
         var file = $('#upload_'+id).val();
         var date = $('#tarikh_tamat_sijil').val();
         var input = $('#nama_lain').val();
         var doc = $('#doc_otherNegara').val();
-        var current_file = $('#current_file').val();
+        // var current_file = $('#current_file').val();
 
+        // alert($('#upload_1').val());
+        
         if(id == 6 && input.trim() == ''){
             swal({
                 title: 'Amaran',
@@ -159,16 +238,16 @@ function do_hantar()
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             });
-        } else if(id == 1 && doc == '') { 
-            swal({
-                title: 'Amaran',
-                text: 'Sila pilih CB.',
-                type: 'warning',
-                confirmButtonClass: "btn-warning",
-                confirmButtonText: "Ok",
-                showConfirmButton: true,
-            });
-        } else if((current_file == '') && (file == '')){
+        // } else if(id == 1 && doc == '') { 
+        //     swal({
+        //         title: 'Amaran',
+        //         text: 'Sila pilih CB.',
+        //         type: 'warning',
+        //         confirmButtonClass: "btn-warning",
+        //         confirmButtonText: "Ok",
+        //         showConfirmButton: true,
+        //     });
+        } else if(file == ''){
             swal({
                 title: 'Amaran',
                 text: 'Sila masukkan dokumen yang diperlukan.',
@@ -265,13 +344,15 @@ $negeri_rs = $rs->negeri_pembekal_id ?? '';
 $nama_dokumen = '';
 if(!empty($id)){
     foreach ($upload as $doc) {
-            if(!empty($doc->ramuan_id)){
-                $cb_select = $doc->cbid ?? '';
-            } 
+        if(!empty($doc->ramuan_id)){
+            $cb_select = $doc->cbid ?? '';
+        } 
 
         if($doc->ref_dokumen_id == 6){
             $nama_dokumen = $doc->nama_dokumen ?? '';
         }
+
+        $avail_doc = $doc->file_name ?? ''; 
     }
 }
 @endphp
@@ -306,6 +387,7 @@ if(!empty($id)){
                                     <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Ramuan :</b></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="ramuan" id="ramuan" class="form-control" value="{{$rs->nama_ramuan??''}}">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -342,9 +424,17 @@ if(!empty($id)){
                                     <div class="col-sm-4">
                                         <select name="negara_kilang" id="negara_kilang" class="form-control">
                                             <option value="">Pilih Negara</option>
-                                            @foreach($negara as $negara)
-                                            <option value="{{ $negara->kod }}" @if($negara_rs == $negara->kod) selected @endif>{{ $negara->nama }}</option>
-                                            @endforeach
+                                            @if(!empty($rs->negara_pengilang_id)){
+                                                @foreach($negara as $negara)
+                                                <option value="{{ $negara->kod }}" @if($negara_rs == $negara->kod) selected @endif>{{ $negara->nama }}</option> 
+                                                }
+                                            
+                                                @endforeach
+                                            @else
+                                                @foreach($negara as $negara)
+                                                <option value="{{ $negara->kod }}" @if($negara->kod == 'MYS') selected @endif>{{ $negara->nama }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -514,13 +604,17 @@ if(!empty($id)){
                                             <div id="box_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
                                                 <div class="col-sm-3 control-label">
                                                     <div class="input-group col-sm-3">
-                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}">
-                                                        @if(!empty($upload))
-                                                        @foreach ($upload as $up)
-                                                            @if($up->ref_dokumen_id == $dokumen->id)
-                                                                <input type="text" name="current_file" id="current_file" value="{{ $up->file_name }}">
-                                                            @endif
-                                                        @endforeach
+                                                        @if(!empty($rs->id))
+                                                            <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this)" > 
+                                                            @foreach ($upload as $up)
+                                                                @if(!empty($upload))
+                                                                    @if($up->ref_dokumen_id == $dokumen->id)
+                                                                        {{ $up->file_name ?? '' }}
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this)"> 
                                                         @endif
                                                     </div>
                                                 </div>
