@@ -19,7 +19,7 @@ class KelulusanController extends Controller
         if($request->sijil != ''){ $kelulusan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $kelulusan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $kelulusan->where(function($query) use ($request){
-            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%');
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
 
         $kelulusan = $kelulusan->orderBy('create_dt')->paginate(10);

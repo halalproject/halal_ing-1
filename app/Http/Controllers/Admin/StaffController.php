@@ -22,7 +22,7 @@ class StaffController extends Controller
         
         if(!empty($request->status)){ $user->where('user_status',$request->status); }
         if(!empty($request->level)){ $user->where('user_level',$request->level); }
-        if(!empty($request->carian)){ $user->where('username','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $user->where('username','LIKE','%'.$request->carian.'%')->orWhere('email','LIKE','%'.$request->carian.'%'); }
 
         $user = $user->paginate(10);
         return view('admin/staff',compact('rsl','rss','user'));
