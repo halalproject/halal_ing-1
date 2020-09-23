@@ -64,6 +64,52 @@ function do_simpan() {
         });
     }
 }
+
+function ValidateSize(file) {
+    {
+        var FileSize = file.files[0].size / 1024 / 1024; // in MB
+        if (FileSize > 2) {
+            swal({
+                title: 'Amaran',
+                text: 'Fail Anda Melebihi 2MB ! Sila cetak dan hantar dokumen tersebut di Jabatan Agama Islam Selangor.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            }).then(function () {
+                $('#simpan').prop('disabled',true);
+            });
+        } else {
+            $('#simpan').prop('disabled',false);
+        }
+    }
+    {
+        var fileInput = ($('#sijil_halal').val()); 
+        var filePath = fileInput; 
+        // alert(filePath);
+        // Allowing file type 
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i; 
+            
+        if (!allowedExtensions.exec(filePath)) { 
+            swal({
+                    title: 'Amaran',
+                    text: 'Kami hanya menerima format .jpg, .jpeg, .png dan .pdf sahaja.',
+                    type: 'warning',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                }).then(function () {
+                    $('#simpan').prop('disabled',true);
+                }); 
+                fileInput.value = ''; 
+                return false; 
+        } else {
+            $('#simpan').prop('disabled',false);
+            fileInput.value = ''; 
+            return true;
+        }  
+    }
+}
 </script>
 @php
 $id = $rs->id ?? '';
@@ -98,7 +144,7 @@ if(!empty($id)){
                         <div class="row">
                             <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font>Dokumen :</b></label>
                             <div class="col-sm-4">
-                                <input type="file" name="sijil_halal" id="sijil_halal" value="{{ $doc_name }}"> 
+                                <input type="file" name="sijil_halal" id="sijil_halal" value="{{ $doc_name }}" onchange="ValidateSize(this)"> 
                             </div>
                         </div>
                     </div> 
@@ -107,7 +153,9 @@ if(!empty($id)){
                         <div class="row">
                             <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font>Sijil Halal :</b></label>
                             <div class="col-sm-3">
-                                <input  type="text" name="curr_doc" id="curr_doc" value="{{ $doc_name }}" style ="border:none; padding-left:0px;">
+                                <a href="/client/dokumen_ramuan/{{ $doc_name }}">
+                                    <input  type="text" name="curr_doc" id="curr_doc" value="{{ $doc_name }}" style ="border:none; padding-left:0px;">
+                                </a>
                             </div>
                         </div>
                     </div>

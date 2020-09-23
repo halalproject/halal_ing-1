@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     Route::post('ramuan/reason','Client\RamuanController@reason');
     Route::post('ramuan/restore/{id}','Client\RamuanController@restore');
     Route::post('ramuan/updateSijil','Client\RamuanController@updateSijil');
+    Route::get('/dokumen_ramuan/{file}', 'Client\RamuanController@downloadDocument');
 
     //Ramuan Yang Dihapuskan
     Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
