@@ -56,11 +56,11 @@ class PortalController extends Controller
 
     public function ramuanList(Request $request)
     { 
-        $tumbuhan = Ramuan::where('ing_category',1)->where('is_lulus',1)->where('is_delete',0);
-        $haiwan = Ramuan::where('ing_category',2)->where('is_delete',0)->where('is_lulus',1);
-        $kimia = Ramuan::where('ing_category',3)->where('is_delete',0)->where('is_lulus',1);
-        $semulaJadi = Ramuan::where('ing_category',4)->where('is_delete',0)->where('is_lulus',1);
-        $other = Ramuan::where('ing_category',5)->where('is_delete',0)->where('is_lulus',1);
+        // $tumbuhan = Ramuan::where('ing_category',1)->where('is_lulus',1)->where('is_delete',0);
+        // $haiwan = Ramuan::where('ing_category',2)->where('is_delete',0)->where('is_lulus',1);
+        // $kimia = Ramuan::where('ing_category',3)->where('is_delete',0)->where('is_lulus',1);
+        // $semulaJadi = Ramuan::where('ing_category',4)->where('is_delete',0)->where('is_lulus',1);
+        // $other = Ramuan::where('ing_category',5)->where('is_delete',0)->where('is_lulus',1);
         $all = Ramuan::where('is_delete',0)->where('is_lulus',1)->whereBetween('ing_category', array(1,5));
 
         $list = Ramuan::where('is_delete',0)->where('is_lulus',1);
@@ -83,8 +83,10 @@ class PortalController extends Controller
 
         $list = $list->orderBy('nama_ramuan')->whereBetween('ing_category', array(1,5))->paginate(10);
 
+        // dd($list);
+
         // dd(DB::getQueryLog());
-        return view('ramuan_list', compact('tumbuhan','haiwan','kimia','semulaJadi','other','all','list'));
+        return view('ramuan_list', compact('list', 'all'));
     }
 
     public function syarikat($id)

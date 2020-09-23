@@ -68,7 +68,23 @@
         @php
         $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
         $cari=isset($_REQUEST["cari"])?$_REQUEST["cari"]:"";
+        if((empty($carian)) && (empty($cari))){
+            $ing = '';
+        } else {
+           foreach($list as $l) {
+                $ing = $l->ing_category ?? '';
+            } 
+        }
+        if(empty($cari)){
+            $all_list =(($carian=='') || (($ing == '1') && ($ing == '2') && ($ing == '3') && ($ing == '4') && ($ing == '5') ));
+        } else {
+            $all_list = (($carian=='') && (($ing == '1') && ($ing == '2') && ($ing == '3') && ($ing == '4') && ($ing == '5') ));
+        }
+        
+        
         @endphp
+
+        <!-- dd($ing); -->
         
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -108,68 +124,104 @@
                         <br>
                         <div class="form-group row col-12 text-center" >
                             <div class="col-sm-2">
-                                <button name="tumbuhan" id="tumbuhan" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='tumbuhan') active @endif" style="padding: 10px;" onclick="do_page('tumbuhan')">
+                                <button name="tumbuhan" id="tumbuhan" type="button" class="btn btn-outline-info col-sm-10 @if(($carian=='tumbuhan') || ($ing == '1')) active @endif" style="padding: 10px;" onclick="do_page('tumbuhan')">
                                     <div class="">
                                         <i class="fab fa-pagelines fa-2x"></i>
                                     </div>
                                     <div class="">
                                         <label class="title">Tumbuhan </label><br>
-                                        <span class="badge badge-danger">{{ $tumbuhan->count() }}</span>
+                                        <span class="badge badge-danger">
+                                            @if($ing == '1')
+                                                {{ $list->total() }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="kimia" id="kimia" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='kimia') active @endif" style="padding: 10px;" onclick="do_page('kimia')">
+                                <button name="kimia" id="kimia" type="button" class="btn btn-outline-info col-sm-10 @if(($carian=='kimia') || ($ing == '3')) active @endif" style="padding: 10px;" onclick="do_page('kimia')">
                                     <div class="image">
                                         <i class="fas fa-atom fa-2x"></i>
                                     </div>
                                     <div class="">
                                         <label class="title">Kimia </label><br>
-                                        <span class="badge badge-danger">{{ $kimia->count() }}</span>
+                                        <span class="badge badge-danger">
+                                            @if($ing == '3')
+                                                {{ $list->total() }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="haiwan" id="haiwan" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='haiwan') active @endif" style="padding: 10px;" onclick="do_page('haiwan')">
+                                <button name="haiwan" id="haiwan" type="button" class="btn btn-outline-info col-sm-10 @if(($carian=='haiwan') || ($ing == '2')) active @endif" style="padding: 10px;" onclick="do_page('haiwan')">
                                     <div class="image">
                                         <i class="fas fa-paw fa-2x"></i>
                                     </div>
                                     <div class="">
                                         <label class="title">Haiwan </label><br>
-                                        <span class="badge badge-danger">{{ $haiwan->count() }}</span>
+                                        <span class="badge badge-danger">
+                                            @if($ing == '2')
+                                                {{ $list->total() }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="semulaJadi" id="semulaJadi" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='semulaJadi') active @endif" style="padding: 10px;" onclick="do_page('semulaJadi')">
+                                <button name="semulaJadi" id="semulaJadi" type="button" class="btn btn-outline-info col-sm-10 @if(($carian=='semulaJadi') || ($ing == '4'))  active @endif" style="padding: 10px;" onclick="do_page('semulaJadi')">
                                     <div class="image">
                                         <i class="fas fa-leaf fa-2x"></i>
                                     </div>
                                     <div class="">
                                         <label class="title">Semula Jadi </label><br>
-                                        <span class="badge badge-danger">{{ $semulaJadi->count() }}</span>
+                                        <span class="badge badge-danger">
+                                            @if($ing == '4')
+                                                {{ $list->total() }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="other" id="other" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='other') active @endif" style="padding: 10px;" onclick="do_page('other')">
+                                <button name="other" id="other" type="button" class="btn btn-outline-info col-sm-10 @if(($ing == '5') && ($carian=='other')) active @endif" style="padding: 10px;" onclick="do_page('other')">
                                     <div class="image">
                                         <i class="far fa-smile fa-2x"></i>
                                     </div>
                                     <div class="">
                                         <label class="title">Lain-lain </label><br>
-                                        <span class="badge badge-danger">{{ $other->count() }}</span>
+                                        <span class="badge badge-danger">
+                                            @if(($ing == '5') && ($carian=='other'))
+                                                {{ $list->total() }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
                                 </button>
                             </div>
                             <div class="col-sm-2">
-                                <button name="all" id="all" type="button" class="btn btn-outline-info col-sm-10 @if($carian=='') active @endif" style="padding: 10px;" onclick="do_page('')">
+                                <button name="all" id="all" type="button" class="btn btn-outline-info col-sm-10 @if($all_list) active @endif" style="padding: 10px;" onclick="do_page('')">
                                     <div class="image">
                                         <i class="fas fa-book-open fa-2x"></i>
                                     </div>
                                     <div class="">
                                         <label class="title">Semua </label><br>
-                                        <span class="badge badge-danger">{{ $all->count() }}</span>
+                                        <span class="badge badge-danger">
+                                            @if($all_list)
+                                                {{ $list->total() }}
+                                            @else
+                                                0
+                                            @endif
+                                        </span>
                                     </div>
                                 </button>
                             </div>
@@ -180,22 +232,22 @@
 
                     <div class="col-12">
                         <h4 style="padding-top:15px;"><b>Senarai Ramuan 
-                        ( @if($carian == 'tumbuhan') 
+                        ( @if(($carian == 'tumbuhan') || ($ing == '1')) 
                             Tumbuhan
-                        @elseif($carian == 'kimia') 
+                        @elseif(($carian == 'kimia') || ($ing == '3')) 
                             Kimia
-                        @elseif($carian == 'haiwan') 
+                        @elseif(($carian == 'haiwan') || ($ing == '2')) 
                             Haiwan
-                        @elseif($carian == 'semulaJadi') 
+                        @elseif(($carian == 'semulaJadi') || ($ing == '4')) 
                             Semula Jadi
-                        @elseif($carian == 'other') 
+                        @elseif(($carian == 'other') || ($ing == '5')) 
                             Lain-lain
-                        @elseif($carian == '') 
+                        @elseif($carian == '' ) 
                             Semua
                         @endif ) </b></h4>
                         <br>
 
-                        <div align="right" style="padding-right:10px"><b>{{ $list->total() }} rekod dijumpai</b></div>
+                        <div align="right" style="padding-right:10px"><b> {{ $list->total() }} rekod dijumpai</b></div>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
