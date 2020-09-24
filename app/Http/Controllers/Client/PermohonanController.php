@@ -140,19 +140,20 @@ class PermohonanController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
         // dd($request->all());
-        // dd($request->id );
+        // dd($request->current_file_1);
         // $request->doc_1 == 1;
             
-        if(!empty($request->upload_1)){
+        if((!empty($request->upload_1)) || (!empty($request->current_file_1))){
 
-            // if(!empty($request->upload_1)){
+            if(!empty($request->upload_1)){
                 $file = $request->upload_1->getClientOriginalName();
                 $type = pathinfo($file)['extension'];
                 $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
-            // } else {
-            //     $file = $request->current_file;
-            //     $type = pathinfo($file)['extension'];
-            // }
+            } 
+            else {
+                $file = $request->current_file_1;
+                $type = pathinfo($file)['extension'];
+            }
             
 
             $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
@@ -162,7 +163,7 @@ class PermohonanController extends Controller
 
             $ramuan_doc->save();
 
-            if($ramuan_doc){
+            if($ramuan_doc){ 
                 $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
                 
                 return response()->json('OK');
