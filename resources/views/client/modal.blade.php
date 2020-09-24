@@ -318,17 +318,8 @@ function hantar_to()
 }
 
 function negaraChange() {
-    // var neg = $('#negara_kilang').prop('checked');
-    var neg = document.getElementById("negara_kilang");
-    var i = neg.selectedIndex;
-    
-    if(i == '149'){
-        $('#doc_otherNegara').hide();
-        $('#questmark').hide();
-    } else {
-        $('#doc_otherNegara').show();
-    }
-    
+  $('#tab2').toggleClass('disabled');
+  $('#tab-2').removeAttr('data-toggle');
 }
 
 function do_close()
@@ -388,6 +379,7 @@ if(!empty($id)){
                     <div class="panel-body ">
                         <div class="col-md-12">
                         <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}">
+                        <input type="hidden" name="chk" id="chk" class="form-control" value="">
                             <div class="form-group">
                                 <div class="row">
                                     <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Ramuan :</b></label>
