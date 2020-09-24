@@ -17,7 +17,6 @@
         var docContents = CKEDITOR.instances['announcement'].getData();
 	    document.create.catatan_text.value=docContents;
         var file = $('#doc').val();
-        var compName = $('#compName').val();
         var curr_doc = $('#curr_doc').val();
         
         if(event == '' || start_date == '' || end_date == '' || kategori == '' || docContents == '' || is_public == '' ){
@@ -75,12 +74,6 @@
                 }
             });
         }
-    }
-
-    function ShowHideCompList() {
-        var specificComp = document.getElementById("specificComp");
-        var listComp = document.getElementById("listComp");
-        listComp.style.display = specificComp.checked ? "block" : "none";
     }
     
 </script>
@@ -184,40 +177,9 @@ $pub = $calendar->is_public ?? '';
                                 <label class="radio-inline">
                                     <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" @if($pub == '3') checked @endif> Syarikat
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="pengumuman_untuk" id="specificComp" value="4" onclick="ShowHideCompList()" @if($pub == '4') checked @endif> Syarikat Tertentu
-                                </label>
+                                
                             </div>
                         </div>
-                    </div>
-
-                    
-                    <div class="form-group" id="listComp" name="listComp">
-                        @if($pub == '4')
-                            <div class="row">
-                                <label class="col-sm-3 control-label" for="compName"><font color="#FF0000">*</font> Nama Syarikat : </label>
-                                <div class="col-md-9">
-                                    <select name="compName" id="compName" class="form-control">
-                                        <option value="">Pilih Nama Syarikat</option>
-                                        @foreach ($comp as $comp)
-                                        <option value="{{ $comp->userid }}" @if($syarikat == $comp->userid) selected @endif>{{ $comp->company_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        @else
-                            <div class="row">
-                                <label class="col-sm-3 control-label" for="compName"><font color="#FF0000">*</font> Nama Syarikat : </label>
-                                <div class="col-md-9">
-                                    <select name="compName" id="compName" class="form-control">
-                                        <option value="">Pilih Nama Syarikat</option>
-                                        @foreach ($comp as $comp)
-                                        <option value="{{ $comp->userid }}" @if($syarikat == $comp->userid) selected @endif>{{ $comp->company_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        @endif
                     </div>
                     
                     
@@ -241,8 +203,4 @@ $pub = $calendar->is_public ?? '';
     $('input:checkbox').click(function() {
         $('input:checkbox').not(this).prop('checked', false);
     });
-
-    var specificComp = document.getElementById("specificComp");
-    var listComp = document.getElementById("listComp");
-    listComp.style.display = specificComp.checked ? "block" : "none";
 </script>

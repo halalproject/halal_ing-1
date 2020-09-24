@@ -180,9 +180,7 @@ function do_simpan()
                         $('#id').val(data[1]);
                         $('#tab2').removeClass('disabled');
                         $('#tab-2').attr('data-toggle','tab');
-                        document.getElementById('tab-2').onclick=function(){
-                            reloadTab2(data[2]);
-                        };
+                        reloadTab2(data[1]);
 					});
 				} else if(data[0]=='ERR'){
 					swal({
@@ -199,22 +197,8 @@ function do_simpan()
     }
 }
 
-function reloadTab2(type) {
-    // console.log($id);
-    $.ajax({
-        url:'/client/permohonan/getDokumen/'+ type, //&datas='+datas,
-        type:'GET',
-        //data: datas,
-        success: function(data){
-            console.log(data);
-            // alert(data);
-            if(data=='OK'){
-                $('#t2').val(data[2]);
-            } else if(data=='ERR') {
-                console.log('item not found');
-            }
-        }
-    });
+function reloadTab2(id) {
+    $('#myModal .modal-content').load("/client/permohonan/edit/"+id);
 }
 
 function do_hantar()
@@ -225,9 +209,9 @@ function do_hantar()
         var date = $('#tarikh_tamat_sijil').val();
         var input = $('#nama_lain').val();
         var doc = $('#doc_otherNegara').val();
-        // var current_file = $('#current_file').val();
+        var current_file = $('#current_file_' +id).val();
 
-        // alert($('#upload_1').val());
+        // alert(current_file);
         
         if(id == 6 && input.trim() == ''){
             swal({
@@ -247,15 +231,18 @@ function do_hantar()
         //         confirmButtonText: "Ok",
         //         showConfirmButton: true,
         //     });
-        } else if(file == ''){
-            swal({
-                title: 'Amaran',
-                text: 'Sila masukkan dokumen yang diperlukan.',
-                type: 'warning',
-                confirmButtonClass: "btn-warning",
-                confirmButtonText: "Ok",
-                showConfirmButton: true,
-            });
+        } else if(current_file == ''){
+            if(file == ''){
+                swal({
+                    title: 'Amaran',
+                    text: 'Sila masukkan dokumen yang diperlukan.',
+                    type: 'warning',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                });
+            }
+            
         } else if((id == 1) && (date.trim() == '')){
             swal({
                 title: 'Amaran',
@@ -330,6 +317,20 @@ function hantar_to()
 
 }
 
+function negaraChange() {
+    // var neg = $('#negara_kilang').prop('checked');
+    var neg = document.getElementById("negara_kilang");
+    var i = neg.selectedIndex;
+    
+    if(i == '149'){
+        $('#doc_otherNegara').hide();
+        $('#questmark').hide();
+    } else {
+        $('#doc_otherNegara').show();
+    }
+    
+}
+
 function do_close()
 {
     location.reload();
@@ -354,7 +355,12 @@ if(!empty($id)){
 
         $avail_doc = $doc->file_name ?? ''; 
     }
+
+    foreach ($cb as $cb_list) {
+        $cbByNegara = $cb_list->fldcountryid ?? '';
+    }
 }
+
 @endphp
 <div class="col-md-12">
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
@@ -417,12 +423,13 @@ if(!empty($id)){
                                 </div>
                                 </div>
                             </div> 
-
+                            @php 
+                            @endphp
                             <div class="form-group">
                                 <div class="row">
                                     <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar: </b></label>
                                     <div class="col-sm-4">
-                                        <select name="negara_kilang" id="negara_kilang" class="form-control">
+                                        <select name="negara_kilang" id="negara_kilang" class="form-control" onchange="negaraChange()">
                                             <option value="">Pilih Negara</option>
                                             @if(!empty($rs->negara_pengilang_id)){
                                                 @foreach($negara as $negara)
@@ -513,7 +520,13 @@ if(!empty($id)){
                                     </div>
                                     <label class="col-sm-3 control-label"></label>
                                     <div class="col-sm-2 control-label">
-                                        <input type="number" name="bekal_poskod" id="bekal_poskod" placeholder="Poskod" class="form-control" value="{{$rs->poskod_pembekal??''}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="6">
+                                        <input type="text" name="bekal_poskod" id="bekal_poskod" placeholder="Poskod" class="form-control" value="{{$rs->poskod_pembekal??''}}" maxlength="6"
+                                        onkeydown="return (event.ctrlKey || event.altKey 
+                                            || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                            || (95<event.keyCode && event.keyCode<106)
+                                            || (event.keyCode==8) || (event.keyCode==9) 
+                                            || (event.keyCode>34 && event.keyCode<40) 
+                                            || (event.keyCode==46) )">
                                     </div>
                                 </div>
                             </div>
@@ -564,7 +577,7 @@ if(!empty($id)){
                                                 @endforeach
                                             </select>
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                title=""></i>
+                                                title="" id="questmark" name="questmark"></i>
                                         <!-- </div>
                                     </div> -->
                                 </div>
@@ -609,7 +622,7 @@ if(!empty($id)){
                                                             @foreach ($upload as $up)
                                                                 @if(!empty($upload))
                                                                     @if($up->ref_dokumen_id == $dokumen->id)
-                                                                        {{ $up->file_name ?? '' }}
+                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;"> 
                                                                     @endif
                                                                 @endif
                                                             @endforeach
