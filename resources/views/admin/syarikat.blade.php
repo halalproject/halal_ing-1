@@ -85,6 +85,13 @@
                                     <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
+                            @if (Auth::guard('admin')->user()->user_level == 1)
+                            <a href="">
+                                <button type="button" class="btn btn-warning">
+                                    <i class="fa fa-bullhorn fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
