@@ -8,7 +8,16 @@ function do_close()
 <style media="print" type="text/css">
 	.printButton { display: none; }
 </style>
-
+@php
+$id = $rs->id ?? '';
+if((!empty($id)) && ($upload != '')){
+    foreach ($upload as $doc) {
+        if(!empty($doc->id)){
+            $doc_name = $doc->file_name ?? '';
+        }
+    }
+}
+@endphp
 <div class="col-md-12">
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
@@ -101,7 +110,7 @@ function do_close()
                     <div class="row">
                         <label class="col-sm-3 control-label"><b>Dokumentasi Ramuan : </b></label>
                         <div class="row">
-                            <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
+                            <div class="col-sm-5">Sijil Halal: <a href="">sijilhalal.pdf</a></div>
                         </div>
                     </div>
                 </div>

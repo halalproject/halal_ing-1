@@ -330,6 +330,20 @@ function hantar_to()
 
 }
 
+function negaraChange() {
+    // var neg = $('#negara_kilang').prop('checked');
+    var neg = document.getElementById("negara_kilang");
+    var i = neg.selectedIndex;
+    
+    if(i == '149'){
+        $('#doc_otherNegara').hide();
+        $('#questmark').hide();
+    } else {
+        $('#doc_otherNegara').show();
+    }
+    
+}
+
 function do_close()
 {
     location.reload();
@@ -354,7 +368,12 @@ if(!empty($id)){
 
         $avail_doc = $doc->file_name ?? ''; 
     }
+
+    foreach ($cb as $cb_list) {
+        $cbByNegara = $cb_list->fldcountryid ?? '';
+    }
 }
+
 @endphp
 <div class="col-md-12">
 <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
@@ -417,12 +436,13 @@ if(!empty($id)){
                                 </div>
                                 </div>
                             </div> 
-
+                            @php 
+                            @endphp
                             <div class="form-group">
                                 <div class="row">
                                     <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font> Negara Asal Pengilang/Pengeluar: </b></label>
                                     <div class="col-sm-4">
-                                        <select name="negara_kilang" id="negara_kilang" class="form-control">
+                                        <select name="negara_kilang" id="negara_kilang" class="form-control" onchange="negaraChange()">
                                             <option value="">Pilih Negara</option>
                                             @if(!empty($rs->negara_pengilang_id)){
                                                 @foreach($negara as $negara)
@@ -564,7 +584,7 @@ if(!empty($id)){
                                                 @endforeach
                                             </select>
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                title=""></i>
+                                                title="" id="questmark" name="questmark"></i>
                                         <!-- </div>
                                     </div> -->
                                 </div>

@@ -67,8 +67,9 @@ class RamuanController extends Controller
         // dd($id);
 
         $rs = Ramuan::find($id);
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->where('ref_dokumen_id', 1)->get();
 
-        return view('client/view',compact('rs'));
+        return view('client/view',compact('rs', 'upload'));
     }
 
     public function delete($id)
