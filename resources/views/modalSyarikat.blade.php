@@ -13,7 +13,7 @@
     <div class="col-md-12">
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">Nama Syarikat :</label>
+                <label class="col-sm-2 control-label">Nama Syarikat :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control text-uppercase">{{ $company->syarikat->company_name ?? '' }}</b>
                 </div>
@@ -22,7 +22,7 @@
 
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">Alamat :</label>
+                <label class="col-sm-2 control-label">Alamat :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control">{{ $company->syarikat->company_address_1 ?? '' }} <br>
                             {{ $company->syarikat->company_address_2 ?? '' }} <br>
@@ -35,7 +35,7 @@
         <br><br><br><br>
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">Negeri :</label>
+                <label class="col-sm-2 control-label">Negeri :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control">{{ $company->syarikat->company_city ?? '' }}</b>
                 </div>
@@ -44,7 +44,7 @@
 
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">No. Tel :</label>
+                <label class="col-sm-2 control-label">No. Tel :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control">{{ $company->syarikat->company_tel ?? '' }}</b>
                 </div>
@@ -53,7 +53,7 @@
 
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">No. Fax :</label>
+                <label class="col-sm-2 control-label">No. Fax :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control">{{ $company->syarikat->company_fax ?? '' }}</b>
                 </div>
@@ -62,7 +62,7 @@
 
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">Emel :</label>
+                <label class="col-sm-2 control-label">Emel :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="email" class="form-control" >{{ $company->syarikat->company_email ?? '' }}</b>
                 </div>
@@ -71,7 +71,7 @@
 
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">Laman Web :</label>
+                <label class="col-sm-2 control-label">Laman Web :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control">{{ $company->syarikat->company_web ?? '' }}</b>
                 </div>
@@ -80,7 +80,7 @@
 
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">No. Rujukan :</label>
+                <label class="col-sm-2 control-label">No. Rujukan :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control">{{ $company->syarikat->company_reg_code ?? '' }}</b>
                 </div>
@@ -89,7 +89,7 @@
         
         <div class="form-group" style="margin:0px;">
             <div class="row">
-                <label class="col-sm-3 control-label">Pegawai Rujukan :</label>
+                <label class="col-sm-2 control-label">Pegawai Rujukan :</label>
                 <div class="col-sm-9">
                     <b style="border:none;" type="text" class="form-control text-uppercase">{{ $company->syarikat->contact_name ?? '' }}</b>
                 </div>

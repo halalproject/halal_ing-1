@@ -10,12 +10,8 @@ use App\Visitor_Count;
 class PortalController extends Controller
 {
     public function index(Request $request)
-    {
-        // dd($request->ip());
-        // Counters::incrementIfNotHasCookies('today_visitors');
-
-        
-        $this->visitors($request);
+    {        
+        $this->visitors();
 
         $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
@@ -28,7 +24,7 @@ class PortalController extends Controller
         return view('portal',compact('pengumuman','today','yesterday','month','last_month','total'));
     }
 
-    public function visitors($request)
+    public function visitors()
     {
         $today = Visitor_Count::where('type','today')->first();
         $month = Visitor_Count::where('type','this_month')->first();
@@ -83,10 +79,16 @@ class PortalController extends Controller
 
         $list = $list->orderBy('nama_ramuan')->whereBetween('ing_category', array(1,5))->paginate(10);
 
+        //Count
+        $today = Visitor_Count::where('type','today')->first();
+        $yesterday = Visitor_Count::where('type','yesterday')->first();
+        $month = Visitor_Count::where('type','this_month')->first();
+        $last_month = Visitor_Count::where('type','last_month')->first();
+        $total = Visitor_Count::where('type','total')->first();
         // dd($list);
 
         // dd(DB::getQueryLog());
-        return view('ramuan_list', compact('list', 'all'));
+        return view('ramuan_list', compact('list', 'all', 'today', 'today', 'yesterday', 'month', 'last_month', 'total'));
     }
 
     public function syarikat($id)

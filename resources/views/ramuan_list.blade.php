@@ -1,30 +1,6 @@
+@extends('components.portal')
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>MYHALAL INGREDIENT</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.js"></script>
-    </head>
-
-    <body id="page-top">
-        
+@section('content')
         <script>
             function do_page(nama)
             {
@@ -86,25 +62,6 @@
 
         <!-- dd($ing); -->
         
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">My Halal Ingredient</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ml-1"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">Utama</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#ramuanList">Senarai Ramuan</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Hubungi Kami</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">SOP</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
         <!-- semak status halal + login -->
         <section class="page-section bg-light" id="ramuanList" style="padding: 45px;">
             <div class="container">
@@ -245,8 +202,6 @@
                         @elseif($carian == '' ) 
                             Semua
                         @endif ) </b></h4>
-                        <br>
-
                         <div align="right" style="padding-right:10px"><b> {{ $list->total() }} rekod dijumpai</b></div>
                         <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
@@ -313,96 +268,4 @@
 				</div>
 			</div>
 		</div>
-        
-        
-        <!--Footer section start-->
-        <section class="page-section" id="contact">
-            <footer class="footer-section section">
-                <!--Footer Top start-->
-                <div class="footer-top section" style="padding-top:30px;padding-bottom:15px;">
-                    <div class="container">
-                        <div class="row row-25">				                    
-                            <!--Footer Widget start-->
-                            <div class="footer-widget col-lg-3 col-md-3 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Halal Apps</b></span></h4>
-                                <div class="footer-social">
-                                    <a href="http://www.malaysia.gov.my" title="Malaysia Government"><img class="logoimg" src="{{ asset('images/footer/malaysia.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.islam.gov.my" title="Jabatan kemajuan Islam Malaysia"><img class="logoimg" src="{{ asset('images/footer/jakim.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="https://www.kpdnhep.gov.my/" title="KEMENTERIAN PERDAGANGAN DALAM NEGERI DAN HAL EHWAL PENGGUNA (KPDNHEP)"><img class="logoimg" src="{{ asset('images/footer/kpdnkk.jpg') }}" style="width:40px; height:40px;"></a>
-                                </div>
-                                <div class="footer-social">
-                                    <a href="http://www.ssm.com.my" title="Suruhanjaya Syarikat Malaysia"><img class="logoimg" src="{{ asset('images/footer/ssm.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.dvs.gov.my" title="Jabatan Perkhidmatan Veterinar"><img class="logoimg" src="{{ asset('images/footer/veterinaryMalaysia.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.dvs.gov.my" title="Kementerian Kesihatan Malaysia"><img class="logoimg" src="{{ asset('images/footer/kkm.png') }}" style="width:40px; height:40px;"></a>
-                                </div>
-                            </div>
-                            <!--Footer Widget end-->
-                            
-                            <!--Footer Widget start-->
-                            <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Media Sosial</b></span></h4>
-                                <div class="footer-social">   
-                                    <a href="https://www.facebook.com/HabHalalJakim/" title="Facebook"><img style="width:41px; height:41px;" src="{{ asset('images/footer/facebook.png') }}"></a>
-                                    <a href="https://twitter.com/halal_malaysia" title="Twitter"><img style="width:40px; height:40px; padding-top:3px;" src="{{ asset('images/footer/twitter.png') }}"></a>
-                                </div>
-                            </div>
-                            <!--Footer Widget end-->
-
-                            <!--Footer Widget start-->
-                            <div class="footer-widget col-lg-3 col-md-3 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Lokasi</b></span></h4>
-                                <h6 style="color:#00eaff;">JABATAN AGAMA ISLAM,<br><br>BAHAGIAN PENGURUSAN HALAL,<br>TINGKAT 5, MENARA UTARA,<br>BANGUNAN SULTAN IDRIS SHAH,<br><br>NO.2, PERSIARAN MASJID,<br>BUKIT SUK, 40676 SHAH ALAM,<br>SELANGOR. </h6>
-                            </div>
-                            <!--Footer Widget end-->
-
-                            <!--Footer Widget start-->
-                            <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Hubungi Kami</b></span></h4>
-                                <h6 style="color:#00eaff;">Tel: 03-5514 3600/3400 <br>Fax: 03-5510 3368<br>text: info@jais.gov.my</h6>             
-                            </div>
-                            <!--Footer Widget end-->
-
-
-                            <!--Footer Widget start-->
-                            <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Pengunjung</b></span></h4>
-                                
-                                <h6 style="color:#00eaff;">
-                                    Jumlah : <span name="countvis" id="totalvis">xxx</span><br>
-                                    Hari Ini : <span name="todayvis" id="todayvis">xxx</span><br>
-                                    Kelmarin : <span name="yesterdayvis" id="yesterdayvis">xxx</span><br>
-                                    Bulan Ini : <span name="thismonthvis" id="thismonthvis">xxx</span><br>
-                                    Bulan Lepas : <span name="lastmonthvis" id="lastmonthvis">xxx</span><br>
-                                </h6>
-                            </div>
-                            <!--Footer Widget end-->    
-                        </div>
-                    </div>
-                </div>
-                <!--Footer Top end-->
-                <hr>
-                <!--Footer bottom start-->
-                <div class="footer-bottom section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="copyright text-center text-white" style="padding-bottom:5px;">
-                                    <h6>Copyright &copy; 2020 <a  href="#">Halal Malaysia</a>. All rights reserved.</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Footer bottom end-->
-            </footer>
-         </section>
-         <!--Footer section end--> 
-        
-        
-        
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{{ asset('js/scripts.js') }}"></script>
-    </body>
-</html>
+@endsection
