@@ -9,7 +9,7 @@
                 if(cari.trim()==''){
                 window.location = pathname;
                 } else {
-                window.location = pathname+'ramuanList?cari='+cari;
+                window.location = pathname+'ramuanList?carian=&cari='+cari;
                 }
             }
             function do_login()
