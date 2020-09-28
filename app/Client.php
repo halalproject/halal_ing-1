@@ -20,4 +20,9 @@ class Client extends Model implements Authenticatable
     {
         return $this->belongsTo('App\Ref_Negeri','company_state');
     }
+
+    public function comp_ann()
+    {
+        return $this->belongsTo('App\Ramuan_Dokumen','userid','company_id');
+    }
 }

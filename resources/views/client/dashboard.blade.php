@@ -4,10 +4,12 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-            <marquee behavior="scroll" scrollamount="6" >
-                    @foreach ($pengumuman as $umum)
-                    <i style="color: #fa0000;">{{ strip_tags($umum->announcement) }}</i>&emsp;&emsp;
-                    @endforeach
+            <marquee behavior="scroll" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
+                @foreach ($pengumuman as $umum)
+                        <i style="color: #fa0000;" href="/client/announce/{{ $umum->id }}"  data-toggle="modal" data-target="#myModalm" data-backdrop="static">
+                            {{ strip_tags($umum->event) }}
+                        </i>
+                @endforeach
             </marquee>
             <div class="x_title">
                 <h2><b>Paparan Utama MyHalal Ingredient</b> </h2>

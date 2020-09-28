@@ -147,7 +147,8 @@ function do_detail(ids)
                                                             </div>
                                                         </div>
                                                         <div class="summary-footer" style="text-align: left">
-                                                            <i class="fa fa-clock-o"></i> {{ date('d/m/Y', strtotime())  }} &nbsp; <i class="fa fa-play-circle-o"></i> Lihat 1
+                                                            <i class="fa fa-clock-o"></i> {{ date('d/m/Y', strtotime())  }} &nbsp; 
+                                                            <!-- <i class="fa fa-play-circle-o"></i> Lihat 1 -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,7 +167,8 @@ function do_detail(ids)
                                                         <div class="summary-footer">
                                                             <div class=row>
                                                                 <div class="col-md-6" style="text-align: left">
-                                                                    <i class="fa fa-clock-o"></i> {{ date('d-m-Y',strtotime(now())) }} &nbsp; <i class="fa fa-play-circle-o"></i> Lihat 1
+                                                                    <i class="fa fa-clock-o"></i> {{ date('d-m-Y',strtotime(now())) }} &nbsp;
+                                                                     <!-- <i class="fa fa-play-circle-o"></i> Lihat 1 -->
                                                                 </div>
                                                                 @if (Auth::guard('admin')->user()->user_level == 1)
                                                                 <div class="col-md-6"  style="text-align: right">

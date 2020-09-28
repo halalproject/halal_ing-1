@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
 
-        $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',3)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',3)->where('company_id', $user)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
         // dd($pengumuman);
         // dd($request->all());
@@ -253,5 +253,14 @@ class DashboardController extends Controller
     public function downloadDocumentTest($file)
     {
         return app('dokumen_pengumuman/'.$file);
+    }
+
+    public function announcement($id)
+    { 
+        $event = Calendar_Event::find($id);
+
+        // dd($event);
+
+        return view('client/modalAnnouncement',compact('event'));
     }
 }

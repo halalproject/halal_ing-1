@@ -7,12 +7,20 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Ramuan;
 use App\Ref_Sumber_Bahan;
-
+use App\Ramuan_Dokumen;
+use App\Calendar_Event;
+use Auth;
 class SyarikatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $client = Client::where('status',0)->where('is_delete',0)->paginate(10);
+        $client = Client::where('status',0)->where('is_delete',0);
+        if(!empty($request->carian)){ 
+            $client->where(function($query) use ($request) {
+            $query->where('company_name','LIKE','%'.$request->carian.'%')->orWhere('company_reg_code','LIKE','%'.$request->carian.'%');
+            }); 
+        } 
+        $client = $client->orderBy('userid','ASC')->paginate(10);
         return view('admin/syarikat',compact('client'));
     }
 
@@ -40,6 +48,8 @@ class SyarikatController extends Controller
         }); }
         
         $ramuan = $ramuan->orderBy('create_dt','DESC')->paginate(10);
+
+        
         return view('admin/ramuan',compact('syarikat','cat','ramuan'));
     }
 
@@ -48,5 +58,97 @@ class SyarikatController extends Controller
         // dd($id);
         $rs = Ramuan::find($id);
         return view('admin/modal_detail',compact('rs'));
+    }
+
+    public function pengumuman($id)
+    {
+        $comp = Client::where('userid',$id)->first();
+        $event = Calendar_Event::where('company_id', $id)->first();
+        
+        // dd($comp);
+        return view('admin/modalPengumumanSyarikat',compact('comp', 'event'));
+    }
+
+    public function simpan(request $request)
+    {
+        // dd($request->all());
+        $user = Auth::guard('admin')->user()->id;
+        
+        if(!empty($request->doc)){
+            $file = $request->doc->getClientOriginalName();
+            $type = pathinfo($file)['extension'];
+            $path = $request->doc->storeAs('dokumen_pengumuman', $file); 
+        } else {
+            $file = '';
+            $type = '';
+        } 
+
+        if(!empty($file)){
+            $showFile = $file;
+        } else {
+            $showFile = $request->curr_doc;
+        }
+
+        if((!empty($request->id_event)) && ($request->id == $request->id_comp)){ 
+            $data = array(
+                'event' => $request->event,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'announcement' => $request->catatan_text,
+                'company_id' => $request->id,
+                'kategori' => 1,
+                'is_public' => 3,
+                'file_name' => $showFile,
+                'file_type' => $type,
+                'updated_dt' => now(),
+                'updated_by' => $user,
+            );
+
+            $event = Calendar_Event::where('id',$request->id_event)->update($data);
+
+            if($event){
+                return response()->json('OK');
+            } else {
+                return response()->json('ERR');
+            }
+        } else { 
+            $event = new Calendar_Event();
+            $event->event = $request->event;
+            $event->start_date = $request->start_date;
+            $event->end_date = $request->end_date;
+            $event->announcement = $request->catatan_text;
+            $event->company_id = $request->id;
+            $event->kategori = 1;
+            $event->is_public = 3;
+            $event->file_name = $showFile;
+            $event->file_type = $type; 
+            $event->created_dt = now();
+            $event->created_by = $user;
+            $event->updated_dt = now();
+            $event->updated_by = $user;
+
+            $event->save();
+
+            if($event){
+                return response()->json('OK');
+            } else {
+                return response()->json('ERR');
+            }
+        }      
+    }
+
+    public function announcement($id)
+    {
+        $comp = Client::where('userid',$id)->first();
+        $event = Calendar_Event::where('company_id', $id)->first();
+
+        $event = $event->orderBy('created_dt')->paginate(10);
+
+        return view('admin/pengumumanSyarikat', compact('comp', 'event'));
+    }
+
+    public function pengumuman_create()
+    {
+        return view('admin/modalPengumumanSyarikat');
     }
 }

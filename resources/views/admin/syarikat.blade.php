@@ -5,6 +5,24 @@
 <link href="{{ asset('vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
+<script>
+function do_page() {
+    var carian = $('#carian').val();
+    // alert(carian);
+    var pathname = window.location.pathname;
+
+    if(carian.trim()==''){
+        window.location = pathname;
+    } else {
+        window.location = pathname+'?carian='+carian;
+    }
+}
+</script>
+@php
+$carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
+@endphp
+
 		<div class="box" style="background-color:#F2F2F2">
 
             <div class="box-body">
@@ -37,17 +55,18 @@
                             <option value="2">Telah Dijawab</option>
                         </select>
                     </div>
-                    <div class="col-md-4" style="0px">
-                    	<input type="text" class="form-control" id="l_cari" name="l_cari" value="" placeholder="Maklumat Carian">
+                --}}
+                    <div class="col-md-8" style="0px">
+                    	<input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
-        
+                 
         			<div class="col-md-2" align="right" style="padding-right:25px">
-                        <button type="button" class="btn btn-success" 
-                        	onclick="">
+                        <button type="button" class="btn btn-success" onclick="do_page()">
                         	<i class="fa fa-search"></i> Carian</button>
                     </div>
-                </div>        --}}
+                </div>       
             </div>
+            <br><br>
             <div align="right" style="padding-right:10px"><b>{{ $client->total() }} rekod dijumpai</b></div>
             <div class="box-body">
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
@@ -85,8 +104,16 @@
                                     <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
+                            <!-- @if (Auth::guard('admin')->user()->user_level == 1)
+                            <a href="/admin/syarikat/pengumuman/{{ $rs->userid }}" data-toggle="modal" data-target="#myModal" title="Tambah Pengumuman" class="fa text-dark" data-backdrop="static">
+                                <button type="button" class="btn btn-warning">
+                                    <i class="fa fa-bullhorn fa-lg" style="color: #FFFFFF;"></i>
+                                </button>
+                            </a>
+                            @endif -->
+
                             @if (Auth::guard('admin')->user()->user_level == 1)
-                            <a href="">
+                            <a href="/admin/syarikat/announcement/{{ $rs->userid }}" title="Tambah Pengumuman">
                                 <button type="button" class="btn btn-warning">
                                     <i class="fa fa-bullhorn fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
