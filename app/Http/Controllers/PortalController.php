@@ -10,12 +10,8 @@ use App\Visitor_Count;
 class PortalController extends Controller
 {
     public function index(Request $request)
-    {
-        // dd($request->ip());
-        // Counters::incrementIfNotHasCookies('today_visitors');
-
-        
-        $this->visitors($request);
+    {        
+        $this->visitors();
 
         $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',1)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
@@ -28,7 +24,7 @@ class PortalController extends Controller
         return view('portal',compact('pengumuman','today','yesterday','month','last_month','total'));
     }
 
-    public function visitors($request)
+    public function visitors()
     {
         $today = Visitor_Count::where('type','today')->first();
         $month = Visitor_Count::where('type','this_month')->first();
@@ -56,16 +52,44 @@ class PortalController extends Controller
 
     public function ramuanList(Request $request)
     { 
-        // $tumbuhan = Ramuan::where('ing_category',1)->where('is_lulus',1)->where('is_delete',0);
-        // $haiwan = Ramuan::where('ing_category',2)->where('is_delete',0)->where('is_lulus',1);
-        // $kimia = Ramuan::where('ing_category',3)->where('is_delete',0)->where('is_lulus',1);
-        // $semulaJadi = Ramuan::where('ing_category',4)->where('is_delete',0)->where('is_lulus',1);
-        // $other = Ramuan::where('ing_category',5)->where('is_delete',0)->where('is_lulus',1);
-        $all = Ramuan::where('is_delete',0)->where('is_lulus',1)->whereBetween('ing_category', array(1,5));
+        if(!empty($request->cari)){ 
+            $tumbuhan = Ramuan::where('ing_category',1)->where('is_lulus',1)->where('is_delete',0)->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
 
-        $list = Ramuan::where('is_delete',0)->where('is_lulus',1);
+            $haiwan = Ramuan::where('ing_category',2)->where('is_delete',0)->where('is_lulus',1)->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
 
-        if(!empty($request->cari)){ $list->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%'); }
+            $kimia = Ramuan::where('ing_category',3)->where('is_delete',0)->where('is_lulus',1)->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
+
+            $semulaJadi = Ramuan::where('ing_category',4)->where('is_delete',0)->where('is_lulus',1)->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
+
+            $other = Ramuan::where('ing_category',5)->where('is_delete',0)->where('is_lulus',1)->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
+
+            $all = Ramuan::where('is_delete',0)->where('is_lulus',1)->whereBetween('ing_category', array(1,5))->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
+            
+            $list = Ramuan::where('is_delete',0)->where('is_lulus',1)->whereBetween('ing_category', array(1,5))->where(function($query) use($request){
+                $query->where('nama_ramuan','LIKE','%'.$request->cari.'%')->orWhere('nama_saintifik','LIKE','%'.$request->cari.'%');
+            });
+        } else {
+            $tumbuhan = Ramuan::where('ing_category',1)->where('is_lulus',1)->where('is_delete',0);
+            $haiwan = Ramuan::where('ing_category',2)->where('is_delete',0)->where('is_lulus',1);
+            $kimia = Ramuan::where('ing_category',3)->where('is_delete',0)->where('is_lulus',1);
+            $semulaJadi = Ramuan::where('ing_category',4)->where('is_delete',0)->where('is_lulus',1);
+            $other = Ramuan::where('ing_category',5)->where('is_delete',0)->where('is_lulus',1);
+            $all = Ramuan::where('is_delete',0)->where('is_lulus',1)->whereBetween('ing_category', array(1,5));
+            
+            $list = Ramuan::where('is_delete',0)->where('is_lulus',1)->whereBetween('ing_category', array(1,5));
+        }
 
         if(!empty($request->carian)){
             if($request->carian == 'tumbuhan'){
@@ -81,12 +105,18 @@ class PortalController extends Controller
             }
         }
 
-        $list = $list->orderBy('nama_ramuan')->whereBetween('ing_category', array(1,5))->paginate(10);
+        $list = $list->orderBy('nama_ramuan')->paginate(10);
 
+        //Count
+        $today = Visitor_Count::where('type','today')->first();
+        $yesterday = Visitor_Count::where('type','yesterday')->first();
+        $month = Visitor_Count::where('type','this_month')->first();
+        $last_month = Visitor_Count::where('type','last_month')->first();
+        $total = Visitor_Count::where('type','total')->first();
         // dd($list);
 
         // dd(DB::getQueryLog());
-        return view('ramuan_list', compact('list', 'all'));
+        return view('ramuan_list', compact('tumbuhan', 'haiwan', 'kimia', 'semulaJadi', 'other', 'all', 'list', 'today', 'today', 'yesterday', 'month', 'last_month', 'total'));
     }
 
     public function syarikat($id)
