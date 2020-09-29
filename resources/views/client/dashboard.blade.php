@@ -9,6 +9,7 @@
                         <i style="color: #fa0000;" href="/client/announce/{{ $umum->id }}"  data-toggle="modal" data-target="#myModalm" data-backdrop="static">
                             {{ strip_tags($umum->event) }}
                         </i>
+                        <span style="color:#000;"><i class="fa fa-leaf" aria-hidden="true"></i></span>
                 @endforeach
             </marquee>
             <div class="x_title">
