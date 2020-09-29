@@ -209,8 +209,9 @@ class PermohonanController extends Controller
     public function view($id)
     {
         $rs = Ramuan::find($id);
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
 
-        return view('client/view',compact('rs'));
+        return view('client/view',compact('rs', 'upload'));
     }
 
     public function delete($id)
@@ -235,7 +236,7 @@ class PermohonanController extends Controller
 
         if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%'); }
         
         $permohonan = $permohonan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();

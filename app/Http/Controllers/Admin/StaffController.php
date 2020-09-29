@@ -22,7 +22,7 @@ class StaffController extends Controller
         
         if(!empty($request->status)){ $user->where('user_status',$request->status); }
         if(!empty($request->level)){ $user->where('user_level',$request->level); }
-        if(!empty($request->carian)){ $user->where('username','LIKE','%'.$request->carian.'%')->orWhere('email','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $user->where('username','LIKE','%'.$request->carian.'%')->orWhere('email','LIKE','%'.$request->carian.'%')->orWhere('nombor_hp','LIKE','%'.$request->carian.'%'); }
 
         $user = $user->paginate(10);
         return view('admin/staff',compact('rsl','rss','user'));
@@ -66,25 +66,25 @@ class StaffController extends Controller
             if(!empty($check)){
                 return response()->json('ADA');
             } else {
-                $user = new Admin();
-                $user->userid = $request->no_kp;
-                $user->password = md5($request->no_kp);
-                $user->nombor_kp = $request->no_kp;
-                $user->username = $request->nama;
-                $user->email = $request->email;
-                $user->nombor_tel = $request->no_telefon;
-                $user->nombor_hp = $request->no_hp;
-                $user->user_jawatan = $request->jawatan;
-                $user->user_level = $request->level;
-                $user->user_status = $request->status;
-                $user->created_dt = now();
-                $user->created_by = $user;
-                $user->updated_dt = now();
-                $user->updated_by = $user;
+                $u = new Admin();
+                $u->userid = $request->no_kp;
+                $u->password = md5($request->no_kp);
+                $u->nombor_kp = $request->no_kp;
+                $u->username = $request->nama;
+                $u->email = $request->email;
+                $u->nombor_tel = $request->no_telefon;
+                $u->nombor_hp = $request->no_hp;
+                $u->user_jawatan = $request->jawatan;
+                $u->user_level = $request->level;
+                $u->user_status = $request->status;
+                $u->created_dt = now();
+                $u->created_by = $user;
+                $u->updated_dt = now();
+                $u->updated_by = $user;
     
-                $user->save();
+                $u->save();
 
-                if($user){
+                if($u){
                     return response()->json('OK');
                 } else {
                     return response()->json('ERR');
@@ -105,9 +105,9 @@ class StaffController extends Controller
                 'updated_by' => $user,
             );
 
-            $user = Admin::where('id',$request->id)->update($data);
+            $u = Admin::where('id',$request->id)->update($data);
 
-            if($user){
+            if($u){
                 return response()->json('OK');
             } else {
                 return response()->json('ERR');

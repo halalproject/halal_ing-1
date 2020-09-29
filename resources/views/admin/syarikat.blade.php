@@ -79,7 +79,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                   <th width="10%"><font color="#000000"><div align="left">H/P</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Emel</div></font></th>
                   <th width="20%"><font color="#000000"><div align="left">Alamat</div></font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Senarai Ramuan</div></font></th>
+                  <th width="20%"><font color="#000000"><div align="left">Tindakan</div></font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -99,7 +99,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                             {{ $rs->company_address_1 }} {{ $rs->company_address_2 }} {{ $rs->company_address_3 }} {{ $rs->company_city }} {{ $rs->company_poscode }}
                         </td>
                         <td align="center">
-                            <a href="/admin/syarikat/ramuan/{{ $rs->userid }}">
+                            <a href="/admin/syarikat/ramuan/{{ $rs->userid }}" title="Senarai Ramuan">
                                 <button type="button" class="btn btn-primary">
                                     <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

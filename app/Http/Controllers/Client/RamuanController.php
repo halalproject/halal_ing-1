@@ -49,7 +49,8 @@ class RamuanController extends Controller
 
         if($request->sijil != ''){ $ramuan->where('is_sijil',$request->sijil); }
         if($request->kategori != ''){ $ramuan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%'); }
+        if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%'); }
+        
         
         $ramuan = $ramuan->where('create_by',$user)->orderBy('delete_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();

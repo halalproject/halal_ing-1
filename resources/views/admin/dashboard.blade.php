@@ -131,7 +131,7 @@ function do_detail(ids)
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             @php $i=0; @endphp
-                                            @if(!$pengumuman->isEmpty()))
+                                            @if(!$pengumuman->isEmpty())
                                             @foreach ($pengumuman as $umum)
                                             @php 
                                                 $i++;
@@ -147,7 +147,7 @@ function do_detail(ids)
                                                             </div>
                                                         </div>
                                                         <div class="summary-footer" style="text-align: left">
-                                                            <i class="fa fa-clock-o"></i> {{ date('d/m/Y', strtotime())  }} &nbsp; 
+                                                            <i class="fa fa-clock-o"></i> {{ date('d/m/Y', strtotime(now()))  }} &nbsp; 
                                                             <!-- <i class="fa fa-play-circle-o"></i> Lihat 1 -->
                                                         </div>
                                                     </div>

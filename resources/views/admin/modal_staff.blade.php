@@ -170,7 +170,13 @@ $status = $user->user_status ?? '';
                         <div class="col-md-4 control-label">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                <input id="no_telefon" name="no_telefon" data-plugin-masked-input placeholder="03-12231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}">
+                                <input id="no_telefon" name="no_telefon" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}" maxlength="11"
+                                        onkeydown="return (event.ctrlKey || event.altKey 
+                                            || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                            || (95<event.keyCode && event.keyCode<106)
+                                            || (event.keyCode==8) || (event.keyCode==9) 
+                                            || (event.keyCode>34 && event.keyCode<40) 
+                                            || (event.keyCode==46) )">
                             </div>
                         </div>
                         </div>
@@ -181,7 +187,13 @@ $status = $user->user_status ?? '';
                         <div class="col-md-4 control-label">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile"></i>&nbsp;</span>
-                                <input id="no_hp" name="no_hp" data-plugin-masked-input placeholder="013-1221234" class="form-control" value="{{ $user->nombor_hp ?? '' }}">
+                                <input id="no_hp" name="no_hp" data-plugin-masked-input placeholder="0131221234" class="form-control" value="{{ $user->nombor_hp ?? '' }}" maxlength="11"
+                                        onkeydown="return (event.ctrlKey || event.altKey 
+                                            || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                            || (95<event.keyCode && event.keyCode<106)
+                                            || (event.keyCode==8) || (event.keyCode==9) 
+                                            || (event.keyCode>34 && event.keyCode<40) 
+                                            || (event.keyCode==46) )">
                             </div>
                         </div>
                         </div>

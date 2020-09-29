@@ -436,6 +436,13 @@ if(!empty($id)){
                                             @endif
                                         </select>
                                     </div>
+                                    @if(!empty($id))
+                                        <div class="col-sm-4">
+                                            <div align="left">
+                                                <font color="#FF0000"><i>*Nota : Jika anda menukar negara, anda dikehendaki klik butang simpan untuk membolehkan anda muat naik dokumen di tab Maklumat Dokumentasi</i></font>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             
