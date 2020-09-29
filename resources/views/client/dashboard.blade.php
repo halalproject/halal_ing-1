@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Ramuan Yang Dihapuskan</h4>
+                                            <h4 class="title">Ramuan Yang <br> Dihapuskan</h4>
                                             <div class="info">
                                                 <strong class="amount">{{ $hapus->count() }}</strong>
                                             </div>
