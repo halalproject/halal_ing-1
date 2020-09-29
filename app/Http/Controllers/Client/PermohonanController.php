@@ -22,7 +22,7 @@ class PermohonanController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
-        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
+        if($request->status != ''){ $permohonan->where('status',$request->status); }
         if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');

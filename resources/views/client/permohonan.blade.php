@@ -8,16 +8,16 @@
 <script>
 function do_page()
 {
-  var sijil = $('#sijil').val();
+  var status = $('#status').val();
   var kategori = $('#kategori').val();
   var carian = $('#carian').val();
 //   alert(sijil);
   var pathname = window.location.pathname;
 
-  if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
+  if((status.trim() =='') && (kategori.trim() =='') && (carian.trim() =='')){
     window.location = pathname;
   } else {
-    window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
+    window.location = pathname+'?status='+status+'&kategori='+kategori+'&carian='+carian;
   }
 }
 
@@ -75,7 +75,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
 @endphp
 		<div class="box" style="background-color:#F2F2F2">
             <div class="box-body">
-                @csrf
+                
                 <div class="x_panel">
                     <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                         <div class="panel-actions">
@@ -88,6 +88,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             </div>            
             <br />
             <div class="box-body">
+            @csrf
                 <div class="form-group">
                     <!-- <div class="col-md-2">
                         <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
