@@ -60,13 +60,37 @@ class SyarikatController extends Controller
         return view('admin/modal_detail',compact('rs'));
     }
 
-    public function pengumuman($id)
+    public function announcement(Request $request,$id)
     {
         $comp = Client::where('userid',$id)->first();
-        $event = Calendar_Event::where('company_id', $id)->first();
-        
+        // $events = Calendar_Event::where('company_id', $id)->first();
+        $event = Calendar_Event::where('company_id', $id)->where('is_delete', 0)->where('kategori', 1);
+
+        $compId = $id;
+
+        if(!empty($request->carian)){ $event->where(function($query) use ($request){
+            $query->where('event','LIKE','%'.$request->carian.'%');
+        }); }
+
+        $event = $event->orderBy('created_dt')->paginate(10);
+
+        return view('admin/pengumumanSyarikat', compact('comp', 'event', 'compId'));
+    }
+
+    public function pengumuman_create($id) 
+    {
+        $comp = Client::where('userid',$id)->first();
         // dd($comp);
-        return view('admin/modalPengumumanSyarikat',compact('comp', 'event'));
+        return view('admin/modalPengumumanSyarikat', compact('comp'));
+    }
+
+    public function pengumuman($id)
+    {
+        
+        $event = Calendar_Event::where('id', $id)->first();
+        $comp = Client::where('userid',$event->company_id)->first();
+        // dd($comp);
+        return view('admin/modalPengumumanSyarikat',compact('event', 'comp'));
     }
 
     public function simpan(request $request)
@@ -95,7 +119,7 @@ class SyarikatController extends Controller
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
                 'announcement' => $request->catatan_text,
-                'company_id' => $request->id,
+                'company_id' => $request->id_comp,
                 'kategori' => 1,
                 'is_public' => 3,
                 'file_name' => $showFile,
@@ -117,7 +141,7 @@ class SyarikatController extends Controller
             $event->start_date = $request->start_date;
             $event->end_date = $request->end_date;
             $event->announcement = $request->catatan_text;
-            $event->company_id = $request->id;
+            $event->company_id = $request->id_comp;
             $event->kategori = 1;
             $event->is_public = 3;
             $event->file_name = $showFile;
@@ -135,20 +159,5 @@ class SyarikatController extends Controller
                 return response()->json('ERR');
             }
         }      
-    }
-
-    public function announcement($id)
-    {
-        $comp = Client::where('userid',$id)->first();
-        $event = Calendar_Event::where('company_id', $id)->first();
-
-        $event = $event->orderBy('created_dt')->paginate(10);
-
-        return view('admin/pengumumanSyarikat', compact('comp', 'event'));
-    }
-
-    public function pengumuman_create()
-    {
-        return view('admin/modalPengumumanSyarikat');
     }
 }

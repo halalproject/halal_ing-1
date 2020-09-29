@@ -123,6 +123,7 @@
     }
 </script>
 @php
+    
 @endphp
 
 <div class="col-md-12">
@@ -134,8 +135,7 @@
             </header>
             <div class="panel-body ">
                 <div class="col-md-12">
-                    <input type="hidden" name="id" id="id" class="form-control" value="{{ $comp->userid ?? '' }}">
-                    <input type="hidden" name="id_comp" id="id_comp" class="form-control" value="{{ $event->company_id ?? '' }}">
+                    <input type="hidden" name="id_comp" id="id_comp" class="form-control" value="{{ $comp->userid ?? '' }}">
                     <input type="hidden" name="id_event" id="id_event" class="form-control" value="{{ $event->id ?? '' }}">
                     <div class="form-group">
                         <div class="row">
@@ -180,10 +180,8 @@
 
                             
                             <div class="col-sm-4">
-                                <a href="/admin/dokumen_pengumuman/">
-                                    <!-- <i class="fa fa-download"> -->
+                                <a href="/admin/dokumen_pengumuman/{{ $event->file_name}}">
                                     <input  type="text" name="curr_doc" id="curr_doc" value="{{ $event->file_name ?? '' }}" style ="border:none; padding-left:0px;">
-                                    <!-- </i> -->
                                 </a>
                             </div>
                         </div>

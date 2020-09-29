@@ -117,8 +117,8 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::get('syarikat/detail/{id}','Admin\SyarikatController@detail');
     Route::get('syarikat/pengumuman/{id}','Admin\SyarikatController@pengumuman');
     Route::post('syarikat/pengumuman/simpan','Admin\SyarikatController@simpan');
-    Route::get('/syarikat/announcement/{id}','Admin\SyarikatController@announcement');
-    Route::get('/syarikat/pengumuman/create','Admin\SyarikatController@pengumuman_create');
+    Route::get('/syarikat/announcement/{id}','Admin\SyarikatController@announcement')->name('Syarikat / Senarai Pengumuman');
+    Route::get('/syarikat/pengumuman/create/{id}','Admin\SyarikatController@pengumuman_create');
 
     //Staff
     Route::get('staff','Admin\StaffController@index')->name('Kakitangan');
