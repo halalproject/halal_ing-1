@@ -382,17 +382,28 @@ if(!empty($id)){
                         <input type="hidden" name="chk" id="chk" class="form-control" value="">
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Ramuan :</b></label>
+                                    <label class="col-sm-3 control-label">
+                                        <b><font color="#FF0000">*</font> Nama Ramuan 
+                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" 
+                                            title="{{ $information[0]->info }}">
+                                            </i>:
+                                        </b>
+                                    </label>
                                     <div class="col-sm-8">
                                         <input type="text" name="ramuan" id="ramuan" class="form-control" value="{{$rs->nama_ramuan??''}}">
-                                        
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Nama Saintifik :</b></label>
+                                    <label class="col-sm-3 control-label">
+                                        <b><font color="#FF0000">*</font> Nama Saintifik 
+                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" 
+                                            title="{{ $information[1]->info }}">
+                                            </i>:
+                                        </b>
+                                    </label>
                                     <div class="col-sm-8">
                                         <input type="text" name="saintifik" id="saintifik" class="form-control" value="{{$rs->nama_saintifik??''}}">
                                     </div>
@@ -401,9 +412,12 @@ if(!empty($id)){
 
                             <div class="form-group">
                                 <div class="row">
-                                <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font> Sumber Bahan 
-                                    <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" 
-                                        title="This is tooltips <br> for information.Thank you"></i> :</b>
+                                <label class="col-sm-3 control-label" for="profileLastName">
+                                    <b><font color="#FF0000">*</font> Sumber Bahan 
+                                        <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" 
+                                        title="{{ $information[2]->info }}">
+                                        </i> :
+                                    </b>
                                 </label>
                                 <div class="col-sm-4">
                                 <select name="sumber" id="sumber" class="form-control">
@@ -576,7 +590,7 @@ if(!empty($id)){
                                                 @endforeach
                                             </select>
                                             <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                title="" id="questmark" name="questmark"></i>
+                                                title="{{ $information[3]->info }}" id="questmark" name="questmark"></i>
                                         <!-- </div>
                                     </div> -->
                                 </div>
@@ -605,7 +619,7 @@ if(!empty($id)){
                                                         @if($checked == 1) checked @endif
                                                         onchange="do_able({{ $dokumen->id }})"/>&nbsp;{{ $dokumen->nama }} 
                                                     <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                        title="{!! $dokumen->remarks !!}"></i>
+                                                        title="{!! $dokumen->remarks !!}" style="width: 120px;"></i>
                                                 </div>
                                                 @if($dokumen->id == 6)
                                                 <div class="addrow_{{$dokumen->id}}" @if($checked == 0) hidden @endif>

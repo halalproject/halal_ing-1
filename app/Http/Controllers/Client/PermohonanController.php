@@ -11,6 +11,7 @@ use App\Ref_Dokumen;
 use App\Ramuan;
 use App\Ramuan_Dokumen;
 use App\Ref_Islamic_Body;
+use App\Information;
 use Illuminate\Support\Facades\Auth;
 
 class PermohonanController extends Controller
@@ -41,10 +42,11 @@ class PermohonanController extends Controller
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
+        $information = Information::get();
 
-        // dd($negara);
+        // dd($information);
 
-        return view('client/modal',compact('bahan','negara','negeri','dokumen','cb'));
+        return view('client/modal',compact('bahan','negara','negeri','dokumen','cb','information'));
     }
     
     public function edit($id)
@@ -60,10 +62,11 @@ class PermohonanController extends Controller
         $dokumen = Ref_Dokumen::where('status',0)->get();
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
+        $information = Information::get();
 
         // dd($rs);
 
-        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok'));
+        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok','information'));
     }
 
     public function store(Request $request)
