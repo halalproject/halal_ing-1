@@ -128,10 +128,11 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
         </div>
     </div>
     <br>
+
     <div class="box-body">
-        @csrf
+    @csrf
         <div class="form-group">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select name="level_c" id="level_c" onchange="do_page()" class="form-control">
                     <option value="">Level Pengguna</option>
                     @foreach ($rsl as $rsl)
@@ -139,7 +140,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-2" >
+            <div class="col-md-3">
                 <select name="status_c" id="status_c" onchange="do_page()" class="form-control">
                     <option value="">Status</option>
                     @foreach ($rss as $rss)
@@ -147,13 +148,12 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
             </div>
 
-            <div class="col-md-2">
-                <button type="button" class="btn btn-success" onclick="do_page()">
-                    <i class="fa fa-search"></i> Carian</button>
+            <div class="col-md-2" align="right">
+                <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
             </div>
 
             <div class="col-md-2" align="right">
@@ -164,6 +164,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
             </div>
         </div>
     </div>
+
     <br>
     <div align="right" style="padding-right:10px"><b>{{ $user->total() }} rekod dijumpai</b></div>
     <div class="box-body">
@@ -171,14 +172,13 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
             <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                 <th width="5%"><font color="#000000"><div align="center">#</div></font></th>
-                <th width="17%"><font color="#000000"><div align="left">Nama</div></font></th>
+                <th width="20%"><font color="#000000"><div align="left">Nama</div></font></th>
                 <th width="15%"><font color="#000000"><div align="left">Level Pengguna</div></font></th>
                 <th width="8%"><font color="#000000"><div align="left">Jawatan</div></font></th>
                 <th width="10%"><font color="#000000"><div align="left">No. HP</font></th>
                 <th width="15%"><font color="#000000"><div align="left">Emel</font></th>
                 <th width="8%"><font color="#000000"><div align="center">Status</div></font></th>
-                <th width="8%"><font color="#000000"><div align="left">ID</div></font></th>
-                <th width="10%"><font color="#000000"><div align="center">Tindakan</div></font></th>
+                <th width="15%"><font color="#000000"><div align="center">Tindakan</div></font></th>
                 </tr>
             </thead>
             <tbody>
@@ -186,7 +186,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                 @foreach ($user as $rsu)
                 <tr>
                     <td valign="top" align="center">{{ ++$bil }}</td>
-                    <td valign="top" align="left">{{ $rsu->username }}</td>
+                    <td valign="top" align="left">{{ $rsu->username }} <br> ID : {{ $rsu->userid }} </td>
                     <td valign="top" align="left">{{ $rsu->jawatan->nama }}</td>
                     <td valign="top" align="left">{{ $rsu->level->nama }}</td>
                     <td valign="top" align="left">{{ $rsu->nombor_hp }}</td>
@@ -200,7 +200,6 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                             <span class="label label-warning">{{ $rsu->status->nama }}</span>
                         @endif
                     </td>
-                    <td valign="top" align="left">{{ $rsu->userid }}</td>
                     <td align="center">
                         @if($rsu->password <> md5($rsu->userid))
                         <a title="Tetapkan Kata Laluan" class="fa text-dark" onclick="do_reset({{ $rsu->id }})">

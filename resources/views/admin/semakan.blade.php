@@ -35,7 +35,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <!--<a href="#" class="fa fa-caret-down"></a>
                     <a href="#" class="fa fa-times"></a>-->
                     </div>
-                    <h2 class="panel-title"><font color="#000000"><b>PROSES PERMOHONAN</b></font></h2> 
+                    <h2 class="panel-title"><font color="#000000"><b>PROSES PERMOHONAN - SEMAKAN</b></font></h2> 
                 </header>
             </div>
         </div>            

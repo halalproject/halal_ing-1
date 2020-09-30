@@ -33,7 +33,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
                 </div>
-                <h2 class="panel-title"><font color="#000000"><b>SENARAI PELANGGAN</b></font></h2> 
+                <h2 class="panel-title"><font color="#000000"><b>SENARAI SYARIKAT</b></font></h2> 
             </header>
 			</div>
             </div>            

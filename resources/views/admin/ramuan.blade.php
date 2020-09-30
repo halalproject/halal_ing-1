@@ -46,7 +46,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             <div class="form-group">
                 <div class="col-md-2">
                     <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
-                        <option value="">Status Sijil Halal</option>
+                        <option value="">Sijil Halal</option>
                         <option value="1" @if($sijil == '1') selected @endif>Ada</option>
                         <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
                     </select>
@@ -59,7 +59,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                 </div>
     
