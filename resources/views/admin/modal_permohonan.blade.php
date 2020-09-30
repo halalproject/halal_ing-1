@@ -69,7 +69,7 @@ function do_simpan()
     @csrf
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-            <h6 class="panel-title"><font color="#000000" size="3"><b>Maklumat Permohonan (@if(empty($rs->is_semak)) Semakan @else Kelululsan @endif)</b></font></h6>
+            <h2 class="panel-title"><font color="#000000" size="3"><b>Maklumat Permohonan (@if(empty($rs->is_semak)) Semakan @else Kelululsan @endif)</b></font></h2>
         </header>
         <div class="panel-body">
             <!-- Start Tab -->

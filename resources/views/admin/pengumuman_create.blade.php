@@ -88,7 +88,7 @@ $pub = $calendar->is_public ?? '';
     <meta name="csrf-token" content="{{ csrf_token() }}">
         <section class="panel panel-featured panel-featured-info">
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <h6 class="panel-title"><font color="#000000" size="3"><b>@if(empty($id)) Tambah @else Kemaskini @endif Pengumuman</b></font></h6>
+                <h2 class="panel-title"><font color="#000000" size="3"><b>@if(empty($id)) Tambah @else Kemaskini @endif Pengumuman</b></font></h2>
             </header>
             <div class="panel-body ">
                 <div class="col-md-12">

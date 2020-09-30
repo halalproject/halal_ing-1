@@ -6,7 +6,7 @@ body {
 }
 
 html {
-	font-size: 9px;
+	font-size: 8px;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 	font-family:Verdana, Geneva, sans-serif;
 	line-height: 22px;
 	margin: 0;
-	font-size: 13px;
+	font-size: 11px;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
@@ -11749,8 +11749,8 @@ ul.simple-bullet-list li.orange:before {
 
 .widget-summary .summary .title {
 	margin: 0;
-	font-size: 16px;
-	font-size: 1.6rem;
+	font-size: 15px;
+	font-size: 1.5rem;
 	line-height: 22px;
 	line-height: 2.2rem;
 	color: #333333;

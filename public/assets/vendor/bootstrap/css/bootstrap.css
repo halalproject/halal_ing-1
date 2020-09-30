@@ -1766,9 +1766,9 @@ pre code {
   .col-md-3 {
     width: 25%;
   }
-  .col-md-2 {
+  /* .col-md-2 {
     width: 16.66666667%;
-  }
+  } */
   .col-md-1 {
     width: 8.33333333%;
   }
@@ -2352,7 +2352,7 @@ output {
   width: 100%;
   height: 34px;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 1.42857143;
   color: #555555;
   background-color: #ffffff;
@@ -2785,7 +2785,7 @@ select[multiple].form-group-lg .form-control {
   border: 1px solid transparent;
   white-space: nowrap;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 1.42857143;
   border-radius: 4px;
   -webkit-user-select: none;
@@ -5075,7 +5075,7 @@ a.list-group-item-danger.active:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 .panel-body {
-  padding: 15px;
+  padding: 10px;
 }
 .panel-heading {
   padding: 10px 15px;

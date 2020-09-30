@@ -35,7 +35,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <!--<a href="#" class="fa fa-caret-down"></a>
                     <a href="#" class="fa fa-times"></a>-->
                     </div>
-                    <h6 class="panel-title"><font color="#000000"><b>PROSES PERMOHONAN</b></font></h6> 
+                    <h2 class="panel-title"><font color="#000000"><b>PROSES PERMOHONAN</b></font></h2> 
                 </header>
             </div>
         </div>            
@@ -57,7 +57,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                 </div>
     

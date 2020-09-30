@@ -21,7 +21,7 @@ if((!empty($id)) && ($upload != '')){
 <div class="col-md-12">
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-            <h6 class="panel-title">
+            <h2 class="panel-title">
                 <font color="#000000" size="3"><b>Maklumat Ramuan</b>
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
@@ -29,7 +29,7 @@ if((!empty($id)) && ($upload != '')){
                 <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="window.print()" id="cetak">
                     <i class="fa fa-print"></i> Cetak
                 </button>
-            </h6>
+            </h2>
         </header>
         <div class="panel-body ">
             <div class="col-md-12">

@@ -123,7 +123,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
     <div class="box-body">
         <div class="x_panel">
             <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:15px;">
-                <h6 class="panel-title"><font color="#000000"><b>SENARAI KAKITANGAN</b></font></h6> 
+                <h2 class="panel-title"><font color="#000000"><b>SENARAI KAKITANGAN</b></font></h2> 
             </header>
         </div>
     </div>

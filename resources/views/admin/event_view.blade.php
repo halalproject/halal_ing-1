@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <section class="panel panel-featured panel-featured-info">
         <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-            <h6 class="panel-title"><font color="#000000" size="3"><b>{{ $rs->event }}</b></font></h6>
+            <h2 class="panel-title"><font color="#000000" size="3"><b>{{ $rs->event }}</b></font></h2>
         </header>
         <div class="panel-body ">
             <div class="col-md-12">

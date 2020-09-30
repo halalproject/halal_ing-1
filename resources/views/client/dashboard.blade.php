@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Daftar Permohonan</h4>
+                                            <h4 class="title">Daftar <br> Permohonan</h4>
                                             <div class="info">
                                                 <strong class="amount">{{ $mohon->count() }}</strong>
                                                 <!--<span class="text-primary">(14 unread)</span>-->
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Permohonan Ditolak</h4>
+                                            <h4 class="title">Permohonan <br> Ditolak</h4>
                                             <div class="info">
                                                 <strong class="amount">{{ $tolak->count() }}</strong>
                                                 <!--<span class="text-primary">(14 unread)</span>-->

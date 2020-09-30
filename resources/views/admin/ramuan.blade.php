@@ -37,7 +37,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             <!--<a href="#" class="fa fa-caret-down"></a>
             <a href="#" class="fa fa-times"></a>-->
             </div>
-            <h6 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN - {{ $syarikat->company_name }} </b></font></h6> 
+            <h2 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN - {{ $syarikat->company_name }} </b></font></h2> 
         </header>
         </div>
         </div>            
