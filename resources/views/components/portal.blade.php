@@ -51,7 +51,7 @@
                         <div class="row row-25">				                    
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-3 col-md-3 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Halal Apps</b></span></h4>
+                                <h5 class="title"><span class="text-white"><b>Halal Apps</b></span></h5>
                                 <div class="footer-social">
                                     <a href="http://www.malaysia.gov.my" title="Malaysia Government"><img class="logoimg" src="{{ asset('images/footer/malaysia.png') }}" style="width:40px; height:40px;"></a>
                                     <a href="http://www.islam.gov.my" title="Jabatan kemajuan Islam Malaysia"><img class="logoimg" src="{{ asset('images/footer/jakim.png') }}" style="width:40px; height:40px;"></a>
@@ -67,7 +67,7 @@
                             
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Media Sosial</b></span></h4>
+                                <h5 class="title"><span class="text-white"><b>Media Sosial</b></span></h5>
                                 <div class="footer-social">   
                                     <a href="https://www.facebook.com/HabHalalJakim/" title="Facebook"><img style="width:41px; height:41px;" src="{{ asset('images/footer/facebook.png') }}"></a>
                                     <a href="https://twitter.com/halal_malaysia" title="Twitter"><img style="width:40px; height:40px; padding-top:3px;" src="{{ asset('images/footer/twitter.png') }}"></a>
@@ -77,30 +77,30 @@
 
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-3 col-md-3 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Lokasi</b></span></h4>
-                                <h6 style="color:#00eaff;">JABATAN AGAMA ISLAM,<br><br>BAHAGIAN PENGURUSAN HALAL,<br>TINGKAT 5, MENARA UTARA,<br>BANGUNAN SULTAN IDRIS SHAH,<br><br>NO.2, PERSIARAN MASJID,<br>BUKIT SUK, 40676 SHAH ALAM,<br>SELANGOR. </h6>
+                                <h5 class="title"><span class="text-white"><b>Lokasi</b></span></h5>
+                                <h7 style="color:#00eaff;">Jabatan Agama Islam Selangor (JAIS),<br><br>Bahagian Pengurusan Halal,<br>Tingkat 5, Menara Utara,<br>Bangunan Sultan Idris Shah,<br><br>No.2, Persiaran Masjid,<br>Bukit SUK, 40676 Shah Alam,<br>Selangor. </h7>
                             </div>
                             <!--Footer Widget end-->
 
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Hubungi Kami</b></span></h4>
-                                <h6 style="color:#00eaff;">Tel: 03-5514 3600/3400 <br>Fax: 03-5510 3368<br>text: info@jais.gov.my</h6>             
+                                <h5 class="title"><span class="text-white"><b>Hubungi Kami</b></span></h5>
+                                <h7 style="color:#00eaff;">Tel: 03-5514 3600/3400 <br>Fax: 03-5510 3368<br>text: info@jais.gov.my</h7>             
                             </div>
                             <!--Footer Widget end-->
 
 
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
-                                <h4 class="title"><span class="text-white"><b>Pengunjung</b></span></h4>
+                                <h5 class="title"><span class="text-white"><b>Pengunjung</b></span></h5>
                                 
-                                <h6 style="color:#00eaff;">
+                                <h7 style="color:#00eaff;">
                                     Jumlah : <span name="totalvis" id="totalvis">{{  $total->value }}</span><br>
                                     Hari Ini : <span name="todayvis" id="todayvis">{{  $today->value }}</span><br>
                                     Kelmarin : <span name="yesterdayvis" id="yesterdayvis">{{  $yesterday->value }}</span><br>
                                     Bulan Ini : <span name="thismonthvis" id="thismonthvis">{{  $month->value }}</span><br>
                                     Bulan Lepas : <span name="lastmonthvis" id="lastmonthvis">{{  $last_month->value }}</span><br>
-                                </h6>
+                                </h7>
                             </div>
                             <!--Footer Widget end-->    
                         </div>
@@ -114,7 +114,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="copyright text-center text-white" style="padding-bottom:5px;">
-                                    <h6>Copyright &copy; 2020 <a  href="#">Halal Malaysia</a>. All rights reserved.</h6>
+                                    <h7>Copyright &copy; 2020 <a  href="#">Halal Malaysia</a>. All rights reserved.</h7>
                                 </div>
                             </div>
                         </div>

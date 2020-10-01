@@ -43,10 +43,11 @@ class PermohonanController extends Controller
         $dokumen = Ref_Dokumen::where('status',0)->get();
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
         $information = Information::get();
+        $inform = Information::whereBetween('id', array(5,10))->get();
 
-        // dd($information);
+        // dd($dokumen);
 
-        return view('client/modal',compact('bahan','negara','negeri','dokumen','cb','information'));
+        return view('client/modal',compact('bahan','negara','negeri','dokumen','cb','information', 'inform'));
     }
     
     public function edit($id)
@@ -63,10 +64,11 @@ class PermohonanController extends Controller
         $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
         $information = Information::get();
+        $inform = Information::whereBetween('id', array(5,10))->get();
 
-        // dd($rs);
+        // dd($inform);
 
-        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok','information'));
+        return view('client/modal',compact('rs','upload','bahan','negara','negeri','dokumen','cb', 'dok','information','inform'));
     }
 
     public function store(Request $request)

@@ -62,7 +62,11 @@
                                     <div class="">
                                         <label class="title">Tumbuhan </label><br>
                                         <span class="badge badge-danger">
-                                            {{ $tumbuhan->count() }}
+                                            @if($carian == 'tumbuhan')
+                                                {{ $tumbuhan->count() }}
+                                            @else
+                                                0
+                                            @endif
                                         </span>
                                     </div>
                                 </button>
@@ -75,8 +79,13 @@
                                     <div class="">
                                         <label class="title">Haiwan </label><br>
                                         <span class="badge badge-danger">
-                                            {{ $haiwan->count() }}
+                                            @if($carian == 'haiwan')
+                                                {{ $haiwan->count() }}
+                                            @else
+                                                0
+                                            @endif
                                         </span>
+                                        
                                     </div>
                                 </button>
                             </div>
@@ -88,7 +97,11 @@
                                     <div class="">
                                         <label class="title">Kimia </label><br>
                                         <span class="badge badge-danger">
-                                            {{ $kimia->count() }}
+                                            @if($carian == 'kimia')
+                                                {{ $kimia->count() }}
+                                            @else
+                                                0
+                                            @endif
                                         </span>
                                     </div>
                                 </button>
@@ -101,7 +114,11 @@
                                     <div class="">
                                         <label class="title">Semula Jadi </label><br>
                                         <span class="badge badge-danger">
-                                            {{ $semulaJadi->count() }}
+                                            @if($carian == 'semulaJadi')
+                                                {{ $semulaJadi->count() }}
+                                            @else
+                                                0
+                                            @endif
                                         </span>
                                     </div>
                                 </button>
@@ -114,7 +131,11 @@
                                     <div class="">
                                         <label class="title">Lain-lain </label><br>
                                         <span class="badge badge-danger">
-                                            {{ $other->count() }}
+                                            @if($carian == 'other')
+                                                {{ $other->count() }}
+                                            @else
+                                                0
+                                            @endif
                                         </span>
                                     </div>
                                 </button>
@@ -127,7 +148,11 @@
                                     <div class="">
                                         <label class="title">Semua </label><br>
                                         <span class="badge badge-danger">
-                                            {{ $all->count() }}
+                                            @if($carian == '')
+                                                {{ $all->count() }}
+                                            @else
+                                                0
+                                            @endif
                                         </span>
                                     </div>
                                 </button>

@@ -124,7 +124,7 @@
                         <div class="form-group row">
                             <label for="colFormLabelLg" class="col-sm-4 col-form-label">Semak Status Halal :</label>
                                 <div class="input-group col-sm-7">
-                                    <input type="text" class="form-control form-control-lg" name="cari" id="cari" value="{{ $cari }}" style="box-shadow: 1px 3px #d6d6d6;">
+                                    <input type="text" class="form-control form-control-lg" name="cari" id="cari" value="{{ $cari }}" style="box-shadow: 1px 3px #d6d6d6; height: 40px;">
                                     <div class="input-group-prepend">
                                         <button class="input-group-text" style="background-color:#00eaff;box-shadow: 1px 3px #d6d6d6;" onclick="do_cari()"><i class="fas fa-search text-white" ></i></button>
                                     </div>
@@ -216,7 +216,7 @@
                         <div class="container-login">
                             <form class="text-white">
                                 @csrf
-                                <h2 class="mb-30"><b>LOG MASUK</b></h2>
+                                <h4 class="mb-30"><b>LOG MASUK</b></h4>
                                 <label for="idPengguna" >ID Penguna</label>
                                 <input style="height: 35px;" type="text" id="userid" name="userid" class="form-control" required >
                                 <br>
@@ -224,7 +224,7 @@
                                 <input style="height: 35px;"  type="password" id="password" name="password" class="form-control"  required >
                                 <div class="text-danger mb-3 float-right">
                                     <span style="cursor: pointer" data-toggle="modal" data-target="#modalLupaKataLaluan" >
-                                        <small class="text-red">Lupa Kata Laluan ?</small>
+                                        <div class="text-red">Lupa Kata Laluan ?</div>
                                     </span>
                                 </div>
                                 <button type="button" class="btnx btn-sm btn-block" style="color:#000;background-color:#00eaff;border-color:#00eaff;" onclick="do_login()">
