@@ -174,9 +174,9 @@ $pub = $calendar->is_public ?? '';
                                 <label class="radio-inline">
                                     <input type="radio" name="pengumuman_untuk" id="dalaman" value="2" onclick="ShowHideCompList()" @if($pub == '2') checked @endif> Dalaman
                                 </label>
-                                <!-- <label class="radio-inline">
+                                <label class="radio-inline">
                                     <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" onclick="ShowHideCompList()" @if($pub == '3') checked @endif> Syarikat
-                                </label> -->
+                                </label>
                                 
                             </div>
                         </div>
