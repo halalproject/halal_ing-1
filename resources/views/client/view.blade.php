@@ -26,9 +26,11 @@ if((!empty($id)) && ($upload != '')){
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
 
+                @if ($rs->status == 6)
                 <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="window.print()" id="cetak">
                     <i class="fa fa-print"></i> Cetak
                 </button>
+                @endif
             </h2>
         </header>
         <div class="panel-body ">
