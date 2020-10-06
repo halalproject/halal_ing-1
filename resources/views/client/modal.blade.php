@@ -636,7 +636,9 @@ if(!empty($id)){
                                                             @foreach ($upload as $up)
                                                                 @if(!empty($upload))
                                                                     @if($up->ref_dokumen_id == $dokumen->id)
-                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;"> 
+                                                                    <a href="/client/dokumen_ramuan/{{ $up->file_name }}">
+                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;width: 250px;"> 
+                                                                    </a>
                                                                     @endif
                                                                 @endif
                                                             @endforeach

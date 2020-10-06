@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     Route::get('permohonan/view/{id}','Client\PermohonanController@view');
     Route::post('permohonan/delete/{id}','Client\PermohonanController@delete');
     Route::get('permohonan/getDokumen/{type}','Client\PermohonanController@getDokumen');
+    Route::get('/dokumen_ramuan/{file}', 'Client\PermohonanController@downloadDocument');
 
     //Permohonan Ditolak
     Route::get('tolak','Client\PermohonanController@tolak')->name('Permohonan Ditolak');

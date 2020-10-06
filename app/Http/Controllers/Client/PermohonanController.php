@@ -286,4 +286,28 @@ class PermohonanController extends Controller
         }
 
     }
+
+    public function downloadDocument($file)
+	{
+		// dd(pathinfo($file)['extension']);
+        $path = storage_path().'/app/dokumen_ramuan/'.$file;
+        $setFileType = pathinfo($file)['extension'];
+		if(file_exists($path)){
+            if($setFileType == "jpg" || $setFileType == "jpeg" || $setFileType == "png" ) {
+                return response()->make(file_get_contents($path), 200, [
+                    'Content-Type' => 'image/jpeg' ,
+                    'Content-Disposition' => 'inline; file="'.$file.'"'
+                    ]);
+            } elseif(pathinfo($file)['extension'] == 'pdf') {
+                return response()->make(file_get_contents($path), 200, [
+                    'Content-Type' => 'application/pdf', 
+                    'Content-Disposition' => 'inline; file="'.$file.'"'
+                ]);
+            } else {
+               return response()->download($path);
+            }
+		} else {
+			return back();
+        }
+    }
 }
