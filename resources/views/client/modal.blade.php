@@ -243,7 +243,7 @@ function do_hantar()
                     showConfirmButton: true,
                 });
             }
-            
+            return false;
         } else if((id == 1) && (date.trim() == '')){
             swal({
                 title: 'Amaran',
