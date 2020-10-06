@@ -191,7 +191,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                                     <i class="fa fa-print fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a> -->
-                            <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                            <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModalm" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
