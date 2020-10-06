@@ -57,7 +57,7 @@ class PermohonanController extends Controller
         // dd($id);
 
         $rs = Ramuan::find($id);
-        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->where('is_delete',0)->get();
         // dd($upload);
         $bahan = Ref_Sumber_Bahan::where('status',0)->get();
         $negara = Ref_Negara::where('status',0)->get();
@@ -147,7 +147,7 @@ class PermohonanController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
         // dd($request->all());
-        // dd($request->current_file_1);
+        // dd($request->input('doc_2'));
         // $request->doc_1 == 1;
 
         if(!empty($request->upload_1)){
@@ -169,6 +169,7 @@ class PermohonanController extends Controller
         $ramuan_doc->save();
 
         for ($i=2; $i<=6; $i++) {
+            // dd($request->doc_.$i);
             if(!empty($request->file('upload_'.$i))){
                 $file = $request->file('upload_'.$i)->getClientOriginalName();
                 $type = pathinfo($file)['extension'];
@@ -188,22 +189,20 @@ class PermohonanController extends Controller
                 }
     
                 $ramuan_doc->save();    
+            } else if(empty($request->input('doc_'.$i))){
+                $ramuan_doc = Ramuan_Dokumen::where('ramuan_id',$request->id)->where('ref_dokumen_id',$i)->update(['is_delete'=>1]);
             }
         }
 
-        if($ramuan_doc){
-            if((!empty($request->upload_1)) || (!empty($request->current_file_1))){
-                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
-            } else {
-                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
-            }
-            
-            $this->notification($request->id);
-            
-            return response()->json('OK');
+        if((!empty($request->upload_1)) || (!empty($request->current_file_1))){
+            $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
         } else {
-            return response()->json('ERR');
+            $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
         }
+        
+        $this->notification($request->id);
+        
+        return response()->json('OK');
     }
 
     public function notification($id)

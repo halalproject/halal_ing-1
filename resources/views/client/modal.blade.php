@@ -212,7 +212,7 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
-        // alert(current_file);
+        // alert(typeof current_file === 'undefined');
         
         if(id == 6 && input.trim() == ''){
             swal({
@@ -223,15 +223,6 @@ function do_hantar()
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             });
-        // } else if(id == 1 && doc == '') { 
-        //     swal({
-        //         title: 'Amaran',
-        //         text: 'Sila pilih CB.',
-        //         type: 'warning',
-        //         confirmButtonClass: "btn-warning",
-        //         confirmButtonText: "Ok",
-        //         showConfirmButton: true,
-        //     });
         } else if(typeof current_file === 'undefined'){
             if(file == ''){
                 swal({
@@ -242,8 +233,20 @@ function do_hantar()
                     confirmButtonText: "Ok",
                     showConfirmButton: true,
                 });
+                return false;
+            } else if(date.trim() == ''){
+                swal({
+                    title: 'Amaran',
+                    text: 'Sila masukkan tarikh tamat sijil halal.',
+                    type: 'warning',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                });
+                return false;
+            } else {
+                hantar_to();
             }
-            return false;
         } else if((id == 1) && (date.trim() == '')){
             swal({
                 title: 'Amaran',
@@ -335,10 +338,11 @@ $bahan_rs = $rs->ing_category ?? '';
 $negara_rs = $rs->negara_pengilang_id ?? '';
 $negeri_rs = $rs->negeri_pembekal_id ?? '';
 $nama_dokumen = '';
+$cb_select = '';
 if(!empty($id)){
     foreach ($upload as $doc) {
-        if(!empty($doc->ramuan_id)){
-            $cb_select = $doc->cbid ?? '';
+        if(!empty($doc->cbid)){
+            $cb_select = $doc->cbid;
         } 
 
         if($doc->ref_dokumen_id == 6){
@@ -586,7 +590,7 @@ if(!empty($id)){
                                                 <option value="">Sila Pilih CB</option>
                                                 @foreach ($cb as $item)
                                                     @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
-                                                        <option value="{{$item->fldid}}" @if(($cb_select ?? '') == $item->fldid) selected @endif>{{ $item->fldname }}</option>
+                                                        <option value="{{$item->fldid}}" @if($cb_select == $item->fldid) selected @endif>{{ $item->fldname }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
