@@ -162,8 +162,8 @@ class PermohonanController extends Controller
         
 
         $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
-            ['ramuan_id' => $request->id, 'cbid' => $request->doc_otherNegara],
-            ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type],
+            ['ramuan_id' => $request->id],
+            ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
         );
 
         $ramuan_doc->save();
