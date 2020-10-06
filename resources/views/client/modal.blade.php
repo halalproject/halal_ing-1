@@ -203,6 +203,7 @@ function reloadTab2(id) {
 
 function do_hantar()
 {
+    // alert('hai');
     $("input:checked").each(function () {
         var id = $(this).val();
         var file = $('#upload_'+id).val();
@@ -231,7 +232,7 @@ function do_hantar()
         //         confirmButtonText: "Ok",
         //         showConfirmButton: true,
         //     });
-        } else if(current_file == ''){
+        } else if(typeof current_file === 'undefined'){
             if(file == ''){
                 swal({
                     title: 'Amaran',

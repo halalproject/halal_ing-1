@@ -12,7 +12,9 @@ use App\Ramuan;
 use App\Ramuan_Dokumen;
 use App\Ref_Islamic_Body;
 use App\Information;
+use App\Mail\PermohonanMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PermohonanController extends Controller
 {
@@ -147,68 +149,85 @@ class PermohonanController extends Controller
         // dd($request->all());
         // dd($request->current_file_1);
         // $request->doc_1 == 1;
-            
-        if((!empty($request->upload_1)) || (!empty($request->current_file_1))){
 
-            if(!empty($request->upload_1)){
-                $file = $request->upload_1->getClientOriginalName();
-                $type = pathinfo($file)['extension'];
-                $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
-            } 
-            else {
-                $file = $request->current_file_1;
-                $type = pathinfo($file)['extension'];
-            }
-            
-
-            $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
-                ['ramuan_id' => $request->id, 'cbid' => $request->doc_otherNegara],
-                ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type],
-            );
-
-            $ramuan_doc->save();
-
-            if($ramuan_doc){ 
-                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
-                
-                return response()->json('OK');
-            } else {
-                return response()->json('ERR');
-            }
+        if(!empty($request->upload_1)){
+            $file = $request->upload_1->getClientOriginalName();
+            $type = pathinfo($file)['extension'];
+            $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
+        } 
+        else {
+            $file = $request->current_file_1;
+            $type = pathinfo($file)['extension'];
+        }
         
-        } else { 
-            
-            // dd($request->file('upload_3'));
-            for ($i=2; $i<=6; $i++) {
-                if(!empty($request->file('upload_'.$i))){
-                    $file = $request->file('upload_'.$i)->getClientOriginalName();
-                    $type = pathinfo($file)['extension'];
-                    $path = $request->file('upload_'.$i)->storeAs('dokumen_ramuan', $file);
-                    
+
+        $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+            ['ramuan_id' => $request->id, 'cbid' => $request->doc_otherNegara],
+            ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type],
+        );
+
+        $ramuan_doc->save();
+
+        for ($i=2; $i<=6; $i++) {
+            if(!empty($request->file('upload_'.$i))){
+                $file = $request->file('upload_'.$i)->getClientOriginalName();
+                $type = pathinfo($file)['extension'];
+                $path = $request->file('upload_'.$i)->storeAs('dokumen_ramuan', $file);
+                
+                $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+                    ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
+                    ['ref_dokumen_id' => $i,'file_name' => $file,'file_type' => $type],
+                );
+
+                
+                if($i == 6){
                     $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
                         ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
-                        ['ref_dokumen_id' => $i,'file_name' => $file,'file_type' => $type],
+                        ['ref_dokumen_id' => $i,'nama_dokumen' => $request->nama_lain,'file_name' => $file,'file_type' => $type]
                     );
-
-                    
-                    if($i == 6){
-                        $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
-                            ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
-                            ['ref_dokumen_id' => $i,'nama_dokumen' => $request->nama_lain,'file_name' => $file,'file_type' => $type]
-                        );
-                    }
-        
-                    $ramuan_doc->save();    
                 }
-            }
-            
-            $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
-            if($ramuan) {   
-                return response()->json('OK');
-            } else {
-                return response()->json('ERR');
+    
+                $ramuan_doc->save();    
             }
         }
+
+        if($ramuan_doc){
+            if((!empty($request->upload_1)) || (!empty($request->current_file_1))){
+                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
+            } else {
+                $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
+            }
+            
+            $this->notification($request->id);
+            
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
+    }
+
+    public function notification($id)
+    {
+        // dd($id);
+        $ramuan = Ramuan::find($id);
+        // dd($ramuan);
+        $day = date('w', strtotime($ramuan->create_dt));
+        $tarikh = date('d/m/Y', strtotime($ramuan->create_dt));
+        // dd($day);
+        if($day=='1'){ $hari='Isnin'; }
+        else if($day=='2'){ $hari='Selasa'; }
+        else if($day=='3'){ $hari='Rabu'; }
+        else if($day=='4'){ $hari='Khamis'; }
+        else if($day=='5'){ $hari='Jumaat'; }
+        $data = [
+            'syarikat' => Auth::guard('client')->user()->company_name,
+            'nama' => $ramuan->nama_ramuan,
+            'nama_saintifik' => $ramuan->nama_saintifik,
+            'tarikh' => $tarikh,
+            'hari' => $hari
+        ];
+
+        Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
     }
 
     public function view($id)
