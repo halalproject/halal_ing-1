@@ -42,10 +42,10 @@ if((!empty($id)) && ($upload != '')){
                 <font color="#000000" size="3"><b>Maklumat Ramuan</b>
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
-
                 <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="Export()" id="btnExport" value="Export">
                     <i class="fa fa-print"></i> Cetak
                 </button>
+                @endif
             </h2>
         </header>
         <div class="panel-body" id="maklumatPermohonan">
