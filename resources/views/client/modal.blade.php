@@ -91,7 +91,7 @@ function do_able(ids)
     var doc = $('#doc_'+ids).prop('checked')
     // alert(doc)
 
-    if(doc){
+    if(doc){ 
         if(ids == '1')
         {
             for(i=1;i<=6;i++)
@@ -106,6 +106,7 @@ function do_able(ids)
         }
         
         $('#box_'+ids).show();
+        $('#hantar').prop('disabled',false);
     } else {
         if(ids == '1'){
             for(i=1;i<=6;i++)
@@ -127,6 +128,8 @@ function do_able(ids)
         $('#upload_'+ids).val('');
 
         $('#box_'+ids).hide();
+
+        $('#hantar').prop('disabled',true);
     }
 
 }
@@ -212,17 +215,15 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
-        // alert(typeof current_file === 'undefined');
-        
         if(id == 6 && input.trim() == ''){
-            swal({
-                title: 'Amaran',
-                text: 'Sila isi maklumat lain.',
-                type: 'warning',
-                confirmButtonClass: "btn-warning",
-                confirmButtonText: "Ok",
-                showConfirmButton: true,
-            });
+        swal({
+            title: 'Amaran',
+            text: 'Sila isi maklumat lain.',
+            type: 'warning',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
         } else if(typeof current_file === 'undefined'){
             if(file == ''){
                 swal({
@@ -259,8 +260,6 @@ function do_hantar()
         } else {
             hantar_to();
         }
-        
-        
     });
 }
 
@@ -321,6 +320,14 @@ function hantar_to()
 
 }
 
+function tab2() { 
+    if(($('#doc_1').prop('checked')) || ($('#doc_2').prop('checked')) || ($('#doc_3').prop('checked')) || ($('#doc_4').prop('checked')) || ($('#doc_5').prop('checked')) || ($('#doc_6').prop('checked'))){ 
+        $('#hantar').prop('disabled',false);
+    } else { 
+        $('#hantar').prop('disabled',true);
+    }
+}
+
 function negaraChange() {
   $('#tab2').toggleClass('disabled');
   $('#tab-2').removeAttr('data-toggle');
@@ -374,7 +381,7 @@ if(!empty($id)){
 					<a id="tab-1" href="#t1" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Maklumat Permohonan</span></a>
 				</li>
 				<li id="tab2" class="nav-item">
-					<a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab"><span class="text-black text-small text-bold">Maklumat Dokumentasi</span></a>
+					<a id="tab-2" href="#t2" class="nav-link" data-toggle="tab" role="tab" onclick="tab2()"><span class="text-black text-small text-bold">Maklumat Dokumentasi</span></a>
 				</li>
 			</ul>
             <!-- End Tab Menu -->
@@ -668,7 +675,7 @@ if(!empty($id)){
                             <div class="form-group">
                                 <div align="right">
                                     <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
-                                    <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_hantar()" id="hantar">
+                                    <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_hantar()" id="hantar" name="hantar">
                                         <i class="fa fa-arrow-right"></i> Hantar</button>
                                 </div>
                                 </div>
