@@ -215,15 +215,18 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
+        alert(date);
+        
         if(id == 6 && input.trim() == ''){
-        swal({
-            title: 'Amaran',
-            text: 'Sila isi maklumat lain.',
-            type: 'warning',
-            confirmButtonClass: "btn-warning",
-            confirmButtonText: "Ok",
-            showConfirmButton: true,
-        });
+            swal({
+                title: 'Amaran',
+                text: 'Sila isi maklumat lain.',
+                type: 'warning',
+                confirmButtonClass: "btn-warning",
+                confirmButtonText: "Ok",
+                showConfirmButton: true,
+            });
+            return false;
         } else if(typeof current_file === 'undefined'){
             if(file == ''){
                 swal({
@@ -257,6 +260,7 @@ function do_hantar()
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             });
+            return false;
         } else {
             hantar_to();
         }
@@ -648,7 +652,7 @@ if(!empty($id)){
                                                                 @if(!empty($upload))
                                                                     @if($up->ref_dokumen_id == $dokumen->id)
                                                                     <a href="/client/dokumen_ramuan/{{ $up->file_name }}">
-                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;width: 250px;"> 
+                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;"> 
                                                                     </a>
                                                                     @endif
                                                                 @endif
