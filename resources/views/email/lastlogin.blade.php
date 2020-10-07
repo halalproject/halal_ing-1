@@ -7,11 +7,8 @@
     <p>
         Assalamualaikum,
         <br><br>
-        Untuk makluman pihak Tuan/Puan berikut adalah maklumat tentang ramuan anda :
-        <br><br>
-        Terdapat <b>{{ $data['three_month'] }}</b> ramuan yang akan tamat tempoh sijil halal dalam masa <b> 3 bulan</b><br>
-        Terdapat <b>{{ $data['one_month'] }}</b> ramuan yang akan tamat tempoh sijil halal dalam masa <b> 1 bulan</b><br>
-        Terdapat <b>{{ $data['one_week'] }}</b> ramuan yang akan tamat tempoh sijil halal dalam masa <b> 1 minggu</b><br>        
+        Untuk makluman pihak Tuan/Puan berikut adalah dimaklumkan bahawa anda tidak log masuk ke dalam sistem selama {{ $data['duration'] }}
+        Sila Log Masuk Sistem myHalal Ingredient JAIS: <a href="" target="_blank">myhalal.jais.com</a>
         <br><br>
         Sekian, terima kasih,<br>
         <b>Urusetia JAIS</b>

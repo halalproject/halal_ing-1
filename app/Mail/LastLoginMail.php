@@ -2,13 +2,12 @@
 
 namespace App\Mail;
 
-use App\Ramuan;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TamatTempohMail extends Mailable
+class LastLoginMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -30,7 +29,7 @@ class TamatTempohMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Notifikasi Permohhonan Baharu')
-                    ->view('email/tamat_tempoh');
+        return $this->subject('Pengumuman dari sistem')
+                    ->view('email/lastlogin');
     }
 }
