@@ -12,6 +12,7 @@ use App\Ramuan;
 use App\Ramuan_Dokumen;
 use App\Ref_Islamic_Body;
 use App\Information;
+use App\Mail\PemohonMail;
 use App\Mail\PermohonanMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -205,7 +206,7 @@ class PermohonanController extends Controller
         return response()->json('OK');
     }
 
-    public function notification($id)
+    private function notification($id)
     {
         // dd($id);
         $ramuan = Ramuan::find($id);
@@ -227,6 +228,7 @@ class PermohonanController extends Controller
         ];
 
         Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
+        Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
     }
 
     public function view($id)

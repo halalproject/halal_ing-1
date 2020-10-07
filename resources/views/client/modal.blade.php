@@ -212,7 +212,7 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
-        alert(date);
+        // alert(date);
         
         if(id == 6 && input.trim() == ''){
             swal({

@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Ramuan;
 use App\Ref_Sumber_Bahan;
-use App\Ramuan_Dokumen;
 use App\Calendar_Event;
-use Auth;
+use App\Mail\PengumumanMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
 class SyarikatController extends Controller
 {
     public function index(Request $request)
@@ -85,8 +87,7 @@ class SyarikatController extends Controller
     }
 
     public function pengumuman($id)
-    {
-        
+    {        
         $event = Calendar_Event::where('id', $id)->first();
         $comp = Client::where('userid',$event->company_id)->first();
         // dd($comp);
@@ -113,7 +114,7 @@ class SyarikatController extends Controller
             $showFile = $request->curr_doc;
         }
 
-        if((!empty($request->id_event)) && ($request->id == $request->id_comp)){ 
+        if(!empty($request->id_event)){ 
             $data = array(
                 'event' => $request->event,
                 'start_date' => $request->start_date,
@@ -131,6 +132,7 @@ class SyarikatController extends Controller
             $event = Calendar_Event::where('id',$request->id_event)->update($data);
 
             if($event){
+                $this->mail_pengumuman($request->id_event);
                 return response()->json('OK');
             } else {
                 return response()->json('ERR');
@@ -152,12 +154,28 @@ class SyarikatController extends Controller
             $event->updated_by = $user;
 
             $event->save();
-
+            // dd($event->id);
             if($event){
+                $this->mail_pengumuman($event->id);
                 return response()->json('OK');
             } else {
                 return response()->json('ERR');
             }
         }      
+    }
+
+    private function mail_pengumuman($id)
+    {
+        $event = Calendar_Event::find($id);
+        // dd($event->syarikat->company_email);
+        $data = [
+            'title' => $event->event,
+            'content' => $event->announcement,
+            'attachment' => $event->file_name,
+            'start_date' => $event->start_date,
+            'end_date' => $event->end_date
+        ];
+
+        Mail::to($event->syarikat->company_email)->send(new PengumumanMail($data));
     }
 }

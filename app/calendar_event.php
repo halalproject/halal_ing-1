@@ -14,7 +14,7 @@ class Calendar_Event extends Model
 
     public function syarikat()
     {
-        return $this->belongsTo('App\Client','create_by','userid');
+        return $this->belongsTo('App\Client','company_id','userid');
     }
 
     public function kategori()
