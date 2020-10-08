@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
+use App\Mail\KelulusanMail;
+use App\Mail\PenolakanMail;
+use App\Mail\SemakanMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Ref_Sumber_Bahan;
 use App\Ramuan;
 use App\Ramuan_Komen;
+use Illuminate\Support\Facades\Mail;
 
 class SemakanController extends Controller
 {
@@ -60,8 +65,10 @@ class SemakanController extends Controller
             if($komen){
                 if ($request->input('lulus')) {
                     $status = Ramuan::find($request->id)->update(['status'=>3,'is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now(),'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
+                    $this->email_lulus($request->id);
                 } else if($request->input('semak')) {
                     $status = Ramuan::find($request->id)->update(['is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now()]);
+                    $this->email_semak($request->id);
                 }
 
                 return response()->json('OK');
@@ -73,7 +80,7 @@ class SemakanController extends Controller
         } else if($request->input('tolak')) {
             // dd('tolak');
             $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now(),'is_lulus'=>2,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
-
+            $this->email_tolak($request->id);
             if($tolak){
                 return response()->json('OK');
             } else {
@@ -83,4 +90,71 @@ class SemakanController extends Controller
 
     }
 
+    private function email_lulus($id)
+    {
+        $ramuan = Ramuan::find($id);
+
+        $day = date('w', strtotime($ramuan->create_dt));
+        $tarikh = date('d/m/Y', strtotime($ramuan->create_dt));
+        // dd($day);
+        if($day=='1'){ $hari='Isnin'; }
+        else if($day=='2'){ $hari='Selasa'; }
+        else if($day=='3'){ $hari='Rabu'; }
+        else if($day=='4'){ $hari='Khamis'; }
+        else if($day=='5'){ $hari='Jumaat'; }
+        $data = [
+            'nama' => $ramuan->nama_ramuan,
+            'nama_saintifik' => $ramuan->nama_saintifik,
+            'tarikh' => $tarikh,
+            'hari' => $hari
+        ];
+
+        Mail::to($ramuan->syarikat->company_email)->send(new KelulusanMail($data));
+    }
+
+    private function email_semak($id)
+    {
+        $ramuan = Ramuan::find($id);
+        $ccs = Admin::where('user_level',3)->pluck('email');
+        dd($ccs);
+        
+        $day = date('w', strtotime($ramuan->create_dt));
+        $tarikh = date('d/m/Y', strtotime($ramuan->create_dt));
+        // dd($day);
+        if($day=='1'){ $hari='Isnin'; }
+        else if($day=='2'){ $hari='Selasa'; }
+        else if($day=='3'){ $hari='Rabu'; }
+        else if($day=='4'){ $hari='Khamis'; }
+        else if($day=='5'){ $hari='Jumaat'; }
+        $data = [
+            'nama' => $ramuan->nama_ramuan,
+            'nama_saintifik' => $ramuan->nama_saintifik,
+            'tarikh' => $tarikh,
+            'hari' => $hari
+        ];
+
+        Mail::cc($ccs)->send(new SemakanMail($data));
+    }
+
+    private function email_tolak($id)
+    {
+        $ramuan = Ramuan::find($id);
+
+        $day = date('w', strtotime($ramuan->create_dt));
+        $tarikh = date('d/m/Y', strtotime($ramuan->create_dt));
+        // dd($day);
+        if($day=='1'){ $hari='Isnin'; }
+        else if($day=='2'){ $hari='Selasa'; }
+        else if($day=='3'){ $hari='Rabu'; }
+        else if($day=='4'){ $hari='Khamis'; }
+        else if($day=='5'){ $hari='Jumaat'; }
+        $data = [
+            'nama' => $ramuan->nama_ramuan,
+            'nama_saintifik' => $ramuan->nama_saintifik,
+            'tarikh' => $tarikh,
+            'hari' => $hari
+        ];
+
+        Mail::to($ramuan->syarikat->company_email)->send(new PenolakanMail($data));
+    }
 }

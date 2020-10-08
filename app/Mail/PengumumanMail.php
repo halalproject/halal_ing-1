@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PermohonanMail extends Mailable
+class PengumumanMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -29,7 +29,13 @@ class PermohonanMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Notifikasi Permohhonan Baharu')
-                    ->view('email/permohonan');
+        $path = storage_path().'/app/dokumen_ramuan/'.$this->data['attachment'];
+        
+        $mail = $this->subject('Pengumuman Penting')->view('email/pengumuman');
+        if(!is_null($this->data['attachment'])){
+            $mail->attach($path);
+        }
+        
+        return $mail;
     }
 }

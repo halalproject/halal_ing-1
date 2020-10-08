@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PermohonanMail extends Mailable
+class LastLoginMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -29,7 +29,7 @@ class PermohonanMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Notifikasi Permohhonan Baharu')
-                    ->view('email/permohonan');
+        return $this->subject('Pengumuman dari sistem')
+                    ->view('email/lastlogin');
     }
 }

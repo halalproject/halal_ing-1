@@ -21,52 +21,6 @@ function do_page()
     }
 }
 
-// function do_hapus(id)
-// {
-//     // alert(id);
-//     swal({
-//         title: 'Adakah anda pasti untuk menghapuskan ramuan ini?',
-//         type: 'warning',
-//         showCancelButton: true,
-//         confirmButtonColor: '#3085d6',
-//         cancelButtonColor: '#d33',
-//         confirmButtonText: 'Ya, Teruskan',
-//         cancelButtonText: 'Tidak, Batal!',
-//         reverseButtons: true
-//     }).then(function () {
-//         $.ajax({
-// 			url:'/client/ramuan/delete/'+id, //&datas='+datas,
-// 			type:'POST',
-// 			data: $("form").serialize(),
-// 			//data: datas,
-// 			success: function(data){
-// 				console.log(data);
-// 				//alert(data);
-// 				if(data=='OK'){
-// 					swal({
-// 					  title: 'Berjaya',
-// 					  text: 'Permohonan telah dihapuskan',
-// 					  type: 'success',
-// 					  confirmButtonClass: "btn-success",
-// 					  confirmButtonText: "Ok",
-// 					  showConfirmButton: true,
-// 					}).then(function () {
-//                         location.reload();
-// 					});
-// 				} else if(data=='ERR'){
-// 					swal({
-// 					  title: 'Amaran',
-// 					  text: 'Terdapat ralat sistem.\nMaklumat anda tidak berjaya dikemaskini.',
-// 					  type: 'error',
-// 					  confirmButtonClass: "btn-warning",
-// 					  confirmButtonText: "Ok",
-// 					  showConfirmButton: true,
-// 					});
-// 				}
-// 			}
-// 		});
-//     });
-// }
 </script>
 
 <style media="print" type="text/css">
@@ -83,10 +37,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
         	<input type="hidden" name="soalan_id" value="" />
             <div class="x_panel">
 			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <div class="panel-actions">
-                <!--<a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>-->
-                </div>
                 <h2 class="panel-title"><font color="#000000"><b>SENARAI RAMUAN</b></font></h2> 
             </header>
 			</div>

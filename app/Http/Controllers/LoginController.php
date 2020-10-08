@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +34,10 @@ class LoginController extends Controller
             // dd(Auth::guard('admin')->user());
             $details = Auth::guard('admin')->user();
             $admin = $details['is_delete'];
-            // dd($admin);
+            // dd($details->last_login);
+            
+            Admin::find($details->id)->update(['last_login'=>now()]);
+
             if($admin == 0){
                 return response()->json('OK');
             } else {
