@@ -197,7 +197,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                                 </button>
                             </a>
                             @if($ing->is_sijil == '1')
-                                <a href="/client/ramuan/edit/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
+                                <a href="/client/ramuan/edit/{{ $ing->id }}" data-toggle="modal" data-target="#myModalm" title="Kemaskini Ramuan" class="fa" data-backdrop="static">
                                     <button type="button" class="btn btn-sm btn-warning">
                                         <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                     </button>

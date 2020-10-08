@@ -125,7 +125,7 @@ if(!empty($id)){
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <section class="panel panel-featured panel-featured-info">
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <h2 class="panel-title"><font color="#000000" size="3"><b>Sebab Padam</b></font></h2>
+                <h2 class="panel-title"><font color="#000000" size="3"><b>Kemaskini Tarikh Tamat Sijil</b></font></h2>
             </header>
             <div class="panel-body ">
                 <div class="col-md-12">
@@ -133,8 +133,8 @@ if(!empty($id)){
                     <input type="hidden" name="id" id="id" class="form-control" value="{{ $doc_id }}">
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font> Tarikh Tamat Sijil :</b></label>
-                            <div class="col-sm-3">
+                            <label class="col-sm-4 control-label"><b><font color="#FF0000">*</font> Tarikh Tamat Sijil :</b></label>
+                            <div class="col-sm-5">
                                 <input type="date" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil" class="form-control" value="{{$rs->tarikh_tamat_sijil ??''}}">
                             </div>
                         </div>
@@ -142,8 +142,8 @@ if(!empty($id)){
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label" for="profileLastName"><b><font color="#FF0000">*</font>Dokumen :</b></label>
-                            <div class="col-sm-4">
+                            <label class="col-sm-4 control-label" for="profileLastName"><b><font color="#FF0000">*</font>Dokumen :</b></label>
+                            <div class="col-sm-5">
                                 <input type="file" name="sijil_halal" id="sijil_halal" value="{{ $doc_name }}" onchange="ValidateSize(this)"> 
                             </div>
                         </div>
@@ -151,8 +151,8 @@ if(!empty($id)){
 
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label"><b><font color="#FF0000">*</font>Sijil Halal :</b></label>
-                            <div class="col-sm-3">
+                            <label class="col-sm-4 control-label"><b><font color="#FF0000">*</font>Sijil Halal :</b></label>
+                            <div class="col-sm-5">
                                 <a href="/client/dokumen_ramuan/{{ $doc_name }}">
                                     <input  type="text" name="curr_doc" id="curr_doc" value="{{ $doc_name }}" style ="border:none; padding-left:0px;">
                                 </a>
