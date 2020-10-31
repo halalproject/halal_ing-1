@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     Route::get('permohonan/view/{id}','Client\PermohonanController@view');
     Route::post('permohonan/delete/{id}','Client\PermohonanController@delete');
     Route::get('permohonan/getDokumen/{type}','Client\PermohonanController@getDokumen');
-    Route::get('/dokumen_ramuan/{file}', 'Client\PermohonanController@downloadDocument');
+    Route::get('dokumen_ramuan/{file}', 'Client\PermohonanController@downloadDocument');
 
     //Permohonan Ditolak
     Route::get('tolak','Client\PermohonanController@tolak')->name('Permohonan Ditolak');
@@ -59,11 +59,14 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     Route::post('ramuan/reason','Client\RamuanController@reason');
     Route::post('ramuan/restore/{id}','Client\RamuanController@restore');
     Route::post('ramuan/updateSijil','Client\RamuanController@updateSijil');
-    Route::get('/dokumen_ramuan/{file}', 'Client\RamuanController@downloadDocument');
+    Route::get('dokumen_ramuan/{file}', 'Client\RamuanController@downloadDocument');
 
     //Ramuan Yang Dihapuskan
     Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
     Route::get('hapus/view/{id}','Client\RamuanController@view');
+
+    //Surat Ramuan
+    Route::get('surat','Client\SuratController@index');
 });
 
 //Admin Webpage
@@ -73,21 +76,21 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::get('/','DashboardController@admin');
     
     //Pengumuman
-    Route::get('/pengumuman','DashboardController@pengumuman')->name('Pengumuman');
-    Route::get('/pengumuman/create','DashboardController@pengumuman_create');
+    Route::get('pengumuman','DashboardController@pengumuman')->name('Pengumuman');
+    Route::get('pengumuman/create','DashboardController@pengumuman_create');
     Route::post('pengumuman/store','DashboardController@pengumuman_store');
     Route::get('pengumuman/edit/{id}','DashboardController@edit');
     Route::post('pengumuman/delete/{id}','DashboardController@delete');
-    Route::get('/dokumen_pengumuman/{file}', 'DashboardController@downloadDocument');
+    Route::get('dokumen_pengumuman/{file}', 'DashboardController@downloadDocument');
 
     //Event
     Route::get('/event/view/{id}','DashboardController@event_view');
 
     //Profile and Password
-    Route::get('/profile','Admin\AdminController@profile');
-    Route::post('/store','Client\AdminController@store');
-    Route::get('/password','Admin\AdminController@password');
-    Route::post('/reset','Admin\AdminController@reset');
+    Route::get('profile','Admin\AdminController@profile');
+    Route::post('store','Client\AdminController@store');
+    Route::get('password','Admin\AdminController@password');
+    Route::post('reset','Admin\AdminController@reset');
 
     //Permohonan
     Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
@@ -118,8 +121,8 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::get('syarikat/detail/{id}','Admin\SyarikatController@detail');
     Route::get('syarikat/pengumuman/{id}','Admin\SyarikatController@pengumuman');
     Route::post('syarikat/pengumuman/simpan','Admin\SyarikatController@simpan');
-    Route::get('/syarikat/announcement/{id}','Admin\SyarikatController@announcement')->name('Syarikat / Senarai Pengumuman');
-    Route::get('/syarikat/pengumuman/create/{id}','Admin\SyarikatController@pengumuman_create');
+    Route::get('syarikat/announcement/{id}','Admin\SyarikatController@announcement')->name('Syarikat / Senarai Pengumuman');
+    Route::get('syarikat/pengumuman/create/{id}','Admin\SyarikatController@pengumuman_create');
 
     //Staff
     Route::get('staff','Admin\StaffController@index')->name('Kakitangan');

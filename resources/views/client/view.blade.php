@@ -7,24 +7,12 @@ function do_close()
 }
 
 function Export() {
-    html2canvas(document.getElementById('maklumatPermohonan'), {
-        onrendered: function (canvas) {
-            var data = canvas.toDataURL();
-            var docDefinition = {
-                content: [{
-                    image: data,
-                    width: 500
-                }]
-            };
-            pdfMake.createPdf(docDefinition).download("Maklumat_Permohonan.pdf");
-        }
-    });
+    $.get('/client/surat?ids={{$rs->id}}&type=S&kod=S_TOLAK',function(data){
+        console.log(data);
+    })
 }
 </script>
 
-<style media="print" type="text/css">
-	.printButton { display: none; }
-</style>
 @php
 $id = $rs->id ?? '';
 if((!empty($id)) && ($upload != '')){
@@ -43,8 +31,9 @@ if((!empty($id)) && ($upload != '')){
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
                 
-                <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="Export()" id="btnExport" value="Export"><i class="fa fa-print" aria-hidden="true"></i> Cetak</button>
-
+                @if($rs->status != 1)
+                <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="Export()" id="btnExport"><i class="fa fa-print"></i> Cetak</button>
+                @endif
                 <button type="button" class="btn btn-default printButton" onclick="do_close()" style="float: right;"><i class="fa fa-spinner"></i> Kembali</button>
             </h2>
         </header>
