@@ -6,10 +6,15 @@ function do_close()
     location.reload();
 }
 
-function Export() {
-    $.get('/client/surat?ids={{$rs->id}}&type=S&kod=S_TOLAK',function(data){
-        console.log(data);
-    })
+function Export(ids) {
+    // alert(ids);
+    var conv = new ActiveXObject("pdfServMachine.converter");
+    conv.convert('/client/surat?ids='+ids+'&type=S&kod=S_TOLAK', "testing.pdf", false);
+    // $.get('',function(data){
+    //     // console.log(data);
+
+    //     pdfMake.createPdf(data).print('permohonan.pdf');
+    // })
 }
 </script>
 
@@ -32,9 +37,19 @@ if((!empty($id)) && ($upload != '')){
                 </font>
                 
                 @if($rs->status != 1)
-                <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="Export()" id="btnExport"><i class="fa fa-print"></i> Cetak</button>
+                @php
+                    if($rs->status == 6){
+                        $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
+                    } else {
+                        $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
+                    }
+                @endphp
+
+                <a href="{{ $link }}">
+                    <button type="button" class="btn btn-md btn-success" style="float: right; background-color:#252396;"><i class="fa fa-print"></i> Cetak</button>
+                </a>
                 @endif
-                <button type="button" class="btn btn-default printButton" onclick="do_close()" style="float: right;"><i class="fa fa-spinner"></i> Kembali</button>
+                <button type="button" class="btn btn-default" onclick="do_close()" style="float: right;"><i class="fa fa-spinner"></i> Kembali</button>
             </h2>
         </header>
         <div class="panel-body" id="maklumatPermohonan">

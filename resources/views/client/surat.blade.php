@@ -2,7 +2,7 @@
 <html class="fixed">
 	<head>
 		<!-- Basic -->
-		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>{{ config('app.name') }}</title>
 		<link rel="shortcut icon" type="image/png" href=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -28,6 +28,7 @@
             .content{
                 position: fixed;
                 margin-top: 120px;
+                width: 650px;
             }
 
             .footer{
@@ -62,7 +63,7 @@
                         <br>
                         {{ $syarikat->company_address_1 }}
                         <br>
-                        {{ $syarikat->company_address_1 }}
+                        {{ $syarikat->company_address_2 }}
                         <br>
                         {{ $syarikat->company_poscode }} {{ $syarikat->company_city }},
                         <br>
@@ -94,7 +95,7 @@
                                     <strong>No. Permohonan</strong>
                                 </td>
                                 <td align="center" width="75%">
-                                    <strong>Sebab Ditolak</strong>
+                                    <strong>Sebab</strong>
                                 </td>
                             </tr>
                             <tr>
@@ -102,10 +103,14 @@
                                     {{ $ramuan->ing_kod }}
                                 </td>
                                 <td width="75%" style="padding: 10px">
-                                    @if(!empty($komen))
-                                        {!! catatan !!}
+                                    @if(!empty($komen->catatan))
+                                        {!! $komen->catatan !!}
                                     @else
-                                        Permohonan ramuan ini ditolak
+                                        @if ($surat->kod == 'S_TOLAK')
+                                            Permohonan ramuan ini ditolak
+                                        @else
+                                            Permohonan ramuan ini diluluskan
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
@@ -124,3 +129,7 @@
         </div>
     </body>
 </html>
+
+<script>
+    window.print();
+</script>

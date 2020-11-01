@@ -8,6 +8,7 @@ use App\Ramuan;
 use App\Ramuan_Komen;
 use App\Ref_Surat;
 use Illuminate\Http\Request;
+use PDF;
 
 class SuratController extends Controller
 {
