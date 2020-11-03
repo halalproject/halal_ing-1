@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Ref_Sumber_Bahan;
@@ -14,6 +15,8 @@ use App\Ref_Islamic_Body;
 use App\Information;
 use App\Mail\PemohonMail;
 use App\Mail\PermohonanMail;
+use App\Ramuan_Komen;
+use App\Ref_Surat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -211,24 +214,17 @@ class PermohonanController extends Controller
         // dd($id);
         $ramuan = Ramuan::find($id);
         // dd($ramuan);
-        $day = date('w', strtotime($ramuan->create_dt));
-        $tarikh = date('d/m/Y', strtotime($ramuan->create_dt));
-        // dd($day);
-        if($day=='1'){ $hari='Isnin'; }
-        else if($day=='2'){ $hari='Selasa'; }
-        else if($day=='3'){ $hari='Rabu'; }
-        else if($day=='4'){ $hari='Khamis'; }
-        else if($day=='5'){ $hari='Jumaat'; }
+        $when = now()->addMinutes(10);
+        
         $data = [
-            'syarikat' => Auth::guard('client')->user()->company_name,
-            'nama' => $ramuan->nama_ramuan,
-            'nama_saintifik' => $ramuan->nama_saintifik,
-            'tarikh' => $tarikh,
-            'hari' => $hari
+            'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
+            'ramuan' => Ramuan::find($id),
+            'surat' => Ref_Surat::where('type','M')->where('kod','M_PEMOHON')->first(),
+            'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
-        Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
-        Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
+        Mail::to('eidlan@yopmail.com')->later($when,new PemohonMail($data));
+        // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
     }
 
     public function view($id)
