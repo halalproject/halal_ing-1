@@ -131,5 +131,9 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::post('staff/store','Admin\StaffController@store');
     Route::post('staff/reset/{id}','Admin\StaffController@reset');
     Route::post('staff/delete/{id}','Admin\StaffController@delete');
-    
+
+    //Email
+    Route::get('surat','Admin\SuratController@index')->name('Kakitangan');
+    Route::get('surat/edit/{id}','Admin\SuratController@edit');
+    Route::post('surat/store','Admin\SuratController@store');
 });

@@ -207,11 +207,16 @@
 											<span>Kakitangan</span>
 										</a>
 									</li>
+									<li class="@if(\Request::is('admin/surat*')) nav-expanded nav-active @endif">
+										<a href="/admin/surat">
+											<i class="fa fa-envelope" aria-hidden="true"></i>
+											<span>Surat Rujukan</span>
+										</a>
+									</li>
 									@endif
 
 									@endif
-
-									<li class="visible-xs">
+									<li>
 										<a href="/logout">
 											<i class="fa fa-power-off"></i>
 											<span> Log Keluar</span>

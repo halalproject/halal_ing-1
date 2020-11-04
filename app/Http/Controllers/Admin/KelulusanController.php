@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Controller;
 use App\Mail\KelulusanMail;
 use App\Mail\PenolakanMail;
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Mail;
 
 class KelulusanController extends Controller
 {
+    protected $TestController;
+    public function __construct(TestController $TestController)
+    {
+        $this->TestController = $TestController;
+    }
+
     public function index(Request $request)
     {
         $cat = Ref_Sumber_Bahan::get();
@@ -59,6 +66,11 @@ class KelulusanController extends Controller
             if($komen){
                 $status = Ramuan::find($request->id)->update(['status'=>3,'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
                 $this->email_lulus($request->id);
+
+                //Hantar maklumat ramuan ke sistem myehalal
+                
+                $this->TestController->ramuan($request->id); 
+
                 return response()->json('OK');
 
             } else {
