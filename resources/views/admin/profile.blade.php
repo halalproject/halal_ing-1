@@ -3,12 +3,12 @@
         $("input[id='my_file']").click();
     });
 </script>
-    @php
-    $id = $user->id ?? '';
-    $bahan_rs = $user->sumber_bahan_id ?? '';
-    $negara_rs = $user->negara_pengilang_id ?? '';
-    $negeri_rs = $user->negeri_pembekal_id ?? '';
-    @endphp
+@php
+$id = $user->id ?? '';
+$jawatan = $user->user_jawatan ?? '';
+$level = $user->user_level ?? '';
+$status = $user->user_status ?? '';
+@endphp
 <div class="col-md-12" >
     <form name="halal" id="create" method="post" action="" enctype="multipart/form-data" autocomplete="off">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,7 +16,7 @@
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                 <h2 class="panel-title"><font color="#000000" size="3"><b>Maklumat Pengguna</b></font></h2>
             </header>
-            <div class="panel-body ">
+            <div class="panel-body" align="center">
                 <div class="col-md-12">
                     <input type="hidden" name="id" id="id" class="form-control" value="{{$id}}">
 
@@ -24,14 +24,15 @@
                             <input type="image" src="{{ asset('images/person.jpg') }}" width="200" height="200"/>
                             <input type="file" id="my_file" style="display: none;" /><br>
                             <button type="button" class="btn btn-info" id="upload"><i class="fa fa-upload" aria-hidden="true" align="center"></i> Muat Naik Gambar</button>
-                        </body>
+                        </body><br><br>
                     </div>
-                    <br>
+                    
+
                     <div class="form-group">
                         <div class="row">
                             <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Nama :</label>
                             <div class="col-sm-10">
-                                <input type="text" name="ramuan" id="ramuan" class="form-control" value="">
+                                <input type="text" name="nama" id="nama" class="form-control" value="{{ $user->username ?? '' }}">
                             </div>
                         </div>
                     </div>
@@ -40,12 +41,30 @@
                         <div class="row">
                             <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. KP :</label>
                             <div class="col-sm-4">
-                                <input type="text" name="no_kp" id="no_kp" class="form-control" value="">
+                                <input type="text" name="no_kp" id="no_kp" class="form-control" placeholder="No. Kad Pengenalan" 
+                                value="{{ $user->nombor_kp ?? '' }}" maxlength="12"
+                                onkeydown="return (event.ctrlKey || event.altKey 
+                                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                    || (95<event.keyCode && event.keyCode<106)
+                                    || (event.keyCode==8) || (event.keyCode==9) 
+                                    || (event.keyCode>34 && event.keyCode<40) 
+                                    || (event.keyCode==46) )" > 
+                                <i><font color="#FF0000">(Sila masukkan No. MyKAD tanpa tanda '-')</font></i>
                             </div>
+                            
 
                             <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. Tel :</label>
                             <div class="col-sm-4">
-                                <input type="text" name="no_tel" id="no_tel" class="form-control" value="">
+                                <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <input id="no_telefon" name="no_telefon" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}" maxlength="11"
+                                            onkeydown="return (event.ctrlKey || event.altKey 
+                                                || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                                || (95<event.keyCode && event.keyCode<106)
+                                                || (event.keyCode==8) || (event.keyCode==9) 
+                                                || (event.keyCode>34 && event.keyCode<40) 
+                                                || (event.keyCode==46) )">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,18 +73,16 @@
                         <div class="row">
                             <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Emel :</label>
                             <div class="col-sm-4">
-                                <input type="text" name="emel" id="emel" class="form-control" value="">
+                                <input type="text" name="emel" id="emel" class="form-control" value="{{ $user->email ?? '' }}">
                             </div>
 
                             <label class="col-sm-2 control-label"><font color="#FF0000">*</font> Jawatan :</label>
                             <div class="col-sm-4">
-                                <select name="level_pengguna" onchange="" class="form-control">
+                                <select name="jawatan" id="jawatan" class="form-control">
                                     <option value="">Pilih Jawatan</option>
-                                    <option value="">Pengarah</option>
-                                    <option value="">Ketua Pengarah Penolong Kanan</option>
-                                    <option value="">Penolong Pengarah Kanan</option>
-                                    <option value="">Pegawai Hal Ehwal Islam</option>
-                                    <option value="">Penolong Pegawai Hal Ehwal Islam</option>
+                                    @foreach ($rsj as $rsj)
+                                    <option value="{{ $rsj->id }}" @if($jawatan == $rsj->id) selected @endif>{{ $rsj->nama }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -75,22 +92,21 @@
                         <div class="row">
                             <label class="col-sm-2 control-label" for="level_pengguna"><font color="#FF0000">*</font> Level Pengguna : </label>
                             <div class="col-md-4">
-                                <select name="level_pengguna" onchange="" class="form-control">
+                                <select name="level" id="level" class="form-control">
                                     <option value="">Pilih Level Pengguna</option>
-                                    <option value="">Admin</option>
-                                    <option value="">Penyemak</option>
-                                    <option value="">Pelulus</option>
-                                    <option value="">Staf</option>
+                                    @foreach ($rsl as $rsl)
+                                    <option value="{{ $rsl->id }}" @if($level == $rsl->id) selected @endif>{{ $rsl->nama }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             
                             <label class="col-sm-2 control-label " for="status"><font color="#FF0000">*</font> Status : </label>
                             <div class="col-md-4">
-                                <select name="status" onchange="" class="form-control">
+                                <select name="status" id="status" class="form-control">
                                     <option value="">Pilih Status</option>
-                                    <option value="">Aktif</option>
-                                    <option value="">Tidak Aktif</option>
-                                    <option value="">Cuti</option>
+                                    @foreach ($rss as $rss)
+                                    <option value="{{ $rss->id }}" @if($status == $rss->id) selected @endif>{{ $rss->nama }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -109,7 +125,7 @@
         </section>
     </form>
 </div>
-@if(empty($id))
+<!-- @if(empty($id))
     <script>
         $(function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -125,4 +141,4 @@
             $('#tab-2').attr('data-toggle','tab');
         })
     </script>
-@endif
+@endif -->
