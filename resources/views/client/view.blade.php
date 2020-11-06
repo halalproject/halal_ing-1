@@ -1,20 +1,7 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
 function do_close()
 {
     location.reload();
-}
-
-function Export(ids) {
-    // alert(ids);
-    var conv = new ActiveXObject("pdfServMachine.converter");
-    conv.convert('/client/surat?ids='+ids+'&type=S&kod=S_TOLAK', "testing.pdf", false);
-    // $.get('',function(data){
-    //     // console.log(data);
-
-    //     pdfMake.createPdf(data).print('permohonan.pdf');
-    // })
 }
 </script>
 
@@ -36,20 +23,18 @@ if((!empty($id)) && ($upload != '')){
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
                 
-                @if($rs->status != 1)
                 @php
                     if($rs->status == 6){
-                        $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
-                    } else {
-                        $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
+                        $link = '/client/tolak/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
+                    } else if($rs->status == 3) {
+                        $link = '/client/ramuan/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
                     }
                 @endphp
-
+                @if($rs->is_delete != 1 && $rs->status != 1)
                 <a href="{{ $link }}">
                     <button type="button" class="btn btn-md btn-success" style="float: right; background-color:#252396;"><i class="fa fa-print"></i> Cetak</button>
                 </a>
                 @endif
-                <button type="button" class="btn btn-default" onclick="do_close()" style="float: right;"><i class="fa fa-spinner"></i> Kembali</button>
             </h2>
         </header>
         <div class="panel-body" id="maklumatPermohonan">
@@ -134,7 +119,11 @@ if((!empty($id)) && ($upload != '')){
                     <div class="row">
                         <label class="col-sm-4 control-label"><b>Dokumentasi Ramuan : </b></label>
                         <div class="row">
-                            <div class="col-sm-5">Sijil Halal: <a href="">sijilhalal.pdf</a></div>
+                            <div class="col-sm-5">Sijil Halal: 
+                                @if (!empty($upload))
+                                <a href="/client/ramuan/{{$upload->file_name}}">{{ $upload->file_name }}</a>                                
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,6 +137,7 @@ if((!empty($id)) && ($upload != '')){
                 </div>
                 @endif
             </div>
+            <button type="button" class="btn btn-default" onclick="do_close()" style="float: right;"><i class="fa fa-arrow-left"></i> Kembali</button>
         </div>
     </section>
 </div>

@@ -9,6 +9,7 @@ use App\Ref_User_Jawatan;
 use App\Ref_User_Level;
 use App\Ref_User_Status;
 use App\Admin;
+use Illuminate\Support\Facades\Mail;
 
 class StaffController extends Controller
 {
@@ -83,6 +84,8 @@ class StaffController extends Controller
                 $u->updated_by = $user;
     
                 $u->save();
+
+                // Mail::to($request->email)->send(new StaffMail());
 
                 if($u){
                     return response()->json('OK');

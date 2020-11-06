@@ -8,16 +8,15 @@
 <script>
 function do_page()
 {
-    var sijil = $('#sijil').val();
     var kategori = $('#kategori').val();
     var carian = $('#carian').val();
 //   alert(sijil);
     var pathname = window.location.pathname;
 
-    if(sijil.trim()=='' && kategori.trim()=='' && carian.trim()==''){
+    if(kategori.trim()=='' && carian.trim()==''){
     window.location = pathname;
     } else {
-    window.location = pathname+'?sijil='+sijil+'&kategori='+kategori+'&carian='+carian;
+    window.location = pathname+'?&kategori='+kategori+'&carian='+carian;
     }
 }
 </script>
@@ -32,10 +31,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
         	<input type="hidden" name="soalan_id" value="" />
             <div class="x_panel">
 			<header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <div class="panel-actions">
-                <!--<a href="#" class="fa fa-caret-down"></a>
-                <a href="#" class="fa fa-times"></a>-->
-                </div>
                 <h2 class="panel-title"><font color="#000000"><b>SENARAI PERMOHONAN DITOLAK</b></font></h2> 
             </header>
 			</div>
@@ -43,13 +38,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             <br />
             <div class="box-body">
                 <div class="form-group">
-                    <!-- <div class="col-md-2">
-                        <select name="sijil" id="sijil" onchange="do_page()" class="form-control">
-                            <option value="">Sijil Halal</option>
-                            <option value="1" @if($sijil == '1') selected @endif>Ada</option>
-                            <option value="0" @if($sijil == '0') selected @endif>Tiada</option>
-                        </select>
-                    </div> -->
                     <div class="col-md-3">
                         <select name="kategori" id="kategori" onchange="do_page()" class="form-control">
                             <option value="">Kategori Bahan</option>

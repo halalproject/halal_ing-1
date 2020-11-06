@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Ramuan;
 use App\Calendar_Event;
 use App\Visitor_Count;
+use Illuminate\Support\Facades\Cookie;
 
 class PortalController extends Controller
 {
@@ -46,7 +47,8 @@ class PortalController extends Controller
             
             Visitor_Count::where('type','total')->increment('value');
 
-            setcookie('visitor', 1);
+            Cookie::queue(Cookie::make('visitor',1));
+            // setcookie('visitor', 1);
         }
     }
 

@@ -67,7 +67,7 @@
                         <br>
                         {{ $syarikat->company_poscode }} {{ $syarikat->company_city }},
                         <br>
-                        {{ $syarikat->negeri->nama }}
+                        {{ optional($syarikat->negeri)->nama }}
                         <br>
                         U/P :&nbsp;&nbsp;&nbsp;&nbsp;{{ $syarikat->contact_name }}
                     </td>

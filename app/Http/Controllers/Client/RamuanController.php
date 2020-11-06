@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Ramuan;
 use App\Ref_Sumber_Bahan;
 use App\Ramuan_Dokumen;
+use App\Ramuan_Komen;
+use App\Ref_Surat;
 
 class RamuanController extends Controller
 {
+    //Senarai Ramuan
     public function index(Request $request)
     {
         $user = Auth::guard('client')->user()->userid;
         // dd($user);
-        // dd($request->all());
+        // dd($request->all());11
         $ramuan = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0);
         // dd($ramuan);
         if($request->sijil != ''){ $ramuan->where('is_sijil',$request->sijil); }
-        if($request->kategori != ''){ $ramuan->where('sumber_bahan_id',$request->kategori); }
+        if($request->kategori != ''){ $ramuan->where('ing_category',$request->kategori); }
         if(!empty($request->carian)){ $ramuan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
@@ -40,81 +44,14 @@ class RamuanController extends Controller
         return view('client/ramuan',compact('cat','ramuan'));
     }
 
-    public function hapus(Request $request)
-    {
-        $user = Auth::guard('client')->user()->userid;
-        // dd($user);
-        // dd($request->all());
-        $ramuan = Ramuan::where('is_delete',1);
-
-        if($request->sijil != ''){ $ramuan->where('is_sijil',$request->sijil); }
-        if($request->kategori != ''){ $ramuan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $ramuan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%'); }
-        
-        
-        $ramuan = $ramuan->where('create_by',$user)->orderBy('delete_dt','DESC')->paginate(10);
-        $cat = Ref_Sumber_Bahan::get();
-
-        return view('client/hapus',compact('cat','ramuan'));
-    }
-
-    public function edit($id)
-    {
-        return view('client/modal',compact('id'));
-    }
-
     public function view($id)
     {
         // dd($id);
 
         $rs = Ramuan::find($id);
-        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->where('ref_dokumen_id', 1)->get();
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->where('ref_dokumen_id', 1)->first();
 
         return view('client/view',compact('rs', 'upload'));
-    }
-
-    public function delete($id)
-    {
-        $user = Auth::guard('client')->user()->userid;
-        // dd($id);
-        $cal = Ramuan::find($id)->update(['is_delete'=>1,'delete_dt'=>now(),'delete_by'=>$user]);
-
-        if($cal){
-            return response()->json('OK');
-        } else {
-            return response()->json('ERR');
-        }
-    }
-
-    public function delete_comment($id)
-    {
-        // dd($id);
-
-        $rs = Ramuan::find($id);
-
-        return view('client/modalDeleteRamuan',compact('rs'));
-    }
-
-    public function reason(Request $request)
-    {
-        $user = Auth::guard('client')->user()->userid;
-        
-        if(!empty($request->id)) {
-            $data = array(
-                'delete_comment'=>$request->catatan_text,
-                'is_delete' => 1,
-                'delete_dt' => now(),
-                'delete_by' => $user,
-            );
-
-            $permohonan = Ramuan::where('id',$request->id)->update($data);
-        }
-
-            if($permohonan){
-                return response()->json('OK');
-            } else {
-                return response()->json('ERR');
-            }
     }
 
     public function restore($id)
@@ -166,23 +103,81 @@ class RamuanController extends Controller
 	{
 		// dd(pathinfo($file)['extension']);
         $path = storage_path().'/app/dokumen_ramuan/'.$file;
-        $setFileType = pathinfo($file)['extension'];
 		if(file_exists($path)){
-            if($setFileType == "jpg" || $setFileType == "jpeg" || $setFileType == "png" ) {
-                return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'image/jpeg' ,
-                    'Content-Disposition' => 'inline; file="'.$file.'"'
-                    ]);
-            } elseif(pathinfo($file)['extension'] == 'pdf') {
-                return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'application/pdf', 
-                    'Content-Disposition' => 'inline; file="'.$file.'"'
-                ]);
-            } else {
-               return response()->download($path);
-            }
+            return response()->download($path);
 		} else {
 			return back();
         }
+    }
+    
+    public function surat(Request $request)
+    {
+        // dd($request->all());
+
+        $ramuan = Ramuan::find($request->ids);
+        // dd($ramuan);
+
+        $syarikat = Client::where('userid',$ramuan->create_by)->first();
+        // dd($syarikat);
+
+        $surat = Ref_Surat::where('type',$request->type)->where('kod',$request->kod)->first();
+        // dd($surat);
+
+        $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
+        // dd($komen);
+
+        return view('surat',compact('ramuan','syarikat','surat','komen'));
+    }
+
+    //Ramuan Yang Dihapuskan
+    public function hapus(Request $request)
+    {
+        $user = Auth::guard('client')->user()->userid;
+        // dd($user);
+        // dd($request->all());
+        $ramuan = Ramuan::where('is_delete',1);
+
+        if($request->sijil != ''){ $ramuan->where('is_sijil',$request->sijil); }
+        if($request->kategori != ''){ $ramuan->where('ing_category',$request->kategori); }
+        if(!empty($request->carian)){ $ramuan->where(function($query) use($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
+        }); }
+        
+        
+        $ramuan = $ramuan->where('create_by',$user)->orderBy('delete_dt','DESC')->paginate(10);
+        $cat = Ref_Sumber_Bahan::get();
+
+        return view('client/hapus',compact('cat','ramuan'));
+    }
+
+    public function delete_comment($id)
+    {
+        // dd($id);
+
+        $rs = Ramuan::find($id);
+
+        return view('client/modalDeleteRamuan',compact('rs'));
+    }
+
+    public function reason(Request $request)
+    {
+        $user = Auth::guard('client')->user()->userid;
+        
+        if(!empty($request->id)) {
+            $data = array(
+                'delete_comment'=>$request->catatan_text,
+                'is_delete' => 1,
+                'delete_dt' => now(),
+                'delete_by' => $user,
+            );
+
+            $permohonan = Ramuan::where('id',$request->id)->update($data);
+        }
+
+            if($permohonan){
+                return response()->json('OK');
+            } else {
+                return response()->json('ERR');
+            }
     }
 }

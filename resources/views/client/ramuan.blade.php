@@ -112,7 +112,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <td valign="top" align="center">
                             <p>{{ date('d/m/Y', strtotime($ing->tarikh_tamat_sijil)) }}</p>
                             @php
-                            $tkh = $ing->tarikh_tamat_sijil;
+                            $tkh = $ing->tarikh_tamat_sijil ?? date('Y-m-d H:i:s', strtotime($ing->tarikh_tamat_sijil));
                             $date1 = time();
                             $y = substr($tkh,0,4);
                             $m = substr($tkh,5,2);
@@ -136,11 +136,6 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             @endphp
                         </td>
                         <td align="center">
-                            <!-- <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Cetak Maklumat Ramuan" class="fa" data-backdrop="static">
-                                <button type="button" class="btn btn-sm btn-dark">
-                                    <i class="fa fa-print fa-lg" style="color: #FFFFFF;"></i>
-                                </button>
-                            </a> -->
                             <a href="/client/ramuan/view/{{ $ing->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>

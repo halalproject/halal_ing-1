@@ -2,7 +2,7 @@
 	.printButton { display: none; }
 </style>
 <body>
-	<form name="halal" method="post" action="" enctype="multipart/form-data" autocomplete="off">
+	<form name="halal" enctype="multipart/form-data" autocomplete="off">
 		<section class="body" style="">
 			<!-- start: header -->
 			<header class="header printButton" style="">

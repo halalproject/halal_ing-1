@@ -29,8 +29,16 @@ class PermohonanController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
-        if($request->status != ''){ $permohonan->where('status',$request->status); }
-        if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if($request->status != ''){ 
+            if($request->status == '1'){
+                $permohonan->where('status',1)->whereNull('tarikh_buka');
+            } else if($request->status == '11'){
+                $permohonan->where('status',1)->whereNotNull('tarikh_buka');
+            } else {
+                $permohonan->where('status',$request->status);
+            }
+        }
+        if($request->kategori != ''){ $permohonan->where('ing_category',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
@@ -214,7 +222,6 @@ class PermohonanController extends Controller
         // dd($id);
         $ramuan = Ramuan::find($id);
         // dd($ramuan);
-        $when = now()->addMinutes(10);
         
         $data = [
             'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
@@ -223,14 +230,14 @@ class PermohonanController extends Controller
             'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
-        Mail::to('eidlan@yopmail.com')->later($when,new PemohonMail($data));
+        Mail::to('eidlan@yopmail.com')->send(new PemohonMail($data));
         // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
     }
 
     public function view($id)
     {
         $rs = Ramuan::find($id);
-        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->first();
 
         return view('client/view',compact('rs', 'upload'));
     }
@@ -255,11 +262,12 @@ class PermohonanController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::where('status',6);
 
-        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
-        if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%'); }
-        
+        if($request->kategori != ''){ $permohonan->where('ing_category',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
+        }); }
         $permohonan = $permohonan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
+
         $cat = Ref_Sumber_Bahan::get();
 
         return view('client/tolak',compact('permohonan','cat'));
@@ -306,5 +314,24 @@ class PermohonanController extends Controller
 		} else {
 			return back();
         }
+    }
+
+    public function surat(Request $request)
+    {
+        // dd($request->all());
+
+        $ramuan = Ramuan::find($request->ids);
+        // dd($ramuan);
+
+        $syarikat = Client::where('userid',$ramuan->create_by)->first();
+        // dd($syarikat);
+
+        $surat = Ref_Surat::where('type',$request->type)->where('kod',$request->kod)->first();
+        // dd($surat);
+
+        $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
+        // dd($komen);
+
+        return view('surat',compact('ramuan','syarikat','surat','komen'));
     }
 }

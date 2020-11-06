@@ -35,7 +35,7 @@ function do_restore(id)
         reverseButtons: true
     }).then(function () {
         $.ajax({
-			url:'/client/ramuan/restore/'+id, //&datas='+datas,
+			url:'/client/hapus/restore/'+id, //&datas='+datas,
 			type:'POST',
 			data: $("form").serialize(),
 			//data: datas,
@@ -157,7 +157,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         <td valign="top" align="center">
                             <p>{{ date('d/m/Y', strtotime($hapus->tarikh_tamat_sijil)) }}</p>
                             @php
-                            $tkh = $hapus->tarikh_tamat_sijil;
+                            $tkh = $hapus->tarikh_tamat_sijil ?? date('Y-m-d H:i:s', strtotime($hapus->tarikh_tamat_sijil));
                             $date1 = time();
                             $y = substr($tkh,0,4);
                             $m = substr($tkh,5,2);

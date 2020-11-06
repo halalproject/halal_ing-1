@@ -49,21 +49,22 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     //Permohonan Ditolak
     Route::get('tolak','Client\PermohonanController@tolak')->name('Permohonan Ditolak');
     Route::get('tolak/view/{id}','Client\PermohonanController@view');
+    Route::get('tolak/surat','Client\PermohonanController@surat');
 
     //Senarai Ramuan
     Route::get('ramuan','Client\RamuanController@index')->name('Senarai Ramuan');
     Route::get('ramuan/view/{id}','Client\RamuanController@view');
-    Route::get('ramuan/delete_comment/{id}','Client\RamuanController@delete_comment');
     Route::get('ramuan/edit/{id}','Client\RamuanController@showEditTarikh');
-    Route::post('ramuan/delete/{id}','Client\RamuanController@delete');
-    Route::post('ramuan/reason','Client\RamuanController@reason');
-    Route::post('ramuan/restore/{id}','Client\RamuanController@restore');
     Route::post('ramuan/updateSijil','Client\RamuanController@updateSijil');
-    Route::get('dokumen_ramuan/{file}', 'Client\RamuanController@downloadDocument');
+    Route::get('ramuan/delete_comment/{id}','Client\RamuanController@delete_comment');
+    Route::post('ramuan/reason','Client\RamuanController@reason');
+    Route::get('ramuan/{file}', 'Client\RamuanController@downloadDocument');
+    Route::get('ramuan/surat','Client\RamuanController@surat');
 
     //Ramuan Yang Dihapuskan
     Route::get('hapus','Client\RamuanController@hapus')->name('Ramuan Yang Dihapuskan');
     Route::get('hapus/view/{id}','Client\RamuanController@view');
+    Route::post('hapus/restore/{id}','Client\RamuanController@restore');
 
     //Surat Ramuan
     Route::get('surat','Client\SuratController@index');
@@ -109,10 +110,12 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     //Permohonan Ditolak
     Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
     Route::get('tolak/detail/{id}','Admin\PermohonanController@detail');
+    Route::get('tolak/surat','Admin\PermohonanController@surat');
 
     //Audit
     Route::get('audit','Admin\AuditController@index')->name('Audit');
     Route::get('audit/detail/{id}','Admin\AuditController@detail');
+    Route::get('audit/surat','Admin\AuditController@surat');
 
     //Syarikat
     Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');

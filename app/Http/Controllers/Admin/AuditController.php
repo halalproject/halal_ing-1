@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Ramuan;
+use App\Ramuan_Komen;
 use App\Ref_Sumber_Bahan;
+use App\Ref_Surat;
 
 class AuditController extends Controller
 {
@@ -31,5 +34,24 @@ class AuditController extends Controller
         // dd($id);
         $rs = Ramuan::find($id);
         return view('admin/modal_detail',compact('rs'));
+    }
+    
+    public function surat(Request $request)
+    {
+        // dd($request->all());
+
+        $ramuan = Ramuan::find($request->ids);
+        // dd($ramuan);
+
+        $syarikat = Client::where('userid',$ramuan->create_by)->first();
+        // dd($syarikat);
+
+        $surat = Ref_Surat::where('type',$request->type)->where('kod',$request->kod)->first();
+        // dd($surat);
+
+        $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
+        // dd($komen);
+
+        return view('surat',compact('ramuan','syarikat','surat','komen'));
     }
 }

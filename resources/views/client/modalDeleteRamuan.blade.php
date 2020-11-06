@@ -1,20 +1,16 @@
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-CKEDITOR.config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Image,Flash,Table,HorizontalRule,Smiley,SpecialChar,PageBreak,Iframe,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Language';
-
 function do_close() {
     location.reload();
 }
 
 function do_simpan()
 {    
-    var docContents = CKEDITOR.instances['reason'].getData();
-	document.create.catatan_text.value=docContents;
+    var reason = $('#catatan_text').val();
 
-    if(docContents == '' ){
+    if(reason == '' ){
         swal({
             title: 'Amaran',
-            text: 'Maklumat tidak lengkap.\nSila masukkan maklumat yang betul.',
+            text: 'Maklumat tidak lengkap.\nSila masukkan catatan penghapusan ramuan.',
             type: 'warning',
             confirmButtonClass: "btn-warning",
             confirmButtonText: "Ok",
@@ -79,20 +75,18 @@ function do_simpan()
                     <input type="hidden" name="id" id="id" class="form-control" value="{{ $rs->id }}">
                     <div class="form-group">
                         <div class="row">
-                            <label class="col-sm-3 control-label" for="reason"><font color="#FF0000">*</font> Kenapa Hapus ?</label>
+                            <label class="col-sm-3 control-label" for="reason"><font color="#FF0000">*</font>Catatan Penghapusan Ramuan</label>
                             <div class="col-sm-9">
-                                <textarea name="reason" cols="50" rows="10" id="reason" style="width:100%"></textarea>
+                                <input class="form-control" name="catatan_text" id="catatan_text" value="{{ $rs->delete_comment ?? '' }}">
                             </div>
                         </div>
-
-                        <textarea name="catatan_text" id="catatan_text"  style="display:none;">{{ $rs->delete_comment ?? '' }}</textarea>
                     </div>
 
                     <div class="form-group">
                         <div align="right">
-                            <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                            <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-arrow-left"></i> Kembali</button>
                             <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_simpan()" id="simpan">
-                                <i class="fa fa-save"></i> Simpan</button>
+                                <i class="fa fa-save"></i> Hapus</button>
                         </div>
                     </div>
                 </div>
@@ -100,7 +94,3 @@ function do_simpan()
         </section>
     </form>
 </div>
-
-<script>
-	CKEDITOR.replace('reason');
-</script>
