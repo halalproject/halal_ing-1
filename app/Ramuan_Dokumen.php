@@ -16,4 +16,9 @@ class Ramuan_Dokumen extends Model
     {
         return $this->belongsTo('App\Ramuan', 'ramuan_id');
     }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Ref_Dokumen','ref_dokumen_id');
+    }
 }

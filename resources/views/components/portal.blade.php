@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <!-- Sweetalert -->
 		<link rel="stylesheet" href="{{ asset('salert/sweetalert2.css') }}">
     </head>
@@ -53,14 +53,14 @@
                             <div class="footer-widget col-lg-3 col-md-3 col-12 mb-40">
                                 <h5 class="title"><span class="text-white"><b>Halal Apps</b></span></h5>
                                 <div class="footer-social">
-                                    <a href="http://www.malaysia.gov.my" title="Malaysia Government"><img class="logoimg" src="{{ asset('images/footer/malaysia.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.islam.gov.my" title="Jabatan kemajuan Islam Malaysia"><img class="logoimg" src="{{ asset('images/footer/jakim.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="https://www.kpdnhep.gov.my/" title="KEMENTERIAN PERDAGANGAN DALAM NEGERI DAN HAL EHWAL PENGGUNA (KPDNHEP)"><img class="logoimg" src="{{ asset('images/footer/kpdnkk.jpg') }}" style="width:40px; height:40px;"></a>
+                                    <a href="http://www.malaysia.gov.my" title="Malaysia Government"><img class="logoimg" src="{{ asset('images/footer/malaysia.png') }}" width="50px"></a>&nbsp;
+                                    <a href="http://www.islam.gov.my" title="Jabatan kemajuan Islam Malaysia"><img class="logoimg" src="{{ asset('images/footer/jakim.png') }}" width="50px"></a>&nbsp;
+                                    <a href="https://www.kpdnhep.gov.my/" title="KEMENTERIAN PERDAGANGAN DALAM NEGERI DAN HAL EHWAL PENGGUNA (KPDNHEP)"><img class="logoimg" src="{{ asset('images/footer/kpdnkk.jpg') }}" width="50px"></a>
                                 </div>
                                 <div class="footer-social">
-                                    <a href="http://www.ssm.com.my" title="Suruhanjaya Syarikat Malaysia"><img class="logoimg" src="{{ asset('images/footer/ssm.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.dvs.gov.my" title="Jabatan Perkhidmatan Veterinar"><img class="logoimg" src="{{ asset('images/footer/veterinaryMalaysia.png') }}" style="width:40px; height:40px;"></a>
-                                    <a href="http://www.dvs.gov.my" title="Kementerian Kesihatan Malaysia"><img class="logoimg" src="{{ asset('images/footer/kkm.png') }}" style="width:40px; height:40px;"></a>
+                                    <a href="http://www.ssm.com.my" title="Suruhanjaya Syarikat Malaysia"><img class="logoimg" src="{{ asset('images/footer/ssm.png') }}" width="50px"></a>&nbsp;
+                                    <a href="http://www.dvs.gov.my" title="Jabatan Perkhidmatan Veterinar"><img class="logoimg" src="{{ asset('images/footer/veterinaryMalaysia.png') }}" width="50px"></a>&nbsp;
+                                    <a href="http://www.dvs.gov.my" title="Kementerian Kesihatan Malaysia"><img class="logoimg" src="{{ asset('images/footer/kkm.png') }}" width="50px"></a>
                                 </div>
                             </div>
                             <!--Footer Widget end-->
@@ -69,8 +69,8 @@
                             <div class="footer-widget col-lg-2 col-md-2 col-12 mb-40">
                                 <h5 class="title"><span class="text-white"><b>Media Sosial</b></span></h5>
                                 <div class="footer-social">   
-                                    <a href="https://www.facebook.com/HabHalalJakim/" title="Facebook"><img style="width:41px; height:41px;" src="{{ asset('images/footer/facebook.png') }}"></a>
-                                    <a href="https://twitter.com/halal_malaysia" title="Twitter"><img style="width:40px; height:40px; padding-top:3px;" src="{{ asset('images/footer/twitter.png') }}"></a>
+                                    <a href="https://www.facebook.com/HabHalalJakim/" title="Facebook"><img width="50px" src="{{ asset('images/footer/facebook.png') }}"></a>
+                                    <a href="https://twitter.com/halal_malaysia" title="Twitter"><img width="50px" style="padding-top:3px;" src="{{ asset('images/footer/twitter.png') }}"></a>
                                 </div>
                             </div>
                             <!--Footer Widget end-->
@@ -78,7 +78,15 @@
                             <!--Footer Widget start-->
                             <div class="footer-widget col-lg-3 col-md-3 col-12 mb-40">
                                 <h5 class="title"><span class="text-white"><b>Lokasi</b></span></h5>
-                                <h7 style="color:#00eaff;">Jabatan Agama Islam Selangor (JAIS),<br><br>Bahagian Pengurusan Halal,<br>Tingkat 5, Menara Utara,<br>Bangunan Sultan Idris Shah,<br><br>No.2, Persiaran Masjid,<br>Bukit SUK, 40676 Shah Alam,<br>Selangor. </h7>
+                                <h7 style="color:#00eaff;">
+                                    Jabatan Agama Islam Selangor (JAIS),<br>
+                                    Bahagian Pengurusan Halal,<br>
+                                    Tingkat 5, Menara Utara,<br>
+                                    Bangunan Sultan Idris Shah,<br>
+                                    No.2, Persiaran Masjid,<br>
+                                    Bukit SUK, 40676 Shah Alam,<br>
+                                    Selangor.
+                                </h7>
                             </div>
                             <!--Footer Widget end-->
 

@@ -76,10 +76,6 @@
                 <input type="hidden" name="soalan_id" value="" />
                 <div class="x_panel">
                     <header class="panel-heading"  style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                        <div class="panel-actions">
-                        <!--<a href="#" class="fa fa-caret-down"></a>
-                        <a href="#" class="fa fa-times"></a>-->
-                        </div>
                         <h2 class="panel-title"><font color="#000000"><b>SENARAI PENGUMUMAN</b></font></h2> 
                     </header>
                 </div>
@@ -158,8 +154,6 @@
                                     <p>Dalaman</p>
                                 @elseif($ev->is_public == 3)
                                     <p>Syarikat</p>
-                                @elseif($ev->is_public == 4)
-                                    <p>Syarikat Tertentu</p>
                                 @endif
                             </td>
                             <td align="center">

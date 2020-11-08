@@ -119,11 +119,15 @@ if((!empty($id)) && ($upload != '')){
                     <div class="row">
                         <label class="col-sm-4 control-label"><b>Dokumentasi Ramuan : </b></label>
                         <div class="row">
-                            <div class="col-sm-5">Sijil Halal: 
+                            <div class="col-sm-5">
                                 @if (!empty($upload))
-                                <a href="/client/ramuan/{{$upload->file_name}}">{{ $upload->file_name }}</a>                                
+                                @foreach ($upload as $doc)
+                                {{ $doc->type->nama }}: 
+                                <a href="/client/ramuan/{{$doc->file_name}}">{{ $doc->file_name }}</a>
+                                <br>
+                                @endforeach               
                                 @endif
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>

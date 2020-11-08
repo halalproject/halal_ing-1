@@ -26,7 +26,7 @@ function fileValidation() {
     }  
 } 
 
-function ValidateSize(file) {
+function ValidateSize(file,ids) {
     {
         var FileSize = file.files[0].size / 1024 / 1024; // in MB
         if (FileSize > 2) {
@@ -38,7 +38,7 @@ function ValidateSize(file) {
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             }).then(function () {
-                $('#hantar').prop('disabled',true);
+                $('#upload_'+ids).val('');
             });
         } else {
             $('#hantar').prop('disabled',false);
@@ -60,7 +60,7 @@ function ValidateSize(file) {
                     confirmButtonText: "Ok",
                     showConfirmButton: true,
                 }).then(function () {
-                    $('#hantar').prop('disabled',true);
+                    $('#upload_'+ids).val('');
                 }); 
                 fileInput.value = ''; 
                 return false; 
@@ -191,7 +191,7 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
-        // alert(date);
+        // alert(id);
         
         if(id == 6 && input.trim() == ''){
             swal({
@@ -214,20 +214,10 @@ function do_hantar()
                     showConfirmButton: true,
                 });
                 return false;
-            } else if(date.trim() == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan tarikh tamat sijil halal.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-                return false;
             } else {
                 hantar_to();
             }
-        } else if((id == 1) && (date.trim() == '')){
+        } else if(id == 1 && date.trim() == ''){
             swal({
                 title: 'Amaran',
                 text: 'Sila masukkan tarikh tamat sijil halal.',
@@ -569,24 +559,21 @@ if(!empty($id)){
                                     <label class="col-sm-5 control-label" for="sijil"><h4><b><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </b></h4></label>
                                 </div>
                             </div>
+                            @if (!$cb->isEmpty())
                             <div class="form-group" @if((!empty($id)) && ($rs->negara_pengilang_id == 'MYS')) hidden @endif>
                                 <div class="row" style="padding-left:15px;">
-                                    <!-- <div class="col-sm-4 control-label">
-                                        <div class="input-group"> -->
-                                            <select name="doc_otherNegara" id="doc_otherNegara">
-                                                <option value="">Sila Pilih CB</option>
-                                                @foreach ($cb as $item)
-                                                    @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
-                                                        <option value="{{$item->fldid}}" @if($cb_select == $item->fldid) selected @endif>{{ $item->fldname }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                title="{{ $information[3]->info }}" id="questmark" name="questmark"></i>
-                                        <!-- </div>
-                                    </div> -->
+                                    <select name="doc_otherNegara" id="doc_otherNegara">
+                                        <option value="">Sila Pilih CB</option>
+                                        @foreach ($cb as $item)
+                                            @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
+                                                <option value="{{$item->fldid}}" @if($cb_select == $item->fldid) selected @endif>{{ $item->fldname }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ $information[3]->info }}" id="questmark" name="questmark"></i>
                                 </div>
                             </div>
+                            @endif
                                 @foreach($dokumen as $dokumen)
                                 @php
                                 
@@ -619,18 +606,18 @@ if(!empty($id)){
                                             <div class="col-sm-3 control-label">
                                                 <div class="input-group col-sm-3">
                                                     @if(!empty($rs->id))
-                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this)" > 
+                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this,{{ $dokumen->id }})" > 
                                                         @foreach ($upload as $up)
                                                             @if(!empty($upload))
                                                                 @if($up->ref_dokumen_id == $dokumen->id)
                                                                 <a href="/client/dokumen_ramuan/{{ $up->file_name }}">
-                                                                <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;"> 
+                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none; cursor: pointer;"> 
                                                                 </a>
                                                                 @endif
                                                             @endif
                                                         @endforeach
                                                     @else
-                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this)"> 
+                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this,{{ $dokumen->id }})"> 
                                                     @endif
                                                 </div>
                                             </div>

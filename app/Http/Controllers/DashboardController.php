@@ -98,13 +98,13 @@ class DashboardController extends Controller
     
     public function pengumuman(Request $request)
     {
-        $calendar = Calendar_Event::where('is_delete',0);
+        $calendar = Calendar_Event::where('is_delete',0)->where('is_public','<>',4);
 
         if(!empty($request->carian)) { 
             $calendar->where('event','LIKE','%'.$request->carian.'%'); 
         }
 
-        $calendar = $calendar->orderBy('created_dt')->paginate(10);
+        $calendar = $calendar->orderBy('created_dt','DESC')->paginate(10);
 
         // dd($calendar);
         

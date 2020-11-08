@@ -105,7 +105,6 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     //Proses Kelulusan
     Route::get('lulus','Admin\KelulusanController@index')->name('Kelulusan Permohonan');
     Route::get('lulus/modal_permohonan/{id}','Admin\KelulusanController@modal_permohonan');
-    Route::post('lulus/komen','Admin\KelulusanController@komen');
 
     //Permohonan Ditolak
     Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
@@ -136,7 +135,13 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::post('staff/delete/{id}','Admin\StaffController@delete');
 
     //Email
-    Route::get('surat','Admin\SuratController@index')->name('Kakitangan');
+    Route::get('surat','Admin\SuratController@index')->name('Penjanaa Surat');
     Route::get('surat/edit/{id}','Admin\SuratController@edit');
     Route::post('surat/store','Admin\SuratController@store');
+
+    //Badan Persijilan Halal
+    Route::get('sijil_halal','Admin\CBController@index')->name('Badan Persijilan Halal');
+    Route::get('sijil_halal/edit','Admin\CBController@edit');
+    Route::post('sijil_halal/store','Admin\CBController@store');
+    Route::get('sijil_halal/sync','Admin\CBController@sync');
 });

@@ -15,10 +15,11 @@
                     </i>
                 @else
                     @foreach ($pengumuman as $umum)
+                    <span style="color:#000;"><i class="fa fa-bullhorn" aria-hidden="true"></i></span>
                     <i style="color: #fa0000;" href="/client/announce/{{ $umum->id }}"  data-toggle="modal" data-target="#myModalm" data-backdrop="static">
                         {{ strip_tags($umum->event) }}
                     </i>
-                    <span style="color:#000;"><i class="fa fa-leaf" aria-hidden="true"></i></span>
+                    <span style="color:#000;"><i class="fa fa-bullhorn" aria-hidden="true"></i></span>
                     @endforeach
                 @endif
                 </marquee>

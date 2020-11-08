@@ -109,21 +109,56 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
             <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                 <th width="5%"><font color="#000000"><div align="center">#</div></font></th>
-                <th width="18%"><font color="#000000"><div align="left">Perkara</div></font></th>
-                <th width="15%"><font color="#000000"><div align="left">No. Rujukan</div></font></th>
+                <th width="15%"><font color="#000000"><div align="left">Perkara</div></font></th>
+                <th width="12%"><font color="#000000"><div align="center">Kategori</div></font></th>
+                <th width="12%"><font color="#000000"><div align="center">No. Rujukan</div></font></th>
                 <th width="25%"><font color="#000000"><div align="left">Kandungan 1</div></font></th>
                 <th width="25%"><font color="#000000"><div align="left">Kandungan 2</font></th>
-                <th width="8%"><font color="#000000"><div align="left">Status</font></th>
+                <th width="8%"><font color="#000000"><div align="center">Status</font></th>
                 <th width="15%"><font color="#000000"><div align="center">Tindakan</div></font></th>
                 </tr>
             </thead>
             <tbody>
                 @php $bil = $email->perPage()*($email->currentPage()-1) @endphp
                 @foreach ($email as $surat)
+                @php
+                if($surat->kod == 'S_LULUS'){
+                    $title = 'Surat Lulus';
+                } else if($surat->kod == 'S_TOLAK') {
+                    $title = 'Surat Tolak';
+                } else if($surat->kod == 'M_PEMOHON') {
+                    $title = 'Memo Pemohon';
+                } else if($surat->kod == 'M_PERMOHONAN') {
+                    $title = 'Memo Permohonan';
+                } else if($surat->kod == 'M_SEMAK') {
+                    $title = 'Memo Semakan';
+                } else if($surat->kod == 'M_TOLAK') {
+                    $title = 'Memo Tolak';
+                } else if($surat->kod == 'M_LULUS') {
+                    $title = 'Memo Lulus';
+                }
+                @endphp
                 <tr>
                     <td valign="top" align="center">{{ ++$bil }}</td>
                     <td valign="top" align="left">{{ $surat->perkara }}</td>
-                    <td valign="top" align="left">{{ $surat->no_rujukan }}</td>
+                    <td valign="top" align="center">
+                        @if ($surat->type == 'S')
+                            Surat
+                            <br>
+                            ( {{  $title }} )
+                        @else
+                            Memo
+                            <br>
+                            ( {{  $title }} )
+                        @endif
+                    </td>
+                    <td valign="top" align="center">
+                        @if ($surat->type == 'S')
+                            {{ $surat->no_rujukan }}
+                        @else
+                            ??
+                        @endif
+                    </td>
                     <td valign="top" align="left">{!! $surat->kandungan_1 !!}</td>
                     <td valign="top" align="left">{!! $surat->kandungan_2 !!}</td>
                     <td valign="top" align="center">

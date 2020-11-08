@@ -213,6 +213,12 @@
 											<span>Surat Rujukan</span>
 										</a>
 									</li>
+									<li class="@if(\Request::is('admin/sijil_halal*')) nav-expanded nav-active @endif">
+										<a href="/admin/sijil_halal">
+											<i class="fa fa-certificate" aria-hidden="true"></i>
+											<span>Badan Persijilan Halal</span>
+										</a>
+									</li>
 									@endif
 
 									@endif

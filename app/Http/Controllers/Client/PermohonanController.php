@@ -75,7 +75,7 @@ class PermohonanController extends Controller
         $negara = Ref_Negara::where('status',0)->get();
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
-        $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
+        $cb = Ref_Islamic_Body::where('is_deleted',0)->where('fldcountryid',$rs->negara_pengilang_id)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
         $information = Information::get();
         $inform = Information::whereBetween('id', array(5,10))->get();
@@ -162,23 +162,25 @@ class PermohonanController extends Controller
         // dd($request->input('doc_2'));
         // $request->doc_1 == 1;
 
-        if(!empty($request->upload_1)){
-            $file = $request->upload_1->getClientOriginalName();
-            $type = pathinfo($file)['extension'];
-            $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
-        } 
-        else {
-            $file = $request->current_file_1;
-            $type = pathinfo($file)['extension'];
+        if(!empty($request->upload_1 && $request->current_file_1)){
+            if(!empty($request->upload_1)){
+                $file = $request->upload_1->getClientOriginalName();
+                $type = pathinfo($file)['extension'];
+                $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
+            } 
+            else {
+                $file = $request->current_file_1;
+                $type = pathinfo($file)['extension'];
+            }
+            
+    
+            $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+                ['ramuan_id' => $request->id,'ref_dokumen_id' => 1],
+                ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
+            );
+    
+            $ramuan_doc->save();
         }
-        
-
-        $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
-            ['ramuan_id' => $request->id],
-            ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
-        );
-
-        $ramuan_doc->save();
 
         for ($i=2; $i<=6; $i++) {
             // dd($request->doc_.$i);
@@ -231,13 +233,15 @@ class PermohonanController extends Controller
         ];
 
         Mail::to('eidlan@yopmail.com')->send(new PemohonMail($data));
+        Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
         // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
     }
 
     public function view($id)
     {
         $rs = Ramuan::find($id);
-        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->first();
+        $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+        // dd($upload);
 
         return view('client/view',compact('rs', 'upload'));
     }
@@ -298,19 +302,7 @@ class PermohonanController extends Controller
         $path = storage_path().'/app/dokumen_ramuan/'.$file;
         $setFileType = pathinfo($file)['extension'];
 		if(file_exists($path)){
-            if($setFileType == "jpg" || $setFileType == "jpeg" || $setFileType == "png" ) {
-                return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'image/jpeg' ,
-                    'Content-Disposition' => 'inline; file="'.$file.'"'
-                    ]);
-            } elseif(pathinfo($file)['extension'] == 'pdf') {
-                return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'application/pdf', 
-                    'Content-Disposition' => 'inline; file="'.$file.'"'
-                ]);
-            } else {
-               return response()->download($path);
-            }
+            return response()->download($path);
 		} else {
 			return back();
         }

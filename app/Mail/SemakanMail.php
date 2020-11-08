@@ -30,6 +30,6 @@ class SemakanMail extends Mailable
     public function build()
     {
         return $this->subject('Notifikasi Permohhonan Baharu')
-                    ->view('email/semakan');
+                    ->view('email/memo');
     }
 }

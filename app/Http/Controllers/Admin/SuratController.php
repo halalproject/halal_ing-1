@@ -35,11 +35,21 @@ class SuratController extends Controller
     {
         // dd($request->all());
 
-        $data = array(
-            'perkara'=>$request->perkara,
-            'kandungan_1'=>$request->k1,
-            'kandungan_2'=>$request->k2,
-        );
+        if($request->type){
+            $data = array(
+                'perkara'=>$request->perkara,
+                'no_rujukan'=>$request->no_rujukan,
+                'kandungan_1'=>$request->k1,
+                'kandungan_2'=>$request->k2,
+            );
+        } else {
+            $data = array(
+                'perkara'=>$request->perkara,
+                'kandungan_1'=>$request->k1,
+                'kandungan_2'=>$request->k2,
+            );
+        }
+        
 
         $sql = Ref_Surat::find($request->surat_id)->update($data);
 

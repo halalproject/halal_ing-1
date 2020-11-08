@@ -30,6 +30,6 @@ class PenolakanMail extends Mailable
     public function build()
     {
         return $this->subject('Notifikasi Permohhonan Baharu')
-                    ->view('email/penolakan');
+                    ->view('email/memo');
     }
 }

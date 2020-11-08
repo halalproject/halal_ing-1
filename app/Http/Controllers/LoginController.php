@@ -24,7 +24,7 @@ class LoginController extends Controller
             $details = Auth::guard('client')->user();
             $client = $details['is_delete'];
             if($client == 0){
-                return response()->json('OK');
+                return response()->json(['OK','client']);
             } else {
                 return response()->json('ERR');
             }
@@ -39,7 +39,7 @@ class LoginController extends Controller
             Admin::find($details->id)->update(['last_login'=>now()]);
 
             if($admin == 0){
-                return response()->json('OK');
+                return response()->json(['OK','admin']);
             } else {
                 return response()->json('ERR');
             }

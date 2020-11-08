@@ -180,7 +180,15 @@ function do_simpan()
                                     <div class="row">
                                         <label class="col-sm-3 control-label"><b>Dokumentasi Ramuan :</b></label>
                                         <div class="row">
-                                            <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
+                                            <div class="col-sm-5">
+                                                @if (!empty($upload))
+                                                @foreach ($upload as $doc)
+                                                {{ $doc->type->nama }}: 
+                                                <a href="/client/ramuan/{{$doc->file_name}}">{{ $doc->file_name }}</a>
+                                                <br>
+                                                @endforeach               
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -203,10 +211,13 @@ function do_simpan()
                                         <label class="col-form-label col-sm-3 pt-0"><b><font color="#FF0000">*</font> Status :</b></label>
                                         <div class="col-sm-9">
                                             <div class="form-check">
+                                                
+                                                @if(empty($rs->is_semak)) 
                                                 <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
                                                 <label class="form-check-label" for="semak">
                                                 Semak
                                                 </label>
+                                                @endif
 
                                                 <input class="form-check-input" type="checkbox" name="lulus" id="lulus" value="lulus">
                                                 <label class="form-check-label" for="lulus">

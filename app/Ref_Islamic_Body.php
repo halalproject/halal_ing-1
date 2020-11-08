@@ -13,5 +13,10 @@ class Ref_Islamic_Body extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function negara()
+    {
+        return $this->belongsTo('App\Ref_Negara','fldcountryid');        
+    }
 }
 

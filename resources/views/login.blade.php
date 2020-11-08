@@ -90,7 +90,7 @@
                     success: function(data){
                         console.log(data);
                         // alert(data);
-                        if(data == 'OK'){
+                        if(data[0] == 'OK'){
                             swal({
                               title: 'Berjaya',
                               text: 'Log Masuk Anda Berjaya',
@@ -98,9 +98,13 @@
                               confirmButtonClass: "btn-success",
                               confirmButtonText: "Ok",
                               showConfirmButton: true,
-                            }).then(
-                                window.location = '/admin'
-                            );
+                            }).then(function(){
+                                if(data[1] == 'client'){
+                                    window.location = '/client';
+                                } else if(data[1] == 'admin'){
+                                    window.location = '/admin';
+                                }
+                            });
                         } else {
                             swal({
                               title: 'Amaran',
