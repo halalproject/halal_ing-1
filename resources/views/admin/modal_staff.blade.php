@@ -166,7 +166,7 @@ $status = $user->user_status ?? '';
                     
                     <div class="form-group">
                         <div class="row">
-                        <label class="col-md-3 control-label"><b><font color="#FF0000">*</font> No. Telefon :</b></label>
+                        <label class="col-md-3 control-label"><b><font color="#FF0000">*</font> No. Fax :</b></label>
                         <div class="col-md-4 control-label">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>

@@ -11,7 +11,7 @@
         {
             // alert(id);
             swal({
-                title: 'Adakah anda pasti untuk menghapuskan permohonan ini?',
+                title: 'Adakah anda pasti untuk menghapuskan pengumuman ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -31,7 +31,7 @@
                         if(data=='OK'){
                             swal({
                             title: 'Berjaya',
-                            text: 'Permohonan telah dihapuskan',
+                            text: 'Pengumuman telah dihapuskan',
                             type: 'success',
                             confirmButtonClass: "btn-success",
                             confirmButtonText: "Ok",

@@ -14,9 +14,17 @@ class AdminController extends Controller
 {
     public function profile()
     {
+        $rsj = Ref_User_Jawatan::where('status',0)->get();
+
+        $rsl = Ref_User_Level::where('status',0)->get();
+        
+        $rss = Ref_User_Status::where('status',0)->get();
+
+        // $user = Admin::find($id);
+
         $user = Auth::guard('admin')->user();
 
-        return view('admin/profile',compact('user'));
+        return view('admin/profile',compact('rsj','rsl','rss','user'));
     }
 
     public function password()

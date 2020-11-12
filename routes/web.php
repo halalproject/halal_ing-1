@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
     //Dashboard
     Route::get('/','DashboardController@client');
     Route::get('/announce/{id}','DashboardController@announcement');
+    Route::get('/dokumen_pengumuman/{file}', 'DashboardController@downloadDocument');
 
     //Profile & Password
     Route::get('/profile','Client\ClientController@profile');

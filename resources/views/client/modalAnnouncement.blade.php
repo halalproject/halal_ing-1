@@ -37,7 +37,7 @@
                         <div class="row">
                             <label class="col-sm-3 control-label" for="profileLastName"> Dokumen :</label>
                             <div class="col-sm-4">
-                                <a href="/admin/dokumen_pengumuman/{{ $event->file_name }}">
+                                <a href="/client/dokumen_pengumuman/{{ $event->file_name }}">
                                     {{ $event->file_name }}
                                 </a>
                             </div>
