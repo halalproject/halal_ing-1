@@ -45,7 +45,7 @@ function do_restore(id)
 				if(data=='OK'){
 					swal({
 					  title: 'Berjaya',
-					  text: 'Permohonan telah dihapuskan',
+					  text: 'Bahan ramuan telah berjaya diaktifkan semula',
 					  type: 'success',
 					  confirmButtonClass: "btn-success",
 					  confirmButtonText: "Ok",

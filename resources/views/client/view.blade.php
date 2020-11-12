@@ -25,13 +25,13 @@ if((!empty($id)) && ($upload != '')){
                 
                 @php
                     if($rs->status == 6){
-                        $link = '/client/tolak/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
-                    } else if($rs->status == 3) {
-                        $link = '/client/ramuan/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
+                        $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
+                    } else if($rs->status == 3 || $rs->status == 1) {
+                        $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
                     }
                 @endphp
-                @if($rs->is_delete != 1 && $rs->status != 1)
-                <a href="{{ $link }}">
+                @if($rs->status != 1)
+                <a href="{{ $link }}" target="blank">
                     <button type="button" class="btn btn-md btn-success" style="float: right; background-color:#252396;"><i class="fa fa-print"></i> Cetak</button>
                 </a>
                 @endif

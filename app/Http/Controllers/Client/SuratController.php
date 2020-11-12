@@ -28,6 +28,6 @@ class SuratController extends Controller
         $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
         // dd($komen);
 
-        return view('client/surat',compact('ramuan','syarikat','surat','komen'));
+        return view('surat',compact('ramuan','syarikat','surat','komen'));
     }
 }

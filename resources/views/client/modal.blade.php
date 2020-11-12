@@ -191,7 +191,7 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
-        // alert(id);
+        // alert(date);
         
         if(id == 6 && input.trim() == ''){
             swal({
@@ -208,6 +208,16 @@ function do_hantar()
                 swal({
                     title: 'Amaran',
                     text: 'Sila masukkan dokumen yang diperlukan.',
+                    type: 'warning',
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Ok",
+                    showConfirmButton: true,
+                });
+                return false;
+            } else if(id == 1 && date.trim() == ''){
+                swal({
+                    title: 'Amaran',
+                    text: 'Sila masukkan tarikh tamat sijil halal.',
                     type: 'warning',
                     confirmButtonClass: "btn-warning",
                     confirmButtonText: "Ok",
@@ -306,6 +316,27 @@ function negaraChange() {
 function do_close()
 {
     location.reload();
+}
+
+function TDate() {
+    var UserDate = $('#tarikh_tamat_sijil').val();
+    var ToDate = new Date();
+
+    if (new Date(UserDate).getTime() <= ToDate.getTime()) {
+        swal({
+            title: 'Amaran',
+            text: 'Sila pilih tarikh lebih atau sama dgn harini.',
+            type: 'error',
+            confirmButtonClass: "btn-warning",
+            confirmButtonText: "Ok",
+            showConfirmButton: true,
+        });
+
+        $('#tarikh_tamat_sijil').val('');
+
+        return false;
+     }
+    return true;
 }
 </script>
 @php
@@ -626,7 +657,7 @@ if(!empty($id)){
                                                 <div class="row">
                                                     <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
                                                     <div class="col-sm-3">
-                                                        <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
+                                                        <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;" onchange="TDate()">
                                                     </div>
                                                 </div>
                                             </div>

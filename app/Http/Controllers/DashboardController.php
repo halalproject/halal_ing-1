@@ -17,7 +17,10 @@ class DashboardController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
 
-        $pengumuman = Calendar_Event::where('is_delete',0)->where('kategori',1)->where('is_public',3)->where('company_id', $user)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = Calendar_Event::where('is_delete',0)->where('kategori',1)->where(function($query) use($user){
+                        $query->where('is_public',3)->orWhere('company_id', $user);
+                      })
+                      ->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
         $mohon = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->first();
         // dd($mohon->total);
@@ -113,15 +116,18 @@ class DashboardController extends Controller
 
     public function pengumuman_create()
     {
-        $comp = Client::where('is_delete',0)->get(); 
+        // dd('create');
+        // $comp = Client::where('is_delete',0)->get(); 
         $cat = Ref_Kategori_Event::where('status',0)->get(); 
         
-        return view('admin/pengumuman_create', compact('comp', 'cat'));
+        return view('admin/pengumuman_create', compact('cat'));
     }
 
     public function pengumuman_store(Request $request)
     {
         
+        dd($request->all());
+
         $user = Auth::guard('admin')->user()->id;
         
         if(empty($request->doc_avail) && (!empty($request->doc))){
@@ -205,10 +211,10 @@ class DashboardController extends Controller
     {
         $calendar = Calendar_Event::find($id);
         
-        $comp = Client::where('is_delete',0)->get(); 
+        // $comp = Client::where('is_delete',0)->get(); 
         $cat = Ref_Kategori_Event::where('status',0)->get();
 
-        return view('admin/pengumuman_create',compact('calendar', 'comp', 'cat'));
+        return view('admin/pengumuman_create',compact('calendar', 'cat'));
     }
 
     public function delete($id)

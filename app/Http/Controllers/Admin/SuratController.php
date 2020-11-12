@@ -23,33 +23,45 @@ class SuratController extends Controller
         return view('admin/surat',compact('email'));
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         // dd($id);
+        // dd($request->all());
+
+        $type = $request->type;
         $surat = Ref_Surat::find($id);
 
-        return view('admin/modal_surat',compact('surat'));
+        return view('admin/modal_surat',compact('type','surat'));
     }
 
-    public function store(Request $request)
+    public function simpan(Request $request)
     {
         // dd($request->all());
 
-        if($request->type){
-            $data = array(
-                'perkara'=>$request->perkara,
-                'no_rujukan'=>$request->no_rujukan,
-                'kandungan_1'=>$request->k1,
-                'kandungan_2'=>$request->k2,
-            );
+        if($request->kandungan_type == 'k1'){
+            if($request->type){
+                $data = array(
+                    'perkara'=>$request->perkara,
+                    'no_rujukan'=>$request->no_rujukan,
+                    'kandungan_1'=>$request->k1,
+                );
+            } else {
+                $data = array(
+                    'perkara'=>$request->perkara,
+                    'kandungan_1'=>$request->k1,
+                );
+            }
         } else {
-            $data = array(
-                'perkara'=>$request->perkara,
-                'kandungan_1'=>$request->k1,
-                'kandungan_2'=>$request->k2,
-            );
+            if($request->type){
+                $data = array(
+                    'kandungan_2'=>$request->k1,
+                );
+            } else {
+                $data = array(
+                    'kandungan_2'=>$request->k1,
+                );
+            }
         }
-        
 
         $sql = Ref_Surat::find($request->surat_id)->update($data);
 

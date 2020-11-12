@@ -9,7 +9,7 @@
         
         <style>
             @page{
-                margin-top: 0;
+                margin-top: 20px;
                 margin-left: 80px;
                 margin-right: 80px;
                 margin-bottom: 0;
@@ -28,7 +28,7 @@
             .content{
                 position: fixed;
                 margin-top: 120px;
-                width: 650px;
+                width: 600px;
             }
 
             .footer{
@@ -39,7 +39,7 @@
     </head>
     <body>
         <div class="header">
-            <img src="{{ asset('images/surat/header_surat.jpeg') }}" alt="header_surat" width="650px">
+            <img src="{{ asset('images/surat/header_surat.jpeg') }}" alt="header_surat" width="600px">
         </div>
         <div class="content">
             <table width="100%">
@@ -125,7 +125,7 @@
             </table>
         </div>
         <div class="footer">
-            <img src="{{ asset('images/surat/footer_surat.jpeg') }}" alt="footer_surat" width="650px">
+            <img src="{{ asset('images/surat/footer_surat.jpeg') }}" alt="footer_surat" width="600px">
         </div>
     </body>
 </html>

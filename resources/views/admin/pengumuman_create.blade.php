@@ -13,12 +13,17 @@ function do_simpan() {
     var start_date = $('#start_date').val();
     var end_date = $('#end_date').val();
     var kategori = $('#kategori').val();
-    var is_public = $('#pengumuman_untuk').val();
+
+    $("input[name='pengumuman_untuk']").click(function() {
+        var is_public = $("input[name='pengumuman_untuk']:checked").val();
+    });
+
+
     var docContents = CKEDITOR.instances['announcement'].getData();
     document.create.catatan_text.value=docContents;
     var file = $('#doc').val();
     var curr_doc = $('#curr_doc').val();
-    
+    // alert(is_public);
     if(event.trim() == ''){
         swal({
             title: 'Amaran',
@@ -55,7 +60,7 @@ function do_simpan() {
             confirmButtonText: "Ok",
             showConfirmButton: true,
         });
-    } else if(is_public.trim() == '' ){
+    } else if(is_public == '' ){
         swal({
             title: 'Amaran',
             text: 'Maklumat tidak lengkap.\nSila pilih pihak yang menerima pemberitahuan.',

@@ -40,6 +40,7 @@ class RamuanController extends Controller
         
         $ramuan = $ramuan->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
+        
         // dd($ramuan);
         return view('client/ramuan',compact('cat','ramuan'));
     }
@@ -109,25 +110,6 @@ class RamuanController extends Controller
 		} else {
 			return back();
         }
-    }
-    
-    public function surat(Request $request)
-    {
-        // dd($request->all());
-
-        $ramuan = Ramuan::find($request->ids);
-        // dd($ramuan);
-
-        $syarikat = Client::where('userid',$ramuan->create_by)->first();
-        // dd($syarikat);
-
-        $surat = Ref_Surat::where('type',$request->type)->where('kod',$request->kod)->first();
-        // dd($surat);
-
-        $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
-        // dd($komen);
-
-        return view('surat',compact('ramuan','syarikat','surat','komen'));
     }
 
     //Ramuan Yang Dihapuskan

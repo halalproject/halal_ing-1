@@ -137,7 +137,7 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     //Email
     Route::get('surat','Admin\SuratController@index')->name('Penjanaa Surat');
     Route::get('surat/edit/{id}','Admin\SuratController@edit');
-    Route::post('surat/store','Admin\SuratController@store');
+    Route::post('surat/store','Admin\SuratController@simpan');
 
     //Badan Persijilan Halal
     Route::get('sijil_halal','Admin\CBController@index')->name('Badan Persijilan Halal');

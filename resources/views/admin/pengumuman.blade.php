@@ -105,7 +105,7 @@
             </div>
 
             <br>
-            <br>
+            {{-- <br> --}}
 
             <div align="right" style="padding-right:10px"><b>{{ $calendar->total() }} rekod dijumpai</b></div>
             <div class="box-body">

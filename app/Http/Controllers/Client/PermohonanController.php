@@ -162,7 +162,7 @@ class PermohonanController extends Controller
         // dd($request->input('doc_2'));
         // $request->doc_1 == 1;
 
-        if(!empty($request->upload_1 && $request->current_file_1)){
+        if(!empty($request->upload_1 || $request->current_file_1)){
             if(!empty($request->upload_1)){
                 $file = $request->upload_1->getClientOriginalName();
                 $type = pathinfo($file)['extension'];
@@ -173,14 +173,15 @@ class PermohonanController extends Controller
                 $type = pathinfo($file)['extension'];
             }
             
-    
             $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
                 ['ramuan_id' => $request->id,'ref_dokumen_id' => 1],
                 ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
             );
     
             $ramuan_doc->save();
+            // dd($ramuan_doc);
         }
+
 
         for ($i=2; $i<=6; $i++) {
             // dd($request->doc_.$i);
@@ -214,12 +215,31 @@ class PermohonanController extends Controller
             $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
         }
         
-        $this->notification($request->id);
+        $this->notification_to_user($request->id);
+        $this->notification_to_jais($request->id);
         
         return response()->json('OK');
     }
 
-    private function notification($id)
+    private function notification_to_user($id)
+    {
+        // dd($id);
+        $ramuan = Ramuan::find($id);
+        // dd($ramuan);
+        
+        $data = [
+            'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
+            'ramuan' => Ramuan::find($id),
+            'surat' => Ref_Surat::where('type','M')->where('kod','M_PEMOHON')->first(),
+            'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
+        ];
+
+        Mail::to('eidlan@yopmail.com')->send(new PemohonMail($data));
+        Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
+        // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
+    }
+
+    private function notification_to_jais($id)
     {
         // dd($id);
         $ramuan = Ramuan::find($id);
@@ -308,22 +328,4 @@ class PermohonanController extends Controller
         }
     }
 
-    public function surat(Request $request)
-    {
-        // dd($request->all());
-
-        $ramuan = Ramuan::find($request->ids);
-        // dd($ramuan);
-
-        $syarikat = Client::where('userid',$ramuan->create_by)->first();
-        // dd($syarikat);
-
-        $surat = Ref_Surat::where('type',$request->type)->where('kod',$request->kod)->first();
-        // dd($surat);
-
-        $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
-        // dd($komen);
-
-        return view('surat',compact('ramuan','syarikat','surat','komen'));
-    }
 }
