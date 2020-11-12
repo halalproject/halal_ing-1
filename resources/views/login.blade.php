@@ -52,8 +52,12 @@
 							</div>
 
                             <div class="row" align="center">
-                                <div class="col-sm-12 text-right"><a href="" >Lupa Kata Laluan?</a>
-								</div>
+                                <!-- <div class="col-sm-12 text-right"><a href="" >Lupa Kata Laluan ?</a>
+								</div> -->
+
+                                <span class="col-sm-12 text-right text-primary" style="cursor: pointer" data-toggle="modal" data-target="#modalLupaKataLaluan" >
+                                    <div class="text-blue">Lupa Kata Laluan ?</div>
+                                </span>
                             </div>
 
 							<span class="mt-lg mb-lg line-thru text-center text-uppercase">
@@ -68,6 +72,44 @@
 			</div>
 		</section>
 		<!-- end: page -->
+
+        <div class="modal fade" id="modalLupaKataLaluan" role="dialog">
+            <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background:-webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:10px;">
+                <h2 class="modal-title text-dark">Lupa Kata Laluan
+                <button type="button" class="close" data-dismiss="modal">&times;</button></h2>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin:0px;">
+                            <div class="row">
+                                <label class="col-sm-3 control-label text-dark"><font color="#FF0000">*</font> Emel :</label>
+                                <div class="col-sm-9">
+                                    <input type="email" name="emel" id="emel" class="form-control" value=""><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12" style="padding:0px;">
+                                <small class="text-danger">* Note: Masukkan emel anda dan kami akan menghantar pautan untuk menetapkan semula kata laluan anda.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fa fa-spinner"></i> Kembali</button>
+                <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
+                    <i class="fa fa-save"></i> Hantar
+                </button>
+                </div>
+            </div>
+            
+            </div>
+        </div>  
 
         
         <script language="javascript">
