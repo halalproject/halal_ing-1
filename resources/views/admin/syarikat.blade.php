@@ -39,23 +39,6 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
             </div>            
             <br />
             <div class="box-body">
-                {{-- <div class="form-group">
-                    <div class="col-md-3">
-                        <select name="lj_kategori" onchange="" class="form-control">
-                            <option value="">Sijil Halal</option>
-                            <option value="">Ada</option>
-                            <option value="">Tiada</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3" >
-                        <select name="lj_status" onchange="" class="form-control">
-                            <option value="">Kategori</option>
-                            <option value="9">Belum Diagihkan</option>
-                            <option value="1">Belum Dijawab</option>
-                            <option value="2">Telah Dijawab</option>
-                        </select>
-                    </div>
-                --}}
                     <div class="col-md-8" style="0px">
                     	<input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
@@ -73,8 +56,8 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                 <thead>
                 <tr style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                   <th width="5%"><font color="#000000"><div align="left">#</div></font></th>
-                  <th width="20%"><font color="#000000"><div align="left">Nama Syarikat</div></font></th>
-                  <th width="10%"><font color="#000000"><div align="left">Kategori</div></font></th>
+                  <th width="16%"><font color="#000000"><div align="left">Nama Syarikat</div></font></th>
+                  <th width="14%"><font color="#000000"><div align="left">Kategori</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">No. Syarikat</font></th>
                   <th width="10%"><font color="#000000"><div align="left">H/P</div></font></th>
                   <th width="10%"><font color="#000000"><div align="left">Emel</div></font></th>
@@ -91,7 +74,22 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                             <a href="/admin/syarikat/view/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
                             {{ $rs->company_name }}
                         </td>
-                        <td valign="top" align="left">{{ $rs->company_type }}</td>
+                        <td valign="top" align="left">
+                            @php
+                                if($rs->company_category == 'iks'){
+                                    $type = 'Industri Kecil dan Sederhana';
+                                } else if($rs->company_category == 'ik'){
+                                    $type = 'Industri Kecil';
+                                } else if($rs->company_category == 'multi'){
+                                    $type = 'Industri Multi';
+                                } else if($rs->company_category == 'mi'){
+                                    $type = 'Indusri MI';
+                                } else {
+                                    $type = '??';
+                                }
+                            @endphp
+                            {{ $type }} ( {{ strtoupper($rs->company_category ?? '??') }} )
+                        </td>
                         <td valign="top" align="center">{{ $rs->company_reg_code }}</td>
                         <td valign="top" align="center">{{ $rs->company_tel }}</td>
                         <td valign="top" align="center">{{ $rs->company_email }}</td>

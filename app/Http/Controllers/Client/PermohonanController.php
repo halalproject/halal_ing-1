@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Ref_Sumber_Bahan;
@@ -14,6 +15,8 @@ use App\Ref_Islamic_Body;
 use App\Information;
 use App\Mail\PemohonMail;
 use App\Mail\PermohonanMail;
+use App\Ramuan_Komen;
+use App\Ref_Surat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,8 +29,16 @@ class PermohonanController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
-        if($request->status != ''){ $permohonan->where('status',$request->status); }
-        if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
+        if($request->status != ''){ 
+            if($request->status == '1'){
+                $permohonan->where('status',1)->whereNull('tarikh_buka');
+            } else if($request->status == '11'){
+                $permohonan->where('status',1)->whereNotNull('tarikh_buka');
+            } else {
+                $permohonan->where('status',$request->status);
+            }
+        }
+        if($request->kategori != ''){ $permohonan->where('ing_category',$request->kategori); }
         if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
@@ -64,7 +75,7 @@ class PermohonanController extends Controller
         $negara = Ref_Negara::where('status',0)->get();
         $negeri = Ref_Negeri::where('status',0)->get();
         $dokumen = Ref_Dokumen::where('status',0)->get();
-        $cb = Ref_Islamic_Body::where('is_deleted',0)->get();
+        $cb = Ref_Islamic_Body::where('is_deleted',0)->where('fldcountryid',$rs->negara_pengilang_id)->get();
         $dok = Ref_Dokumen::where('status',0)->whereBetween('id', array(2,6))->get();
         $information = Information::get();
         $inform = Information::whereBetween('id', array(5,10))->get();
@@ -151,23 +162,25 @@ class PermohonanController extends Controller
         // dd($request->input('doc_2'));
         // $request->doc_1 == 1;
 
-        if(!empty($request->upload_1)){
-            $file = $request->upload_1->getClientOriginalName();
-            $type = pathinfo($file)['extension'];
-            $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
-        } 
-        else {
-            $file = $request->current_file_1;
-            $type = pathinfo($file)['extension'];
+        if(!empty($request->upload_1 && $request->current_file_1)){
+            if(!empty($request->upload_1)){
+                $file = $request->upload_1->getClientOriginalName();
+                $type = pathinfo($file)['extension'];
+                $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
+            } 
+            else {
+                $file = $request->current_file_1;
+                $type = pathinfo($file)['extension'];
+            }
+            
+    
+            $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
+                ['ramuan_id' => $request->id,'ref_dokumen_id' => 1],
+                ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
+            );
+    
+            $ramuan_doc->save();
         }
-        
-
-        $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
-            ['ramuan_id' => $request->id],
-            ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
-        );
-
-        $ramuan_doc->save();
 
         for ($i=2; $i<=6; $i++) {
             // dd($request->doc_.$i);
@@ -211,30 +224,24 @@ class PermohonanController extends Controller
         // dd($id);
         $ramuan = Ramuan::find($id);
         // dd($ramuan);
-        $day = date('w', strtotime($ramuan->create_dt));
-        $tarikh = date('d/m/Y', strtotime($ramuan->create_dt));
-        // dd($day);
-        if($day=='1'){ $hari='Isnin'; }
-        else if($day=='2'){ $hari='Selasa'; }
-        else if($day=='3'){ $hari='Rabu'; }
-        else if($day=='4'){ $hari='Khamis'; }
-        else if($day=='5'){ $hari='Jumaat'; }
+        
         $data = [
-            'syarikat' => Auth::guard('client')->user()->company_name,
-            'nama' => $ramuan->nama_ramuan,
-            'nama_saintifik' => $ramuan->nama_saintifik,
-            'tarikh' => $tarikh,
-            'hari' => $hari
+            'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
+            'ramuan' => Ramuan::find($id),
+            'surat' => Ref_Surat::where('type','M')->where('kod','M_PEMOHON')->first(),
+            'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
+        Mail::to('eidlan@yopmail.com')->send(new PemohonMail($data));
         Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
-        Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
+        // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
     }
 
     public function view($id)
     {
         $rs = Ramuan::find($id);
         $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+        // dd($upload);
 
         return view('client/view',compact('rs', 'upload'));
     }
@@ -259,11 +266,12 @@ class PermohonanController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::where('status',6);
 
-        if($request->sijil != ''){ $permohonan->where('is_sijil',$request->sijil); }
-        if($request->kategori != ''){ $permohonan->where('sumber_bahan_id',$request->kategori); }
-        if(!empty($request->carian)){ $permohonan->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%'); }
-        
+        if($request->kategori != ''){ $permohonan->where('ing_category',$request->kategori); }
+        if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
+            $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
+        }); }
         $permohonan = $permohonan->where('create_by',$user)->orderBy('create_dt','DESC')->paginate(10);
+
         $cat = Ref_Sumber_Bahan::get();
 
         return view('client/tolak',compact('permohonan','cat'));
@@ -294,21 +302,28 @@ class PermohonanController extends Controller
         $path = storage_path().'/app/dokumen_ramuan/'.$file;
         $setFileType = pathinfo($file)['extension'];
 		if(file_exists($path)){
-            if($setFileType == "jpg" || $setFileType == "jpeg" || $setFileType == "png" ) {
-                return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'image/jpeg' ,
-                    'Content-Disposition' => 'inline; file="'.$file.'"'
-                    ]);
-            } elseif(pathinfo($file)['extension'] == 'pdf') {
-                return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'application/pdf', 
-                    'Content-Disposition' => 'inline; file="'.$file.'"'
-                ]);
-            } else {
-               return response()->download($path);
-            }
+            return response()->download($path);
 		} else {
 			return back();
         }
+    }
+
+    public function surat(Request $request)
+    {
+        // dd($request->all());
+
+        $ramuan = Ramuan::find($request->ids);
+        // dd($ramuan);
+
+        $syarikat = Client::where('userid',$ramuan->create_by)->first();
+        // dd($syarikat);
+
+        $surat = Ref_Surat::where('type',$request->type)->where('kod',$request->kod)->first();
+        // dd($surat);
+
+        $komen = Ramuan_Komen::where('ramuan_id',$request->ids)->first();
+        // dd($komen);
+
+        return view('surat',compact('ramuan','syarikat','surat','komen'));
     }
 }

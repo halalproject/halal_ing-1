@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <div align="right">
-                            <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                            <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-arrow-left"></i> Kembali</button>
                         </div>
                     </div>
                 </div>

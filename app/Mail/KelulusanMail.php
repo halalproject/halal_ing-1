@@ -30,6 +30,6 @@ class KelulusanMail extends Mailable
     public function build()
     {
         return $this->subject('Notifikasi Kelulusan Permohonan')
-                    ->view('email/kelulusan');
+                    ->view('email/memo');
     }
 }

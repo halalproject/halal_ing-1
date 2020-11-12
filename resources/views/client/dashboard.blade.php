@@ -3,15 +3,29 @@
 @section('content')
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row" style="font-size: 16px">
+            <div class="col-md-4">
+                <b>Pengumuman :</b>
+            </div>
+            <div class="col-md-4">
+                <marquee behavior="scroll" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();" style="cursor: pointer">
+                @if ($pengumuman->isEmpty())
+                    <i style="color: #fa0000;">
+                        Tiada Pengumuman
+                    </i>
+                @else
+                    @foreach ($pengumuman as $umum)
+                    <span style="color:#000;"><i class="fa fa-bullhorn" aria-hidden="true"></i></span>
+                    <i style="color: #fa0000;" href="/client/announce/{{ $umum->id }}"  data-toggle="modal" data-target="#myModalm" data-backdrop="static">
+                        {{ strip_tags($umum->event) }}
+                    </i>
+                    <span style="color:#000;"><i class="fa fa-bullhorn" aria-hidden="true"></i></span>
+                    @endforeach
+                @endif
+                </marquee>
+            </div>
+        </div>
         <div class="x_panel">
-            <marquee behavior="scroll" scrollamount="6" onmouseover="this.stop();" onmouseout="this.start();">
-                @foreach ($pengumuman as $umum)
-                        <i style="color: #fa0000;" href="/client/announce/{{ $umum->id }}"  data-toggle="modal" data-target="#myModalm" data-backdrop="static">
-                            {{ strip_tags($umum->event) }}
-                        </i>
-                        <span style="color:#000;"><i class="fa fa-leaf" aria-hidden="true"></i></span>
-                @endforeach
-            </marquee>
             <div class="x_title">
                 <h2><b>Paparan Utama MyHalal Ingredient</b> </h2>
                 <div class="clearfix"></div>
@@ -34,7 +48,7 @@
                                         <div class="summary">
                                             <h4 class="title">Daftar <br> Permohonan</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $mohon->count() }}</strong>
+                                                <strong class="amount">{{ $mohon->total }}</strong>
                                                 <!--<span class="text-primary">(14 unread)</span>-->
                                             </div>
                                         </div>
@@ -61,7 +75,7 @@
                                         <div class="summary">
                                             <h4 class="title">Permohonan <br> Ditolak</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $tolak->count() }}</strong>
+                                                <strong class="amount">{{ $tolak->total }}</strong>
                                                 <!--<span class="text-primary">(14 unread)</span>-->
                                             </div>
                                         </div>
@@ -88,7 +102,7 @@
                                         <div class="summary">
                                             <h4 class="title">Senarai Ramuan</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $ramuan->count() }}</strong>
+                                                <strong class="amount">{{ $ramuan->total }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
@@ -113,7 +127,7 @@
                                         <div class="summary">
                                             <h4 class="title">Ramuan Yang <br> Dihapuskan</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $hapus->count() }}</strong>
+                                                <strong class="amount">{{ $hapus->total }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
@@ -151,7 +165,7 @@
                                         <div class="summary">
                                             <h4 class="title">3 Bulan</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $rstm->count() }}</strong>
+                                                <strong class="amount">{{ $rstm->total }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
@@ -176,7 +190,7 @@
                                         <div class="summary">
                                             <h4 class="title">1 Bulan</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $rsom->count() }}</strong>
+                                                <strong class="amount">{{ $rsom->total }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
@@ -201,7 +215,7 @@
                                         <div class="summary">
                                             <h4 class="title">1 Minggu</h4>
                                             <div class="info">
-                                                <strong class="amount">{{ $rsod->count() }}</strong>
+                                                <strong class="amount">{{ $rsod->total }}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">

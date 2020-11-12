@@ -225,6 +225,9 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
         </table>
     </div>
 </div>
+<div align="center" class="d-flex justify-content-center">
+    {!! $user->appends(['status'=>$status,'level'=>$level,'carian'=>$carian])->render() !!}
+</div>
   <!--</div>-->    
 <!-- DataTables -->
 

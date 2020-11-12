@@ -126,7 +126,7 @@ function do_simpan()
 
                 <div class="form-group">
                     <div align="right">
-                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                        <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-arrow-left"></i> Kembali</button>
                         <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_simpan()" id="simpan"><i class="fa fa-save"></i> Simpan</button>
                     </div>
                 </div>

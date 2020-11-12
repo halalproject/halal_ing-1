@@ -2,7 +2,7 @@
 	.printButton { display: none; }
 </style>
 <body>
-	<form name="halal" method="post" action="" enctype="multipart/form-data" autocomplete="off">
+	<form name="halal" enctype="multipart/form-data" autocomplete="off">
 		<section class="body" style="">
 			<!-- start: header -->
 			<header class="header printButton" style="">
@@ -207,11 +207,22 @@
 											<span>Kakitangan</span>
 										</a>
 									</li>
+									<li class="@if(\Request::is('admin/surat*')) nav-expanded nav-active @endif">
+										<a href="/admin/surat">
+											<i class="fa fa-envelope" aria-hidden="true"></i>
+											<span>Surat Rujukan</span>
+										</a>
+									</li>
+									<li class="@if(\Request::is('admin/sijil_halal*')) nav-expanded nav-active @endif">
+										<a href="/admin/sijil_halal">
+											<i class="fa fa-certificate" aria-hidden="true"></i>
+											<span>Badan Persijilan Halal</span>
+										</a>
+									</li>
 									@endif
 
 									@endif
-
-									<li class="visible-xs">
+									<li>
 										<a href="/logout">
 											<i class="fa fa-power-off"></i>
 											<span> Log Keluar</span>

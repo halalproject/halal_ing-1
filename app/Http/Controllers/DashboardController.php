@@ -9,7 +9,7 @@ use App\Ramuan;
 use App\Calendar_Event;
 use App\Client;
 use App\Ref_Kategori_Event;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -17,18 +17,17 @@ class DashboardController extends Controller
     {
         $user = Auth::guard('client')->user()->userid;
 
-        $pengumuman = Calendar_Event::where('kategori',1)->where('is_public',3)->where('company_id', $user)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
+        $pengumuman = Calendar_Event::where('is_delete',0)->where('kategori',1)->where('is_public',3)->where('company_id', $user)->whereRaw('"'.date('Y-m-d').'"  between `start_date` and `end_date`')->get();
 
-        // dd($pengumuman);
-        // dd($request->all());
-        $mohon = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->get();
-        $tolak = Ramuan::where('create_by',$user)->where('status',6)->where('is_delete',0)->get();
-        $ramuan = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->get();
-        $hapus = Ramuan::where('create_by',$user)->where('is_delete',1)->get();
+        $mohon = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0)->first();
+        // dd($mohon->total);
+        $tolak = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status',6)->where('is_delete',0)->first();
+        $ramuan = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status',3)->where('is_delete',0)->first();
+        $hapus = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('is_delete',1)->first();
 
-        $rstm = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(30),now()->addDays(90)])->get();
-        $rsom = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(7),now()->addDays(30)])->get();
-        $rsod = Ramuan::where('create_by',$user)->where('status',3)->where('is_delete',0)->where('tarikh_tamat_sijil','<=',now()->addDays(7))->get();
+        $rstm = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(30),now()->addDays(90)])->first();
+        $rsom = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status',3)->where('is_delete',0)->whereBetween('tarikh_tamat_sijil',[now()->addDays(7),now()->addDays(30)])->first();
+        $rsod = Ramuan::select(DB::raw('count(*) as total'))->where('create_by',$user)->where('status',3)->where('is_delete',0)->where('tarikh_tamat_sijil','<=',now()->addDays(7))->first();
 
         return view('client/dashboard',compact('pengumuman','mohon','tolak','ramuan','hapus','rstm','rsom','rsod'));
     }
@@ -99,13 +98,13 @@ class DashboardController extends Controller
     
     public function pengumuman(Request $request)
     {
-        $calendar = Calendar_Event::where('is_delete',0);
+        $calendar = Calendar_Event::where('is_delete',0)->where('is_public','<>',4);
 
         if(!empty($request->carian)) { 
             $calendar->where('event','LIKE','%'.$request->carian.'%'); 
         }
 
-        $calendar = $calendar->orderBy('created_dt')->paginate(10);
+        $calendar = $calendar->orderBy('created_dt','DESC')->paginate(10);
 
         // dd($calendar);
         

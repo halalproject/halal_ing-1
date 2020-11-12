@@ -1,17 +1,4 @@
 <script>
-// function do_cb(ids) {
-//     if($('#doc_'+ids) >= '18'){
-//         $('#dokum_1').hide();
-//     } else {
-//         $('#dokum_'+ids).show();
-//     }
-// }
-
-// $(function() {
-//     var temp="MYS"; 
-//     $("#negara_kilang").val(temp);
-// });
-
 function fileValidation() { 
     var fileInput = (($('#upload_1').val()) || ($('#upload_2').val()) || ($('#upload_3').val()) || ($('#upload_4').val()) || ($('#upload_5').val()) || ($('#upload_6').val())); 
     var filePath = fileInput; 
@@ -39,7 +26,7 @@ function fileValidation() {
     }  
 } 
 
-function ValidateSize(file) {
+function ValidateSize(file,ids) {
     {
         var FileSize = file.files[0].size / 1024 / 1024; // in MB
         if (FileSize > 2) {
@@ -51,7 +38,7 @@ function ValidateSize(file) {
                 confirmButtonText: "Ok",
                 showConfirmButton: true,
             }).then(function () {
-                $('#hantar').prop('disabled',true);
+                $('#upload_'+ids).val('');
             });
         } else {
             $('#hantar').prop('disabled',false);
@@ -73,7 +60,7 @@ function ValidateSize(file) {
                     confirmButtonText: "Ok",
                     showConfirmButton: true,
                 }).then(function () {
-                    $('#hantar').prop('disabled',true);
+                    $('#upload_'+ids).val('');
                 }); 
                 fileInput.value = ''; 
                 return false; 
@@ -91,33 +78,23 @@ function do_able(ids)
     var doc = $('#doc_'+ids).prop('checked')
     // alert(doc)
 
-    if(doc){ 
-        if(ids == '1')
-        {
-            for(i=1;i<=6;i++)
-            {
-                // $('#doc_1').prop('disabled',true);
-            }
-        } else if(ids=='6'){
+    if(doc){
+        if(ids=='6'){
             $('.addrow_6').show();
-            // $('#doc_1').prop('disabled',true);
-        } else {
-            // $('#doc_1').prop('disabled',true);
         }
-        
+
         $('#box_'+ids).show();
         $('#hantar').prop('disabled',false);
     } else {
         if(ids == '1'){
-            for(i=1;i<=6;i++)
-            {
-                // $('#doc_' +i).prop('disabled',false);
+            $('#tarikh_tamat_sijil').val('');
+            if(!$('#doc_2').prop('checked') && !$('#doc_3').prop('checked') && !$('#doc_4').prop('checked') && !$('#doc_5').prop('checked') && !$('#doc_6').prop('checked')){
+                $('#hantar').prop('disabled',true);
+            } else {
+                $('#hantar').prop('disabled',false);
             }
-            $('#tarikh_tamat_sijil').val('')
-        } else if(!$('#doc_2').prop('checked') && !$('#doc_3').prop('checked') && !$('#doc_4').prop('checked') && !$('#doc_5').prop('checked') && !$('#doc_6').prop('checked')){
-            // $('#doc_1').prop('disabled',false);
-        } else {
-
+        } else if(!$('#doc_1').prop('checked') && !$('#doc_2').prop('checked') && !$('#doc_3').prop('checked') && !$('#doc_4').prop('checked') && !$('#doc_5').prop('checked') && !$('#doc_6').prop('checked')){
+            $('#hantar').prop('disabled',true);
         }
         
         if(ids == '6'){
@@ -129,7 +106,6 @@ function do_able(ids)
 
         $('#box_'+ids).hide();
 
-        $('#hantar').prop('disabled',true);
     }
 
 }
@@ -215,7 +191,7 @@ function do_hantar()
         var doc = $('#doc_otherNegara').val();
         var current_file = $('#current_file_' +id).val();
 
-        // alert(date);
+        // alert(id);
         
         if(id == 6 && input.trim() == ''){
             swal({
@@ -238,20 +214,10 @@ function do_hantar()
                     showConfirmButton: true,
                 });
                 return false;
-            } else if(date.trim() == ''){
-                swal({
-                    title: 'Amaran',
-                    text: 'Sila masukkan tarikh tamat sijil halal.',
-                    type: 'warning',
-                    confirmButtonClass: "btn-warning",
-                    confirmButtonText: "Ok",
-                    showConfirmButton: true,
-                });
-                return false;
             } else {
                 hantar_to();
             }
-        } else if((id == 1) && (date.trim() == '')){
+        } else if(id == 1 && date.trim() == ''){
             swal({
                 title: 'Amaran',
                 text: 'Sila masukkan tarikh tamat sijil halal.',
@@ -562,7 +528,7 @@ if(!empty($id)){
                             
                             <div class="form-group">
                                 <div align="right">
-                                    <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                                    <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-arrow-left"></i> Kembali</button>
                                     <button type="button" class="mt-sm mb-sm btn btn-info" onclick="do_simpan()" id="simpan">
                                         <i class="fa fa-save"></i> Simpan</button>
                                 </div>
@@ -593,92 +559,85 @@ if(!empty($id)){
                                     <label class="col-sm-5 control-label" for="sijil"><h4><b><font color="#FF0000">*</font> Dokumen Yang Berkenaan: </b></h4></label>
                                 </div>
                             </div>
+                            @if (!$cb->isEmpty())
                             <div class="form-group" @if((!empty($id)) && ($rs->negara_pengilang_id == 'MYS')) hidden @endif>
                                 <div class="row" style="padding-left:15px;">
-                                    <!-- <div class="col-sm-4 control-label">
-                                        <div class="input-group"> -->
-                                            <select name="doc_otherNegara" id="doc_otherNegara">
-                                                <option value="">Sila Pilih CB</option>
-                                                @foreach ($cb as $item)
-                                                    @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
-                                                        <option value="{{$item->fldid}}" @if($cb_select == $item->fldid) selected @endif>{{ $item->fldname }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                            <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                title="{{ $information[3]->info }}" id="questmark" name="questmark"></i>
-                                        <!-- </div>
-                                    </div> -->
+                                    <select name="doc_otherNegara" id="doc_otherNegara">
+                                        <option value="">Sila Pilih CB</option>
+                                        @foreach ($cb as $item)
+                                            @if((!empty($id)) && ($rs->negara_pengilang_id == $item->fldcountryid))
+                                                <option value="{{$item->fldid}}" @if($cb_select == $item->fldid) selected @endif>{{ $item->fldname }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true" title="{{ $information[3]->info }}" id="questmark" name="questmark"></i>
                                 </div>
                             </div>
-                            
-                                
-
-
+                            @endif
                                 @foreach($dokumen as $dokumen)
-                                    @php
-                                    
-                                    $checked = 0;
-                                    if(!empty($id)){
-                                        foreach ($upload as $up) {
-                                            if($dokumen->id == $up->ref_dokumen_id){
-                                                $checked = 1; 
-                                            } 
-                                        }
-                                    }                             
-                                    @endphp
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-4 control-label">
-                                                <div class="input-group">
-                                                    <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" value="{{$dokumen->id}}"
-                                                        @if($checked == 1) checked @endif
-                                                        onchange="do_able({{ $dokumen->id }})"/>&nbsp;{{ $dokumen->nama }} 
-                                                    <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
-                                                        title="{!! $dokumen->remarks !!}" style="width: 120px;"></i>
-                                                </div>
-                                                @if($dokumen->id == 6)
-                                                <div class="addrow_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
-                                                    <input type="text" name="nama_lain" id="nama_lain" class="form-control"value="{{ $nama_dokumen ?? '' }}" />
-                                                </div>
-                                                @endif
+                                @php
+                                
+                                $checked = 0;
+                                if(!empty($id)){
+                                    foreach ($upload as $up) {
+                                        if($dokumen->id == $up->ref_dokumen_id){
+                                            $checked = 1; 
+                                        } 
+                                    }
+                                }                             
+                                @endphp
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4 control-label">
+                                            <div class="input-group">
+                                                <input type="checkbox" name="doc_{{$dokumen->id}}" id="doc_{{$dokumen->id}}" value="{{$dokumen->id}}"
+                                                    @if($checked == 1) checked @endif
+                                                    onchange="do_able({{ $dokumen->id }})"/>&nbsp;{{ $dokumen->nama }} 
+                                                <i class="fa fa-question-circle" style="cursor:pointer;color:#0040FF" data-toggle="tooltip" data-placement="right" data-html="true"
+                                                    title="{!! $dokumen->remarks !!}" style="width: 120px;"></i>
                                             </div>
-                                            <div id="box_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
-                                                <div class="col-sm-3 control-label">
-                                                    <div class="input-group col-sm-3">
-                                                        @if(!empty($rs->id))
-                                                            <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this)" > 
-                                                            @foreach ($upload as $up)
-                                                                @if(!empty($upload))
-                                                                    @if($up->ref_dokumen_id == $dokumen->id)
-                                                                    <a href="/client/dokumen_ramuan/{{ $up->file_name }}">
-                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none;"> 
-                                                                    </a>
-                                                                    @endif
+                                            @if($dokumen->id == 6)
+                                            <div class="addrow_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
+                                                <input type="text" name="nama_lain" id="nama_lain" class="form-control"value="{{ $nama_dokumen ?? '' }}" />
+                                            </div>
+                                            @endif
+                                        </div>
+                                        <div id="box_{{$dokumen->id}}" @if($checked == 0) hidden @endif>
+                                            <div class="col-sm-3 control-label">
+                                                <div class="input-group col-sm-3">
+                                                    @if(!empty($rs->id))
+                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this,{{ $dokumen->id }})" > 
+                                                        @foreach ($upload as $up)
+                                                            @if(!empty($upload))
+                                                                @if($up->ref_dokumen_id == $dokumen->id)
+                                                                <a href="/client/dokumen_ramuan/{{ $up->file_name }}">
+                                                                    <input type="text" name="current_file_{{ $dokumen->id }}" id="current_file_{{ $dokumen->id }}" value="{{ $up->file_name ?? '' }}" style="border:none; cursor: pointer;"> 
+                                                                </a>
                                                                 @endif
-                                                            @endforeach
-                                                        @else
-                                                            <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this)"> 
-                                                        @endif
-                                                    </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @else
+                                                        <input type="file" name="upload_{{ $dokumen->id }}" id="upload_{{ $dokumen->id }}" value="{{ $dokumen->id }}" onchange="ValidateSize(this,{{ $dokumen->id }})"> 
+                                                    @endif
                                                 </div>
-                                                @if($dokumen->nama == 'Sijil Halal')
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
-                                                        <div class="col-sm-3">
-                                                            <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endif
                                             </div>
+                                            @if($dokumen->nama == 'Sijil Halal')
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="col-sm-2 control-label" for="sijil" style="padding-right:0px;">Tarikh Tamat Sijil : </label>
+                                                    <div class="col-sm-3">
+                                                        <input type="date" class="form-control" name="tarikh_tamat_sijil" id="tarikh_tamat_sijil"  value="{{$rs->tarikh_tamat_sijil ?? ''}}" style="padding-left:0px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             <div class="form-group">
                                 <div align="right">
-                                    <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
+                                    <button type="button" class="btn btn-default" id="tutup" onclick="do_close()"><i class="fa fa-arrow-left"></i> Kembali</button>
                                     <button type="button" class="mt-sm mb-sm btn btn-success" onclick="do_hantar()" id="hantar" name="hantar">
                                         <i class="fa fa-arrow-right"></i> Hantar</button>
                                 </div>
@@ -695,32 +654,17 @@ if(!empty($id)){
 </section>
 </form>
 </div>
-@if(empty($id))
 <script>
+@if(empty($id))
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
   $('#tab2').toggleClass('disabled');
   $('#tab-2').removeAttr('data-toggle');
 })
-</script>
 @else
-<script>
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
     $('#tab-2').attr('data-toggle','tab');
-
-    // alert('hello');
-    if($('#doc_1').prop('checked')){
-        for(i=2;i<=6;i++)
-        {
-            // $('#doc_'+i).prop('disabled',true);
-        }
-    }
-
-    if($('#doc_2').prop('checked') || $('#doc_3').prop('checked') || $('#doc_4').prop('checked') || $('#doc_5').prop('checked') || $('#doc_6').prop('checked')){
-        // $('#doc_1').prop('disabled',true);
-    }
-
 })
 </script>
 @endif

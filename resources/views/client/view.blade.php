@@ -1,30 +1,10 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <script>
 function do_close()
 {
     location.reload();
 }
-
-function Export() {
-    html2canvas(document.getElementById('maklumatPermohonan'), {
-        onrendered: function (canvas) {
-            var data = canvas.toDataURL();
-            var docDefinition = {
-                content: [{
-                    image: data,
-                    width: 500
-                }]
-            };
-            pdfMake.createPdf(docDefinition).download("Maklumat_Permohonan.pdf");
-        }
-    });
-}
 </script>
 
-<style media="print" type="text/css">
-	.printButton { display: none; }
-</style>
 @php
 $id = $rs->id ?? '';
 if((!empty($id)) && ($upload != '')){
@@ -43,9 +23,18 @@ if((!empty($id)) && ($upload != '')){
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
                 
-                <button type="button" class="btn btn-md btn-success printButton" style="float: right; background-color:#252396;" onclick="Export()" id="btnExport" value="Export"><i class="fa fa-print" aria-hidden="true"></i> Cetak</button>
-
-                <button type="button" class="btn btn-default printButton" onclick="do_close()" style="float: right;"><i class="fa fa-spinner"></i> Kembali</button>
+                @php
+                    if($rs->status == 6){
+                        $link = '/client/tolak/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
+                    } else if($rs->status == 3) {
+                        $link = '/client/ramuan/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
+                    }
+                @endphp
+                @if($rs->is_delete != 1 && $rs->status != 1)
+                <a href="{{ $link }}">
+                    <button type="button" class="btn btn-md btn-success" style="float: right; background-color:#252396;"><i class="fa fa-print"></i> Cetak</button>
+                </a>
+                @endif
             </h2>
         </header>
         <div class="panel-body" id="maklumatPermohonan">
@@ -130,7 +119,15 @@ if((!empty($id)) && ($upload != '')){
                     <div class="row">
                         <label class="col-sm-4 control-label"><b>Dokumentasi Ramuan : </b></label>
                         <div class="row">
-                            <div class="col-sm-5">Sijil Halal: <a href="">sijilhalal.pdf</a></div>
+                            <div class="col-sm-5">
+                                @if (!empty($upload))
+                                @foreach ($upload as $doc)
+                                {{ $doc->type->nama }}: 
+                                <a href="/client/ramuan/{{$doc->file_name}}">{{ $doc->file_name }}</a>
+                                <br>
+                                @endforeach               
+                                @endif
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -144,6 +141,7 @@ if((!empty($id)) && ($upload != '')){
                 </div>
                 @endif
             </div>
+            <button type="button" class="btn btn-default" onclick="do_close()" style="float: right;"><i class="fa fa-arrow-left"></i> Kembali</button>
         </div>
     </section>
 </div>

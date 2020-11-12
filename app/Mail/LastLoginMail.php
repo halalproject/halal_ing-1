@@ -30,6 +30,6 @@ class LastLoginMail extends Mailable
     public function build()
     {
         return $this->subject('Pengumuman dari sistem')
-                    ->view('email/lastlogin');
+                    ->view('email/memo');
     }
 }

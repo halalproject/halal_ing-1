@@ -36,7 +36,7 @@
                         success: function(data){
                             console.log(data);
                             // alert(data);
-                            if(data == 'OK'){
+                            if(data[0] == 'OK'){
                                 swal({
                                     title: 'Berjaya',
                                     text: 'Anda berjaya untuk log masuk',
@@ -45,7 +45,11 @@
                                     confirmButtonText: "Ok",
                                     showConfirmButton: true
                                 }).then(function(){
-                                    window.location = '/client';
+                                    if(data[1] == 'client'){
+                                        window.location = '/client';
+                                    } else if(data[1] == 'admin'){
+                                        window.location = '/admin';
+                                    }
                                 });
                             } else {
                                 swal({

@@ -11,7 +11,22 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <section class="panel panel-featured panel-featured-info">
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
-                <h2 class="panel-title"><font color="#000000" size="3"><b>Maklumat Ramuan</b></font></h2>
+                <h2 class="panel-title">
+                    <font color="#000000" size="3"><b>Maklumat Ramuan</b></font>
+                
+                    @if($rs->is_delete != 1 && $rs->status != 1)
+                    @php
+                        if($rs->status == 6){
+                            $link = '/admin/tolak/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
+                        } else if($rs->status == 3) {
+                            $link = '/admin/audit/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
+                        }
+                    @endphp
+                    <a href="{{ $link }}">
+                        <button type="button" class="btn btn-md btn-success" style="float: right; background-color:#252396;"><i class="fa fa-print"></i> Cetak</button>
+                    </a>
+                    @endif
+                </h2>
             </header>
 
             <div class="panel-body">

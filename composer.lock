@@ -4,55 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "01ab5f1b008b75d3732d0c6720ae7449",
+    "content-hash": "e107b62251edf95ed1cff5fb4bf6ea19",
     "packages": [
-        {
-            "name": "acaronlex/laravel-calendar",
-            "version": "1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/acaronlex/laravel-calendar.git",
-                "reference": "779ac81d9ad10d78c97824b9eddf71bb88a53db4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/acaronlex/laravel-calendar/zipball/779ac81d9ad10d78c97824b9eddf71bb88a53db4",
-                "reference": "779ac81d9ad10d78c97824b9eddf71bb88a53db4",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~7.0",
-                "php": ">=7.2.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Acaronlex\\LaravelCalendar\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Calendar": "Acaronlex\\LaravelCalendar\\Facades\\Calendar"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Acaronlex\\LaravelCalendar": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "acaronlex",
-                    "email": "acaronlex@outlook.com"
-                }
-            ],
-            "description": "Laravel helper for FullCalendar.io",
-            "time": "2020-05-12T01:08:01+00:00"
-        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.1",
@@ -6675,5 +6628,5 @@
         "php": "^7.2.5"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
