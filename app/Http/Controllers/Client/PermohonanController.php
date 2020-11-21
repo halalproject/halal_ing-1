@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Admin;
 use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,8 +14,7 @@ use App\Ramuan;
 use App\Ramuan_Dokumen;
 use App\Ref_Islamic_Body;
 use App\Information;
-use App\Mail\PemohonMail;
-use App\Mail\PermohonanMail;
+use App\Mail\SendMail;
 use App\Ramuan_Komen;
 use App\Ref_Surat;
 use Illuminate\Support\Facades\Auth;
@@ -234,13 +234,12 @@ class PermohonanController extends Controller
             'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
-        Mail::to('eidlan@yopmail.com')->send(new PemohonMail($data));
-        Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
-        // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
+        Mail::to($ramuan->syarikat->company_email)->send(new SendMail($data));
     }
 
     private function notification_to_jais($id)
     {
+        $admin = Admin::whereNotNull('email')->pluck('email');
         // dd($id);
         $ramuan = Ramuan::find($id);
         // dd($ramuan);
@@ -252,9 +251,7 @@ class PermohonanController extends Controller
             'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
-        Mail::to('eidlan@yopmail.com')->send(new PemohonMail($data));
-        Mail::to('eidlan@yopmail.com')->send(new PermohonanMail($data));
-        // Mail::to($ramuan->syarikat->company_email)->send(new PemohonMail($data));
+        Mail::cc($admin)->send(new SendMail($data));
     }
 
     public function view($id)

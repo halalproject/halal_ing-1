@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PenolakanMail extends Mailable
+class StaffMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -29,7 +29,6 @@ class PenolakanMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Notifikasi Permohhonan Baharu')
-                    ->view('email/memo');
+        return $this->subject('Notifikasi myHalal Ingredient')->view('email/staff');
     }
 }

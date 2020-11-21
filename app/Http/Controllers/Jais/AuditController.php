@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Jais;
 
 use App\Client;
 use App\Http\Controllers\Controller;

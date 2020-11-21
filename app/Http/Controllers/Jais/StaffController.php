@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Jais;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

@@ -72,7 +72,7 @@ Route::group(['middleware' => 'auth:client','prefix' => 'client'],function(){
 });
 
 //Admin Webpage
-Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
+Route::group(['middleware' => 'auth:admin','prefix' => 'jais'],function(){
 
     //Dashboard
     Route::get('/','DashboardController@admin');
@@ -89,60 +89,60 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'admin'],function(){
     Route::get('/event/view/{id}','DashboardController@event_view');
 
     //Profile and Password
-    Route::get('profile','Admin\AdminController@profile');
+    Route::get('profile','Jais\AdminController@profile');
     Route::post('store','Client\AdminController@store');
-    Route::get('password','Admin\AdminController@password');
-    Route::post('reset','Admin\AdminController@reset');
+    Route::get('password','Jais\AdminController@password');
+    Route::post('reset','Jais\AdminController@reset');
 
     //Permohonan
-    Route::get('permohonan','Admin\PermohonanController@index')->name('Senarai Permohonan');
-    Route::get('premohonan/modal_permohonan/{id}','Admin\PermohonanController@modal_permohonan');
+    Route::get('permohonan','Jais\PermohonanController@index')->name('Senarai Permohonan');
+    Route::get('premohonan/modal_permohonan/{id}','Jais\PermohonanController@modal_permohonan');
 
     //Proses Semakan
-    Route::get('semak','Admin\SemakanController@index')->name('Semak Permohonan');
-    Route::get('semak/modal_permohonan/{id}','Admin\SemakanController@modal_permohonan');
-    Route::post('semak/komen','Admin\SemakanController@komen');
+    Route::get('semak','Jais\SemakanController@index')->name('Semak Permohonan');
+    Route::get('semak/modal_permohonan/{id}','Jais\SemakanController@modal_permohonan');
+    Route::post('semak/komen','Jais\SemakanController@komen');
 
     //Proses Kelulusan
-    Route::get('lulus','Admin\KelulusanController@index')->name('Kelulusan Permohonan');
-    Route::get('lulus/modal_permohonan/{id}','Admin\KelulusanController@modal_permohonan');
+    Route::get('lulus','Jais\KelulusanController@index')->name('Kelulusan Permohonan');
+    Route::get('lulus/modal_permohonan/{id}','Jais\KelulusanController@modal_permohonan');
 
     //Permohonan Ditolak
-    Route::get('tolak','Admin\PermohonanController@tolak')->name('Permohonan Ditolak');
-    Route::get('tolak/detail/{id}','Admin\PermohonanController@detail');
-    Route::get('tolak/surat','Admin\PermohonanController@surat');
+    Route::get('tolak','Jais\PermohonanController@tolak')->name('Permohonan Ditolak');
+    Route::get('tolak/detail/{id}','Jais\PermohonanController@detail');
+    Route::get('tolak/surat','Jais\PermohonanController@surat');
 
     //Audit
-    Route::get('audit','Admin\AuditController@index')->name('Audit');
-    Route::get('audit/detail/{id}','Admin\AuditController@detail');
-    Route::get('audit/surat','Admin\AuditController@surat');
+    Route::get('audit','Jais\AuditController@index')->name('Audit');
+    Route::get('audit/detail/{id}','Jais\AuditController@detail');
+    Route::get('audit/surat','Jais\AuditController@surat');
 
     //Syarikat
-    Route::get('syarikat','Admin\SyarikatController@index')->name('Syarikat');
-    Route::get('syarikat/ramuan/{id}','Admin\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
-    Route::get('syarikat/view/{id}','Admin\SyarikatController@view');
-    Route::get('syarikat/detail/{id}','Admin\SyarikatController@detail');
-    Route::get('syarikat/pengumuman/{id}','Admin\SyarikatController@pengumuman');
-    Route::post('syarikat/pengumuman/simpan','Admin\SyarikatController@simpan');
-    Route::get('syarikat/announcement/{id}','Admin\SyarikatController@announcement')->name('Syarikat / Senarai Pengumuman');
-    Route::get('syarikat/pengumuman/create/{id}','Admin\SyarikatController@pengumuman_create');
+    Route::get('syarikat','Jais\SyarikatController@index')->name('Syarikat');
+    Route::get('syarikat/ramuan/{id}','Jais\SyarikatController@ramuan')->name('Syarikat / Senarai Ramuan');
+    Route::get('syarikat/view/{id}','Jais\SyarikatController@view');
+    Route::get('syarikat/detail/{id}','Jais\SyarikatController@detail');
+    Route::get('syarikat/pengumuman/{id}','Jais\SyarikatController@pengumuman');
+    Route::post('syarikat/pengumuman/simpan','Jais\SyarikatController@simpan');
+    Route::get('syarikat/announcement/{id}','Jais\SyarikatController@announcement')->name('Syarikat / Senarai Pengumuman');
+    Route::get('syarikat/pengumuman/create/{id}','Jais\SyarikatController@pengumuman_create');
 
     //Staff
-    Route::get('staff','Admin\StaffController@index')->name('Kakitangan');
-    Route::get('staff/create','Admin\StaffController@create');
-    Route::get('staff/edit/{id}','Admin\StaffController@edit');
-    Route::post('staff/store','Admin\StaffController@store');
-    Route::post('staff/reset/{id}','Admin\StaffController@reset');
-    Route::post('staff/delete/{id}','Admin\StaffController@delete');
+    Route::get('staff','Jais\StaffController@index')->name('Kakitangan');
+    Route::get('staff/create','Jais\StaffController@create');
+    Route::get('staff/edit/{id}','Jais\StaffController@edit');
+    Route::post('staff/store','Jais\StaffController@store');
+    Route::post('staff/reset/{id}','Jais\StaffController@reset');
+    Route::post('staff/delete/{id}','Jais\StaffController@delete');
 
     //Email
-    Route::get('surat','Admin\SuratController@index')->name('Penjanaa Surat');
-    Route::get('surat/edit/{id}','Admin\SuratController@edit');
-    Route::post('surat/store','Admin\SuratController@simpan');
+    Route::get('surat','Jais\SuratController@index')->name('Penjanaa Surat');
+    Route::get('surat/edit/{id}','Jais\SuratController@edit');
+    Route::post('surat/store','Jais\SuratController@simpan');
 
     //Badan Persijilan Halal
-    Route::get('sijil_halal','Admin\CBController@index')->name('Badan Persijilan Halal');
-    Route::get('sijil_halal/edit','Admin\CBController@edit');
-    Route::post('sijil_halal/store','Admin\CBController@store');
-    Route::get('sijil_halal/sync','Admin\CBController@sync');
+    Route::get('sijil_halal','Jais\CBController@index')->name('Badan Persijilan Halal');
+    Route::get('sijil_halal/edit','Jais\CBController@edit');
+    Route::post('sijil_halal/store','Jais\CBController@store');
+    Route::get('sijil_halal/sync','Jais\CBController@sync');
 });

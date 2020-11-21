@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Jais;
 
 use App\Client;
 use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Controller;
-use App\Mail\KelulusanMail;
-use App\Mail\PenolakanMail;
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Ref_Sumber_Bahan;
@@ -107,8 +106,7 @@ class KelulusanController extends Controller
             'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
-        Mail::to('eidlan@yopmail')->send(new KelulusanMail($data));
-        // Mail::to($ramuan->syarikat->company_email)->send(new KelulusanMail($data));
+        Mail::to($ramuan->syarikat->company_email)->send(new SendMail($data));
     }
 
     private function email_tolak($id)
@@ -122,8 +120,7 @@ class KelulusanController extends Controller
             'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
 
-        Mail::to('eidlan@yopmail.com')->send(new PenolakanMail($data));
-        // Mail::to($ramuan->syarikat->company_email)->send(new PenolakanMail($data));
+        Mail::to($ramuan->syarikat->company_email)->send(new SendMail($data));
     }
 
 }
