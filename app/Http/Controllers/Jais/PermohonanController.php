@@ -26,7 +26,7 @@ class PermohonanController extends Controller
 
         $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
         // dd($permohonan);
-        return view('admin/permohonan',compact('cat','permohonan'));
+        return view('jais/permohonan',compact('cat','permohonan'));
     }
 
     public function tolak(Request $request)
@@ -42,7 +42,7 @@ class PermohonanController extends Controller
 
         $permohonan = $permohonan->orderBy('create_dt')->paginate(10);
 
-        return view('admin/permohonan_tolak',compact('cat','permohonan'));
+        return view('jais/permohonan_tolak',compact('cat','permohonan'));
     }
     
     public function modal_permohonan($id)
@@ -53,7 +53,7 @@ class PermohonanController extends Controller
         $rs = Ramuan::find($id);
         $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
         // dd($upload);
-        return view('admin/modal_permohonan',compact('rs','upload'));
+        return view('jais/modal_permohonan',compact('rs','upload'));
     }
 
     public function detail($id)
@@ -61,7 +61,7 @@ class PermohonanController extends Controller
         $rs = Ramuan::find($id);
         $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
         // dd($upload);
-        return view('admin/modal_detail',compact('rs','upload'));
+        return view('jais/modal_detail',compact('rs','upload'));
     }
     
     public function surat(Request $request)

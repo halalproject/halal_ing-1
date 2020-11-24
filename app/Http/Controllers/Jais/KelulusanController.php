@@ -36,7 +36,7 @@ class KelulusanController extends Controller
 
         $kelulusan = $kelulusan->orderBy('create_dt')->paginate(10);
 
-        return view('admin/kelulusan',compact('cat','kelulusan'));
+        return view('jais/kelulusan',compact('cat','kelulusan'));
     }
 
     public function modal_permohonan($id)
@@ -45,7 +45,7 @@ class KelulusanController extends Controller
         $rs = Ramuan::find($id);
         $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
         // dd($upload);
-        return view('admin/modal_permohonan',compact('rs','upload'));
+        return view('jais/modal_permohonan',compact('rs','upload'));
     }
     
     public function komen(Request $request)

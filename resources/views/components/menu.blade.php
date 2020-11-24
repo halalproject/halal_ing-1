@@ -108,11 +108,11 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="@if(\Request::is('client') || (\Request::is('admin')) || (\Request::is('admin/pengumuman'))) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('client') || (\Request::is('jais')) || (\Request::is('jais/pengumuman'))) nav-expanded nav-active @endif">
 										@if(\Request::is('client*'))
 										<a href="/client/">
 										@else
-										<a href="/admin/">
+										<a href="/jais/">
 										@endif
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard Utama</span>
@@ -154,15 +154,15 @@
 									@if(Auth::guard('admin')->user()->user_level <> 4)
 
 									@if(Auth::guard('admin')->user()->user_level <> 2)
-									<li class="@if(\Request::is('admin/permohonan*')) nav-expanded nav-active @endif">
-										<a href="/admin/permohonan">
+									<li class="@if(\Request::is('jais/permohonan*')) nav-expanded nav-active @endif">
+										<a href="/jais/permohonan">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
 											<span>Senarai Permohonan</span>
 										</a>
 									</li>
 
-									<li class="@if(\Request::is('admin/semak*')) nav-expanded nav-active @endif">
-										<a href="/admin/semak">
+									<li class="@if(\Request::is('jais/semak*')) nav-expanded nav-active @endif">
+										<a href="/jais/semak">
 										<i class="fa fa-retweet" aria-hidden="true"></i>
 											<span>Proses Semakan</span>
 										</a>
@@ -170,51 +170,51 @@
 									@endif
 									
 									@if (Auth::guard('admin')->user()->user_level <> 3)
-									<li class="@if(\Request::is('admin/lulus*')) nav-expanded nav-active @endif">
-										<a href="/admin/lulus">
+									<li class="@if(\Request::is('jais/lulus*')) nav-expanded nav-active @endif">
+										<a href="/jais/lulus">
 										<i class="fa fa-check" aria-hidden="true"></i>
 											<span>Proses Kelulusan</span>
 										</a>
 									</li>
 									@endif
 
-									<li class="@if(\Request::is('admin/tolak*')) nav-expanded nav-active @endif">
-										<a href="/admin/tolak">
+									<li class="@if(\Request::is('jais/tolak*')) nav-expanded nav-active @endif">
+										<a href="/jais/tolak">
 											<i class="fa fa-ban" aria-hidden="true"></i>
 											<span>Permohonan Ditolak</span>
 										</a>
 									</li>
 									@endif
 
-									<li class="@if(\Request::is('admin/audit*')) nav-expanded nav-active @endif">
-										<a href="/admin/audit">
+									<li class="@if(\Request::is('jais/audit*')) nav-expanded nav-active @endif">
+										<a href="/jais/audit">
 											<i class="fa fa-folder" aria-hidden="true"></i>
 											<span>Audit</span>
 										</a>
 									</li>
 
-									<li class="@if(\Request::is('admin/syarikat*')) nav-expanded nav-active @endif">
-										<a href="/admin/syarikat">
+									<li class="@if(\Request::is('jais/syarikat*')) nav-expanded nav-active @endif">
+										<a href="/jais/syarikat">
 											<i class="fa fa-building" aria-hidden="true"></i>
 											<span>Syarikat</span>
 										</a>
 									</li>
 
 									@if (Auth::guard('admin')->user()->user_level == 1)
-									<li class="@if(\Request::is('admin/staff*')) nav-expanded nav-active @endif">
-										<a href="/admin/staff">
+									<li class="@if(\Request::is('jais/staff*')) nav-expanded nav-active @endif">
+										<a href="/jais/staff">
 											<i class="fa fa-users" aria-hidden="true"></i>
 											<span>Kakitangan</span>
 										</a>
 									</li>
-									<li class="@if(\Request::is('admin/surat*')) nav-expanded nav-active @endif">
-										<a href="/admin/surat">
+									<li class="@if(\Request::is('jais/surat*')) nav-expanded nav-active @endif">
+										<a href="/jais/surat">
 											<i class="fa fa-envelope" aria-hidden="true"></i>
 											<span>Surat Rujukan</span>
 										</a>
 									</li>
-									<li class="@if(\Request::is('admin/sijil_halal*')) nav-expanded nav-active @endif">
-										<a href="/admin/sijil_halal">
+									<li class="@if(\Request::is('jais/sijil_halal*')) nav-expanded nav-active @endif">
+										<a href="/jais/sijil_halal">
 											<i class="fa fa-certificate" aria-hidden="true"></i>
 											<span>Badan Persijilan Halal</span>
 										</a>

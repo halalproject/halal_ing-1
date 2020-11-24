@@ -114,7 +114,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             <p>{{ date('d/m/Y', strtotime($rs->create_dt)) }}</p>
                         </td>
                         <td align="center">
-                            <a href="/admin/audit/detail/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
+                            <a href="/jais/audit/detail/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Permohonan" class="fa" data-backdrop="static">
                                 <button type="button" class="btn btn-sm btn-info">
                                     <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

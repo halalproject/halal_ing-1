@@ -37,7 +37,7 @@ class SemakanController extends Controller
 
         $semakan = $semakan->orderBy('create_dt')->paginate(10);
 
-        return view('admin/semakan',compact('cat','semakan'));
+        return view('jais/semakan',compact('cat','semakan'));
     }
 
     public function modal_permohonan($id)
@@ -46,7 +46,7 @@ class SemakanController extends Controller
         $rs = Ramuan::find($id);
         $upload = Ramuan_Dokumen::where('ramuan_id',$id)->get();
         // dd($upload);
-        return view('admin/modal_permohonan',compact('rs','upload'));
+        return view('jais/modal_permohonan',compact('rs','upload'));
     }
     
     public function komen(Request $request)

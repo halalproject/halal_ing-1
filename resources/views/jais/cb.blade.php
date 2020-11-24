@@ -23,7 +23,7 @@ function do_page() {
 
 function do_sync() {
     $.ajax({
-        url:'/admin/sijil_halal/sync',
+        url:'/jais/sijil_halal/sync',
         type:'GET',
         success: function(data){
             if(data == 'OK'){
@@ -142,7 +142,7 @@ function do_sync() {
                 @endif
                 </td>
                 <td align="center">
-                    <a href="/admin/sijil_halal/edit?id={{ $item->fldid }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Pengumuman" class="fa text-dark" data-backdrop="static">
+                    <a href="/jais/sijil_halal/edit?id={{ $item->fldid }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Pengumuman" class="fa text-dark" data-backdrop="static">
                         <button type="button" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                         </button>

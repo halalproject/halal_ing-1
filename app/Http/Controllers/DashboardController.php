@@ -77,7 +77,7 @@ class DashboardController extends Controller
         $calendar->setId('1');
         $calendar->setCallbacks([
             'eventClick' => 'function(info){
-                $("#myModalm").modal("show").find(".modal-content").load("/admin/event/view/"+info.event.id); 
+                $("#myModalm").modal("show").find(".modal-content").load("/jais/event/view/"+info.event.id); 
              }'
         ]);
 
@@ -87,7 +87,7 @@ class DashboardController extends Controller
         $audit = Ramuan::where('is_lulus',1)->where('is_delete',0);
 
 
-        return view('admin/dashboard',compact('pengumuman','calendar','baru','semak','lulus','audit'));
+        return view('jais/dashboard',compact('pengumuman','calendar','baru','semak','lulus','audit'));
     }
     
     public function event_view($id)
@@ -96,7 +96,7 @@ class DashboardController extends Controller
 
         $rs = Calendar_Event::find($id);
 
-        return view('admin/event_view',compact('rs'));
+        return view('jais/event_view',compact('rs'));
     }
     
     public function pengumuman(Request $request)
@@ -111,7 +111,7 @@ class DashboardController extends Controller
 
         // dd($calendar);
         
-        return view('admin/pengumuman', compact('calendar'));
+        return view('jais/pengumuman', compact('calendar'));
     }
 
     public function pengumuman_create()
@@ -120,7 +120,7 @@ class DashboardController extends Controller
         // $comp = Client::where('is_delete',0)->get(); 
         $cat = Ref_Kategori_Event::where('status',0)->get(); 
         
-        return view('admin/pengumuman_create', compact('cat'));
+        return view('jais/pengumuman_create', compact('cat'));
     }
 
     public function pengumuman_store(Request $request)
@@ -204,7 +204,7 @@ class DashboardController extends Controller
                 return response()->json('ERR');
             }
         }
-        // return view('admin/pengumuman_create');
+        // return view('jais/pengumuman_create');
     }
 
     public function edit($id)
@@ -214,7 +214,7 @@ class DashboardController extends Controller
         // $comp = Client::where('is_delete',0)->get(); 
         $cat = Ref_Kategori_Event::where('status',0)->get();
 
-        return view('admin/pengumuman_create',compact('calendar', 'cat'));
+        return view('jais/pengumuman_create',compact('calendar', 'cat'));
     }
 
     public function delete($id)

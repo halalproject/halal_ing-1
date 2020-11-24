@@ -21,7 +21,7 @@
                 reverseButtons: true
             }).then(function () {
                 $.ajax({
-                    url:'/admin/pengumuman/delete/'+id, //&datas='+datas,
+                    url:'/jais/pengumuman/delete/'+id, //&datas='+datas,
                     type:'POST',
                     data: $("form").serialize(),
                     //data: datas,
@@ -96,7 +96,7 @@
                     </div>
                     
                     <div class="col-md-2" align="right">
-                        <a href="/admin/pengumuman/create" data-toggle="modal" data-target="#myModal" title="Tambah Pengumuman" class="fa" data-backdrop="static">
+                        <a href="/jais/pengumuman/create" data-toggle="modal" data-target="#myModal" title="Tambah Pengumuman" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-primary">
                             <i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
                         </a>
@@ -157,7 +157,7 @@
                                 @endif
                             </td>
                             <td align="center">
-                                <a href="/admin/pengumuman/edit/{{ $ev->id }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Pengumuman" class="fa text-dark" data-backdrop="static">
+                                <a href="/jais/pengumuman/edit/{{ $ev->id }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Pengumuman" class="fa text-dark" data-backdrop="static">
                                     <button type="button" class="btn btn-sm btn-warning">
                                         <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                                     </button>

@@ -8,12 +8,12 @@
 <script>
 function do_pengumuman()
 {
-    window.location = '/admin/pengumuman'
+    window.location = '/jais/pengumuman'
 }
 
 function do_detail(ids)
 {
-    $("#myModalm").modal("show").find(".modal-content").load("/admin/event/view/"+ids)
+    $("#myModalm").modal("show").find(".modal-content").load("/jais/event/view/"+ids)
 }
 </script>
 <div class="row">
@@ -46,7 +46,7 @@ function do_detail(ids)
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="/admin/permohonan" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/jais/permohonan" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@ function do_detail(ids)
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="/admin/semak" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/jais/semak" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@ function do_detail(ids)
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="/admin/lulus" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/jais/lulus" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ function do_detail(ids)
                                         </div>
                                         
                                         <div class="summary-footer">
-                                            <a href="/admin/audit" class="text-muted text-uppercase">Papar Maklumat</a>
+                                            <a href="/jais/audit" class="text-muted text-uppercase">Papar Maklumat</a>
                                         </div>
                                     </div>
                                 </div>

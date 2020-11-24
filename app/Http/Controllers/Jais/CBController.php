@@ -28,12 +28,12 @@ class CBController extends Controller
         
         $cb = $cb->orderBy('fldid')->paginate(10);
 
-        return view('admin/cb',compact('rsn','cb'));
+        return view('jais/cb',compact('rsn','cb'));
     }
 
     public function edit()
     {
-        return view('admin/modal_cb');
+        return view('jais/modal_cb');
     }
 
     public function sync()

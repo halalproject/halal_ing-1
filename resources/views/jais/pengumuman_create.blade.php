@@ -78,7 +78,7 @@ function do_simpan() {
             }
         });
         $.ajax({
-            url:'/admin/pengumuman/store',
+            url:'/jais/pengumuman/store',
             type:'POST',
             beforeSend: function () {
                 $('#simpan').attr("disabled","disabled");
@@ -205,7 +205,7 @@ $pub = $calendar->is_public ?? '';
 
                             @if(!empty($id) && $calendar->file_name != '')
                             <div class="col-sm-4">
-                                <a href="/admin/dokumen_pengumuman/{{ $calendar->file_name }}">
+                                <a href="/jais/dokumen_pengumuman/{{ $calendar->file_name }}">
                                     <i class="fa fa-download">
                                     <input  type="text" name="curr_doc" id="curr_doc" value="{{ $calendar->file_name }}" style ="border:none; padding-left:0px;">
                                     </i>

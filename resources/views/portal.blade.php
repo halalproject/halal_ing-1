@@ -48,7 +48,7 @@
                                     if(data[1] == 'client'){
                                         window.location = '/client';
                                     } else if(data[1] == 'admin'){
-                                        window.location = '/admin';
+                                        window.location = '/jais';
                                     }
                                 });
                             } else {

@@ -26,14 +26,14 @@ class AuditController extends Controller
         
         $list = $list->orderBy('create_dt','DESC')->paginate(10);
         // dd($list);
-        return view('admin/audit',compact('cat','list'));
+        return view('jais/audit',compact('cat','list'));
     }
 
     public function detail($id)
     {
         // dd($id);
         $rs = Ramuan::find($id);
-        return view('admin/modal_detail',compact('rs'));
+        return view('jais/modal_detail',compact('rs'));
     }
     
     public function surat(Request $request)

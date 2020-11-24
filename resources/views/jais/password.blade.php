@@ -35,7 +35,7 @@ function do_simpan()
         });
     } else {
         $.ajax({
-			url:'/admin/reset', //&datas='+datas,
+			url:'/jais/reset', //&datas='+datas,
 			type:'POST',
 			data: formdata,
 			//data: datas,

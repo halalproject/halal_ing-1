@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuditTrail extends Model
 {
-    protected $table = "sys_log";
+    protected $table = "auditrail";
 
     protected $primaryKey = 'aid';
 

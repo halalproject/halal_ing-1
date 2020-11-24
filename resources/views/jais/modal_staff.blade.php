@@ -49,7 +49,7 @@ function do_simpan()
 			}
 		});
         $.ajax({
-            url:'/admin/staff/store', //&datas='+datas,
+            url:'/jais/staff/store', //&datas='+datas,
             type:'POST',
             //dataType: 'json',
             beforeSend: function () {

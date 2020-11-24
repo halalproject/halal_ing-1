@@ -25,7 +25,7 @@ function do_simpan() {
             }
         });
         $.ajax({
-            url:'/admin/pengumuman/store',
+            url:'/jais/pengumuman/store',
             type:'POST',
             beforeSend: function () {
                 $('#simpan').attr("disabled","disabled");

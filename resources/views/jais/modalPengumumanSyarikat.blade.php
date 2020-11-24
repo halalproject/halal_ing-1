@@ -35,7 +35,7 @@
                 }
             });
             $.ajax({
-                url:'/admin/syarikat/pengumuman/simpan',
+                url:'/jais/syarikat/pengumuman/simpan',
                 type:'POST',
                 beforeSend: function () {
                     $('#simpan').attr("disabled","disabled");
@@ -180,7 +180,7 @@
 
                             
                             <div class="col-sm-4">
-                                <a href="/admin/dokumen_pengumuman/{{ $event->file_name ?? '' }}">
+                                <a href="/jais/dokumen_pengumuman/{{ $event->file_name ?? '' }}">
                                     <input  type="text" name="curr_doc" id="curr_doc" value="{{ $event->file_name ?? '' }}" style ="border:none; padding-left:0px;">
                                 </a>
                             </div>

@@ -20,7 +20,7 @@ class SuratController extends Controller
 
         $email = $email->paginate(5);
 
-        return view('admin/surat',compact('email'));
+        return view('jais/surat',compact('email'));
     }
 
     public function edit(Request $request, $id)
@@ -31,7 +31,7 @@ class SuratController extends Controller
         $type = $request->type;
         $surat = Ref_Surat::find($id);
 
-        return view('admin/modal_surat',compact('type','surat'));
+        return view('jais/modal_surat',compact('type','surat'));
     }
 
     public function simpan(Request $request)

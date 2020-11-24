@@ -71,7 +71,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                     <tr>
                         <td valign="top" align="center">{{ ++$bil }}</td>
                         <td valign="top" align="left">
-                            <a href="/admin/syarikat/view/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
+                            <a href="/jais/syarikat/view/{{ $rs->id }}" data-toggle="modal" data-target="#myModal" title="Nama Syarikat" class="fa" data-backdrop="static">
                             {{ $rs->company_name }}
                         </td>
                         <td valign="top" align="left">
@@ -97,13 +97,13 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                             {{ $rs->company_address_1 }} {{ $rs->company_address_2 }} {{ $rs->company_address_3 }} {{ $rs->company_city }} {{ $rs->company_poscode }}
                         </td>
                         <td align="center">
-                            <a href="/admin/syarikat/ramuan/{{ $rs->userid }}" title="Senarai Ramuan">
+                            <a href="/jais/syarikat/ramuan/{{ $rs->userid }}" title="Senarai Ramuan">
                                 <button type="button" class="btn btn-primary">
                                     <i class="fa fa-list fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
                             </a>
                             <!-- @if (Auth::guard('admin')->user()->user_level == 1)
-                            <a href="/admin/syarikat/pengumuman/{{ $rs->userid }}" data-toggle="modal" data-target="#myModal" title="Tambah Pengumuman" class="fa text-dark" data-backdrop="static">
+                            <a href="/jais/syarikat/pengumuman/{{ $rs->userid }}" data-toggle="modal" data-target="#myModal" title="Tambah Pengumuman" class="fa text-dark" data-backdrop="static">
                                 <button type="button" class="btn btn-warning">
                                     <i class="fa fa-bullhorn fa-lg" style="color: #FFFFFF;"></i>
                                 </button>
@@ -111,7 +111,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                             @endif -->
 
                             @if (Auth::guard('admin')->user()->user_level == 1)
-                            <a href="/admin/syarikat/announcement/{{ $rs->userid }}" title="Tambah Pengumuman">
+                            <a href="/jais/syarikat/announcement/{{ $rs->userid }}" title="Tambah Pengumuman">
                                 <button type="button" class="btn btn-warning">
                                     <i class="fa fa-bullhorn fa-lg" style="color: #FFFFFF;"></i>
                                 </button>

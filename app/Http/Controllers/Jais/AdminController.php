@@ -24,14 +24,14 @@ class AdminController extends Controller
 
         $user = Auth::guard('admin')->user();
 
-        return view('admin/profile',compact('rsj','rsl','rss','user'));
+        return view('jais/profile',compact('rsj','rsl','rss','user'));
     }
 
     public function password()
     {
         $user = Auth::guard('admin')->user();
 
-        return view('admin/password',compact('user'));
+        return view('jais/password',compact('user'));
     }
     
     public function reset(Request $request)

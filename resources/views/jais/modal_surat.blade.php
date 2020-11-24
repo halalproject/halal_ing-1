@@ -31,7 +31,7 @@ function do_save(){
     $('#k1Contents').focus(); return false;
 	} else {
 		$.ajax({
-			url:'/admin/surat/store', //&datas='+datas,
+			url:'/jais/surat/store', //&datas='+datas,
 			type:'POST',
 			//dataType: 'json',
 			beforeSend: function () {
@@ -61,7 +61,7 @@ function do_save(){
 					  confirmButtonText: "Ok",
 					  showConfirmButton: true,
 					}).then(function () {
-						window.location = '/admin/surat';
+						window.location = '/jais/surat';
 					});
 				}
 			}
@@ -71,7 +71,7 @@ function do_save(){
 
 function do_back()
 {
-  window.location = "/admin/surat/"
+  window.location = "/jais/surat/"
 }
 </script>
 @php

@@ -103,7 +103,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                             @endif
                             </td>
                             <td align="center">
-                                <a href="/admin/tolak/detail/{{ $mohon->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
+                                <a href="/jais/tolak/detail/{{ $mohon->id }}" data-toggle="modal" data-target="#myModal" title="Maklumat Ramuan" class="fa" data-backdrop="static">
                                     <button type="button" class="btn btn-sm btn-info">
                                         <i class="fa fa-file-text fa-lg" style="color: #FFFFFF;"></i>
                                     </button>

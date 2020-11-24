@@ -9,6 +9,8 @@ use App\Ref_User_Jawatan;
 use App\Ref_User_Level;
 use App\Ref_User_Status;
 use App\Admin;
+use App\AuditTrail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class StaffController extends Controller
@@ -26,7 +28,7 @@ class StaffController extends Controller
         if(!empty($request->carian)){ $user->where('username','LIKE','%'.$request->carian.'%')->orWhere('email','LIKE','%'.$request->carian.'%')->orWhere('nombor_hp','LIKE','%'.$request->carian.'%'); }
 
         $user = $user->paginate(10);
-        return view('admin/staff',compact('rsl','rss','user'));
+        return view('jais/staff',compact('rsl','rss','user'));
     }
 
     public function create()
@@ -37,7 +39,7 @@ class StaffController extends Controller
         
         $rss = Ref_User_Status::where('status',0)->get();
 
-        return view('admin/modal_staff',compact('rsj','rsl','rss'));
+        return view('jais/modal_staff',compact('rsj','rsl','rss'));
     }
 
     public function edit($id)
@@ -51,11 +53,12 @@ class StaffController extends Controller
 
         $user = Admin::find($id);
 
-        return view('admin/modal_staff',compact('rsj','rsl','rss','user'));
+        return view('jais/modal_staff',compact('rsj','rsl','rss','user'));
     }
 
     public function store(Request $request)
     {
+        DB::enableQueryLog();
         // dd($request->all());
         $user = Auth::guard('admin')->user()->id;
 
@@ -110,6 +113,17 @@ class StaffController extends Controller
 
             $u = Admin::where('id',$request->id)->update($data);
 
+            $query = DB::getQueryLog()[0];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
+
             if($u){
                 return response()->json('OK');
             } else {
@@ -117,7 +131,7 @@ class StaffController extends Controller
             }
         }
 
-        return view('admin/modal_staff');
+        return view('jais/modal_staff');
     }
 
     public function reset($id)

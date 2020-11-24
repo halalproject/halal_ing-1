@@ -17,9 +17,9 @@
                     @if($rs->is_delete != 1 && $rs->status != 1)
                     @php
                         if($rs->status == 6){
-                            $link = '/admin/tolak/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
+                            $link = '/jais/tolak/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
                         } else if($rs->status == 3) {
-                            $link = '/admin/audit/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
+                            $link = '/jais/audit/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
                         }
                     @endphp
                     <a href="{{ $link }}">

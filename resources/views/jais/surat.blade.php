@@ -33,7 +33,7 @@ function do_hapus(id)
         reverseButtons: true
     }).then(function () {
         $.ajax({
-			url:'/admin/staff/delete/'+id, //&datas='+datas,
+			url:'/jais/staff/delete/'+id, //&datas='+datas,
 			type:'POST',
 			data: $("form").serialize(),
 			//data: datas,
@@ -169,12 +169,12 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                         @endif
                     </td>
                     <td align="center">
-                        <a href="/admin/surat/edit/{{ $surat->id }}?type=k1" data-toggle="modal" data-target="#myModal" title="Kemaskini Kandungan 1 Surat" class="fa" data-backdrop="static">
+                        <a href="/jais/surat/edit/{{ $surat->id }}?type=k1" data-toggle="modal" data-target="#myModal" title="Kemaskini Kandungan 1 Surat" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-sm btn-warning">
                                 <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                             </button>
                         </a>
-                        <a href="/admin/surat/edit/{{ $surat->id }}?type=k2" data-toggle="modal" data-target="#myModal" title="Kemaskini Kandungan 2 Surat" class="fa" data-backdrop="static">
+                        <a href="/jais/surat/edit/{{ $surat->id }}?type=k2" data-toggle="modal" data-target="#myModal" title="Kemaskini Kandungan 2 Surat" class="fa" data-backdrop="static">
                             <button type="button" class="btn btn-sm btn-warning">
                                 <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                             </button>

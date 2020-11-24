@@ -23,7 +23,7 @@ class SyarikatController extends Controller
             }); 
         } 
         $client = $client->orderBy('userid','ASC')->paginate(10);
-        return view('admin/syarikat',compact('client'));
+        return view('jais/syarikat',compact('client'));
     }
 
     public function view($id)
@@ -31,7 +31,7 @@ class SyarikatController extends Controller
         // dd($id);
         $client = Client::find($id);
 
-        return view('admin/modal_syarikat',compact('client'));
+        return view('jais/modal_syarikat',compact('client'));
     }
 
     public function ramuan(Request $request,$id)
@@ -52,14 +52,14 @@ class SyarikatController extends Controller
         $ramuan = $ramuan->orderBy('create_dt','DESC')->paginate(10);
 
         
-        return view('admin/ramuan',compact('syarikat','cat','ramuan'));
+        return view('jais/ramuan',compact('syarikat','cat','ramuan'));
     }
 
     public function detail($id)
     {
         // dd($id);
         $rs = Ramuan::find($id);
-        return view('admin/modal_detail',compact('rs'));
+        return view('jais/modal_detail',compact('rs'));
     }
 
     public function announcement(Request $request,$id)
@@ -76,14 +76,14 @@ class SyarikatController extends Controller
 
         $event = $event->orderBy('created_dt')->paginate(10);
 
-        return view('admin/pengumumanSyarikat', compact('comp', 'event', 'compId'));
+        return view('jais/pengumumanSyarikat', compact('comp', 'event', 'compId'));
     }
 
     public function pengumuman_create($id) 
     {
         $comp = Client::where('userid',$id)->first();
         // dd($comp);
-        return view('admin/modalPengumumanSyarikat', compact('comp'));
+        return view('jais/modalPengumumanSyarikat', compact('comp'));
     }
 
     public function pengumuman($id)
@@ -91,7 +91,7 @@ class SyarikatController extends Controller
         $event = Calendar_Event::where('id', $id)->first();
         $comp = Client::where('userid',$event->company_id)->first();
         // dd($comp);
-        return view('admin/modalPengumumanSyarikat',compact('event', 'comp'));
+        return view('jais/modalPengumumanSyarikat',compact('event', 'comp'));
     }
 
     public function simpan(request $request)

@@ -34,7 +34,7 @@ function do_reset(id)
         reverseButtons: true
     }).then(function () {
         $.ajax({
-			url:'/admin/staff/reset/'+id, //&datas='+datas,
+			url:'/jais/staff/reset/'+id, //&datas='+datas,
 			type:'POST',
 			data: $("form").serialize(),
 			//data: datas,
@@ -80,7 +80,7 @@ function do_hapus(id)
         reverseButtons: true
     }).then(function () {
         $.ajax({
-			url:'/admin/staff/delete/'+id, //&datas='+datas,
+			url:'/jais/staff/delete/'+id, //&datas='+datas,
 			type:'POST',
 			data: $("form").serialize(),
 			//data: datas,
@@ -157,7 +157,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
             </div>
 
             <div class="col-md-2" align="right">
-                <a href="/admin/staff/create" data-toggle="modal" data-target="#myModal" title="Tambah Staf Baru" class="fa" data-backdrop="static">
+                <a href="/jais/staff/create" data-toggle="modal" data-target="#myModal" title="Tambah Staf Baru" class="fa" data-backdrop="static">
                     <button type="button" class="btn btn-primary">
                     <i class=" fa fa-plus-square"></i> <font style="font-family:Verdana, Geneva, sans-serif">Tambah</font></button>
                 </a>
@@ -208,7 +208,7 @@ $carian=isset($_REQUEST["carian"])?$_REQUEST["carian"]:"";
                             </button>
                         </a>
                         @endif
-                        <a href="/admin/staff/edit/{{ $rsu->id }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Kakitangan" class="fa text-dark" data-backdrop="static">
+                        <a href="/jais/staff/edit/{{ $rsu->id }}" data-toggle="modal" data-target="#myModal" title="Kemaskini Maklumat Kakitangan" class="fa text-dark" data-backdrop="static">
                             <button type="button" class="btn btn-sm btn-warning">
                                 <i class="fa fa-pencil-square-o fa-lg" style="color: #FFFFFF;"></i>
                             </button>

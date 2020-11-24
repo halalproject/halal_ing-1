@@ -25,7 +25,7 @@ function do_simpan()
         });
     } else {
         $.ajax({
-            url:'/admin/semak/komen', //&datas='+datas,
+            url:'/jais/semak/komen', //&datas='+datas,
             type:'POST',
             //dataType: 'json',
             beforeSend: function () {
