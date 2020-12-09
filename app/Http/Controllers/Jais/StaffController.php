@@ -113,6 +113,7 @@ class StaffController extends Controller
 
             $u = Admin::where('id',$request->id)->update($data);
 
+            //Auditrail
             $query = DB::getQueryLog()[0];
             $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
 
