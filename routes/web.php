@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'jais'],function(){
 
     //Dashboard
     Route::get('/','DashboardController@admin');
-    
+
     //Pengumuman
     Route::get('pengumuman','DashboardController@pengumuman')->name('Pengumuman');
     Route::get('pengumuman/create','DashboardController@pengumuman_create');
@@ -87,10 +87,11 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'jais'],function(){
 
     //Event
     Route::get('/event/view/{id}','DashboardController@event_view');
+    Route::get('/event/dokumen/{file}','DashboardController@event_doc');
 
     //Profile and Password
     Route::get('profile','Jais\AdminController@profile');
-    Route::post('store','Client\AdminController@store');
+    Route::post('store','Jais\AdminController@store');
     Route::get('password','Jais\AdminController@password');
     Route::post('reset','Jais\AdminController@reset');
 
@@ -115,6 +116,7 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'jais'],function(){
     //Audit
     Route::get('audit','Jais\AuditController@index')->name('Audit');
     Route::get('audit/detail/{id}','Jais\AuditController@detail');
+    Route::get('audit/dokumen/{file}','Jais\AuditController@download');
     Route::get('audit/surat','Jais\AuditController@surat');
 
     //Syarikat
@@ -145,4 +147,7 @@ Route::group(['middleware' => 'auth:admin','prefix' => 'jais'],function(){
     Route::get('sijil_halal/edit','Jais\CBController@edit');
     Route::post('sijil_halal/store','Jais\CBController@store');
     Route::get('sijil_halal/sync','Jais\CBController@sync');
+
+    //Auditrail
+    Route::get('auditrail','Jais\AuditrailController@index');
 });

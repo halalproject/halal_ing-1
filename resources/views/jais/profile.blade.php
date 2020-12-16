@@ -4,7 +4,7 @@
     });
 
     function do_simpan()
-    {    
+    {
         var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
         var no_kp = $('#no_kp').val();
         var nama = $('#nama').val();
@@ -49,7 +49,7 @@
                 }
             });
             $.ajax({
-                url:'/jais/staff/store', //&datas='+datas,
+                url:'/jais/store', //&datas='+datas,
                 type:'POST',
                 //dataType: 'json',
                 beforeSend: function () {
@@ -70,7 +70,7 @@
                         confirmButtonText: "Ok",
                         showConfirmButton: true,
                         }).then(function () {
-                            reload = window.location; 
+                            reload = window.location;
                             window.location = reload;
                         });
                     } else if(data=='ERR'){
@@ -121,7 +121,7 @@ $status = $user->user_status ?? '';
                             <button type="button" class="btn btn-info" id="upload"><i class="fa fa-upload" aria-hidden="true" align="center"></i> Muat Naik Gambar</button>
                         </body><br><br>
                     </div>
-                    
+
 
                     <div class="form-group">
                         <div class="row">
@@ -132,14 +132,14 @@ $status = $user->user_status ?? '';
 
                             <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. KP :</label>
                             <div class="col-sm-4">
-                                <input type="text" name="no_kp" id="no_kp" class="form-control" placeholder="No. Kad Pengenalan" 
+                                <input type="text" name="no_kp" id="no_kp" class="form-control" placeholder="No. Kad Pengenalan"
                                 value="{{ $user->nombor_kp ?? '' }}" maxlength="12"
-                                onkeydown="return (event.ctrlKey || event.altKey 
-                                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                onkeydown="return (event.ctrlKey || event.altKey
+                                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                                     || (95<event.keyCode && event.keyCode<106)
-                                    || (event.keyCode==8) || (event.keyCode==9) 
-                                    || (event.keyCode>34 && event.keyCode<40) 
-                                    || (event.keyCode==46) )" > 
+                                    || (event.keyCode==8) || (event.keyCode==9)
+                                    || (event.keyCode>34 && event.keyCode<40)
+                                    || (event.keyCode==46) )" >
                                 <i><font color="#FF0000">(Sila masukkan No. MyKAD tanpa tanda '-')</font></i>
                             </div>
                         </div>
@@ -151,26 +151,26 @@ $status = $user->user_status ?? '';
                             <div class="col-sm-4">
                                 <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input id="no_hp" name="no_hp" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}" maxlength="11"
-                                            onkeydown="return (event.ctrlKey || event.altKey 
-                                                || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                    <input id="no_telefon" name="no_telefon" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}" maxlength="11"
+                                            onkeydown="return (event.ctrlKey || event.altKey
+                                                || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                                                 || (95<event.keyCode && event.keyCode<106)
-                                                || (event.keyCode==8) || (event.keyCode==9) 
-                                                || (event.keyCode>34 && event.keyCode<40) 
+                                                || (event.keyCode==8) || (event.keyCode==9)
+                                                || (event.keyCode>34 && event.keyCode<40)
                                                 || (event.keyCode==46) )">
                                 </div>
                             </div>
 
-                            <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. Fax :</label>
+                            <label class="col-sm-2 control-label"><font color="#FF0000">*</font> No. Hp :</label>
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input id="no_telefon" name="no_telefon" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}" maxlength="11"
-                                            onkeydown="return (event.ctrlKey || event.altKey 
-                                                || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                                <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                                    <input id="no_hp" name="no_hp" data-plugin-masked-input placeholder="0312231234" class="form-control" value="{{ $user->nombor_tel ?? '' }}" maxlength="11"
+                                            onkeydown="return (event.ctrlKey || event.altKey
+                                                || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
                                                 || (95<event.keyCode && event.keyCode<106)
-                                                || (event.keyCode==8) || (event.keyCode==9) 
-                                                || (event.keyCode>34 && event.keyCode<40) 
+                                                || (event.keyCode==8) || (event.keyCode==9)
+                                                || (event.keyCode>34 && event.keyCode<40)
                                                 || (event.keyCode==46) )">
                                 </div>
                             </div>
@@ -207,7 +207,7 @@ $status = $user->user_status ?? '';
                                     @endforeach
                                 </select>
                             </div>
-                            
+
                             <label class="col-sm-2 control-label " for="status"><font color="#FF0000">*</font> Status : </label>
                             <div class="col-md-4">
                                 <select name="status" id="status" class="form-control">
@@ -227,26 +227,9 @@ $status = $user->user_status ?? '';
                                 <i class="fa fa-save"></i> Simpan</button>
                         </div>
                     </div>
-                        
+
                 </div>
             </div>
         </section>
     </form>
 </div>
-<!-- @if(empty($id))
-    <script>
-        $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-        $('#tab2').toggleClass('disabled');
-        $('#tab-2').removeAttr('data-toggle');
-        })
-    </script>
-@else
-    <script>
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-            $('#tab2').toogleClass('disabled');
-            $('#tab-2').attr('data-toggle','tab');
-        })
-    </script>
-@endif -->

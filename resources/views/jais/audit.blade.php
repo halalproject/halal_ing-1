@@ -36,10 +36,10 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                 <!--<a href="#" class="fa fa-caret-down"></a>
                 <a href="#" class="fa fa-times"></a>-->
                 </div>
-                <h2 class="panel-title"><font color="#000000"><b>AUDIT RAMUAN</b></font></h2> 
+                <h2 class="panel-title"><font color="#000000"><b>AUDIT RAMUAN</b></font></h2>
             </header>
 			</div>
-            </div>            
+            </div>
             <br />
 
             <div class="box-body">
@@ -62,7 +62,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                     <div class="col-md-6">
                         <input type="text" class="form-control" id="carian" name="carian" value="{{ $carian }}" placeholder="Maklumat Carian">
                     </div>
-        
+
                     <div class="col-md-2" align="right">
                         <button type="button" class="btn btn-success" onclick="do_page()"><i class="fa fa-search"></i> Carian</button>
                     </div>
@@ -105,7 +105,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
                         @else
                             Ada
                         @endif
-                        <br>                        
+                        <br>
                         <small class="text-muted">
                             (Tarikh Tamat: @if ($rs->tarikh_tamat_sijil != '0000-00-00') {{ date('d/m/Y', strtotime($rs->tarikh_tamat_sijil)) }} @else ?? @endif )</small>
                         <br>
@@ -130,7 +130,7 @@ $kategori=isset($_REQUEST["kategori"])?$_REQUEST["kategori"]:"";
             {!! $list->appends(['sijil'=>$sijil,'kategori'=>$kategori,'carian'=>$carian])->render() !!}
         </div>
      </div>
-  <!--</div>-->    
+  <!--</div>-->
 <!-- DataTables -->
 
 @endsection

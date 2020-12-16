@@ -48,9 +48,9 @@ class DashboardController extends Controller
 
         foreach ($details as $det) {
             if($det->start_date == $det->end_date){
-                $status = true; 
+                $status = true;
             } else {
-                $status = false; 
+                $status = false;
             }
 
             $events[] = Calendar::event(
@@ -59,9 +59,9 @@ class DashboardController extends Controller
                 $det->start_date, //start time (you can also use Carbon instead of DateTime)
                 $det->end_date, //end time (you can also use Carbon instead of DateTime)
                 $det->id //optionally, you can specify an event ID
-            );   
+            );
         }
-        
+
         $calendar = new Calendar();
         $calendar->addEvents($events)
         ->setOptions([
@@ -77,7 +77,7 @@ class DashboardController extends Controller
         $calendar->setId('1');
         $calendar->setCallbacks([
             'eventClick' => 'function(info){
-                $("#myModalm").modal("show").find(".modal-content").load("/jais/event/view/"+info.event.id); 
+                $("#myModalm").modal("show").find(".modal-content").load("/jais/event/view/"+info.event.id);
              }'
         ]);
 
@@ -89,7 +89,7 @@ class DashboardController extends Controller
 
         return view('jais/dashboard',compact('pengumuman','calendar','baru','semak','lulus','audit'));
     }
-    
+
     public function event_view($id)
     {
         // dd($id);
@@ -98,42 +98,52 @@ class DashboardController extends Controller
 
         return view('jais/event_view',compact('rs'));
     }
-    
+
+    public function event_doc($file)
+    {
+        $path = storage_path().'/app/dokumen_pengumuman/'.$file;
+		if(file_exists($path)){
+            return response()->download($path);
+		} else {
+			return back();
+        }
+    }
+
     public function pengumuman(Request $request)
     {
         $calendar = Calendar_Event::where('is_delete',0)->where('is_public','<>',4);
 
-        if(!empty($request->carian)) { 
-            $calendar->where('event','LIKE','%'.$request->carian.'%'); 
+        if(!empty($request->carian)) {
+            $calendar->where('event','LIKE','%'.$request->carian.'%');
         }
 
         $calendar = $calendar->orderBy('created_dt','DESC')->paginate(10);
 
         // dd($calendar);
-        
+
         return view('jais/pengumuman', compact('calendar'));
     }
 
     public function pengumuman_create()
     {
         // dd('create');
-        // $comp = Client::where('is_delete',0)->get(); 
-        $cat = Ref_Kategori_Event::where('status',0)->get(); 
-        
+        // $comp = Client::where('is_delete',0)->get();
+        $cat = Ref_Kategori_Event::where('status',0)->get();
+
         return view('jais/pengumuman_create', compact('cat'));
     }
 
     public function pengumuman_store(Request $request)
     {
-        
-        dd($request->all());
+
+        // dd($request->all());
 
         $user = Auth::guard('admin')->user()->id;
-        
+
         if(empty($request->doc_avail) && (!empty($request->doc))){
             $file = $request->doc->getClientOriginalName();
             $type = pathinfo($file)['extension'];
-            $path = $request->doc->storeAs('dokumen_pengumuman', $file); 
+            $path = $request->doc->storeAs('dokumen_pengumuman', $file);
         } else {
             $file = '';
             $type = '';
@@ -149,9 +159,9 @@ class DashboardController extends Controller
 
         // dd($file);
 
-        if($request->pengumuman_untuk !='4') { 
+        if($request->pengumuman_untuk !='4') {
             $company = '';
-        } else { 
+        } else {
             $company = $request->compName;
         }
 
@@ -165,7 +175,7 @@ class DashboardController extends Controller
             $event->is_public = $request->pengumuman_untuk;
             $event->company_id = $company;
             $event->file_name = $showFile;
-            $event->file_type = $type; 
+            $event->file_type = $type;
             $event->created_dt = now();
             $event->created_by = $user;
             $event->updated_dt = now();
@@ -178,8 +188,8 @@ class DashboardController extends Controller
             } else {
                 return response()->json('ERR');
             }
-        
-        } else {  
+
+        } else {
             $data = array(
                 'event' => $request->event,
                 'start_date' => $request->start_date,
@@ -194,7 +204,7 @@ class DashboardController extends Controller
                 'updated_by' => $user,
             );
 
-            
+
 
             $event = Calendar_Event::where('id',$request->id)->update($data);
 
@@ -210,8 +220,8 @@ class DashboardController extends Controller
     public function edit($id)
     {
         $calendar = Calendar_Event::find($id);
-        
-        // $comp = Client::where('is_delete',0)->get(); 
+
+        // $comp = Client::where('is_delete',0)->get();
         $cat = Ref_Kategori_Event::where('status',0)->get();
 
         return view('jais/pengumuman_create',compact('calendar', 'cat'));
@@ -243,7 +253,7 @@ class DashboardController extends Controller
                     ]);
             } elseif(pathinfo($file)['extension'] == 'pdf') {
                 return response()->make(file_get_contents($path), 200, [
-                    'Content-Type' => 'application/pdf', 
+                    'Content-Type' => 'application/pdf',
                     'Content-Disposition' => 'inline; file="'.$file.'"'
                 ]);
             } else {
@@ -253,14 +263,14 @@ class DashboardController extends Controller
 			return back();
         }
     }
-    
+
     public function downloadDocumentTest($file)
     {
         return app('dokumen_pengumuman/'.$file);
     }
 
     public function announcement($id)
-    { 
+    {
         $event = Calendar_Event::find($id);
 
         // dd($event);

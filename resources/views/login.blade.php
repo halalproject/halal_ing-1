@@ -32,7 +32,7 @@
 							<div class="form-group mb-lg">
 								<div class="clearfix">
 									<label class="pull-left">Kata Laluan : </label>
-									
+
 								</div>
 								<div class="input-group input-group-icon">
 									<input name="password" id="password" type="password" class="form-control input-lg" placeholder="Kata Laluan Pengguna" />
@@ -62,7 +62,7 @@
 
 							<span class="mt-lg mb-lg line-thru text-center text-uppercase">
 							</span>
-                        
+
 							<p class="text-center" style="text-color:#ffffff;">Hanya boleh diakses oleh pengguna yang berdaftar sahaja.
 
 						</form>
@@ -75,7 +75,7 @@
 
         <div class="modal fade" id="modalLupaKataLaluan" role="dialog">
             <div class="modal-dialog">
-            
+
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header" style="background:-webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);padding:10px;">
@@ -107,11 +107,11 @@
                 </button>
                 </div>
             </div>
-            
-            </div>
-        </div>  
 
-        
+            </div>
+        </div>
+
+
         <script language="javascript">
         function do_login(){
             var userid = $('#userid').val();
@@ -144,7 +144,7 @@
                                 if(data[1] == 'client'){
                                     window.location = '/client';
                                 } else if(data[1] == 'admin'){
-                                    window.location = '/admin';
+                                    window.location = '/jais';
                                 }
                             });
                         } else {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\AuditTrail;
 use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use App\Ref_Sumber_Bahan;
 use App\Ramuan_Dokumen;
 use App\Ramuan_Komen;
 use App\Ref_Surat;
+use Illuminate\Support\Facades\DB;
 
 class RamuanController extends Controller
 {
@@ -37,10 +39,10 @@ class RamuanController extends Controller
                 $ramuan->where('tarikh_tamat_sijil','<=',now()->addDays(7));
             }
         }
-        
+
         $ramuan = $ramuan->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
-        
+
         // dd($ramuan);
         return view('client/ramuan',compact('cat','ramuan'));
     }
@@ -54,19 +56,6 @@ class RamuanController extends Controller
         // dd($upload);
 
         return view('client/view',compact('rs', 'upload'));
-    }
-
-    public function restore($id)
-    {
-        $user = Auth::guard('client')->user()->userid;
-        // dd($id);
-        $cal = Ramuan::find($id)->update(['is_delete'=>0,'delete_dt'=>now(),'delete_by'=>$user]);
-
-        if($cal){
-            return response()->json('OK');
-        } else {
-            return response()->json('ERR');
-        }
     }
 
     public function showEditTarikh($id)
@@ -83,11 +72,11 @@ class RamuanController extends Controller
     public function updateSijil(request $request)
     {
         $user = Auth::guard('client')->user()->id;
-        
+
         if(!empty($request->sijil_halal)){
             $file = $request->sijil_halal->getClientOriginalName();
             $type = pathinfo($file)['extension'];
-            $path = $request->sijil_halal->storeAs('dokumen_ramuan', $file); 
+            $path = $request->sijil_halal->storeAs('dokumen_ramuan', $file);
 
             $sijil = Ramuan_Dokumen::where('id', $request->id)->update(['file_name'=>$file, 'file_type'=>$type]);
         }
@@ -112,6 +101,49 @@ class RamuanController extends Controller
         }
     }
 
+    public function delete_comment($id)
+    {
+        // dd($id);
+
+        $rs = Ramuan::find($id);
+
+        return view('client/modalDeleteRamuan',compact('rs'));
+    }
+
+    public function reason(Request $request)
+    {
+        DB::enableQueryLog();
+
+        $user = Auth::guard('client')->user()->userid;
+
+        $data = array(
+            'delete_comment'=>$request->catatan_text,
+            'is_delete' => 1,
+            'delete_dt' => now(),
+            'delete_by' => $user,
+        );
+
+        $permohonan = Ramuan::where('id',$request->id)->update($data);
+
+        //Auditrail
+        $query = DB::getQueryLog()[0];
+        $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+        $audit = new AuditTrail();
+        $audit->userid = $user;
+        $audit->ip = $request->ip();
+        $audit->date = now();
+        $audit->action = $query;
+
+        $audit->save();
+
+        if($permohonan){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
+        }
+    }
+
     //Ramuan Yang Dihapuskan
     public function hapus(Request $request)
     {
@@ -125,42 +157,37 @@ class RamuanController extends Controller
         if(!empty($request->carian)){ $ramuan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
-        
-        
+
         $ramuan = $ramuan->where('create_by',$user)->orderBy('delete_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
 
         return view('client/hapus',compact('cat','ramuan'));
     }
 
-    public function delete_comment($id)
+    public function restore(Request $request, $id)
     {
-        // dd($id);
+        DB::enableQueryLog();
 
-        $rs = Ramuan::find($id);
-
-        return view('client/modalDeleteRamuan',compact('rs'));
-    }
-
-    public function reason(Request $request)
-    {
         $user = Auth::guard('client')->user()->userid;
-        
-        if(!empty($request->id)) {
-            $data = array(
-                'delete_comment'=>$request->catatan_text,
-                'is_delete' => 1,
-                'delete_dt' => now(),
-                'delete_by' => $user,
-            );
+        // dd($id);
+        $cal = Ramuan::find($id)->update(['is_delete'=>0,'delete_dt'=>now(),'delete_by'=>'']);
 
-            $permohonan = Ramuan::where('id',$request->id)->update($data);
+        //Auditrail
+        $query = DB::getQueryLog()[1];
+        $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+        $audit = new AuditTrail();
+        $audit->userid = $user;
+        $audit->ip = $request->ip();
+        $audit->date = now();
+        $audit->action = $query;
+
+        $audit->save();
+
+        if($cal){
+            return response()->json('OK');
+        } else {
+            return response()->json('ERR');
         }
-
-            if($permohonan){
-                return response()->json('OK');
-            } else {
-                return response()->json('ERR');
-            }
     }
 }

@@ -13,4 +13,14 @@ class AuditTrail extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin','userid');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo('App\Client','userid','userid');
+    }
 }

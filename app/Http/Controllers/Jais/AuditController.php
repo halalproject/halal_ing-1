@@ -6,6 +6,7 @@ use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Ramuan;
+use App\Ramuan_Dokumen;
 use App\Ramuan_Komen;
 use App\Ref_Sumber_Bahan;
 use App\Ref_Surat;
@@ -23,7 +24,7 @@ class AuditController extends Controller
         if(!empty($request->carian)){ $list->where(function($query) use ($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('nama_pengilang','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
-        
+
         $list = $list->orderBy('create_dt','DESC')->paginate(10);
         // dd($list);
         return view('jais/audit',compact('cat','list'));
@@ -33,9 +34,21 @@ class AuditController extends Controller
     {
         // dd($id);
         $rs = Ramuan::find($id);
-        return view('jais/modal_detail',compact('rs'));
+        $dokumen = Ramuan_Dokumen::where('ramuan_id',$id)->get();
+        return view('jais/modal_detail',compact('rs','dokumen'));
     }
-    
+
+    public function download($file)
+    {
+        // dd(pathinfo($file)['extension']);
+        $path = storage_path().'/app/dokumen_ramuan/'.$file;
+		if(file_exists($path)){
+            return response()->download($path);
+		} else {
+			return back();
+        }
+    }
+
     public function surat(Request $request)
     {
         // dd($request->all());

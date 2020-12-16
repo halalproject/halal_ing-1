@@ -44,7 +44,7 @@ class PermohonanController extends Controller
 
         return view('jais/permohonan_tolak',compact('cat','permohonan'));
     }
-    
+
     public function modal_permohonan($id)
     {
         // dd($id);
@@ -63,7 +63,7 @@ class PermohonanController extends Controller
         // dd($upload);
         return view('jais/modal_detail',compact('rs','upload'));
     }
-    
+
     public function surat(Request $request)
     {
         // dd($request->all());

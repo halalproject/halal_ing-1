@@ -13,7 +13,7 @@
             <header class="panel-heading" style="background: -webkit-linear-gradient(top, #00eaff 20%,#ffffff 100%);">
                 <h2 class="panel-title">
                     <font color="#000000" size="3"><b>Maklumat Ramuan</b></font>
-                
+
                     @if($rs->is_delete != 1 && $rs->status != 1)
                     @php
                         if($rs->status == 6){
@@ -133,7 +133,15 @@
                     <div class="row">
                         <label class="col-sm-3 control-label"><b>Dokumentasi Ramuan : </b></label>
                         <div class="row">
-                            <div class="col-sm-5">Sijil Halal: <a href="">Sijil Halal.pdf</a></div>
+                            <div class="col-sm-5">
+                                @if (!empty($dokumen))
+                                @foreach ($dokumen as $doc)
+                                {{ $doc->type->nama }}:
+                                <a href="/jais/audit/dokumen/{{$doc->file_name}}">{{ $doc->file_name }}</a>
+                                <br>
+                                @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,7 +151,7 @@
                         <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>
                     </div>
                 </div>
-            
+
             </div>
 
         </section>

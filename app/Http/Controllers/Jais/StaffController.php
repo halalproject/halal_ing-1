@@ -18,11 +18,11 @@ class StaffController extends Controller
     public function index(Request $request)
     {
         $rsl = Ref_User_Level::where('status',0)->get();
-        
+
         $rss = Ref_User_Status::where('status',0)->get();
 
         $user = Admin::where('is_delete',0);
-        
+
         if(!empty($request->status)){ $user->where('user_status',$request->status); }
         if(!empty($request->level)){ $user->where('user_level',$request->level); }
         if(!empty($request->carian)){ $user->where('username','LIKE','%'.$request->carian.'%')->orWhere('email','LIKE','%'.$request->carian.'%')->orWhere('nombor_hp','LIKE','%'.$request->carian.'%'); }
@@ -36,7 +36,7 @@ class StaffController extends Controller
         $rsj = Ref_User_Jawatan::where('status',0)->get();
 
         $rsl = Ref_User_Level::where('status',0)->get();
-        
+
         $rss = Ref_User_Status::where('status',0)->get();
 
         return view('jais/modal_staff',compact('rsj','rsl','rss'));
@@ -48,7 +48,7 @@ class StaffController extends Controller
         $rsj = Ref_User_Jawatan::where('status',0)->get();
 
         $rsl = Ref_User_Level::where('status',0)->get();
-        
+
         $rss = Ref_User_Status::where('status',0)->get();
 
         $user = Admin::find($id);
@@ -85,7 +85,7 @@ class StaffController extends Controller
                 $u->created_by = $user;
                 $u->updated_dt = now();
                 $u->updated_by = $user;
-    
+
                 $u->save();
 
                 // Mail::to($request->email)->send(new StaffMail());

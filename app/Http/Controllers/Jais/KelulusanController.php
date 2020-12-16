@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Jais;
 
+use App\AuditTrail;
 use App\Client;
 use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,7 @@ use App\Ramuan;
 use App\Ramuan_Dokumen;
 use App\Ramuan_Komen;
 use App\Ref_Surat;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class KelulusanController extends Controller
@@ -47,53 +49,89 @@ class KelulusanController extends Controller
         // dd($upload);
         return view('jais/modal_permohonan',compact('rs','upload'));
     }
-    
-    public function komen(Request $request)
-    {
-        // dd($request->all());
-        $user = Auth::guard('admin')->user()->id;
 
-        if ($request->input('lulus')) {
-            // dd('lulus dan semak');
+    // public function komen(Request $request)
+    // {
+    //     DB::enableQueryLog();
+    //     // dd($request->all());
+    //     $user = Auth::guard('admin')->user()->id;
 
-            $komen = new Ramuan_Komen();
-            $komen->ramuan_id = $request->id;
-            $komen->komen_type = 'LULUS';
-            $komen->catatan = $request->catatan_text;
-            $komen->create_dt = now();
-            $komen->create_by = $user;
-            $komen->update_dt = now();
-            $komen->update_by = $user;
+    //     if ($request->input('lulus')) {
+    //         // dd('lulus dan semak');
 
-            $komen->save();
+    //         $komen = new Ramuan_Komen();
+    //         $komen->ramuan_id = $request->id;
+    //         $komen->komen_type = 'LULUS';
+    //         $komen->catatan = $request->catatan_text;
+    //         $komen->create_dt = now();
+    //         $komen->create_by = $user;
+    //         $komen->update_dt = now();
+    //         $komen->update_by = $user;
 
-            if($komen){
-                $status = Ramuan::find($request->id)->update(['status'=>3,'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
-                $this->email_lulus($request->id);
+    //         $komen->save();
 
-                //Hantar maklumat ramuan ke sistem myehalal
-                
-                $this->TestController->ramuan($request->id); 
+    //         //Auditrail
+    //         $query = DB::getQueryLog()[0];
+    //         $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
 
-                return response()->json('OK');
+    //         $audit = new AuditTrail();
+    //         $audit->userid = $user;
+    //         $audit->ip = $request->ip();
+    //         $audit->date = now();
+    //         $audit->action = $query;
 
-            } else {
-                return response()->json('ERR');
-            }
+    //         $audit->save();
 
-        } else if($request->input('tolak')) {
-            // dd('tolak');
-            $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_lulus'=>2,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
+    //         if($komen){
+    //             $status = Ramuan::find($request->id)->update(['status'=>3,'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
+    //             $this->email_lulus($request->id);
 
-            if($tolak){
-                $this->email_tolak($request->id);
-                return response()->json('OK');
-            } else {
-                return response()->json('ERR');
-            }
-        }
+    //             //Auditrail
+    //             $query = DB::getQueryLog()[3];
+    //             $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
 
-    }
+    //             $audit = new AuditTrail();
+    //             $audit->userid = $user;
+    //             $audit->ip = $request->ip();
+    //             $audit->date = now();
+    //             $audit->action = $query;
+
+    //             $audit->save();
+
+    //             //Hantar maklumat ramuan ke sistem myehalal
+
+    //             $this->TestController->ramuan($request->id);
+
+    //             return response()->json('OK');
+
+    //         } else {
+    //             return response()->json('ERR');
+    //         }
+
+    //     } else if($request->input('tolak')) {
+    //         // dd('tolak');
+    //         $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_lulus'=>2,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
+
+    //         //Auditrail
+    //         $query = DB::getQueryLog()[0];
+    //         $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+    //         $audit = new AuditTrail();
+    //         $audit->userid = $user;
+    //         $audit->ip = $request->ip();
+    //         $audit->date = now();
+    //         $audit->action = $query;
+
+    //         $audit->save();
+
+    //         if($tolak){
+    //             $this->email_tolak($request->id);
+    //             return response()->json('OK');
+    //         } else {
+    //             return response()->json('ERR');
+    //         }
+    //     }
+    // }
 
     private function email_lulus($id)
     {

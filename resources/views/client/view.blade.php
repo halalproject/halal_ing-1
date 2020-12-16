@@ -22,15 +22,14 @@ if((!empty($id)) && ($upload != '')){
                 <font color="#000000" size="3"><b>Maklumat Ramuan</b>
                 @if($rs->status == 1 && !empty($rs->tarikh_buka)) [Sedang Diproses] @elseif($rs->status == 6) [Tolak] @elseif($rs->is_delete == 1) [Hapus] @else @endif
                 </font>
-                
                 @php
                     if($rs->status == 6){
                         $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_TOLAK';
-                    } else if($rs->status == 3 || $rs->status == 1) {
+                    } else if($rs->status == 3) {
                         $link = '/client/surat?ids='.$rs->id.'&type=S&kod=S_LULUS';
                     }
                 @endphp
-                @if($rs->status != 1)
+                @if($rs->status > 1)
                 <a href="{{ $link }}" target="blank">
                     <button type="button" class="btn btn-md btn-success" style="float: right; background-color:#252396;"><i class="fa fa-print"></i> Cetak</button>
                 </a>
@@ -71,7 +70,7 @@ if((!empty($id)) && ($upload != '')){
                         <label class="col-sm-4 control-label" for="profileLastName"><b>Sumber Bahan :</b></label>
                         <div class="col-sm-4">{{ optional($rs->sumber)->nama }}</div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="form-group">
                     <div class="row">
@@ -79,14 +78,14 @@ if((!empty($id)) && ($upload != '')){
                         <div class="col-sm-4">{{ optional($rs->negara)->nama }}</div>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-4 control-label"><b>Nama Pengilang/Pengeluar : </b></label>
                         <div class="col-sm-5">{{$rs->nama_pengilang}}</div>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-4 control-label"><b>Alamat Pengilang/Pengeluar : </b></label>
@@ -107,7 +106,7 @@ if((!empty($id)) && ($upload != '')){
                         <div class="col-sm-5">{{$rs->nama_pembekal}}</div>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-4 control-label"><b>Alamat Pembekal : </b></label>
@@ -122,12 +121,12 @@ if((!empty($id)) && ($upload != '')){
                             <div class="col-sm-5">
                                 @if (!empty($upload))
                                 @foreach ($upload as $doc)
-                                {{ $doc->type->nama }}: 
+                                {{ $doc->type->nama }}:
                                 <a href="/client/ramuan/{{$doc->file_name}}">{{ $doc->file_name }}</a>
                                 <br>
-                                @endforeach               
+                                @endforeach
                                 @endif
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>

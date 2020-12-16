@@ -11,7 +11,7 @@ function do_close()
 
 function do_simpan()
 {
-	var docContents = CKEDITOR.instances['catatan'].getData(); 
+	var docContents = CKEDITOR.instances['catatan'].getData();
 	document.halal.catatan_text.value=docContents;
 
     if(!$("input:checkbox").is(":checked")){
@@ -46,7 +46,7 @@ function do_simpan()
                     confirmButtonText: "Ok",
                     showConfirmButton: true,
                     }).then(function () {
-                        reload = window.location; 
+                        reload = window.location;
                         window.location = reload;
                     });
                 } else if(data=='ERR'){
@@ -183,10 +183,10 @@ function do_simpan()
                                             <div class="col-sm-5">
                                                 @if (!empty($upload))
                                                 @foreach ($upload as $doc)
-                                                {{ $doc->type->nama }}: 
-                                                <a href="/client/ramuan/{{$doc->file_name}}">{{ $doc->file_name }}</a>
+                                                {{ $doc->type->nama }}:
+                                                <a href="/jais/audit/dokumen/{{$doc->file_name}}">{{ $doc->file_name }}</a>
                                                 <br>
-                                                @endforeach               
+                                                @endforeach
                                                 @endif
                                             </div>
                                         </div>
@@ -201,7 +201,7 @@ function do_simpan()
                         </div>
                     </div>
                     <!-- End First Tab -->
-                    
+
                     <!-- Second Tab -->
                     <div id="t2" class="card tab-pane row in" role="tabpanel" aria-labelledby="tab-2">
                         <div class="panel-body">
@@ -211,8 +211,8 @@ function do_simpan()
                                         <label class="col-form-label col-sm-3 pt-0"><b><font color="#FF0000">*</font> Status :</b></label>
                                         <div class="col-sm-9">
                                             <div class="form-check">
-                                                
-                                                @if(empty($rs->is_semak)) 
+
+                                                @if(empty($rs->is_semak))
                                                 <input class="form-check-input" type="checkbox" name="semak" id="semak" value="semak">
                                                 <label class="form-check-label" for="semak">
                                                 Semak
@@ -243,7 +243,7 @@ function do_simpan()
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <textarea name="catatan_text"  style="display:none;"></textarea>
                             </div>
 
@@ -258,7 +258,7 @@ function do_simpan()
                     </div>
                     <!-- End Second Tab -->
             </div>
-            <!-- End Tab -->  
+            <!-- End Tab -->
         </div>
     </section>
 </div>

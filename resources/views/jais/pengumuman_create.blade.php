@@ -60,16 +60,7 @@ function do_simpan() {
             confirmButtonText: "Ok",
             showConfirmButton: true,
         });
-    } else if(is_public == '' ){
-        swal({
-            title: 'Amaran',
-            text: 'Maklumat tidak lengkap.\nSila pilih pihak yang menerima pemberitahuan.',
-            type: 'warning',
-            confirmButtonClass: "btn-warning",
-            confirmButtonText: "Ok",
-            showConfirmButton: true,
-        });
-    }  else { 
+    } else {
         var formdata = new FormData($('#create')[0]);
         // alert(formdata);
         $.ajaxSetup({
@@ -90,7 +81,7 @@ function do_simpan() {
             //data: datas,
             success: function(data){
                 // console.log(data);
-                if(data =='OK'){ 
+                if(data =='OK'){
                     swal({
                         title: 'Berjaya',
                         text: 'Maklumat telah berjaya disimpan',
@@ -99,7 +90,7 @@ function do_simpan() {
                         confirmButtonText: "Ok",
                         showConfirmButton: true,
                     }).then(function () {
-                        reload = window.location; 
+                        reload = window.location;
                         window.location = reload;
                     });
                 } else if(data =='ERR'){
@@ -170,7 +161,7 @@ $pub = $calendar->is_public ?? '';
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="form-group">
                         <div class="row">
                             <label class="col-sm-3 control-label"><font color="#FF0000">*</font> Kategori :</label>
@@ -194,7 +185,7 @@ $pub = $calendar->is_public ?? '';
                         </div>
 
                         <textarea name="catatan_text"  style="display:none;"></textarea>
-                    </div>                
+                    </div>
 
                     <div class="form-group">
                         <div class="row">
@@ -210,11 +201,11 @@ $pub = $calendar->is_public ?? '';
                                     <input  type="text" name="curr_doc" id="curr_doc" value="{{ $calendar->file_name }}" style ="border:none; padding-left:0px;">
                                     </i>
                                 </a>
-                                
+
                             </div>
                             @endif
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="form-group" id="pengumumanKategori">
                         <div class="row">
@@ -229,11 +220,11 @@ $pub = $calendar->is_public ?? '';
                                 <label class="radio-inline">
                                     <input type="radio" name="pengumuman_untuk" id="syarikat" value="3" @if($pub == '3') checked @endif> Syarikat
                                 </label>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div align="right">
                             <button type="button" class="btn btn-default" onclick="do_close()"><i class="fa fa-spinner"></i> Kembali</button>

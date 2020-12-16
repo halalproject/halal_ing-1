@@ -6,7 +6,7 @@
 		<title>{{ config('app.name') }}</title>
 		<link rel="shortcut icon" type="image/png" href=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        
+
         <style>
             @page{
                 margin-top: 20px;
@@ -14,7 +14,7 @@
                 margin-right: 80px;
                 margin-bottom: 0;
             }
-            
+
             body{
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 10pt;
@@ -94,6 +94,9 @@
                                 <td align="center" width="35%">
                                     <strong>No. Permohonan</strong>
                                 </td>
+                                <td align="center" width="35%">
+                                    <strong>Nama Ramuan</strong>
+                                </td>
                                 <td align="center" width="75%">
                                     <strong>Sebab</strong>
                                 </td>
@@ -101,6 +104,10 @@
                             <tr>
                                 <td align="center" width="35%">
                                     {{ $ramuan->ing_kod }}
+                                </td>
+                                <td align="center" width="35%">
+                                    {{ $ramuan->nama_ramuan }} <br>
+                                    ({{ $ramuan->nama_saintifik }})
                                 </td>
                                 <td width="75%" style="padding: 10px">
                                     @if(!empty($komen->catatan))

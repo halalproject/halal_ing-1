@@ -10,13 +10,13 @@
 					<a href="" class="logo">
 						<img src="" height="35" alt="Halal Ingredient" />
                         <b>Halal Ingredient</b>
-					</a> 
+					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 						<i class="fa fa-bars" aria-label="Toggle sidebar" style="cursor:pointer"></i>
 					</div>
                     <div id="userbox" class="userbox1 visible-xs printButton"> Menu
                     	<figure class="profile-picture">
-								
+
 						</figure>
                         <a href="#" data-toggle="dropdown"></a>
 						<div class="dropdown-menu" style="margin-left:-50px;width:250px">
@@ -27,7 +27,7 @@
 							<span class="name"><b>{{ Auth::guard('admin')->user()->company_name }}</b></span>
 							@endif
 							</div>
-                            
+
 							<ul class="list-unstyled">
 								<li class="divider"></li>
 								<li>
@@ -66,7 +66,7 @@
 								if(\Request::is('client*')){
 									$path = 'client';
 								} else {
-									$path = 'admin';
+									$path = 'jais';
 								}
 								@endphp
 								<li>
@@ -103,7 +103,7 @@
 							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 						</div>
 					</div>
-				
+
 					<div class="nano">
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
@@ -120,7 +120,7 @@
 									</li>
 									{{-- Client --}}
 									@if(\Request::is('client*'))
-									
+
 									<li class="@if(\Request::is('client/permohonan*')) nav-expanded nav-active @endif">
 										<a href="/client/permohonan">
 											<i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -140,7 +140,7 @@
 											<i class="fa fa-list" aria-hidden="true"></i>
 											<span>Senarai Ramuan</span>
 										</a>
-									</li>   
+									</li>
 
 									<li class="@if(\Request::is('client/hapus*')) nav-expanded nav-active @endif">
 										<a href="/client/hapus">
@@ -168,7 +168,7 @@
 										</a>
 									</li>
 									@endif
-									
+
 									@if (Auth::guard('admin')->user()->user_level <> 3)
 									<li class="@if(\Request::is('jais/lulus*')) nav-expanded nav-active @endif">
 										<a href="/jais/lulus">
@@ -186,7 +186,7 @@
 									</li>
 									@endif
 
-									<li class="@if(\Request::is('jais/audit*')) nav-expanded nav-active @endif">
+									<li class="@if(\Request::is('jais/audit') || \Request::is('jais/audit/*')) nav-expanded nav-active @endif">
 										<a href="/jais/audit">
 											<i class="fa fa-folder" aria-hidden="true"></i>
 											<span>Audit</span>
@@ -218,6 +218,12 @@
 											<i class="fa fa-certificate" aria-hidden="true"></i>
 											<span>Badan Persijilan Halal</span>
 										</a>
+                                    </li>
+                                    <li class="@if(\Request::is('jais/auditrail*')) nav-expanded nav-active @endif">
+										<a href="/jais/auditrail">
+											<i class="fa fa-tasks" aria-hidden="true"></i>
+											<span>Auditrail</span>
+										</a>
 									</li>
 									@endif
 
@@ -232,10 +238,10 @@
 								</ul>
 								<br /><br /><br />
 							</nav>
-							
+
 						</div>
-				
+
 					</div>
-				
+
 				</aside>
 				<!-- end: sidebar -->

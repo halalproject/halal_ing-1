@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\AuditTrail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Client;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -20,6 +22,8 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
+        DB::enableQueryLog();
+
         // dd($request->all());
 
         $data = array(
@@ -35,6 +39,18 @@ class ClientController extends Controller
         );
 
         $user = Client::where('userid',$request->id)->update($data);
+
+        //Auditrail
+        $query = DB::getQueryLog()[0];
+        $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+        $audit = new AuditTrail();
+        $audit->userid = $request->id;
+        $audit->ip = $request->ip();
+        $audit->date = now();
+        $audit->action = $query;
+
+        $audit->save();
 
         if($user){
             return response()->json('OK');
@@ -52,8 +68,22 @@ class ClientController extends Controller
 
     public function reset(Request $request)
     {
+        DB::enableQueryLog();
+
         // dd($request->all());
         $user = Client::where('userid',$request->id)->update(['password'=>md5($request->new_pass)]);
+
+        //Auditrail
+        $query = DB::getQueryLog()[0];
+        $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+        $audit = new AuditTrail();
+        $audit->userid = $request->id;
+        $audit->ip = $request->ip();
+        $audit->date = now();
+        $audit->action = $query;
+
+        $audit->save();
 
         if($user){
             return response()->json('OK');

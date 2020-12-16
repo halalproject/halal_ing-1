@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Admin;
+use App\AuditTrail;
 use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use App\Mail\SendMail;
 use App\Ramuan_Komen;
 use App\Ref_Surat;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class PermohonanController extends Controller
@@ -29,7 +31,7 @@ class PermohonanController extends Controller
         // dd($request->all());
         $permohonan = Ramuan::where('create_by',$user)->where('status','<>',3)->where('status','<>',6)->where('is_delete',0);
 
-        if($request->status != ''){ 
+        if($request->status != ''){
             if($request->status == '1'){
                 $permohonan->where('status',1)->whereNull('tarikh_buka');
             } else if($request->status == '11'){
@@ -42,10 +44,10 @@ class PermohonanController extends Controller
         if(!empty($request->carian)){ $permohonan->where(function($query) use($request){
             $query->where('nama_ramuan','LIKE','%'.$request->carian.'%')->orWhere('nama_saintifik','LIKE','%'.$request->carian.'%')->orWhere('ing_kod','LIKE','%'.$request->carian.'%');
         }); }
-        
+
         $permohonan = $permohonan->orderBy('create_dt','DESC')->paginate(10);
         $cat = Ref_Sumber_Bahan::get();
-        
+
         return view('client/permohonan',compact('permohonan','cat'));
     }
 
@@ -63,7 +65,7 @@ class PermohonanController extends Controller
 
         return view('client/modal',compact('bahan','negara','negeri','dokumen','cb','information', 'inform'));
     }
-    
+
     public function edit($id)
     {
         // dd($id);
@@ -87,6 +89,8 @@ class PermohonanController extends Controller
 
     public function store(Request $request)
     {
+        DB::enableQueryLog();
+
         $user = Auth::guard('client')->user()->userid;
         // dd($request->all());
         if(empty($request->id)){
@@ -118,6 +122,18 @@ class PermohonanController extends Controller
 
             $ingredient->save();
 
+            //Auditrail
+            $query = DB::getQueryLog()[0];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
+
             if($ingredient){
                 return response()->json(['OK',$ingredient->id]);
             } else {
@@ -147,6 +163,18 @@ class PermohonanController extends Controller
 
             $permohonan = Ramuan::where('id',$request->id)->update($data);
 
+            //Auditrail
+            $query = DB::getQueryLog()[0];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
+
             if($permohonan){
                 return response()->json(['OK',$request->id,$request->negara_kilang]);
             } else {
@@ -167,21 +195,20 @@ class PermohonanController extends Controller
                 $file = $request->upload_1->getClientOriginalName();
                 $type = pathinfo($file)['extension'];
                 $path = $request->upload_1->storeAs('dokumen_ramuan', $file);
-            } 
+            }
             else {
                 $file = $request->current_file_1;
                 $type = pathinfo($file)['extension'];
             }
-            
+
             $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
                 ['ramuan_id' => $request->id,'ref_dokumen_id' => 1],
                 ['ref_dokumen_id' => 1,'file_name' => $file,'file_type' => $type, 'cbid' => $request->doc_otherNegara],
             );
-    
+
             $ramuan_doc->save();
             // dd($ramuan_doc);
         }
-
 
         for ($i=2; $i<=6; $i++) {
             // dd($request->doc_.$i);
@@ -189,35 +216,60 @@ class PermohonanController extends Controller
                 $file = $request->file('upload_'.$i)->getClientOriginalName();
                 $type = pathinfo($file)['extension'];
                 $path = $request->file('upload_'.$i)->storeAs('dokumen_ramuan', $file);
-                
+
                 $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
                     ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
                     ['ref_dokumen_id' => $i,'file_name' => $file,'file_type' => $type],
                 );
 
-                
                 if($i == 6){
                     $ramuan_doc = Ramuan_Dokumen::updateOrCreate(
                         ['ramuan_id' => $request->id,'ref_dokumen_id' => $i],
                         ['ref_dokumen_id' => $i,'nama_dokumen' => $request->nama_lain,'file_name' => $file,'file_type' => $type]
                     );
                 }
-    
-                $ramuan_doc->save();    
+
+                $ramuan_doc->save();
             } else if(empty($request->input('doc_'.$i))){
                 $ramuan_doc = Ramuan_Dokumen::where('ramuan_id',$request->id)->where('ref_dokumen_id',$i)->update(['is_delete'=>1]);
             }
         }
 
+        DB::enableQueryLog();
+
         if((!empty($request->upload_1)) || (!empty($request->current_file_1))){
             $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>1,'tarikh_tamat_sijil'=>$request->tarikh_tamat_sijil,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
+
+            //Auditrail
+            $query = DB::getQueryLog()[0];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
         } else {
             $ramuan = Ramuan::where('id', $request->id)->update(['is_sijil'=>0,'status'=>1,'update_dt'=>now(),'update_by'=>$user]);
+
+            //Auditrail
+            $query = DB::getQueryLog()[0];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
         }
-        
+
         $this->notification_to_user($request->id);
         $this->notification_to_jais($request->id);
-        
+
         return response()->json('OK');
     }
 
@@ -226,7 +278,7 @@ class PermohonanController extends Controller
         // dd($id);
         $ramuan = Ramuan::find($id);
         // dd($ramuan);
-        
+
         $data = [
             'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
             'ramuan' => Ramuan::find($id),
@@ -243,7 +295,7 @@ class PermohonanController extends Controller
         // dd($id);
         $ramuan = Ramuan::find($id);
         // dd($ramuan);
-        
+
         $data = [
             'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
             'ramuan' => Ramuan::find($id),
@@ -263,11 +315,25 @@ class PermohonanController extends Controller
         return view('client/view',compact('rs', 'upload'));
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
+        DB::enableQueryLog();
+
         $user = Auth::guard('client')->user()->userid;
         // dd($id);
         $ramuan = Ramuan::find($id)->update(['is_delete'=>1,'delete_dt'=>now(),'delete_by'=>$user]);
+
+        //Auditrail
+        $query = DB::getQueryLog()[1];
+        $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+        $audit = new AuditTrail();
+        $audit->userid = $user;
+        $audit->ip = $request->ip();
+        $audit->date = now();
+        $audit->action = $query;
+
+        $audit->save();
 
         if($ramuan){
             return response()->json('OK');
@@ -317,7 +383,6 @@ class PermohonanController extends Controller
 	{
 		// dd(pathinfo($file)['extension']);
         $path = storage_path().'/app/dokumen_ramuan/'.$file;
-        $setFileType = pathinfo($file)['extension'];
 		if(file_exists($path)){
             return response()->download($path);
 		} else {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jais;
 
 use App\Admin;
+use App\AuditTrail;
 use App\Client;
 use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,7 @@ use App\Ramuan;
 use App\Ramuan_Dokumen;
 use App\Ramuan_Komen;
 use App\Ref_Surat;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class SemakanController extends Controller
@@ -48,9 +50,10 @@ class SemakanController extends Controller
         // dd($upload);
         return view('jais/modal_permohonan',compact('rs','upload'));
     }
-    
+
     public function komen(Request $request)
     {
+        DB::enableQueryLog();
         // dd($request->all());
         $user = Auth::guard('admin')->user()->id;
 
@@ -72,14 +75,52 @@ class SemakanController extends Controller
 
             $komen->save();
 
+            //Auditrail
+            $query = DB::getQueryLog()[0];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
+
             if($komen){
                 if ($request->input('lulus')) {
                     $status = Ramuan::find($request->id)->update(['status'=>3,'is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now(),'is_lulus'=>1,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
+
+                    //Auditrail
+                    $query = DB::getQueryLog()[3];
+                    $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+                    $audit = new AuditTrail();
+                    $audit->userid = $user;
+                    $audit->ip = $request->ip();
+                    $audit->date = now();
+                    $audit->action = $query;
+
+                    $audit->save();
+
                     $this->email_lulus($request->id);
 
                     $this->TestController->ramuan($request->id);
                 } else if($request->input('semak')) {
                     $status = Ramuan::find($request->id)->update(['is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now()]);
+
+                    //Auditrail
+                    $query = DB::getQueryLog()[3];
+                    $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+                    $audit = new AuditTrail();
+                    $audit->userid = $user;
+                    $audit->ip = $request->ip();
+                    $audit->date = now();
+                    $audit->action = $query;
+
+                    $audit->save();
+
                     $this->email_semak($request->id);
                 }
 
@@ -92,6 +133,19 @@ class SemakanController extends Controller
         } else if($request->input('tolak')) {
             // dd('tolak');
             $tolak = Ramuan::find($request->id)->update(['status'=>6,'is_semak'=>1,'is_semak_by'=>$user,'tkh_semak'=>now(),'is_lulus'=>2,'is_lulus_by'=>$user,'tkh_lulus'=>now()]);
+
+            //Auditrail
+            $query = DB::getQueryLog()[1];
+            $query = vsprintf(str_replace('?', '`%s`', $query['query']), $query['bindings']);
+
+            $audit = new AuditTrail();
+            $audit->userid = $user;
+            $audit->ip = $request->ip();
+            $audit->date = now();
+            $audit->action = $query;
+
+            $audit->save();
+
             $this->email_tolak($request->id);
             if($tolak){
                 return response()->json('OK');
@@ -121,7 +175,7 @@ class SemakanController extends Controller
         $ramuan = Ramuan::find($id);
         $ccs = Admin::where('user_level',3)->pluck('email');
         // dd($ccs);
-        
+
         $data = [
             'syarikat' => Client::where('userid',$ramuan->create_by)->first(),
             'ramuan' => Ramuan::find($id),
@@ -142,7 +196,7 @@ class SemakanController extends Controller
             'surat' => Ref_Surat::where('type','M')->where('kod','M_TOLAK')->first(),
             'komen' => Ramuan_Komen::where('ramuan_id',$id)->first(),
         ];
-        
+
         Mail::to($ramuan->syarikat->company_email)->send(new SendMail($data));
     }
 }

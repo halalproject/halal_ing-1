@@ -16,14 +16,17 @@
                     </div>
                 </div>
 
+                @if (!empty($rs->file_name))
                 <div class="form-group">
                     <div class="row">
                         <label class="col-sm-2 control-label">Dokumen: </label>
                         <div class="col-sm-8">
-                            <a href="#">Dokumen.pdf</a>
+                            <a href="/jais/event/dokumen/{{$rs->file_name}}">{{ $rs->file_name }}</a>
                         </div>
                     </div>
                 </div>
+                @endif
+
 
                 <div class="form-group">
                     <div align="right">
